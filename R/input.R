@@ -48,7 +48,7 @@ read_file_input_literature <-  function(ps_input_file_literature,
   ### # Read the input file with literature values
   tbl_input <- readr::read_delim(file = ps_input_file_literature, delim = ";")
   qp4ewc_log_info(lgr, 'read_file_input_literature',paste0('Read file: \n * ps_input_file_literature: ',ps_input_file_literature,"\n",
-                                                           ' * in a tibble'))
+                                                           ' * in a tibble','\n'))
 
 
   ### # Return tibble

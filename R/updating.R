@@ -66,6 +66,6 @@ update_input_parameter_file <- function(ps_path2template_input_parameter_file,
   cat(paste0(vec_ecow_input, collapse = "\n"), "\n", file = ps_path2template_input_parameter_file, append = FALSE)
   qp4ewc_log_info(lgr, 'update_input_parameter_file',paste0('Update the value:\n * ps_value2update: ',ps_value2update, '\n',
                                                             ' * of the statement ps_statement2search: ',ps_statement2search, '\n',
-                                                            ' * on vector-line: ',ps_value2update_idx))
+                                                            ' * on vector-line: ',ps_value2update_idx,'\n'))
 
 }

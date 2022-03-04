@@ -1,0 +1,321 @@
+/* This file is necessary for program EWBC (Production Systems 1 to 3).
+   It includes input parameters describing cows and heifers in pasture systems.
+   Some of the inputs referring to calving score may be of no concern. For
+	example,  if the number of classes for calving performance is 4, all
+	values for  calving scores 5 and 6 are ignored.   If there is only one
+	feeding season defined for the whole year in INPUT01.TXT, insert values
+	for feeding season with code 1 only,  the values for feeding season with
+	code 2 will not be read.
+	Do not omit rows with unnecessary  information in the input file. The
+	program will skip the inputs which  are not needed.
+   The input parameters are arranged in the following way:
+        parameters for reproduction, growth, mortality, feeding, prices and
+	costs.
+	Speaking about the 1st, 2nd and 3rd oestrus of heifers or cows, the
+	range of oestruses from the beginning of the mating period is thought.
+   All input data are arranged in the following way:
+	each parameter takes three rows,
+	in the first row stands its value,
+	the string expression in the second row describes the parameter and
+	the last string in the third row contains the units of the parameter.
+	If there is no unit given, enter [SPACE] enclosed into quotation
+	marks.
+   MU: monetary unit */
+0.80
+"Conception rate of heifers in the 1st oestrus during the first part of the mating period expressed as proportion of heifers mated in this oestrus"
+" "
+0.67
+"Conception rate of heifers in the 2nd oestrus during the second part of the mating period expressed as proportion of heifers not being pregnant after the 1st oestrus"
+" "
+0.55
+"Conception rate of heifers in the 3rd oestrus during the third part of the mating period expressed as proportion of heifers not being pregnant after the 2nd oestrus"
+" "
+0.73
+"Conception rate of cows in the 1st oestrus during the first part of the mating period for cows not having dystocia, averaged over reproductive cycles 1 to LL-1 and expressed as proportion of cows mated in this oestrus"
+" "
+0.58
+"Conception rate of cows in the 2nd oestrus during the second part of the mating period for cows not having dystocia, averaged over reproductive cycles 1 to LL-1 and expressed as proportion of cows not being pregnant after the 1st oestrus"
+" "
+0.50
+"Conception rate of cows in the 3rd oestrus during the third part of the mating period for cows not having dystocia, averaged over reproductive cycles 1 to LL-1 and expressed as proportion of cows not being pregnant after the 2nd oestrus"
+" "
+289
+"Length of pregnancy"
+"days"
+0.1
+"Decrease in conception rate of cows after having dystocia, averaged over reproductive cycles 1 to LL"
+" "
+100
+"Number of cows per bull for natural mating"
+" "
+0.20
+"Number of re-inseminations per oestrus (when applying artificial insemination"
+" "
+35
+"Average length of the interval between calving and the beginning of the mating period"
+"days"
+40
+"Average number of days a cow culled after dystocia stays in
+the herd from previous calving"
+"days"
+53
+"Average number of days for cows from weaning a calf until culling for
+failure to conceive"
+"days"
+4
+"Fat content in milk"
+"%"
+3.2
+"Protein content in milk"
+"%"
+552
+"Cow weight after second calving"
+"kg"
+568
+"Mature weight of cows (= cow weight after 3rd calving)"
+"kg"
+60
+"Weight gain for pregnancy (= loss of cow weight after calving) in reproductive cycles 1 to LL"
+"kg"
+0.56
+"Dressing proportion of cows"
+" "
+0.05
+"Culling rate of cows after dystocia averaged over reproductive cycles 1 to LL"
+" "
+0.0015
+"Losses of calves from 48 hours after calving to weaning averaged over reproductive cycles and sexes"
+" "
+10
+"Losses of feed through wasting in feeding season with code 1"
+"%"
+20
+"Losses of feed through wasting in feeding season with code 2"
+"%"
+7000
+"Amount of dry matter produced per ha pasture"
+"kg/ha"
+0.64
+"Dry matter per kg feed ration in feeding season with code 1
+ for suckling calves (without milk)"
+"kg/kg"
+0.28
+"Dry matter per kg feed ration in feeding season with code 2
+ for suckling calves (without milk)"
+"kg/kg"
+0.57
+"Dry matter per kg feed ration in feeding season with code 1 for cows"
+"kg/kg"
+0.24
+"Dry matter per kg feed ration in feeding season with code 2 for cows"
+"kg/kg"
+/* The following two inputs are read only if the economic weight for
+residual feed intake of adult animals is to be calculated */
+0.0
+"Residual dry matter intake of cows from feed ration of code 1
+(difference between the daily actual and predicted dry matter intake)"
+"kg/day"
+0.0
+"Residual dry matter intake of cows from feed ration of code 2"
+"kg/day"
+5.5
+"Net energy per kg dry matter of feed ration of code 1 for cows"
+"MJ NE/kg dry matter"
+6.1
+"Net energy per kg dry matter of feed ration of code 2 for cows"
+"MJ NE/kg dry matter"
+6.0
+"Net energy per kg dry matter of feed ration (without milk) for suckling calves
+in feeding season with code 1"
+"MJ NE/kg dry matter"
+6.53
+"Net energy per kg dry matter of feed ration (without milk) for suckling calves
+in feeding season with code 2"
+"MJ NE/kg dry matter"
+78.3
+"Protein per kg dry matter of feed ration of code 1 for cows"
+"g PDI/kg"
+98.2
+"Protein per kg dry matter of feed ration of code 2 for cows"
+"g PDI/kg"
+85.8
+"Protein per kg dry matter of feed ration (without milk) for suckling calves
+in feeding season with code 1"
+"g PDI/kg"
+101
+"Protein per kg dry matter of feed ration (without milk) for suckling calves
+in feeding season with code 2"
+"g PDI/kg"
+1.06
+"Adjustment factor for breed energy requirement for maintenance - dry cows"
+" "
+1.2
+"Adjustment factor for breed energy requirement for maintenance - lactating cows"
+" "
+1.2
+"Adjustment factor for energy requirement for maintenance according to technology - pasture"
+" "
+1
+"Adjustment factor for energy requirement for maintenance according to technology - bind technology"
+" "
+1.1
+"Adjustment factor for energy requirement for maintenance according to technology - free technology"
+" "
+0.20
+"Amount of minerals per cow (including calf) and day"
+"kg/day"
+60.0
+"Amount of water per cow (including calf) and day"
+"l/day"
+3.5
+"Amount of straw per cow (including calf) and day during feeding season with code 1"
+"kg/day"
+0
+"Amount of straw per cow (including calf) and day during feeding season with code 2"
+"kg/day"
+0
+"Amount of dung per cow (including calf) and day during feeding season with
+code 1"
+"kg/day"
+0
+"Amount of dung per cow (including calf) and day during feeding season with
+code 2"
+"kg/day"
+22
+"Price per portion of semen for AI (including service)"
+"MU/portion"
+22
+"Price per re-insemination (for semen portion and service)"
+"MU/re-insemination"
+0.09
+"Price per kg fresh matter of feed ration of code 1 for cows"
+"MU/kg"
+0.02
+"Price per kg fresh matter of feed ration of code 2 for cows"
+"MU/kg"
+0.13
+"Price per kg fresh matter of feed ration for suckling calves (without milk) in feeding season with code 1"
+"MU/kg"
+0.07
+"Price per kg fresh matter of feed ration for suckling calves (without milk) in feeding season with code 2"
+"MU/kg"
+0
+"Price per kg dung"
+"MU/kg"
+1.60
+"Price per kg minerals for cows"
+"MU/kg"
+1.60
+"Price per kg minerals for replacement heifers"
+"MU/kg"
+0.12
+"Price per kg straw"
+"MU/kg"
+0
+"Price per l water"
+"MU/l"
+0
+"Price for sold female weaned calves"
+"MU/kg live weight"
+0
+"Price for sold male weaned calves"
+"MU/kg live weight"
+10.15
+"Price per kg carcass of cows in the base class for fleshiness and fat covering"
+"MU/kg"
+0.8
+"Ratio of price per kg carcass of cows involuntarily culled to the price per kg carcass of cows voluntarily culled"
+" "
+120
+"Governmental financial support per weaned calf"
+"MU/animal"
+0
+"Governmental financial support per performance-tested cow and year"
+"MU/cow and year"
+2000
+"Additional governmental financial support per cow and year"
+"MU/cow and year"
+0
+"Governmental financial support per culled cow"
+"MU/cow"
+0
+"Governmental financial support per exported male calf"
+"MU/animal"
+0
+"Fraction of performance-tested cows"
+" "
+200
+"Cost for removing and rendering a dead cow"
+"MU/animal"
+0
+"Cost for removing and rendering a dead young animal"
+"MU/animal"
+127
+"Cost for veterinary treatment per cow and reproductive cycle (including calf to weaning)"
+"MU/reproductive cycle"
+0
+"Veterinary cost connected with calving score 1"
+"MU/calving"
+0
+"Veterinary cost connected with calving score 2"
+"MU/calving"
+300
+"Veterinary cost connected with calving score 3"
+"MU/calving"
+1000
+"Veterinary cost connected with calving score 4"
+"MU/calving"
+0
+"Veterinary cost connected with calving score 5"
+"MU/calving"
+0
+"Veterinary cost connected with calving score 6"
+"MU/calving"
+0
+"Stock-man hours connected with calving score 1"
+"h"
+0
+"Stock-man hours connected with calving score 2"
+"h"
+3
+"Stock-man hours connected with calving score 3"
+"h"
+5
+"Stock-man hours connected with calving score 4"
+"h"
+6
+"Stock-man hours connected with calving score 5"
+"h"
+8
+"Stock-man hours connected with calving score 6"
+"h"
+11.5
+"Cost per stock-man hour (needed for dystocia cost)"
+"MU/h"
+13.36
+"Fixed cost per cow and day (including calf to weaning)"
+"MU/day"
+0.01
+"Discount rate"
+" "
+0
+"Barren heifers culled after their 1st mating period expressed as proportion of heifers not being pregnant in their 1st mating period"
+" "
+1
+"Barren heifers culled after their 2nd mating period expressed as proportion of heifers not being pregnant in their 2nd mating period"
+" "
+0
+"Female calves sold at weaning expressed as proportion of surplus female calves"
+" "
+0
+"Male calves sold at weaning expressed as proportion of male weaned calves"
+" "
+0
+"Proportion of weaned male calves which are performance tested (only read in Production System 1)"
+" "
+0
+"Fattened castrates expressed as proportion of male calves determined for fattening"
+" "
+1
+"Proportion of surplus female calves for fattening"
+" "
