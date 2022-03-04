@@ -1,10 +1,16 @@
 input_file;input;input_unit;input_value;input_source
+
+### # -----------------------------
+### # Additional_costs.Rmd
+### # MU: monetary unit
+### # cost of minerals
 INPUT03.TXT;"Amount of minerals per cow (including calf) and day";"kg/day";0.2;"agridea"
 INPUT03.TXT;"Price per kg minerals for cows";"MU/kg";1.6;"agridea"
 INPUT03.TXT;"Price per kg minerals for replacement heifers";"MU/kg";1.6;"agridea"
 INPUT04.TXT;"Amount of minerals per day and breeding bull";"kg/day";0.15;"agridea"
 INPUT04.TXT;"Price per kg minerals for breeding bulls";"MU/kg";1.6;"agridea"
 INPUT13.TXT;"Amount of minerals per day and breeding heifer";"kg";0.2;"agridea"
+### # straw costs (feeding season with code 1 = winter; feeding season with code 2 = summer)
 INPUT03.TXT;"Price per kg straw";"MU/kg";0.12;"Schweizer Bauernverband"
 INPUT03.TXT;"Amount of straw per cow (including calf) and day during feeding season with code 1";"kg/day";3.5;"Schweizer Bauernverband"
 INPUT03.TXT;"Amount of straw per cow (including calf) and day during feeding season with code 2";"kg/day";0;"Schweizer Bauernverband"
@@ -13,6 +19,8 @@ INPUT04.TXT;"Amount of straw per day per breeding bull in the herd during feedin
 INPUT08.TXT;"Amount of straw per animal and day in intensive fattening";"kg/day";3.5;"Schweizer Bauernverband"
 INPUT13.TXT;"Amount of straw per breeding heifer per day during feeding season with code 1";"kg/day";3.5;"Schweizer Bauernverband"
 INPUT13.TXT;"Amount of straw per breeding heifer per day during feeding season with code 2";"kg/day";0;"Schweizer Bauernverband"
+### # water costs
+### # Cost of water is assumed zero. Therefore, the amount of water required does not really matter. However in the future if we choose to change this so that water does have a cost, we will need to change the parameters for amount of water.
 INPUT03.TXT;"Price per l water";"MU/l";0;
 INPUT03.TXT;"Amount of water per cow (including calf) and day";"l/day";60;
 INPUT04.TXT;"Amount of water per day and breeding bull";"l/day";40;
@@ -20,6 +28,8 @@ INPUT08.TXT;"Amount of water per day and animal in intensive fattening";"l/day";
 INPUT10.TXT;"Amount of water per day and castrate in intensive fattening";l/day";40;
 INPUT10.TXT;"Amount of water per day and heifer in intensive fattening";"l/day";40;
 INPUT13.TXT;"Amount of water per day and breeding heifer";"l/day";35;
+### # dung
+### # We have selected that dung is not used for revenue so keep the price as 0. As the price is 0, the amount parameters do not matter.
 INPUT03.TXT;"Price per kg dung";"MU/kg";0;
 INPUT03.TXT;"Amount of dung per cow (including calf) and day during feeding season with code 1";"kg/day";0;
 INPUT03.TXT;"Amount of dung per cow (including calf) and day during feeding season with code 2";"kg/day";0;
@@ -28,56 +38,79 @@ INPUT04.TXT;"Amount of dung per day per breeding bull in the herd during feeding
 INPUT08.TXT;"Amount of dung per animal and day in intensive fattening";"kg/day";0;
 INPUT13.TXT;"Amount of dung per breeding heifer per day during feeding season with code 1";"kg/day";0;
 INPUT13.TXT;"Amount of dung per breeding heifer per day during feeding season with code 2";"kg/day";0;
+### # veterinary treatment
 INPUT03.TXT;"Cost for veterinary treatment per cow and reproductive cycle (including calf to weaning)";"MU/reproductive cycle";127;
 INPUT04.TXT;"Cost for veterinary treatment per breeding bull in the herd per reproductive cycle";"MU/reproductive cycle";127;
 INPUT08.TXT;"Cost for veterinary treatment per animal in intensive fattening";"MU/animal";39;
 INPUT13.TXT;"Costs for veterinary treatment per breeding heifer from weaning to calving";"MU/animal";46.5;
+### #Veterinary costs associated with calving performance
 INPUT03.TXT;"Veterinary cost connected with calving score 1";"MU/calving";0;
 INPUT03.TXT;"Veterinary cost connected with calving score 2";"MU/calving";0;
 INPUT03.TXT;"Veterinary cost connected with calving score 3";"MU/calving";300;
 INPUT03.TXT;"Veterinary cost connected with calving score 4";"MU/calving";1000;
+### #Cost of disposal and rendering dead cows, calves
 INPUT03.TXT;"Cost for removing and rendering a dead cow";"MU/animal";200;
 INPUT03.TXT;"Cost for removing and rendering a dead young animal";"MU/animal";0;
+### #stock-man hours and cost associated with calving scores
 INPUT03.TXT;"Cost per stock-man hour (needed for dystocia cost)";"MU/h";11.5;
 INPUT03.TXT;"Stock-man hours connected with calving score 1";"h";0;
 INPUT03.TXT;"Stock-man hours connected with calving score 2";"h";0;
 INPUT03.TXT;"Stock-man hours connected with calving score 3";"h";3;
 INPUT03.TXT;"Stock-man hours connected with calving score 4";"h";5;
+### # Fixed costs
 INPUT03.TXT;"Fixed cost per cow and day (including calf to weaning)";"MU/day";13.36;
 INPUT04.TXT;"Fixed cost per breeding bull in the herd per day";"MU/day";13.36;
 INPUT08.TXT;"Fixed cost per animal and day in intensive fattening";"MU/day";4.11;
 INPUT13.TXT;"Fixed costs from weaning to calving per breeding heifer and day";"MU/day";4.9;
+### #Artificial insemination costs
 INPUT03.TXT;"Price per portion of semen for AI (including service)";"MU/portion";22;
 INPUT03.TXT;"Price per re-insemination (for semen portion and service)";"MU/re-insemination";22;
+
+### # -----------------------------
+### # Additional_parameters.Rmd
+### # Adding herd structure data
 INPUT03.TXT;"Length of pregnancy";"days";289;
+#number of cows per bull for natural mating (if you only have 20% of your cows that are mated naturally: if one bull can inseminate 20 cows e.g then 20 is 20% of 100 so we put 100 cows)
 INPUT03.TXT;"Number of cows per bull for natural mating";" ";100;
 INPUT03.TXT;"Number of re-inseminations per oestrus (when applying artificial insemination";" ";0.2;
 INPUT03.TXT;"Barren heifers culled after their 1st mating period expressed as proportion of heifers not being pregnant in their 1st mating period";" ";0;
 INPUT03.TXT;"Barren heifers culled after their 2nd mating period expressed as proportion of heifers not being pregnant in their 2nd mating period";" ";0;
+#are any calves sold? we say all male calves are fattened
 INPUT03.TXT;"Female calves sold at weaning expressed as proportion of surplus female calves";" ";0;
 INPUT03.TXT;"Male calves sold at weaning expressed as proportion of male weaned calves";" ";0;
 INPUT03.TXT;"Fattened castrates expressed as proportion of male calves determined for fattening";" ";0;
+#are all the females calves not used as replacement heifers fattened?  yes
 INPUT03.TXT;"Proportion of surplus female calves for fattening";" ";1;
 INPUT13.TXT;"Minimal live weight of heifers at first mating";"kg";260;
 INPUT13.TXT;"Losses of heifers in the rearing period (heifers died from weaning till mating as proportion of female calves reared as breeding heifers)";" ";0;
 INPUT13.TXT;"Pregnant heifers sold expressed as proportion of surplus female calves";" ";0;
 INPUT13.TXT;"Breeding heifers sold before mating expressed as proportion of surplus female calves";" ";0;
+#all heifers available for mating are mated in 1st oestrus
 INPUT13.TXT;"Heifers inseminated in 1st oestrus within the mating period as proportion of heifers available for mating";" ";1;
 INPUT13.TXT;"Proportion of non-pregnant breeding heifers sold before the first mating period after their weaning";" ";0;
 INPUT13.TXT;"Proportion of non-pregnant breeding heifers sold between the first and second mating period after their weaning";" ";0;
+### # Breeding bull parameters: age and weight at purchase for the herd in systems 2 to 3
 INPUT04.TXT;"Age of breeding bulls at purchase for the herd (only for systems 2 to 3)";"days";420.6;
 INPUT04.TXT;"Weight of breeding bulls at purchase for the herd (only for systems 2 to 3)";"kg";562;
+### # Dressing %
 INPUT08.TXT;"Dressing proportion of bulls";" ";0.58;
 INPUT08.TXT;"Dressing proportion of heifers";" ";0.56;
 INPUT03.TXT;"Dressing proportion of cows";" ";0.56;
+### # milk parameters
 INPUT19.TXT;"Peak milk in kg per day";"kg/day";5;
 INPUT03.TXT;"Fat content in milk";"%";4;
 INPUT03.TXT;"Protein content in milk";"%";3.2;
+### # Government financial support
 INPUT03.TXT;"Governmental financial support per weaned calf";"MU/animal";120;
 INPUT03.TXT;"Additional governmental financial support per cow and year";"MU/cow and year";2000;
 INPUT03.TXT;"Governmental financial support per culled cow";"MU/cow";0;
 INPUT08.TXT;"Governmental support per intensively fattened bull";"MU/animal";280;
 INPUT10.TXT;"Governmental support per fattened animal";"MU/animal" ;280;
+
+### # -----------------------------
+### # Feeding_costs.Rmd
+### # code 1 = winter, code 2 = summer
+### # Cow feed data 
 INPUT03.TXT;"Price per kg fresh matter of feed ration of code 1 for cows";"MU/kg";0.09;
 INPUT03.TXT;"Price per kg fresh matter of feed ration of code 2 for cows";"MU/kg";0.02;
 INPUT03.TXT;"Dry matter per kg feed ration in feeding season with code 1 for cows";"kg/kg";0.57;
@@ -86,6 +119,7 @@ INPUT03.TXT;"Net energy per kg dry matter of feed ration of code 1 for cows";"MJ
 INPUT03.TXT;"Net energy per kg dry matter of feed ration of code 2 for cows";"MJ NE/kg dry matter";6.1;
 INPUT03.TXT;"Protein per kg dry matter of feed ration of code 1 for cows";"g PDI/kg";78.3;
 INPUT03.TXT;"Protein per kg dry matter of feed ration of code 2 for cows";"g PDI/kg";98.2;
+### # Breeding heifers
 INPUT13.TXT;"Price per kg fresh matter of feed ration of code 1 for breeding heifers";"MU/kg";0.09;
 INPUT13.TXT;"Price per kg fresh matter of feed ration of code 2 for breeding heifers";"MU/kg";0.02;
 INPUT13.TXT;"Dry matter per kg feed ration of code 1 for breeding heifers";"kg/kg";0.57;
@@ -94,6 +128,7 @@ INPUT13.TXT;"Net energy content per kg dry matter of feed ration of code 1 for b
 INPUT13.TXT;"Net energy content per kg dry matter of feed ration of code 2 for breeding heifers";"MJ NE/kg dry matter";6.1;
 INPUT13.TXT;"Protein content per kg dry matter of feed ration of code 1 for breeding heifers";"g PDI/kg";78.3;
 INPUT13.TXT;"Protein content per kg dry matter of feed ration of code 2 for breeding heifers";"g PDI/kg";98.2;
+### # Suckler calf
 INPUT03.TXT;"Price per kg fresh matter of feed ration for suckling calves (without milk) in feeding season with code 1";"MU/kg";0.12;
 INPUT03.TXT;"Price per kg fresh matter of feed ration for suckling calves (without milk) in feeding season with code 2";"MU/kg";0.04;
 INPUT03.TXT;"Dry matter per kg feed ration in feeding season with code 1 for suckling calves (without milk)";"kg/kg";0.7;
@@ -102,6 +137,7 @@ INPUT03.TXT;"Net energy per kg dry matter of feed ration (without milk) for suck
 INPUT03.TXT;"Net energy per kg dry matter of feed ration (without milk) for suckling calves in feeding season with code 2";"MJ NE/kg dry matter";5.56;
 INPUT03.TXT;"Protein per kg dry matter of feed ration (without milk) for suckling calves in feeding season with code 1";"g PDI/kg";76.14;
 INPUT03.TXT;"Protein per kg dry matter of feed ration (without milk) for suckling calves in feeding season with code 2";"g PDI/kg";71.56;
+### # Breeding bull
 INPUT04.TXT;"Price per kg fresh matter of feed ration of code 1 for breeding bulls in the herd";"MU/kg";0.09;
 INPUT04.TXT;"Price per kg fresh matter of feed ration of code 2 for breeding bulls in the herd";"MU/kg";0.02;
 INPUT04.TXT;"Dry matter per kg feed ration with code 1 for breeding bulls in the herd";"kg/kg";0.57;
@@ -110,12 +146,21 @@ INPUT04.TXT;"Net energy content per kg dry matter of feed ration of code 1 for b
 INPUT04.TXT;"Net energy content per kg dry matter of feed ration of code 2 for breeding bulls in the herd";"MJ NE/kg dry matter";6.1;
 INPUT04.TXT;"Protein content per kg dry matter of feed ration of code 1 for breeding bulls in the herd";"g PDI/kg";78.3;
 INPUT04.TXT;"Protein content per kg dry matter of feed ration of code 2 for breeding bulls in the herd";"g PDI/kg";98.2;
+### # Intensively fattened bulls
 INPUT08.TXT;"Price per kg fresh matter of feed ration for fattened bulls";"MU/kg";0.18;
 INPUT08.TXT;"Dry matter per kg feed ration for fattened bulls";"kg/kg";0.44;
 INPUT08.TXT;"Net energy content per kg dry matter of feed ration for fattened bulls";"MJ NE/kg dry matter";6.76;
 INPUT08.TXT;"Protein content per kg dry matter of feed ration for fattened bulls";"g PDI/kg";86;
+### # Intensively fattened heifers
 INPUT10.TXT;"Price per kg fresh matter of feed ration for intensively fattened heifers";"MU/kg";0.18;
 INPUT10.TXT;"Dry matter per kg feed ration for intensively fattened heifers";"kg/kg";0.44;
 INPUT10.TXT;"Net energy content per kg dry matter of feed ration for intensively fattened heifers";"MJ NE/kg dry matter";6.76;
 INPUT10.TXT;"Protein content per kg dry matter of feed ration for intensively fattened heifers";"g PDI/kg";86;
+### #Amount of DM produced per ha of pasture 
 INPUT03.TXT;"Amount of dry matter produced per ha pasture";"kg/ha";7000;"Schweizer Bauernverband"
+
+
+
+
+
+

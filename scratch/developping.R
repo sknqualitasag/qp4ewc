@@ -53,5 +53,16 @@ ps_msg <- paste0('Update the value:\n * ps_value2update: ',ps_value2update, '\n'
 s_msg <- paste0(ps_caller, ' -- ', ps_msg, collapse = '')
 log4r::info(logger = plogger, message = s_msg)
 
+### # Developping input-function read_file_input_literature
+ps_input_file_literature <- "inst/extdata/input_literature.txt"
 
+ps_msg <- paste0('File exists:\n * ps_input_file_literature',ps_input_file_literature)
+s_msg <- paste0(ps_caller, ' -- ', ps_msg, collapse = '')
+log4r::info(logger = plogger, message = s_msg)
+
+tbl_input <- readr::read_delim(file = ps_input_file_literature, delim = ";")
+ps_msg <- paste0('Read file:\n * ps_input_file_literature: ',ps_input_file_literature,"\n",
+                 ' * in a tibble')
+s_msg <- paste0(ps_caller, ' -- ', ps_msg, collapse = '')
+log4r::info(logger = plogger, message = s_msg)
 

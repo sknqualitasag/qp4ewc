@@ -38,7 +38,7 @@ update_input_parameter_file <- function(ps_path2template_input_parameter_file,
     qp4ewc_log_info(lgr, 'update_input_parameter_file',
                     paste0('Starting function with parameters:\n * ps_path2template_input_parameter_file: ', ps_path2template_input_parameter_file, '\n',
                            ' * ps_statement2search: ', ps_statement2search, '\n',
-                           ' * ps_value2update: ', ps_value2update, '\n'))
+                           ' * ps_value2update: ', ps_value2update))
   }
 
 
