@@ -47,7 +47,7 @@ create_directory_scenario <- function(ps_sirebreed,
 
 
   ### # Build a name for each scenario
-  s_scenario <- paste0(ps_path_directory2create,ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel)
+  s_scenario <- file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel))
   qp4ewc_log_info(lgr, 'create_directory_scenario',
                   paste0('Define the name of the scenario:\n * s_scenario: ', s_scenario))
 
