@@ -65,9 +65,8 @@ create_directory_scenario <- function(ps_sirebreed,
   ### # Copy the default parameter-input-files from the template directory to the scenario directory
   ### # ECOWEIGHT for beef cattle: EWBC
   if(ps_prodsystew != "4"){
-    list_of_files <- list.files("inst/templates/ewbc")
-    file.copy(file.path('inst','templates','ewbc',list_of_files),s_scenario)
-    ### # a better way like: ps_template       = system.file("templates", "compare_plots.Rmd.template", package = 'qgert') ?????!!!!
+    list_of_files <- list.files(system.file("templates","ewbc", package = "qp4ewc"), full.names = TRUE)
+    file.copy(list_of_files,s_scenario)
     qp4ewc_log_info(lgr, 'create_directory_scenario',
                     paste0('Copy the default input-parameter-files in the scenario directory based on the templates for ewbc','\n'))
   }
