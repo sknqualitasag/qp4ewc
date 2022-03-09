@@ -1,5 +1,5 @@
 input_file;input;input_unit;input_value;input_source
-INPUT03.TXT;"Amount of minerals per cow (including calf) and day";"kg/day";0.2;"agridea"
+INPUT03.TXT;"Amount of minerals per cow (including calf) and day";"kg/day";0.3;"agridea"
 INPUT03.TXT;"Price per kg minerals for cows";"MU/kg";1.6;"agridea"
 INPUT03.TXT;"Price per kg minerals for replacement heifers";"MU/kg";1.6;"agridea"
 INPUT04.TXT;"Amount of minerals per day and breeding bull";"kg/day";0.15;"agridea"

@@ -22,13 +22,28 @@ qp4ewc::create_directory_scenario(ps_sirebreed = s_sirebreed,
                           pb_log = s_log)
 
 
-qp4ewc::read_file_input_literature(ps_input_file_literature,
-                           pb_log = s_log,
-                           plogger = logger)
+tbl_input_literature <- qp4ewc::read_file_input_literature(ps_input_file_literature = s_input_file_literature,
+                           pb_log = s_log)
+
+s_path2template_input_parameter_file <- file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketchannel),tbl_input[1,1])
+s_statement2search <- tbl_input[1,2]
+s_value2update <- tbl_input[1,4]
+qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = s_path2template_input_parameter_file,
+                            ps_statement2search = s_statement2search,
+                            ps_value2update = s_value2update,
+                            pb_log = s_log)
+
+for(l in 1:nrow(tbl_input_literature)){
 
 
-qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file,
-                            ps_statement2search,
-                            ps_value2update,
-                            pb_log = s_log,
-                            plogger = logger)
+  s_path2template_input_literatur_parameter_file <- file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketchannel),tbl_input_literature[l,1])
+  s_statement2search_literatur <- tbl_input_literature[l,2]
+  s_value2update_literatur <- tbl_input_literature[l,4]
+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = s_path2template_input_literatur_parameter_file,
+                                      ps_statement2search = s_statement2search_literatur,
+                                      ps_value2update = s_value2update_literatur,
+                                      pb_log = s_log)
+
+}
+
