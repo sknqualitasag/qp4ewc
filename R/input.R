@@ -67,6 +67,8 @@ read_file_input_literature <-  function(ps_input_file_literature,
 #' amount of calves died within 48 hours after birth.
 #'
 #' @param ps_input_file_calving path to file with input coming from calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_start_calving_date setting the start of the calving date to filter in the calving data
+#' @param ps_end_calving_date setting the end of the calving date to filter in the calving data
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -74,6 +76,8 @@ read_file_input_literature <-  function(ps_input_file_literature,
 #'
 #' @export read_file_input_calving
 read_file_input_calving <-  function(ps_input_file_calving,
+                                     ps_start_calving_date,
+                                     ps_end_calving_date,
                                      pb_log = FALSE,
                                      plogger = NULL){
 
@@ -87,7 +91,9 @@ read_file_input_calving <-  function(ps_input_file_calving,
       lgr <- plogger
     }
     qp4ewc_log_info(lgr, 'read_file_input_calving',
-                    paste0('Starting function with parameters:\n * ps_input_file_calving: ', ps_input_file_calving))
+                    paste0('Starting function with parameters:\n * ps_input_file_calving: ', ps_input_file_calving,
+                           ' * ps_start_calving_date: ',ps_start_calving_date,
+                           ' * ps_end_calving_date: ',ps_end_calving_date))
   }
 
 
@@ -102,7 +108,23 @@ read_file_input_calving <-  function(ps_input_file_calving,
   ### # Read the input calving file
   tbl_input <- readr::read_delim(file = ps_input_file_calving, delim = ";")
   qp4ewc_log_info(lgr, 'read_file_input_calving',paste0('Read file: \n * ps_input_file_calving: ',ps_input_file_calving,"\n",
-                                                           ' * in a tibble','\n'))
+                                                           ' * in a tibble'))
+
+  ### # Check if some columns-header are available in the input calving file
+  vec_calvingHeader_name <- names(tbl_input)
+  vec_requested_calvingHeader_name <- c("Abkalbedatum","Geburtsverlauf","Laktationsnummer_Mutter","Abort","Code_TotOLebend",
+                                        "Nachkomme_RasseCode","Mutter_RasseCode","Vater_RasseCode","Geschlecht")
+  if(all(vec_requested_calvingHeader_name %in% vec_calvingHeader_name)){
+    qp4ewc_log_info(lgr, 'read_file_input_calving',paste0('All requested column-names in calving input file exist'))
+  }else{
+    stop("read_file_input_calving: Not all requested column-names in calving input file exist, please check the file !")
+  }
+
+
+  ### # Selection criteria on the input calving file
+  ### # Specific date interval to consider in the data
+  tbl_input <- tbl_input %>% filter(Abkalbedatum >= ps_start_calving_date) %>% filter(Abkalbedatum <= ps_end_calving_date)
+  qp4ewc_log_info(lgr, 'read_file_input_calving',paste0('Considered data from input calving file from: ',ps_start_calving_date, ' to ', ps_end_calving_date))
 
 
   ### # Return tibble
