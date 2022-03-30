@@ -72,6 +72,8 @@ read_file_input_literature <-  function(ps_input_file_literature,
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
+#' @importFrom dplyr %>%
+#'
 #' @return tibble with the content of the calving file
 #'
 #' @export read_file_input_calving
@@ -123,7 +125,7 @@ read_file_input_calving <-  function(ps_input_file_calving,
 
   ### # Selection criteria on the input calving file
   ### # Specific date interval to consider in the data
-  tbl_input <- tbl_input %>% filter(Abkalbedatum >= ps_start_calving_date) %>% filter(Abkalbedatum <= ps_end_calving_date)
+  tbl_input <- tbl_input %>% dplyr::filter(Abkalbedatum >= ps_start_calving_date) %>% dplyr::filter(Abkalbedatum <= ps_end_calving_date)
   qp4ewc_log_info(lgr, 'read_file_input_calving',paste0('Considered data from input calving file from: ',ps_start_calving_date, ' to ', ps_end_calving_date))
 
 
