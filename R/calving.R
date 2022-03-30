@@ -19,6 +19,8 @@
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
+#' @importFrom dplyr %>%
+#'
 #' @return abortion_rate vector
 #'
 #' @export calculate_abortion_rate
@@ -42,28 +44,28 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
 
 
   ### # Consider only known calving score
-  tbl_input <- ps_input_calving_tibble %>% filter(Geburtsverlauf != 0)
+  tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf != 0)
   qp4ewc_log_info(lgr, 'calculate_abortion_rate',
                   paste0('Only consider known calving score to calculate abortion rate'))
 
 
   ### # Different calculation depending on ps_statement_firstlactation
   if(ps_statement_firstlactation){
-    tbl_abort <- tbl_input %>% filter(Laktationsnummer_Mutter == 1) %>%
-                                select(Abort) %>%
+    tbl_abort <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == 1) %>%
+                               dplyr::select(Abort) %>%
                                 na.omit() %>%
-                                group_by(Abort) %>%
-                                count()
+                               dplyr::group_by(Abort) %>%
+                               dplyr::count()
 
     qp4ewc_log_info(lgr, 'calculate_abortion_rate',
                     paste0('A Tibble for primiparous has been created for the calculation of abortion rate '))
 
   }else{
-    tbl_abort <- tbl_input %>% filter(Laktationsnummer_Mutter > 1) %>%
-      select(Abort) %>%
-      na.omit() %>%
-      group_by(Abort) %>%
-      count()
+    tbl_abort <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
+                               dplyr::select(Abort) %>%
+                               na.omit() %>%
+                               dplyr::group_by(Abort) %>%
+                               dplyr::count()
 
     qp4ewc_log_info(lgr, 'calculate_abortion_rate',
                     paste0('A Tibble for multiparous has been created for the calculation of abortion rate '))
@@ -73,7 +75,7 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
   ### # The value in case of an abort in the data is 1
   ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
   ### # Check if data for abort are available to calculate abortion rate
-  if(nrow(tbl_abort %>% filter(Abort == 1)) != 0){
+  if(nrow(tbl_abort %>% dplyr::filter(Abort == 1)) != 0){
     qp4ewc_log_info(lgr, 'calculate_abortion_rate',
                     paste0('Abort information are available in the dataset so that abortion rate can be calculated'))
   }else{
@@ -82,7 +84,7 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
 
 
   ### # Add frequence according to abort in a vector
-  abort_freq <- tbl_abort %>% filter(Abort == 1) %>% pull(n)
+  abort_freq <- tbl_abort %>% dplyr::filter(Abort == 1) %>% dplyr::pull(n)
   sum_abort_freq <- sum(tbl_abort$n)
 
 
@@ -91,6 +93,9 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
   qp4ewc_log_info(lgr, 'calculate_abortion_rate',
                   paste0('abortion_rate is : ',abortion_rate))
 
+
+  return(abortion_rate)
+  #return(invisible(NULL)) # wenn nicht zurückgeben möchte
 
 
 }
