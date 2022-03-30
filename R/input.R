@@ -91,8 +91,8 @@ read_file_input_calving <-  function(ps_input_file_calving,
       lgr <- plogger
     }
     qp4ewc_log_info(lgr, 'read_file_input_calving',
-                    paste0('Starting function with parameters:\n * ps_input_file_calving: ', ps_input_file_calving,
-                           ' * ps_start_calving_date: ',ps_start_calving_date,
+                    paste0('Starting function with parameters:\n * ps_input_file_calving: ', ps_input_file_calving,'\n',
+                           ' * ps_start_calving_date: ',ps_start_calving_date,'\n',
                            ' * ps_end_calving_date: ',ps_end_calving_date))
   }
 
