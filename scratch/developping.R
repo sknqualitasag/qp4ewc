@@ -98,9 +98,7 @@ if(file.exists(s_scenario)){
 if(ps_prodsystew != "4"){
   list_of_files <- list.files("inst/templates/ewbc")
   file.copy(file.path('inst','templates','ewbc',list_of_files),s_scenario)
-  ps_msg <- paste0('Copy the default input-parameter-files in the scenario directory based on the templates for ewbc')
+  ps_msg <- paste0('Copy the default input-parameter-files in the scenario directory based on the templates for ewbc','\n')
   s_msg <- paste0(ps_caller, ' -- ', ps_msg, collapse = '')
   log4r::info(logger = plogger, message = s_msg)
 }
-
-
