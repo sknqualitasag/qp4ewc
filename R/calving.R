@@ -187,7 +187,7 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
   }
 
 
-  ### # Add frequence according to abort in a vector
+  ### # Add frequence according to stillbirth in a vector
   stillbirth_freq <- tbl_stillbirth %>% dplyr::filter(Code_TotOLebend == 4) %>% dplyr::pull(n)
   sum_stillbirth_freq <- sum(tbl_stillbirth$n)
 
@@ -202,3 +202,108 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
 
 }
 
+
+
+#' @title Calculate calving score proportions
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate based on breed, sex as well
+#' as lactation number of the dam (primiparous vs multiparous) the calving score proportion.
+#'
+#' @param ps_input_calving_tibble input calving tibble coming from read_file_input_calving in this package
+#' @param ps_statement_firstlactation statement if in first lactation status (TRUE or FALSE)
+#' @param ps_breed set the breed (AN, AU, CH, LM, SI, OB)
+#' @param ps_sex set the sex (F, M)
+#' @param ps_calvingscore set the calving score for which the proportion should be calculated (2,3,4)
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return calving score proportion vector
+#'
+#' @export calculate_calvingscore_proportion
+calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
+                                              ps_statement_firstlactation = TRUE,
+                                              ps_breed,
+                                              ps_sex,
+                                              ps_calvingscore,
+                                              pb_log = FALSE,
+                                              plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_calvingscore_proportion.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
+                    paste0('Starting function with parameters:\n * ps_input_calving_tibble \n',
+                           ' * ps_statement_firstlactation: ', ps_statement_firstlactation,'\n',
+                           ' * ps_breed: ',ps_breed,'\n',
+                           ' * ps_sex: ',ps_sex,'\n',
+                           ' * ps_calvingscore: ',ps_calvingscore))
+  }
+
+
+  ### # Filter criteria depending on ps_breed and ps_sex
+  tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Nachkomme_RasseCode == ps_breed) %>%
+                                           dplyr::filter(Geschlecht == ps_sex)
+  qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
+                  paste0('A Tibble depending on the breed and sex has been created for the calculation of calving score proportion '))
+
+
+
+  ### # Different calculation depending on ps_statement_firstlactation
+  if(ps_statement_firstlactation){
+    tbl_calvingprop <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == 1) %>%
+                                     dplyr::select(Geburtsverlauf) %>%
+                                     na.omit() %>%
+                                     dplyr::na_if(0) %>%
+                                     dplyr::group_by(Geburtsverlauf) %>%
+                                     dplyr::count()
+
+    qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
+                    paste0('A Tibble for primiparous has been created for the calculation of calving score proportion '))
+  }else{
+    tbl_calvingprop <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
+                                     dplyr::select(Geburtsverlauf) %>%
+                                     na.omit() %>%
+                                     dplyr::na_if(0) %>%
+                                     dplyr::group_by(Geburtsverlauf) %>%
+                                     dplyr::count()
+
+    qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
+                    paste0('A Tibble for multiparous has been created for the calculation of calving score proportion '))
+  }
+
+
+  ### # Calving score 2 = slight help, 3 = difficult, 4 = cesarean
+  ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
+  ### # Check if data for specific calving score are available
+  if(nrow(tbl_calvingprop %>% dplyr::filter(Geburtsverlauf == ps_calvingscore)) != 0){
+    qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
+                    paste0('Calving score information are available in the dataset so that calving score proportion can be calculated'))
+  }else{
+    stop("calculate_calvingscore_proportion: no calving score information are available in the dataset, please check the dataset !")
+  }
+
+
+  ### # Add frequence according to calving score in a vector
+  calvingscore_freq <- tbl_calvingprop %>% dplyr::filter(Geburtsverlauf == ps_calvingscore) %>% dplyr::pull(n)
+  sum_calvingscore_freq <- sum(tbl_calvingprop$n)
+
+
+  ### # Calculate calving score proportion
+  calvingscore_prop <- round(calvingscore_freq/sum_calvingscore_freq,4)
+  qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
+                  paste0('calving score ',ps_calvingscore,' proportion is : ',calvingscore_prop))
+
+
+  return(calvingscore_prop)
+
+
+}
