@@ -57,3 +57,17 @@ stillbirth_rate_easy_prim <- qp4ewc::calculate_stillbirth_rate(ps_input_calving_
                                                                ps_statement_easycalving = TRUE,
                                                                pb_log = s_log)
 
+
+calvingscore_prop_prim_LM_M_2 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                           ps_statement_firstlactation = TRUE,
+                                                                           ps_breed = "LM",
+                                                                           ps_sex = "M",
+                                                                           ps_calvingscore = 2,
+                                                                           pb_log = s_log)
+
+
+calvingdied24h_prop_prim_easy <- qp4ewc::calculate_calvesdied24h_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                            ps_statement_firstlactation = TRUE,
+                                                                            ps_statement_easycalving = TRUE,
+                                                                            pb_log = s_log)
+

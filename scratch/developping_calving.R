@@ -60,3 +60,11 @@ stillbirth_freq <- tbl_stillbirth %>% dplyr::filter(Code_TotOLebend == 4) %>% dp
 sum_stillbirth_freq <- sum(tbl_stillbirth$n)
 
 stillbirth_rate <- round(stillbirth_freq/sum_stillbirth_freq,4)
+
+### # Developping calving-function calculate_calvingscore_proportion
+ps_input_calving_tibble = tbl_calving
+ps_statement_firstlactation = TRUE
+ps_breed = "LM"
+ps_sex = "M"
+ps_calvingscore = 2
+
