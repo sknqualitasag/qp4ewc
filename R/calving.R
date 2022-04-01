@@ -307,3 +307,112 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
 
 
 }
+
+
+
+#' @title Calculate proportion of calves died to 24 hours
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate based on calving score,
+#' lactation number of the dam (primiparous vs multiparous) to calculate the proportion of calves died.
+#' The parameter in ECOWEIGHT specifies within 48 hours after birth. However, we only have data specified for up to 24hours after birth.
+#' Therefore we use 24hours in this function.
+#'
+#' @param ps_input_calving_tibble input calving tibble coming from read_file_input_calving in this package
+#' @param ps_statement_firstlactation statement if in first lactation status (TRUE or FALSE)
+#' @param ps_statement_easycalving statement if for easy calving status (TRUE or FALSE)
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return calves died to 24 hours proportion vector
+#'
+#' @export calculate_calvesdied24h_proportion
+calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
+                                               ps_statement_firstlactation = TRUE,
+                                               ps_statement_easycalving = TRUE,
+                                               pb_log = FALSE,
+                                               plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_calvesdied24h_proportion',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                    paste0('Starting function with parameters:\n * ps_input_calving_tibble \n',
+                           ' * ps_statement_firstlactation: ', ps_statement_firstlactation,'\n',
+                           ' * ps_statement_easycalving: ',ps_statement_easycalving))
+  }
+
+
+  ### # Different calculation depending on ps_statement_easycalving
+  if(ps_statement_easycalving){
+    ### # The calving score of 1 = without help or 2 = slight help are considered as easy calving
+    ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
+    tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == 1 | Geburtsverlauf == 2)
+    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                    paste0('A Tibble for easy calving has been created for the calculation of proportion of calves died 24h'))
+  }else{
+    ### # The calving score of 3 = difficult or 4 = cesarean are considered as difficult calving
+    tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == 3 | Geburtsverlauf == 4)
+    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                    paste0('A Tibble for difficult calving has been created for the calculation of proportion of calves died 24h'))
+  }
+
+
+  ### # Different calculation depending on ps_statement_firstlactation
+  if(ps_statement_firstlactation){
+    tbl_calvesdied24h <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == 1) %>%
+                                       dplyr::select(Code_TotOLebend) %>%
+                                       dplyr::na_if(0) %>%
+                                       dplyr::group_by(Code_TotOLebend) %>%
+                                       dplyr::count()
+
+    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                    paste0('A Tibble for primiparous has been created for the calculation of proportion of calves died 24h'))
+
+  }else{
+    tbl_calvesdied24h <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
+                                       dplyr::select(Code_TotOLebend) %>%
+                                       dplyr::na_if(0) %>%
+                                       dplyr::group_by(Code_TotOLebend) %>%
+                                       dplyr::count()
+
+    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                    paste0('A Tibble for multiparous has been created for the calculation of proportion of calves died 24h'))
+  }
+
+
+  ### # The value in case of a stillbirth within 24 hours is 2
+  ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
+  ### # Check if data for stillbirth within 24 hours are available to calculate the proportion
+  if(nrow(tbl_calvesdied24h %>% dplyr::filter(Code_TotOLebend == 2)) != 0){
+    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                    paste0('Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated'))
+  }else{
+    stop("calculate_calvesdied24h_proportion: no stillbirth within 24h information are available in the dataset, please check the dataset !")
+  }
+
+
+  ### # Add frequence in a vector
+  calvdied24h_freq <- tbl_calvesdied24h %>% dplyr::filter(Code_TotOLebend == 2) %>% dplyr::pull(n)
+  sum_calvdied24h_freq <- sum(tbl_calvesdied24h$n)
+
+
+  ### # Calculate proportion
+  calvingdied24h_prop <- round(calvdied24h_freq/sum_calvdied24h_freq,4)
+  qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                  paste0('calves died in 24h proportion is : ',calvingdied24h_prop))
+
+
+  return(calvingdied24h_prop)
+
+
+}
+
