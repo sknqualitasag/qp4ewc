@@ -134,3 +134,79 @@ read_file_input_calving <-  function(ps_input_file_calving,
 
 
 }
+
+
+#' @title Read file with input about beef recording for input-parameter-file of ECOWEIGHT
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will read a file with value coming from weights.
+#' In this weight-file some information about ...
+#'
+#' @param ps_input_file_flp path to file with input coming from beef recording for the input-parameter-file for ECOWEIGHT
+#' @param ps_start_flp_date setting the start of the beef recording date to filter in the flp-data
+#' @param ps_end_flp_date setting the end of the beef recording date to filter in the flp-data
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return tibble with the content of the beef recording file
+#'
+#' @export read_file_input_flp
+read_file_input_flp <-  function(ps_input_file_flp,
+                                 ps_start_flp_date,
+                                 ps_end_flp_date,
+                                 pb_log = FALSE,
+                                 plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'read_file_input_flp.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'read_file_input_flp',
+                    paste0('Starting function with parameters:\n * ps_input_file_flp: ', ps_input_file_flp,'\n',
+                           ' * ps_start_flp_date: ',ps_start_flp_date,'\n',
+                           ' * ps_end_flp_date: ',ps_end_flp_date))
+  }
+
+
+  ### # Check if file exist otherwise stop running the function
+  if(!file.exists(ps_input_file_flp)){
+    stop("read_file_input_flp: file ",ps_input_file_flp," does not exist, please check the path !")
+  }else{
+    qp4ewc_log_info(lgr, 'read_file_input_flp',paste0('File exists:\n * ps_input_file_flp',ps_input_file_flp))
+  }
+
+
+  ### # Read the input flp file
+  tbl_input <- readr::read_delim(file = ps_input_file_flp, delim = ";")
+  qp4ewc_log_info(lgr, 'read_file_input_flp',paste0('Read file: \n * ps_input_file_flp: ',ps_input_file_flp,"\n",
+                                                    ' * in a tibble'))
+
+
+  ### # Check if some columns-header are available in the input flp file
+  vec_flpHeader_name <- names(tbl_input)
+  vec_requested_flpHeader_name <- c("Schlachtdatum","Geburtsdatum Nako","Nako RaceRode","Schlacht-/Masttierkategorie","Markenprogramm",
+                                        "Geburtsgewicht Nako","Absetzgewicht effektiv","Absetzdatum Nako","Schlachtgewicht Nako","Laktationsnummer Ammen-Mutter")
+  if(all(vec_requested_flpHeader_name %in% vec_flpHeader_name)){
+    qp4ewc_log_info(lgr, 'read_file_input_flp',paste0('All requested column-names in flp input file exist'))
+  }else{
+    stop("read_file_input_flp: Not all requested column-names in flp input file exist, please check the file !")
+  }
+
+
+  ### # Selection criteria on the input flp file
+  ### # Specific date interval to consider in the data
+  tbl_input <- tbl_input %>% dplyr::filter(Schlachtdatum >= ps_start_flp_date) %>% dplyr::filter(Schlachtdatum <= ps_end_flp_date)
+  qp4ewc_log_info(lgr, 'read_file_input_flp',paste0('Considered data from input flp file from: ',ps_start_flp_date, ' to ', ps_end_flp_date))
+
+
+  ### # Return tibble
+  return(tbl_input)
+
+}
