@@ -7,47 +7,47 @@
 ### # ##################################################################### ###
 
 
-#' @title Read file with input from literature research for input-parameter-file of ECOWEIGHT
+#' @title Read file with input for input-parameter-file of ECOWEIGHT
 #'
 #' @description
 #' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
-#' need input parameter files. This function will read a file with value coming from literature research.
+#' need input parameter files. This function will read a file with value .
 #'
-#' @param ps_input_file_literature path to file with input coming from literature for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file path to file with input for the input-parameter-file for ECOWEIGHT
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
-#' @return tibble with the content of the literatur file
+#' @return tibble with the content of the file
 #'
-#' @export read_file_input_literature
-read_file_input_literature <-  function(ps_input_file_literature,
-                                        pb_log = FALSE,
-                                        plogger = NULL){
+#' @export read_file_input
+read_file_input <-  function(ps_input_file,
+                             pb_log = FALSE,
+                             plogger = NULL){
 
   ### # Setting the log-file
   if(pb_log){
     if(is.null(plogger)){
-      lgr <- get_qp4ewc_logger(ps_logfile = 'read_file_input_literature.log',
+      lgr <- get_qp4ewc_logger(ps_logfile = 'read_file_input.log',
                                ps_level = 'INFO')
     }else{
       lgr <- plogger
     }
-    qp4ewc_log_info(lgr, 'read_file_input_literature',
-                    paste0('Starting function with parameters:\n * ps_input_file_literature: ', ps_input_file_literature))
+    qp4ewc_log_info(lgr, 'read_file_input',
+                    paste0('Starting function with parameters:\n * ps_input_file: ', ps_input_file))
   }
 
 
   ### # Check if file exist otherwise stop running the function
-  if(!file.exists(ps_input_file_literature)){
-    stop("read_file_input_literature: file ",ps_input_file_literature," does not exist, please check the path !")
+  if(!file.exists(ps_input_file)){
+    stop("read_file_input: file ",ps_input_file," does not exist, please check the path !")
   }else{
-    qp4ewc_log_info(lgr, 'read_file_input_literature',paste0('File exists:\n * ps_input_file_literature',ps_input_file_literature))
+    qp4ewc_log_info(lgr, 'read_file_input',paste0('File exists:\n * ps_input_file',ps_input_file))
   }
 
 
   ### # Read the input file with literature values
-  tbl_input <- readr::read_delim(file = ps_input_file_literature, delim = ";")
-  qp4ewc_log_info(lgr, 'read_file_input_literature',paste0('Read file: \n * ps_input_file_literature: ',ps_input_file_literature,"\n",
+  tbl_input <- readr::read_delim(file = ps_input_file, delim = ";")
+  qp4ewc_log_info(lgr, 'read_file_input',paste0('Read file: \n * ps_input_file: ',ps_input_file,"\n",
                                                            ' * in a tibble','\n'))
 
 
