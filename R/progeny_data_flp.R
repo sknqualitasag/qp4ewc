@@ -94,7 +94,7 @@ calculate_mean_birthweight <- function(ps_input_flp_tibble,
 #'
 #' @importFrom dplyr %>%
 #'
-#' @return mean_liveweight vector
+#' @return livewt_atslaughter vector
 #'
 #' @export calculate_mean_liveweight_slaughter
 calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
@@ -159,10 +159,85 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
 
 
   qp4ewc_log_info(lgr, 'calculate_mean_liveweight_slaughter',
-                  paste0('Mean live weight at slaughter for ',ps_sex,' is : ',livewt_atslaughter))
+                  paste0('Mean live weight at slaughter for ',ps_sex,' is : ',livewt_atslaughter, ' based on mean carcass weight: ',carcasswt))
 
 
   return(livewt_atslaughter)
+
+
+}
+
+
+#' @title Calculate mean weaning weight
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate mean weaning weight
+#' based on slaughtercategory, marketing-channel (label of Swiss Beef Cattle Assiocation) and sex.
+#'
+#' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param ps_sex statement of sex ("F" for female and "M" for male)
+#' @param ps_marketing_channel statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3)
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return weaningwt vector
+#'
+#' @export calculate_mean_weaningweight
+calculate_mean_weaningweight <- function(ps_input_flp_tibble,
+                                         ps_sex,
+                                         ps_marketing_channel,
+                                         pb_log = FALSE,
+                                         plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_mean_weaningweight.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
+                    paste0('Starting function with parameters:\n * ps_input_flp_tibble \n',
+                           ' * ps_sex: ', ps_sex,'\n',
+                           ' * ps_marketing_channel: ',ps_marketing_channel,'\n'))
+  }
+
+
+  ### # Different tibble depending on ps_sex and ps_marketing_channel
+  ### # Slaughtercategory for female to consider is RG == 5
+  if(ps_sex == "F"){
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "F") %>%
+                                         dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
+                                         dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
+                                         dplyr::select(`Absetzgewicht effektiv`) %>%
+                                         na.omit()
+    qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
+                    paste0('A Tibble for female has been created for the calculation of mean weaning weight '))
+  }else{
+    ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
+                                         dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
+                                         dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
+                                         dplyr::select(`Absetzgewicht effektiv`) %>%
+                                         na.omit()
+    qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
+                    paste0('A Tibble for male has been created for the calculation of mean weaning weight '))
+  }
+
+
+  ### # Calculate mean weaning weight
+  weaningwt <- round(as.numeric(dplyr::summarise(tbl_input, mean_weaningwt = mean(`Absetzgewicht effektiv`))),4)
+
+
+  qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
+                  paste0('Mean weaning weight for ',ps_sex,' is : ',weaningwt))
+
+
+  return(weaningwt)
 
 
 }
