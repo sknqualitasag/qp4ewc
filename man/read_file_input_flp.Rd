@@ -8,6 +8,7 @@ read_file_input_flp(
   ps_input_file_flp,
   ps_start_flp_date,
   ps_end_flp_date,
+  ps_sirebreed,
   pb_log = FALSE,
   plogger = NULL
 )

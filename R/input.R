@@ -136,6 +136,35 @@ read_file_input_calving <-  function(ps_input_file_calving,
 }
 
 
+#' @title Compute Age in Days
+#'
+#' @description
+#' By default the age in days is computed. If age on different date should be
+#' computed use pdate_today with a different values. In case you want to get
+#' a real number as the age, then use pb_floor = FALSE.
+#'
+#' The function is based on https://stackoverflow.com/questions/14454476/get-the-difference-between-dates-in-terms-of-weeks-months-quarters-and-years
+#'
+#' @param pdate_birth date of birth
+#' @param pdate_today todays date
+#' @param pb_floor should age in days be rounded down
+#'
+#' @return age in days
+#'
+#' @export age_in_days
+age_in_days <- function(pdate_birth,
+                        pdate_today = lubridate::today(),
+                        pb_floor    = TRUE){
+
+  result_age <- lubridate::interval(start = pdate_birth, end = pdate_today) / lubridate::duration(num = 1, units = "days")
+
+  if (pb_floor){
+    return(as.integer(floor(result_age)))
+  }
+  return(result_age)
+}
+
+
 #' @title Read file with input about beef recording for input-parameter-file of ECOWEIGHT
 #'
 #' @description
@@ -157,6 +186,7 @@ read_file_input_calving <-  function(ps_input_file_calving,
 read_file_input_flp <-  function(ps_input_file_flp,
                                  ps_start_flp_date,
                                  ps_end_flp_date,
+                                 ps_sirebreed,
                                  pb_log = FALSE,
                                  plogger = NULL){
 
@@ -171,7 +201,8 @@ read_file_input_flp <-  function(ps_input_file_flp,
     qp4ewc_log_info(lgr, 'read_file_input_flp',
                     paste0('Starting function with parameters:\n * ps_input_file_flp: ', ps_input_file_flp,'\n',
                            ' * ps_start_flp_date: ',ps_start_flp_date,'\n',
-                           ' * ps_end_flp_date: ',ps_end_flp_date))
+                           ' * ps_end_flp_date: ',ps_end_flp_date,'\n',
+                           ' * ps_sirebreed: ',ps_sirebreed))
   }
 
 
@@ -204,9 +235,18 @@ read_file_input_flp <-  function(ps_input_file_flp,
   ### # Specific date interval to consider in the data
   tbl_input <- tbl_input %>% dplyr::filter(Schlachtdatum >= ps_start_flp_date) %>% dplyr::filter(Schlachtdatum <= ps_end_flp_date)
   qp4ewc_log_info(lgr, 'read_file_input_flp',paste0('Considered data from input flp file from: ',ps_start_flp_date, ' to ', ps_end_flp_date))
+  ### # Consider specific breed in the data
+  tbl_input <- tbl_input %>% dplyr::filter(`Nako RaceRode` == ps_sirebreed)
+  qp4ewc_log_info(lgr, 'read_file_input_flp',paste0('Considered data from input flp file from the breed: ',ps_sirebreed))
+  ### # Calculate age at slaughter in days
+  tbl_input$ageAtSlaughterInDays <- age_in_days(pdate_birth = as.Date(as.character(as.numeric(tbl_input$`Geburtsdatum Nako`)), format = "%Y%m%d", origin="1970-01-01"),
+                                                pdate_today = as.Date(as.character(as.numeric(tbl_input$Schlachtdatum)), format = "%Y%m%d", origin="1970-01-01"),
+                                                pb_floor = FALSE)
 
 
   ### # Return tibble
   return(tbl_input)
 
 }
+
+
