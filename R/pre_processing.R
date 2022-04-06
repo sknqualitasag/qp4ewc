@@ -69,9 +69,9 @@ pre_process_ew_input <- function(ps_sirebreed,
                                     plogger = lgr)
 
 
-  ### # ------------------------------------------------------------------------
-  ### # Literature
-  ### # ------------------------------------------------------------------------
+  # ****************************************************************************
+  ## ---- Literature ----
+  # ****************************************************************************
   ### # Read file with input from literature research for input-parameter-file of ECOWEIGHT
   tbl_input_literature <- qp4ewc::read_file_input(ps_input_file_literature,
                                                   pb_log = TRUE,
@@ -87,9 +87,9 @@ pre_process_ew_input <- function(ps_sirebreed,
                                         plogger = lgr)
   }
 
-  ### # ------------------------------------------------------------------------
-  ### # Calving
-  ### # ------------------------------------------------------------------------
+  # ****************************************************************************
+  ## ---- Calving ----
+  # ****************************************************************************
   ### # Pre-processing the calving data for input-parameter-file of ECOWEIGHT
   qp4ewc::pre_process_ew_input_calving(ps_sirebreed,
                                        ps_prodsystew,
@@ -105,9 +105,9 @@ pre_process_ew_input <- function(ps_sirebreed,
 
 
 
-  ### # ------------------------------------------------------------------------
-  ### # Carcass
-  ### # ------------------------------------------------------------------------
+  # ****************************************************************************
+  ## ---- Carcass ----
+  # ****************************************************************************
 
 
 }
@@ -181,7 +181,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                  plogger = lgr)
 
 
-  ### # Update statement-calving-input from the data by calculating abortion rate
+  # Update statement-calving-input from the data by calculating abortion rate
   abortrate_prim <- qp4ewc::calculate_abortion_rate(ps_input_calving_tibble = tbl_calving,
                                                     ps_statement_firstlactation = TRUE,
                                                     pb_log = TRUE,
