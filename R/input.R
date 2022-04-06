@@ -242,6 +242,12 @@ read_file_input_flp <-  function(ps_input_file_flp,
   tbl_input$ageAtSlaughterInDays <- age_in_days(pdate_birth = as.Date(as.character(as.numeric(tbl_input$`Geburtsdatum Nako`)), format = "%Y%m%d", origin="1970-01-01"),
                                                 pdate_today = as.Date(as.character(as.numeric(tbl_input$Schlachtdatum)), format = "%Y%m%d", origin="1970-01-01"),
                                                 pb_floor = FALSE)
+  qp4ewc_log_info(lgr, 'read_file_input_flp',paste0('calculate age at slaughter in days'))
+  ### # Calculate age at weaning in days
+  tbl_input$ageAtWeaningInDays <- age_in_days(pdate_birth = as.Date(as.character(as.numeric(tbl_input$`Geburtsdatum Nako`)), format = "%Y%m%d", origin="1970-01-01"),
+                                              pdate_today = as.Date(as.character(as.numeric(tbl_input$`Absetzdatum Nako`)), format = "%Y%m%d", origin="1970-01-01"),
+                                              pb_floor = FALSE)
+  qp4ewc_log_info(lgr, 'read_file_input_flp',paste0('calculate age at weaning in days'))
 
 
   ### # Return tibble

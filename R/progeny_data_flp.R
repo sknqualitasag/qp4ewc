@@ -241,3 +241,155 @@ calculate_mean_weaningweight <- function(ps_input_flp_tibble,
 
 
 }
+
+
+#' @title Calculate mean weaning age
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate mean weaning age
+#' based on slaughtercategory, marketing-channel (label of Swiss Beef Cattle Assiocation) and sex.
+#'
+#' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param ps_sex statement of sex ("F" for female and "M" for male)
+#' @param ps_marketing_channel statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3)
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return weaningage vector
+#'
+#' @export calculate_mean_weaningage
+calculate_mean_weaningage <- function(ps_input_flp_tibble,
+                                      ps_sex,
+                                      ps_marketing_channel,
+                                      pb_log = FALSE,
+                                      plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_mean_weaningage.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
+                    paste0('Starting function with parameters:\n * ps_input_flp_tibble \n',
+                           ' * ps_sex: ', ps_sex,'\n',
+                           ' * ps_marketing_channel: ',ps_marketing_channel,'\n'))
+  }
+
+
+  ### # Different tibble depending on ps_sex and ps_marketing_channel
+  ### # Slaughtercategory for female to consider is RG == 5
+  if(ps_sex == "F"){
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "F") %>%
+      dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
+      dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
+      dplyr::select(ageAtWeaningInDays) %>%
+      na.omit()
+    qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
+                    paste0('A Tibble for female has been created for the calculation of mean weaning age '))
+  }else{
+    ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
+      dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
+      dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
+      dplyr::select(ageAtWeaningInDays) %>%
+      na.omit()
+    qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
+                    paste0('A Tibble for male has been created for the calculation of mean weaning age '))
+  }
+
+
+  ### # Calculate mean weaning age
+  weaningage <- round(as.numeric(dplyr::summarise(tbl_input, mean_weaningage = mean(ageAtWeaningInDays))),4)
+
+
+  qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
+                  paste0('Mean weaning age for ',ps_sex,' is : ',weaningage))
+
+
+  return(weaningage)
+
+
+}
+
+
+#' @title Calculate mean slaughter age
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate mean slaughter age
+#' based on slaughtercategory, marketing-channel (label of Swiss Beef Cattle Assiocation) and sex.
+#'
+#' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param ps_sex statement of sex ("F" for female and "M" for male)
+#' @param ps_marketing_channel statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3)
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return slaughterage vector
+#'
+#' @export calculate_mean_slaughterage
+calculate_mean_slaughterage <- function(ps_input_flp_tibble,
+                                        ps_sex,
+                                        ps_marketing_channel,
+                                        pb_log = FALSE,
+                                        plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_mean_slaughterage.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
+                    paste0('Starting function with parameters:\n * ps_input_flp_tibble \n',
+                           ' * ps_sex: ', ps_sex,'\n',
+                           ' * ps_marketing_channel: ',ps_marketing_channel,'\n'))
+  }
+
+
+  ### # Different tibble depending on ps_sex and ps_marketing_channel
+  ### # Slaughtercategory for female to consider is RG == 5
+  if(ps_sex == "F"){
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "F") %>%
+      dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
+      dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
+      dplyr::select(`Geburtsgewicht Nako`,ageAtSlaughterInDays) %>%
+      na.omit() %>%
+      dplyr::select(ageAtSlaughterInDays)
+    qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
+                    paste0('A Tibble for female has been created for the calculation of mean slaughter age '))
+  }else{
+    ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
+      dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
+      dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
+      dplyr::select(`Geburtsgewicht Nako`,ageAtSlaughterInDays) %>%
+      na.omit() %>%
+      dplyr::select(ageAtSlaughterInDays)
+    qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
+                    paste0('A Tibble for male has been created for the calculation of mean slaughter age '))
+  }
+
+
+  ### # Calculate mean slaughter age
+  slaughterage <- round(as.numeric(dplyr::summarise(tbl_input, mean_slaughterage = mean(ageAtSlaughterInDays))),4)
+
+
+  qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
+                  paste0('Mean slaughter age for ',ps_sex,' is : ',slaughterage))
+
+
+  return(slaughterage)
+
+
+}
