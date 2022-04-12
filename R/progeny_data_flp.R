@@ -393,3 +393,135 @@ calculate_mean_slaughterage <- function(ps_input_flp_tibble,
 
 
 }
+
+
+#' @title Calculate average daily gain
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate average daily gain.
+#'
+#' @param pv_mean_slaughterage vector with the mean of slaughter age
+#' @param pv_mean_weaningage vector with the mean of weaning age
+#' @param pv_mean_livewt_atslaughter vector with the mean of live weight at slaughter
+#' @param pv_mean_weaningwt vector with the mean of weaning weight
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return dailygain vector
+#'
+#' @export calculate_dailygain
+calculate_dailygain <- function(pv_mean_slaughterage,
+                                pv_mean_weaningage,
+                                pv_mean_livewt_atslaughter,
+                                pv_mean_weaningwt,
+                                pb_log = FALSE,
+                                plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_dailygain.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_dailygain',
+                    paste0('Starting function with parameters:\n * pv_mean_slaughterage: ',pv_mean_slaughterage,'\n',
+                           ' * pv_mean_weaningage: ', pv_mean_weaningage,'\n',
+                           ' * pv_mean_livewt_atslaughter: ', pv_mean_livewt_atslaughter,'\n',
+                           ' * pv_mean_weaningwt: ', pv_mean_weaningwt))
+  }
+
+
+  ### # Calculate fattening days
+  fattening_days <- as.numeric(pv_mean_slaughterage - pv_mean_weaningage)
+  qp4ewc_log_info(lgr, 'calculate_dailygain',
+                  paste0('Fattening days: ',fattening_days,' is the difference between pv_mean_slaughterage ',pv_mean_slaughterage,' and pv_mean_weaningage ', pv_mean_weaningage))
+
+
+  ### # Calculate fattening weight
+  fattening_weight <- pv_mean_livewt_atslaughter - pv_mean_weaningwt
+  qp4ewc_log_info(lgr, 'calculate_dailygain',
+                  paste0('Fattening weight: ',fattening_weight,' is the difference between pv_mean_livewt_atslaughter ',pv_mean_livewt_atslaughter,' and pv_mean_weaningwt ', pv_mean_weaningwt))
+
+
+  ### # Calculate daily gain
+  dailygain <- round(fattening_weight/fattening_days,4)
+  qp4ewc_log_info(lgr, 'calculate_dailygain',
+                  paste0('Daily gain during fattening is : ',dailygain))
+
+
+  return(dailygain)
+
+
+}
+
+
+#' @title Calculate cow live weight
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate cow live weight based on slaughtercategory.
+#'
+#' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param ps_lactationnumber lactation number to consider
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return weaningage vector
+#'
+#' @export calculate_cow_liveweight
+calculate_cow_liveweight <- function(ps_input_flp_tibble,
+                                     ps_lactationnumber,
+                                     pb_log = FALSE,
+                                     plogger = NULL){
+
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_cow_liveweight.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_cow_liveweight',
+                    paste0('Starting function with parameters:\n * ps_input_flp_tibble: \n',
+                           ' * ps_lactationnumber: ', ps_lactationnumber))
+  }
+
+
+  ### # Tibble depending on ps_lactationnumber
+  ### # Slaughtercategory for cow to consider is VK == 7
+  tbl_input <- ps_input_flp_tibble %>%
+              dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
+              dplyr::filter(`Laktationsnummer Ammen-Mutter` >= ps_lactationnumber)
+              dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)
+
+
+   ### # Calculate mean carcass weight for cow
+   cowwt <- round(as.numeric(dplyr::summarise(tbl_input, mean_cowwt = mean(`Schlachtgewicht Nako`))),4)
+
+
+   ### # Get the constants
+   l_constants <- get_constants()
+
+
+   ### # Calculate the mean cow live weight at slaughter
+   # dressing percentage to convert carcass weight to cow live weight at slaughter come from Proviande Wochenpreise für Rindvieh (VK, Fleischigkeit C)
+   cowlivewt_atslaughter <- round(as.numeric((cowwt/l_constants$vec_dressing_female),4))
+
+
+   qp4ewc_log_info(lgr, 'calculate_cow_liveweight',
+                   paste0('Mean cow live weight at slaughter is : ',cowlivewt_atslaughter, ' based on mean cow carcass weight: ',cowwt))
+
+
+   return(cowlivewt_atslaughter)
+
+
+}
