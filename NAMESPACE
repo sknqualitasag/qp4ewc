@@ -2,6 +2,7 @@
 
 export(age_in_days)
 export(calculate_abortion_rate)
+export(calculate_bull_liveweight)
 export(calculate_calvesdied24h_proportion)
 export(calculate_calvingscore_proportion)
 export(calculate_cow_liveweight)

@@ -529,20 +529,20 @@ calculate_extrapolated_weaningweight <- function(pv_mean_weaningage,
 #'
 #' @description
 #' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
-#' need input parameter files. This function will calculate cow live weight based on slaughtercategory.
+#' need input parameter files. This function will calculate cow live weight
 #'
 #' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
-#' @param ps_lactationnumber lactation number to consider
+#' @param ps_second_calvingweight flag to calculate second calving weight (TRUE or FALSE = calculate mature weight of cow)
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
 #'
-#' @return weaningage vector
+#' @return cow_liveweight vector
 #'
 #' @export calculate_cow_liveweight
 calculate_cow_liveweight <- function(ps_input_flp_tibble,
-                                     ps_lactationnumber,
+                                     ps_second_calvingweight,
                                      pb_log = FALSE,
                                      plogger = NULL){
 
@@ -557,16 +557,26 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
     }
     qp4ewc_log_info(lgr, 'calculate_cow_liveweight',
                     paste0('Starting function with parameters:\n * ps_input_flp_tibble: \n',
-                           ' * ps_lactationnumber: ', ps_lactationnumber))
+                           ' * ps_second_calvingweight: ', ps_second_calvingweight))
   }
 
 
-  ### # Tibble depending on ps_lactationnumber
-  ### # Slaughtercategory for cow to consider is VK == 7
-  tbl_input <- ps_input_flp_tibble %>%
-              dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
-              dplyr::filter(`Laktationsnummer Ammen-Mutter` >= ps_lactationnumber)
-              dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)
+  ### # Tibble depending on ps_second_calvingweight
+  ### # Calculate cow weight after second calving (this mean below 4th lactation number)
+  if(ps_second_calvingweight){
+    ### # Slaughtercategory for cow to consider is VK == 7
+    tbl_input <- ps_input_flp_tibble %>%
+                 dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
+                 dplyr::filter(`Laktationsnummer Ammen-Mutter` < 4) %>%
+                 dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)
+  }else{
+    ### # Calculate mature cow weight
+    tbl_input <- ps_input_flp_tibble %>%
+                 dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
+                 dplyr::filter(`Laktationsnummer Ammen-Mutter` > 3) %>%
+                 dplyr::filter(ageAtSlaughterInDays > 1460) %>%
+                 dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)
+  }
 
 
    ### # Calculate mean carcass weight for cow
@@ -587,6 +597,69 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
 
 
    return(cowlivewt_atslaughter)
+
+
+}
+
+
+#' @title Calculate bull mature live weight
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate bull live weight.
+#'
+#' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return bull_liveweight vector
+#'
+#' @export calculate_bull_liveweight
+calculate_bull_liveweight <- function(ps_input_flp_tibble,
+                                     pb_log = FALSE,
+                                     plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_bull_liveweight.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_bull_liveweight',
+                    paste0('Starting function with parameters:\n * ps_input_flp_tibble'))
+  }
+
+
+  ### # Calculate bull mature weight
+  ### # Slaughtercategory for older bull to consider is MA == 4
+  tbl_input <- ps_input_flp_tibble %>%
+               dplyr::filter(`Schlacht-/Masttierkategorie` == 4) %>%
+               dplyr::filter(ageAtSlaughterInDays > 1460) %>%
+               dplyr::select(`Schlachtgewicht Nako`)
+
+
+  ### # Calculate mean carcass weight for bull
+  bullwt <- round(as.numeric(dplyr::summarise(tbl_input, mean_cowwt = mean(`Schlachtgewicht Nako`))),4)
+
+
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
+  ### # Calculate the mean bull live weight at slaughter
+  # dressing percentage to convert carcass weight to bull live weight at slaughter come from Proviande Wochenpreise für Rindvieh (MA, Fleischigkeit C)
+  bulllivewt_atslaughter <- round(as.numeric((bullwt/l_constants$vec_dressing_male),4))
+
+
+  qp4ewc_log_info(lgr, 'calculate_bull_liveweight',
+                  paste0('Mean bull live weight at slaughter is : ',bulllivewt_atslaughter, ' based on mean bull carcass weight: ',bullwt))
+
+
+  return(bulllivewt_atslaughter)
 
 
 }

@@ -6,7 +6,7 @@
 \usage{
 calculate_cow_liveweight(
   ps_input_flp_tibble,
-  ps_lactationnumber,
+  ps_second_calvingweight,
   pb_log = FALSE,
   plogger = NULL
 )
@@ -14,16 +14,16 @@ calculate_cow_liveweight(
 \arguments{
 \item{ps_input_flp_tibble}{input flp tibble coming from read_file_input_flp in this package}
 
-\item{ps_lactationnumber}{lactation number to consider}
+\item{ps_second_calvingweight}{flag to calculate second calving weight (TRUE or FALSE = calculate mature weight of cow)}
 
 \item{pb_log}{indicator whether logs should be produced}
 
 \item{plogger}{logger object}
 }
 \value{
-weaningage vector
+cow_liveweight vector
 }
 \description{
 The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
-need input parameter files. This function will calculate cow live weight based on slaughtercategory.
+need input parameter files. This function will calculate cow live weight
 }
