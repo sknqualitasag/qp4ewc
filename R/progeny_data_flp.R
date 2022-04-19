@@ -460,6 +460,71 @@ calculate_dailygain <- function(pv_mean_slaughterage,
 }
 
 
+#' @title Extrapolate weaning weight at t-days
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate the extrapolate weaning weight
+#' at t-days.
+#'
+#' @param pv_mean_weaningage vector with the mean of weaning age
+#' @param pv_daily_gain vector with daily gain
+#' @param pv_mean_weaningwt vector with the mean of weaning weight
+#' @param pv_t_days vector for t-days
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return weaningweight_tdays vector
+#'
+#' @export calculate_extrapolated_weaningweight
+calculate_extrapolated_weaningweight <- function(pv_mean_weaningage,
+                                                 pv_daily_gain,
+                                                 pv_mean_weaningwt,
+                                                 pv_t_days,
+                                                 pb_log = FALSE,
+                                                 plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_extrapolated_weaningweight.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_extrapolated_weaningweight',
+                    paste0('Starting function with parameters:\n * pv_mean_weaningage: ',pv_mean_weaningage,'\n',
+                           ' * pv_daily_gain: ', pv_daily_gain,'\n',
+                           ' * pv_mean_weaningwt: ', pv_mean_weaningwt,'\n',
+                           ' * pv_t_days: ', pv_t_days))
+  }
+
+
+  ### # Calculate extrapolated weaning days
+  extrapolatedweaning_days <- as.numeric(pv_t_days - pv_mean_weaningage)
+  qp4ewc_log_info(lgr, 'calculate_extrapolated_weaningweight',
+                  paste0('Extrapolated weaning days: ',extrapolatedweaning_days,' is the difference between pv_t_days ',pv_t_days,' and pv_mean_weaningage ', pv_mean_weaningage))
+
+
+  ### # Extrapolated weaning weight
+  extrapolatedweaning_weight <- pv_mean_weaningwt + (extrapolatedweaning_days * pv_daily_gain)
+  qp4ewc_log_info(lgr, 'calculate_extrapolated_weaningweight',
+                  paste0('Extrapolated weaning weight: ',extrapolatedweaning_weight,' is based on pv_mean_weaningwt ',pv_mean_weaningwt,' , extrapolatedweaning_days ', extrapolatedweaning_days, ' and pv_daily_gain ',pv_daily_gain))
+
+
+  extrapolatedweaning_weight <- round(as.numeric(extrapolatedweaning_weight),2)
+  qp4ewc_log_info(lgr, 'calculate_extrapolated_weaningweight',
+                  paste0('Extrapolated weaning weight is : ',extrapolatedweaning_weight))
+
+
+  return(extrapolatedweaning_weight)
+
+
+}
+
+
 #' @title Calculate cow live weight
 #'
 #' @description
