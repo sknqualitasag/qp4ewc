@@ -34,8 +34,8 @@ pre_process_ew_input <- function(ps_sirebreed,
                                  ps_input_file_literature,
                                  ps_input_file_calving_statement,
                                  ps_input_file_calving,
-                                 ps_start_calving_date,
-                                 ps_end_calving_date,
+                                 ps_start_date,
+                                 ps_end_date,
                                  pb_log = FALSE,
                                  plogger = NULL){
 
@@ -55,8 +55,8 @@ pre_process_ew_input <- function(ps_sirebreed,
                            ' * ps_input_file_literature: ', ps_input_file_literature, '\n',
                            ' * ps_input_file_calving_statement: ',ps_input_file_calving_statement, '\n',
                            ' * ps_input_file_calving: ', ps_input_file_calving, '\n',
-                           ' * ps_start_calving_date: ',ps_start_calving_date,'\n',
-                           ' * ps_end_calving_date: ',ps_end_calving_date,'\n'))
+                           ' * ps_start_date: ',ps_start_date,'\n',
+                           ' * ps_end_date: ',ps_end_date,'\n'))
   }
 
 
@@ -98,8 +98,8 @@ pre_process_ew_input <- function(ps_sirebreed,
                                        ps_input_file_literature,
                                        ps_input_file_calving_statement,
                                        ps_input_file_calving,
-                                       ps_start_calving_date,
-                                       ps_end_calving_date,
+                                       ps_start_calving_date = ps_start_date,
+                                       ps_end_calving_date = ps_end_date,
                                        pb_log = TRUE,
                                        plogger = lgr)
 
@@ -108,6 +108,17 @@ pre_process_ew_input <- function(ps_sirebreed,
   # ****************************************************************************
   ## ---- Carcass ----
   # ****************************************************************************
+  qp4ewc::pre_process_ew_input_progeny_data_flp(ps_sirebreed,
+                                                ps_prodsystew,
+                                                ps_marketchannel,
+                                                ps_path_directory2create,
+                                                ps_input_file_progeny_flp_statement,
+                                                ps_input_file_flp,
+                                                ps_start_flp_date = ps_start_date,
+                                                ps_end_flp_date = ps_end_date,
+                                                pb_log = TRUE,
+                                                plogger = lgr)
+
 
 
 }
@@ -173,7 +184,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                          plogger = lgr)
 
 
-  ### # Read file with statement based on calving for input-parameter-file of ECOWEIGHT
+  ### # Read file with calving data
   tbl_calving <- qp4ewc::read_file_input_calving(ps_input_file_calving,
                                                  ps_start_calving_date,
                                                  ps_end_calving_date,
@@ -404,5 +415,509 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                       ps_value2update = value2update_calvingdied24hprop_difficult,
                                       pb_log = TRUE,
                                       plogger = lgr)
+
+}
+
+
+#' @title Pre-processing the progeny data flp for input-parameter-file of ECOWEIGHT
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function processed different functions
+#' to prepare the input parameter files based on progeny flp data.
+#'
+#' @param ps_sirebreed sire breed
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
+#' @param ps_marketchannel market channel
+#' @param ps_path_directory2create path of the directory that will be created
+#' @param ps_input_file_calving_statement path to file with statement based on calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file_calving path to file with input coming from calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_start_flp_date setting the start of the slaughter date to filter in the slaughter data
+#' @param ps_end_flp_date setting the end of the slaughter date to filter in the slaughter data
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @export pre_process_ew_input_progeny_data_flp
+pre_process_ew_input_progeny_data_flp <- function(ps_sirebreed,
+                                                  ps_prodsystew,
+                                                  ps_marketchannel,
+                                                  ps_path_directory2create,
+                                                  ps_input_file_progeny_flp_statement,
+                                                  ps_input_file_flp,
+                                                  ps_start_flp_date,
+                                                  ps_end_flp_date,
+                                                  pb_log = FALSE,
+                                                  plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'pre_process_ew_input_progeny_data_flp.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'pre_process_ew_input_progeny_data_flp',
+                    paste0('Starting function with parameters:\n * ps_sirebreed: ', ps_sirebreed, '\n',
+                           ' * ps_prodsystew: ', ps_prodsystew, '\n',
+                           ' * ps_marketchannel: ', ps_marketchannel, '\n',
+                           ' * ps_path_directory2create: ', ps_path_directory2create, '\n',
+                           ' * ps_input_file_progeny_flp_statement: ',ps_input_file_progeny_flp_statement, '\n',
+                           ' * ps_input_file_flp: ', ps_input_file_flp, '\n',
+                           ' * ps_start_flp_date: ',ps_start_flp_date,'\n',
+                           ' * ps_end_flp_date: ',ps_end_flp_date,'\n'))
+  }
+
+
+  ### # Read file with statement based on progeny data flp for input-parameter-file of ECOWEIGHT
+  tbl_input_statement_flp <- qp4ewc::read_file_input(ps_input_file_progeny_flp_statement,
+                                                     pb_log = TRUE,
+                                                     plogger = lgr)
+
+
+  ### # Read file with progeny-flp data
+  tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp,
+                                         ps_start_flp_date,
+                                         ps_end_flp_date,
+                                         ps_sirebreed,
+                                         pb_log = TRUE,
+                                         plogger = lgr)
+
+  # ****************************************************************************
+  ## ---- Natura-Beef ----
+  # ****************************************************************************
+  if(ps_marketchannel == "Natura-Beef"){
+
+    # Update statement-progeny-flp-input from the data by calculating mean birth weight
+    female_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
+                                                    ps_sex = "F",
+                                                    ps_marketing_channel = 2,
+                                                    pb_log = TRUE,
+                                                    plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[1,1]),
+                                        ps_statement2search = tbl_input_statement_flp[1,2],
+                                        ps_value2update = female_bw,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+    male_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
+                                                  ps_sex = "M",
+                                                  ps_marketing_channel = 2,
+                                                  pb_log = TRUE,
+                                                  plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[2,1]),
+                                        ps_statement2search = tbl_input_statement_flp[2,2],
+                                        ps_value2update = male_bw,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+
+    # Update statement-progeny-flp-input from the data by calculating mean live weight at slaughter
+    livewt_slaughter_f <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
+                                                                      ps_sex = "F",
+                                                                      ps_marketing_channel = 2,
+                                                                      pb_log = TRUE,
+                                                                      plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[3,1]),
+                                        ps_statement2search = tbl_input_statement_flp[3,2],
+                                        ps_value2update = livewt_slaughter_f,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+    livewt_slaughter_m <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
+                                                                      ps_sex = "M",
+                                                                      ps_marketing_channel = 2,
+                                                                      pb_log = TRUE,
+                                                                      plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[4,1]),
+                                        ps_statement2search = tbl_input_statement_flp[4,2],
+                                        ps_value2update = livewt_slaughter_m,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+
+    # Calculate weaning weight, weaning age, slaughter age
+    weaningwt_f <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
+                                                        ps_sex = "F",
+                                                        ps_marketing_channel = 2,
+                                                        pb_log = TRUE,
+                                                        plogger = lgr)
+    weaningwt_m <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
+                                                        ps_sex = "M",
+                                                        ps_marketing_channel = 2,
+                                                        pb_log = TRUE,
+                                                        plogger = lgr)
+    weaningage_f <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
+                                                      ps_sex = "F",
+                                                      ps_marketing_channel = 2,
+                                                      pb_log = TRUE,
+                                                      plogger = lgr)
+    weaningage_m <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
+                                                      ps_sex = "M",
+                                                      ps_marketing_channel = 2,
+                                                      pb_log = TRUE,
+                                                      plogger = lgr)
+    slaughterage_f <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
+                                                          ps_sex = "F",
+                                                          ps_marketing_channel = 2,
+                                                          pb_log = TRUE,
+                                                          plogger = lgr)
+    slaughterage_m <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
+                                                          ps_sex = "M",
+                                                          ps_marketing_channel = 2,
+                                                          pb_log = TRUE,
+                                                          plogger = lgr)
+
+
+    # Calculate daily gain
+    dailygain_f <- qp4ewc::calculate_dailygain(pv_mean_slaughterage = slaughterage_f,
+                                               pv_mean_weaningage = weaningage_f,
+                                               pv_mean_livewt_atslaughter = livewt_slaughter_f,
+                                               pv_mean_weaningwt = weaningwt_f,
+                                               pb_log = TRUE,
+                                               plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[5,1]),
+                                        ps_statement2search = tbl_input_statement_flp[5,2],
+                                        ps_value2update = dailygain_f,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    dailygain_m <- qp4ewc::calculate_dailygain(pv_mean_slaughterage = slaughterage_m,
+                                               pv_mean_weaningage = weaningage_m,
+                                               pv_mean_livewt_atslaughter = livewt_slaughter_m,
+                                               pv_mean_weaningwt = weaningwt_m,
+                                               pb_log = TRUE,
+                                               plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[6,1]),
+                                        ps_statement2search = tbl_input_statement_flp[6,2],
+                                        ps_value2update = dailygain_m,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+
+    # Update statement-progeny-flp-input from the data by calculating extrapolate weaning weight
+    # extrapolated to 300 days
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[7,1]),
+                                        ps_statement2search = tbl_input_statement_flp[7,2],
+                                        ps_value2update = 300,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    weight_300d_f <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_f,
+                                                                  pv_daily_gain = dailygain_f,
+                                                                  pv_mean_weaningwt = weaningwt_f,
+                                                                  pv_t_days = 300,
+                                                                  pb_log = s_log,
+                                                                  plogger = NULL)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[8,1]),
+                                        ps_statement2search = tbl_input_statement_flp[8,2],
+                                        ps_value2update = weight_300d_f,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    weight_300d_m <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_m,
+                                                                  pv_daily_gain = dailygain_m,
+                                                                  pv_mean_weaningwt = weaningwt_m,
+                                                                  pv_t_days = 300,
+                                                                  pb_log = s_log,
+                                                                  plogger = NULL)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[9,1]),
+                                        ps_statement2search = tbl_input_statement_flp[9,2],
+                                        ps_value2update = weight_300d_m,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+
+    # extrapolated to 302 days
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[10,1]),
+                                        ps_statement2search = tbl_input_statement_flp[10,2],
+                                        ps_value2update = 302,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    # extrapolated to 304 days
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[11,1]),
+                                        ps_statement2search = tbl_input_statement_flp[11,2],
+                                        ps_value2update = 304,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    # weaning weight at 302 days
+    weight_302d_f <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_f,
+                                                                  pv_daily_gain = dailygain_f,
+                                                                  pv_mean_weaningwt = weaningwt_f,
+                                                                  pv_t_days = 302,
+                                                                  pb_log = s_log,
+                                                                  plogger = NULL)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[12,1]),
+                                        ps_statement2search = tbl_input_statement_flp[12,2],
+                                        ps_value2update = weight_302d_f,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    weight_302d_m <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_m,
+                                                                  pv_daily_gain = dailygain_m,
+                                                                  pv_mean_weaningwt = weaningwt_m,
+                                                                  pv_t_days = 302,
+                                                                  pb_log = s_log,
+                                                                  plogger = NULL)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[13,1]),
+                                        ps_statement2search = tbl_input_statement_flp[13,2],
+                                        ps_value2update = weight_302d_m,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    # weaning weight at 304 days
+    weight_304d_f <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_f,
+                                                                  pv_daily_gain = dailygain_f,
+                                                                  pv_mean_weaningwt = weaningwt_f,
+                                                                  pv_t_days = 304,
+                                                                  pb_log = s_log,
+                                                                  plogger = NULL)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[14,1]),
+                                        ps_statement2search = tbl_input_statement_flp[14,2],
+                                        ps_value2update = weight_304d_f,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    weight_304d_m <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_m,
+                                                                  pv_daily_gain = dailygain_m,
+                                                                  pv_mean_weaningwt = weaningwt_m,
+                                                                  pv_t_days = 304,
+                                                                  pb_log = s_log,
+                                                                  plogger = NULL)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[15,1]),
+                                        ps_statement2search = tbl_input_statement_flp[15,2],
+                                        ps_value2update = weight_304d_m,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+  }
+
+
+  # ****************************************************************************
+  ## ---- SwissPrimBeef ----
+  # ****************************************************************************
+  if(ps_marketchannel == "SwissPrimBeef"){
+
+    # Update statement-progeny-flp-input from the data by calculating mean birth weight
+    female_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
+                                                    ps_sex = "F",
+                                                    ps_marketing_channel = 3,
+                                                    pb_log = TRUE,
+                                                    plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[1,1]),
+                                        ps_statement2search = tbl_input_statement_flp[1,2],
+                                        ps_value2update = female_bw,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+    male_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
+                                                  ps_sex = "M",
+                                                  ps_marketing_channel = 3,
+                                                  pb_log = TRUE,
+                                                  plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[2,1]),
+                                        ps_statement2search = tbl_input_statement_flp[2,2],
+                                        ps_value2update = male_bw,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+
+    # Update statement-progeny-flp-input from the data by calculating mean weaning weight
+    weaningwt_f <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
+                                                        ps_sex = "F",
+                                                        ps_marketing_channel = 3,
+                                                        pb_log = TRUE,
+                                                        plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[8,1]),
+                                        ps_statement2search = tbl_input_statement_flp[8,2],
+                                        ps_value2update = weaningwt_f,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    weaningwt_m <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
+                                                        ps_sex = "M",
+                                                        ps_marketing_channel = 3,
+                                                        pb_log = TRUE,
+                                                        plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[9,1]),
+                                        ps_statement2search = tbl_input_statement_flp[9,2],
+                                        ps_value2update = weaningwt_m,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+
+    # Update statement-progeny-flp-input from the data by calculating mean weaning age
+    weaningage_f <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
+                                                      ps_sex = "F",
+                                                      ps_marketing_channel = 3,
+                                                      pb_log = TRUE,
+                                                      plogger = lgr)
+    weaningage_m <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
+                                                      ps_sex = "M",
+                                                      ps_marketing_channel = 3,
+                                                      pb_log = TRUE,
+                                                      plogger = lgr)
+    weaningage_average <- round(as.numeric(weaningage_f+weaningage_m)/2,4)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[7,1]),
+                                        ps_statement2search = tbl_input_statement_flp[7,2],
+                                        ps_value2update = weaningage_average,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+
+    # Update statement-progeny-flp-input from the data by calculating mean live weight at slaughter
+    livewt_slaughter_f <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
+                                                                      ps_sex = "F",
+                                                                      ps_marketing_channel = 3,
+                                                                      pb_log = TRUE,
+                                                                      plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[3,1]),
+                                        ps_statement2search = tbl_input_statement_flp[3,2],
+                                        ps_value2update = livewt_slaughter_f,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+    livewt_slaughter_m <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
+                                                                      ps_sex = "M",
+                                                                      ps_marketing_channel = 3,
+                                                                      pb_log = TRUE,
+                                                                      plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[4,1]),
+                                        ps_statement2search = tbl_input_statement_flp[4,2],
+                                        ps_value2update = livewt_slaughter_m,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+
+    # Calculate slaughter age
+    slaughterage_f <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
+                                                          ps_sex = "F",
+                                                          ps_marketing_channel = 3,
+                                                          pb_log = TRUE,
+                                                          plogger = lgr)
+    slaughterage_m <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
+                                                          ps_sex = "M",
+                                                          ps_marketing_channel = 3,
+                                                          pb_log = TRUE,
+                                                          plogger = lgr)
+
+
+    # Calculate and update daily gain
+    dailygain_f <- qp4ewc::calculate_dailygain(pv_mean_slaughterage = slaughterage_f,
+                                               pv_mean_weaningage = weaningage_f,
+                                               pv_mean_livewt_atslaughter = livewt_slaughter_f,
+                                               pv_mean_weaningwt = weaningwt_f,
+                                               pb_log = TRUE,
+                                               plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[5,1]),
+                                        ps_statement2search = tbl_input_statement_flp[5,2],
+                                        ps_value2update = dailygain_f,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    dailygain_m <- qp4ewc::calculate_dailygain(pv_mean_slaughterage = slaughterage_m,
+                                               pv_mean_weaningage = weaningage_m,
+                                               pv_mean_livewt_atslaughter = livewt_slaughter_m,
+                                               pv_mean_weaningwt = weaningwt_m,
+                                               pb_log = TRUE,
+                                               plogger = lgr)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[6,1]),
+                                        ps_statement2search = tbl_input_statement_flp[6,2],
+                                        ps_value2update = dailygain_m,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+
+    # Update statement-progeny-flp-input from the data by calculating extrapolate weaning weight
+    # extrapolated to 300 days
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[10,1]),
+                                        ps_statement2search = tbl_input_statement_flp[10,2],
+                                        ps_value2update = 300,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    # extrapolated to 400 days
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[11,1]),
+                                        ps_statement2search = tbl_input_statement_flp[11,2],
+                                        ps_value2update = 400,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    # weaning weight at 300 days
+    weight_300d_f <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_f,
+                                                                  pv_daily_gain = dailygain_f,
+                                                                  pv_mean_weaningwt = weaningwt_f,
+                                                                  pv_t_days = 300,
+                                                                  pb_log = s_log,
+                                                                  plogger = NULL)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[12,1]),
+                                        ps_statement2search = tbl_input_statement_flp[12,2],
+                                        ps_value2update = weight_300d_f,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    weight_300d_m <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_m,
+                                                                  pv_daily_gain = dailygain_m,
+                                                                  pv_mean_weaningwt = weaningwt_m,
+                                                                  pv_t_days = 300,
+                                                                  pb_log = s_log,
+                                                                  plogger = NULL)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[13,1]),
+                                        ps_statement2search = tbl_input_statement_flp[13,2],
+                                        ps_value2update = weight_300d_m,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+
+
+    # weaning weight at 400 days
+    weight_400d_f <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_f,
+                                                                  pv_daily_gain = dailygain_f,
+                                                                  pv_mean_weaningwt = weaningwt_f,
+                                                                  pv_t_days = 400,
+                                                                  pb_log = s_log,
+                                                                  plogger = NULL)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[14,1]),
+                                        ps_statement2search = tbl_input_statement_flp[14,2],
+                                        ps_value2update = weight_400d_f,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+    weight_400d_m <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_m,
+                                                                  pv_daily_gain = dailygain_m,
+                                                                  pv_mean_weaningwt = weaningwt_m,
+                                                                  pv_t_days = 400,
+                                                                  pb_log = s_log,
+                                                                  plogger = NULL)
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[15,1]),
+                                        ps_statement2search = tbl_input_statement_flp[15,2],
+                                        ps_value2update = weight_400d_m,
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+  }
+
+
+
+  # Update statement-progeny-flp-input from the data by calculating cow weight after second calving
+  second_calving_wt <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_flp,
+                                                        ps_second_calvingweight = TRUE,
+                                                        pb_log = TRUE,
+                                                        plogger = lgr)
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[16,1]),
+                                      ps_statement2search = tbl_input_statement_flp[16,2],
+                                      ps_value2update = second_calving_wt,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
+  # Update statement-progeny-flp-input from the data by calculating mature cow weight
+  mature_weight_cow <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_flp,
+                                                        ps_second_calvingweight = FALSE,
+                                                        pb_log = TRUE,
+                                                        plogger = lgr)
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[17,1]),
+                                      ps_statement2search = tbl_input_statement_flp[17,2],
+                                      ps_value2update = mature_weight_cow,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
+  # Update statement-progeny-flp-input from the data by calculating mature bull weight
+  bull_mature_weight <- qp4ewc::calculate_bull_liveweight(ps_input_flp_tibble = tbl_flp,
+                                                          pb_log = TRUE,
+                                                          plogger = lgr)
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[18,1]),
+                                      ps_statement2search = tbl_input_statement_flp[18,2],
+                                      ps_value2update = bull_mature_weight,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
 
 }

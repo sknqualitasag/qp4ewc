@@ -12,8 +12,8 @@ pre_process_ew_input(
   ps_input_file_literature,
   ps_input_file_calving_statement,
   ps_input_file_calving,
-  ps_start_calving_date,
-  ps_end_calving_date,
+  ps_start_date,
+  ps_end_date,
   pb_log = FALSE,
   plogger = NULL
 )
@@ -33,13 +33,13 @@ pre_process_ew_input(
 
 \item{ps_input_file_calving}{path to file with input coming from calving for the input-parameter-file for ECOWEIGHT}
 
-\item{ps_start_calving_date}{setting the start of the calving date to filter in the calving data}
-
-\item{ps_end_calving_date}{setting the end of the calving date to filter in the calving data}
-
 \item{pb_log}{indicator whether logs should be produced}
 
 \item{plogger}{logger object}
+
+\item{ps_start_calving_date}{setting the start of the calving date to filter in the calving data}
+
+\item{ps_end_calving_date}{setting the end of the calving date to filter in the calving data}
 }
 \description{
 The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
