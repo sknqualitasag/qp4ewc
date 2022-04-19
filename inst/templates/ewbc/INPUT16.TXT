@@ -1,0 +1,43 @@
+/* Input parameters for program EWBC (Production Systems 1 to 3) and both
+   options 1 and 2 for fattening.
+   For changing input data, change the number(s) in the matrices.
+   Be careful when changing input parameters. Please notice that
+     the description of the given matrix is posted under the matrix.
+   The rows represent the commercial classes for fleshiness, the columns the
+     classes for fat covering. The numbers of rows and columns of all matrices
+     must be in accordance with the appropriate parameters in INPUT08.TXT.
+   The matrix of coefficients of carcass prices shows the ratio of the price per
+   kg carcass in the given class to the price in the class which is used as the
+   reference class (base class). See Manual for more explanations. */
+0	0	0	0	0
+0.24 0.97 0.14 0.01 0
+2.57 10.53 1.57 0.13 0.01
+8.64 35.35 5.27 0.43 0.03
+5.2 21.27 3.17 0.26 0.02
+0.0918 0.0000 0.0153 0.0000 0.0000
+0.0306 0.0153 0.0153 0.0000 0.0000
+0.0459 0.0000 0.0000 0.0000 0.0000
+0.1836 0.0918 0.0000 0.0000 0.0000
+0.3520 0.1071 0.0765 0.0459 0.0000
+0.9334 0.4132 0.3213 0.0918 0.0306
+2.1882 1.3466 1.4843 0.5050 0.1530
+3.8562 3.7643 7.4369 3.7950 1.3466
+ 3.8562 10.9717 37.5057 15.2716  3.6572
+"Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%."
+"%"
+1	0.985	0.97	0.94	0.875
+0.96	0.945	0.925	0.89	0.82
+0.925	0.91	0.89	0.86	0.79
+0.875	0.86	0.84	0.805	0.73
+0.775	0.785	0.795	0.76	0.685
+0.6335 0.6649 0.6754 0.6440 0.6021
+0.6806 0.7120 0.7225 0.6911 0.6492
+0.7277 0.7592 0.7696 0.7382 0.6963
+0.7958 0.8272 0.8377 0.8063 0.7644
+0.8743 0.8953 0.8953 0.8639 0.8220
+0.9110 0.9319 0.9319 0.9005 0.8586
+0.9319 0.9529 0.9529 0.9215 0.8796
+0.9529 0.9738 0.9738 0.9424 0.9005
+0.9791 1.0000 1.0000 0.9686 0.9267
+"Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)"
+" "

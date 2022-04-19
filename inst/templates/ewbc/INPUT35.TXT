@@ -1,0 +1,97 @@
+/* This file is necessary for program EWBC if genetic standard deviations
+   of the traits are known for the direct and maternal components of the
+   traits.
+   It contains input parameters (genetic standard deviations) for calculating
+   the relative economic weights of traits. If there are direct and maternal
+   components of a trait two input values are to be given, otherwise only one
+   value is given. Keep attention that the genetic standard deviations are
+   given in correct units.
+   The genetic standard deviations must be for the breed the economic weights
+   are calculated for.
+   The appropriate input is skipped if the trait is not considered in the
+   calculation.
+   All input data are arranged in the following way
+        each parameter takes three parts,
+        the parameter value or vector of values are given in the first row(s),
+        the string expression in the second part describes the parameter and
+	the last string in the third part contains the units of the parameter.
+	If there is no unit given, [SPACE] is written enclosed into quotation
+	marks. */
+6   6
+"Genetic standard deviation for for direct and maternal component of calving
+performance score"
+"0.01 score"
+3.9  3.9
+"Genetic standard deviation for direct and maternal components of
+losses of calves at calving"
+"%"
+3.2  3.2
+"Genetic standard deviation for direct and maternal components of losses of
+calves from 48 hour after calving till weaning"
+"%"
+20.5
+"Genetic standard deviation for mature weight of cows"
+"kg"
+2.6   2.6
+"Genetic standard deviation for direct and maternal components of birth weight"
+"kg"
+85  85
+"Genetic standard deviation for direct and maternal components of average daily
+gain of calves from birth to 1st weighing"
+"g/d"
+80  80
+"Genetic standard deviation for direct and maternal components of average daily
+gain of calves from 1st to 2nd weighing"
+"g/d"
+145  145
+"Genetic standard deviation for direct and maternal components of average daily
+gain of calves from 2nd to 3rd weighing"
+"g/d"
+300
+"Genetic standard deviation for daily gain in fattening"
+"g/d"
+ 1.14
+"Genetic standard deviation for dressing percentage"
+"%"
+2.0
+"Genetic standard deviation for cow losses"
+"%"
+3.9
+"Genetic standard deviation for conception rate of heifers"
+"%"
+4.0
+"Genetic standard deviation for conception rate of cows"
+"%"
+6
+"Genetic standard deviation for mean class of fleshiness"
+"0.01 class"
+4         -
+"Genetic standard deviation for mean class of fat covering"
+"0.01 class"
+ 10.2  10.2
+"Genetic standard deviation for direct and maternal components of weight
+gain of calves from birth to 1st weighing"
+"kg"
+7.2  7.2
+"Genetic standard deviation for direct and maternal components of weight
+gain of calves from 1st to 2nd weighing"
+"kg"
+ 22.5  22.5
+"Genetic standard deviation for direct and maternal components of weight
+gain of calves from 2nd to 3rd weighing"
+"kg"
+0.9
+"Genetic standard deviation for lifetime of cows"
+"years"
+0.25
+"Genetic standard deviation for daily dry matter intake of heifers"
+"kg/d"
+0.30
+"Genetic standard deviation for daily dry matter intake in intensive fattening"
+"kg/d"
+0.27
+"Genetic standard deviation for daily dry matter intake in extensive fattening"
+"kg/d"
+0.35
+"Genetic standard deviation for daily dry matter intake of adult animals"
+"kg/d"

@@ -1,0 +1,43 @@
+/* Input parameters for program EWBC (Production Systems 1 to 3).
+   The file is necessary only for the option 2 for fattening.
+   For changing input data, change the number(s) in the matrices.
+   Be careful when changing input parameters. Please notice that
+     the description of the given matrix is posted under the matrix.
+   The rows represent the commercial classes for fleshiness, the columns the
+     classes for fat covering. The numbers of rows and columns of all matrices
+     must be in accordance with the appropriate parameters in INPUT08.TXT.
+   The matrix of coefficients of carcass prices shows the ratio of the price per
+   kg carcass in the given class to the price in the base class. (See
+   explanations for INPUT16.TXT in the Manual).*/
+0	0	0	0	0
+0	0.8	3	1	0.2
+0	3	12	4	1
+0	10.5	42	14	3.5
+0	0.8	3	1	0.2
+0	0	0	0	0
+"Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering"
+"%"
+0	0	0	0	0
+0	1.4	2.8	2.1	0.7
+0	8	16	12	4
+0	10	20	15	5
+0	0.6	1.2	0.9	0.3
+0	0	0	0	0
+"Matrix Pcs - proportions of castrate carcasses in commercial classes for fleshiness and fat covering (only read if there are castrates)"
+"%"
+1	0.985	0.97	0.925	0.845
+0.97	0.96	0.935	0.885	0.805
+0.93	0.915	0.885	0.83	0.74
+0.88	0.865	0.835	0.78	0.69
+0.77	0.775	0.785	0.735	0.645
+0.65	0.67	0.69	0.63	0.53
+"Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class"
+" "
+1	0.985	0.97	0.925	0.845
+0.97	0.96	0.935	0.885	0.805
+0.93	0.915	0.885	0.83	0.74
+0.88	0.865	0.835	0.78	0.69
+0.77	0.775	0.785	0.735	0.645
+0.65	0.67	0.69	0.63	0.53
+"Matrix Prcs - coefficients of carcass prices in commercial classes for fleshiness and fat covering for castrates relative to the base class (only read if there are castrates)"
+" "
