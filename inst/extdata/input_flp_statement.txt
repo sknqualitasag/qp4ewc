@@ -1,0 +1,19 @@
+input_file;input;input_unit;input_value
+INPUT06.TXT;"Birth weight of female calves";"kg";35
+INPUT06.TXT;"Birth weight of male calves";"kg";37
+INPUT10.TXT;"Live weight of heifers at slaughter";"kg";600
+INPUT08.TXT;"Live weight of bulls at slaughter in intensive fattening";"kg";700
+INPUT10.TXT;"Daily gain of heifers in intensive fattening";"kg/day";1.3
+INPUT08.TXT;"Daily gain of bulls in intensive fattening";"kg/day";1.5
+INPUT06.TXT;"Age of calves at first weighing (first control)";"days";120
+INPUT06.TXT;"Weight of female calves at first weighing";"kg";165
+INPUT06.TXT;"Weight of male calves at first weighing";"kg";170
+INPUT06.TXT;"Age of calves at second weighing (second control)";"days";210
+INPUT06.TXT;"Age of calves at third weighing (third control)";"days";365
+INPUT06.TXT;"Weight of female calves at second weighing";"kg";255
+INPUT06.TXT;"Weight of male calves at second weighing";"kg";272
+INPUT06.TXT;"Weight of female calves at third weighing";"kg";345
+INPUT06.TXT;"Weight of male calves at third weighing";"kg";492
+INPUT03.TXT;"Cow weight after second calving";"kg";670
+INPUT03.TXT;"Mature weight of cows (= cow weight after 3rd calving)";"kg";700
+INPUT06.TXT;"Mature weight of bulls used in the herd";"kg";1050
