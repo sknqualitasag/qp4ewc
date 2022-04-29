@@ -8,6 +8,7 @@ update_input_parameter_file(
   ps_path2template_input_parameter_file,
   ps_statement2search,
   ps_value2update,
+  ps_line4statement2update = 1,
   pb_log = FALSE,
   plogger = NULL
 )
@@ -18,6 +19,8 @@ update_input_parameter_file(
 \item{ps_statement2search}{statement to search in the template}
 
 \item{ps_value2update}{value to update in the input-parameter-file}
+
+\item{ps_line4statement2update}{numeric value of the number of the line before the statement to update}
 
 \item{pb_log}{indicator whether logs should be produced}
 

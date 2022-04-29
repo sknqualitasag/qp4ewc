@@ -1,0 +1,11 @@
+input_file;input;input_unit;input_value
+INPUT16.TXT;"Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.";"%";
+INPUT16.TXT;"Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.";"%";
+INPUT17.TXT;"Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering";"%";
+INPUT03.TXT;"Price per kg carcass of cows in the base class for fleshiness and fat covering";"MU/kg";9.55
+INPUT04.TXT;"Average price per kg carcass weight of culled (old) breeding bulls";"MU/kg";9.90
+INPUT08.TXT;"Price per kg carcass of bulls in the base class";"MU/kg";12.25
+INPUT08.TXT;"Price per kg carcass of heifers for the base class";"MU/kg";12.25
+INPUT16.TXT;"Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)";" ";
+INPUT16.TXT;"Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)";" ";
+INPUT17.TXT;"Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class";" ";

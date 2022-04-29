@@ -17,6 +17,7 @@
 #' @param ps_path2template_input_parameter_file path to the template of the input-parameter-file for ECOWEIGHT
 #' @param ps_statement2search statement to search in the template
 #' @param ps_value2update value to update in the input-parameter-file
+#' @param ps_line4statement2update numeric value of the number of the line before the statement to update
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -24,6 +25,7 @@
 update_input_parameter_file <- function(ps_path2template_input_parameter_file,
                                         ps_statement2search,
                                         ps_value2update,
+                                        ps_line4statement2update = 1,
                                         pb_log = FALSE,
                                         plogger = NULL){
 
@@ -61,7 +63,7 @@ update_input_parameter_file <- function(ps_path2template_input_parameter_file,
 
 
   ### # Update the value in the input-parameter-file
-  ps_value2update_idx <- grep(pattern = ps_statement2search , vec_ecow_input, fixed = TRUE) - 1
+  ps_value2update_idx <- grep(pattern = ps_statement2search , vec_ecow_input, fixed = TRUE) - ps_line4statement2update
   vec_ecow_input[ps_value2update_idx] <- ps_value2update
   cat(paste0(vec_ecow_input, collapse = "\n"), "\n", file = ps_path2template_input_parameter_file, append = FALSE)
   qp4ewc_log_info(lgr, 'update_input_parameter_file',paste0('Update the value:\n * ps_value2update: ',ps_value2update, '\n',

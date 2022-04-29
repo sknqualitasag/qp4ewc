@@ -106,7 +106,7 @@ pre_process_ew_input <- function(ps_sirebreed,
 
 
   # ****************************************************************************
-  ## ---- Carcass ----
+  ## ---- Progreny data about weighing and slaughter ----
   # ****************************************************************************
   qp4ewc::pre_process_ew_input_progeny_data_flp(ps_sirebreed,
                                                 ps_prodsystew,
@@ -119,6 +119,23 @@ pre_process_ew_input <- function(ps_sirebreed,
                                                 pb_log = TRUE,
                                                 plogger = lgr)
 
+
+  # ****************************************************************************
+  ## ---- Conformation & fat scores and price matrices ----
+  # ****************************************************************************
+  qp4ewc::pre_process_ew_input_carcass_data_flp(ps_sirebreed,
+                                                ps_prodsystew,
+                                                ps_marketchannel,
+                                                ps_path_directory2create,
+                                                ps_input_file_flp_carcass_matrix_statement,
+                                                ps_input_file_flp,
+                                                ps_start_flp_date = ps_start_date,
+                                                ps_end_flp_date = ps_end_date,
+                                                ps_input_file_price_cow,
+                                                ps_input_file_price_bull,
+                                                ps_input_file_price_heifer,
+                                                pb_log = TRUE,
+                                                plogger = lgr)
 
 
 }
@@ -430,8 +447,8 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
 #' @param ps_prodsystew production system build up as option in ECOWEIGHT
 #' @param ps_marketchannel market channel
 #' @param ps_path_directory2create path of the directory that will be created
-#' @param ps_input_file_calving_statement path to file with statement based on calving for the input-parameter-file for ECOWEIGHT
-#' @param ps_input_file_calving path to file with input coming from calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file_progeny_flp_statement path to file with statement based on calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file_flp path to file with input coming from calving for the input-parameter-file for ECOWEIGHT
 #' @param ps_start_flp_date setting the start of the slaughter date to filter in the slaughter data
 #' @param ps_end_flp_date setting the end of the slaughter date to filter in the slaughter data
 #' @param pb_log indicator whether logs should be produced
@@ -918,6 +935,551 @@ pre_process_ew_input_progeny_data_flp <- function(ps_sirebreed,
                                       pb_log = TRUE,
                                       plogger = lgr)
 
+
+
+}
+
+
+#' @title Pre-processing the carcass conformation, fat, prices based on flp-data for input-parameter-file of ECOWEIGHT
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function processed different functions
+#' to prepare the input parameter files based on progeny flp data and literature about the price-system.
+#'
+#' @param ps_sirebreed sire breed
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
+#' @param ps_marketchannel market channel
+#' @param ps_path_directory2create path of the directory that will be created
+#' @param ps_input_file_flp_carcass_matrix_statement path to file with statement based on calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file_flp path to file with input coming from calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_start_flp_date setting the start of the slaughter date to filter in the slaughter data
+#' @param ps_end_flp_date setting the end of the slaughter date to filter in the slaughter data
+#' @param ps_input_file_price_cow path to file with price for cows
+#' @param ps_input_file_price_bull path to file with price for bulls
+#' @param ps_input_file_price_heifer path tho file with price for heifers
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @export pre_process_ew_input_carcass_data_flp
+pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
+                                                  ps_prodsystew,
+                                                  ps_marketchannel,
+                                                  ps_path_directory2create,
+                                                  ps_input_file_flp_carcass_matrix_statement,
+                                                  ps_input_file_flp,
+                                                  ps_start_flp_date,
+                                                  ps_end_flp_date,
+                                                  ps_input_file_price_cow,
+                                                  ps_input_file_price_bull,
+                                                  ps_input_file_price_heifer,
+                                                  pb_log = FALSE,
+                                                  plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'pre_process_ew_input_carcass_data_flp.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'pre_process_ew_input_carcass_data_flp',
+                    paste0('Starting function with parameters:\n * ps_sirebreed: ', ps_sirebreed, '\n',
+                           ' * ps_prodsystew: ', ps_prodsystew, '\n',
+                           ' * ps_marketchannel: ', ps_marketchannel, '\n',
+                           ' * ps_path_directory2create: ', ps_path_directory2create, '\n',
+                           ' * ps_input_file_flp_carcass_matrix_statement: ',ps_input_file_flp_carcass_matrix_statement, '\n',
+                           ' * ps_input_file_flp: ', ps_input_file_flp, '\n',
+                           ' * ps_start_flp_date: ',ps_start_flp_date,'\n',
+                           ' * ps_end_flp_date: ',ps_end_flp_date,'\n'))
+  }
+
+
+  ### # Read file with statement based on carcass data flp for input-parameter-file of ECOWEIGHT
+  tbl_input_statement_flp_carcass <- qp4ewc::read_file_input(ps_input_file_flp_carcass_matrix_statement,
+                                                             pb_log = TRUE,
+                                                             plogger = lgr)
+
+
+  ### # Read file with progeny-flp data
+  tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp,
+                                         ps_start_flp_date,
+                                         ps_end_flp_date,
+                                         ps_sirebreed,
+                                         pb_log = TRUE,
+                                         plogger = lgr)
+
+
+  # ****************************************************************************
+  ## ---- Cows frequencies ----
+  # ****************************************************************************
+  freq_mat_cow <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_flp,
+                                              ps_sex = "F",
+                                              ps_marketing_channel = NULL,
+                                              ps_flag_cow = TRUE,
+                                              pb_log = TRUE,
+                                              plogger = lgr)
+
+
+  # Update statement_flp_carcass-input from the data
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[1,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[1,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[1,],4)),collapse = " "),
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[1,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[1,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[2,],4)),collapse = " "),
+                                      ps_line4statement2update = 2,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[1,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[1,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[3,],4)),collapse = " "),
+                                      ps_line4statement2update = 3,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[1,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[1,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[4,],4)),collapse = " "),
+                                      ps_line4statement2update = 4,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[1,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[1,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[5,],4)),collapse = " "),
+                                      ps_line4statement2update = 5,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[1,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[1,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[6,],4)),collapse = " "),
+                                      ps_line4statement2update = 6,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[1,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[1,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[7,],4)),collapse = " "),
+                                      ps_line4statement2update = 7,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[1,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[1,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[8,],4)),collapse = " "),
+                                      ps_line4statement2update = 8,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[1,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[1,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[9,],4)),collapse = " "),
+                                      ps_line4statement2update = 9,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
+  # ****************************************************************************
+  ## ---- Heifers frequencies ----
+  # ****************************************************************************
+  freq_mat_heifer <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_flp,
+                                                 ps_sex = "F",
+                                                 ps_marketchannel,
+                                                 ps_flag_cow = FALSE,
+                                                 pb_log = TRUE,
+                                                 plogger = lgr)
+
+
+  # Update statement_flp_carcass-input from the data
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[3,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[3,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[1,],4)),collapse = " "),
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[3,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[3,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[2,],4)),collapse = " "),
+                                      ps_line4statement2update = 2,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[3,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[3,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[3,],4)),collapse = " "),
+                                      ps_line4statement2update = 3,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[3,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[3,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[4,],4)),collapse = " "),
+                                      ps_line4statement2update = 4,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[3,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[3,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[5,],4)),collapse = " "),
+                                      ps_line4statement2update = 5,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[3,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[3,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[6,],4)),collapse = " "),
+                                      ps_line4statement2update = 6,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[3,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[3,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[7,],4)),collapse = " "),
+                                      ps_line4statement2update = 7,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[3,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[3,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[8,],4)),collapse = " "),
+                                      ps_line4statement2update = 8,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[3,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[3,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[9,],4)),collapse = " "),
+                                      ps_line4statement2update = 9,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
+  # ****************************************************************************
+  ## ---- Bulls frequencies ----
+  # ****************************************************************************
+  freq_mat_bull <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_flp,
+                                               ps_sex = "M",
+                                               ps_marketchannel,
+                                               ps_flag_cow = FALSE,
+                                               pb_log = TRUE,
+                                               plogger = lgr)
+
+
+  # Update statement_flp_carcass-input from the data
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[2,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[2,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[1,],4)),collapse = " "),
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[2,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[2,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[2,],4)),collapse = " "),
+                                      ps_line4statement2update = 2,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[2,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[2,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[3,],4)),collapse = " "),
+                                      ps_line4statement2update = 3,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[2,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[2,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[4,],4)),collapse = " "),
+                                      ps_line4statement2update = 4,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[2,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[2,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[5,],4)),collapse = " "),
+                                      ps_line4statement2update = 5,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[2,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[2,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[6,],4)),collapse = " "),
+                                      ps_line4statement2update = 6,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[2,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[2,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[7,],4)),collapse = " "),
+                                      ps_line4statement2update = 7,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[2,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[2,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[8,],4)),collapse = " "),
+                                      ps_line4statement2update = 8,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[2,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[2,2],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[9,],4)),collapse = " "),
+                                      ps_line4statement2update = 9,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
+  # ****************************************************************************
+  ## ---- Prices ----
+  # ****************************************************************************
+  # Update statement_flp_carcass-input from the data
+  # base price for cow
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[4,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[4,2],
+                                      ps_value2update = tbl_input_statement_flp_carcass[4,4],
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  # average price bull
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[5,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[5,2],
+                                      ps_value2update = tbl_input_statement_flp_carcass[5,4],
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  # basis price bull
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[6,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[6,2],
+                                      ps_value2update = tbl_input_statement_flp_carcass[6,4],
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  # basis price heifer
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[7,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[7,2],
+                                      ps_value2update = tbl_input_statement_flp_carcass[7,4],
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
+  # ****************************************************************************
+  ## ---- Price coefficient for cow----
+  # ****************************************************************************
+  mat_coeffprice_cow <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_cow,
+                                                    pb_log = TRUE,
+                                                    plogger = lgr)
+  # Update price coefficient for cow
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[8,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[8,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[1,],4)),collapse = " "),
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[8,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[8,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[2,],4)),collapse = " "),
+                                      ps_line4statement2update = 2,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[8,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[8,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[3,],4)),collapse = " "),
+                                      ps_line4statement2update = 3,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[8,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[8,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[4,],4)),collapse = " "),
+                                      ps_line4statement2update = 4,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[8,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[8,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[5,],4)),collapse = " "),
+                                      ps_line4statement2update = 5,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[8,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[8,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[6,],4)),collapse = " "),
+                                      ps_line4statement2update = 6,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[8,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[8,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[7,],4)),collapse = " "),
+                                      ps_line4statement2update = 7,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[8,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[8,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[8,],4)),collapse = " "),
+                                      ps_line4statement2update = 8,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[8,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[8,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[9,],4)),collapse = " "),
+                                      ps_line4statement2update = 9,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
+  # ****************************************************************************
+  ## ---- Price coefficient for bull----
+  # ****************************************************************************
+  mat_coeffprice_bull <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_bull,
+                                                    pb_log = TRUE,
+                                                    plogger = lgr)
+  # Update price coefficient for bull
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[9,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[9,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[1,],4)),collapse = " "),
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[9,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[9,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[2,],4)),collapse = " "),
+                                      ps_line4statement2update = 2,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[9,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[9,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[3,],4)),collapse = " "),
+                                      ps_line4statement2update = 3,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[9,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[9,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[4,],4)),collapse = " "),
+                                      ps_line4statement2update = 4,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[9,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[9,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[5,],4)),collapse = " "),
+                                      ps_line4statement2update = 5,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[9,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[9,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[6,],4)),collapse = " "),
+                                      ps_line4statement2update = 6,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[9,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[9,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[7,],4)),collapse = " "),
+                                      ps_line4statement2update = 7,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[9,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[9,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[8,],4)),collapse = " "),
+                                      ps_line4statement2update = 8,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[9,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[9,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[9,],4)),collapse = " "),
+                                      ps_line4statement2update = 9,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
+  # ****************************************************************************
+  ## ---- Price coefficient for heifer----
+  # ****************************************************************************
+  mat_coeffprice_heifer <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_heifer,
+                                                     pb_log = TRUE,
+                                                     plogger = lgr)
+  # Update price coefficient for bull
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[10,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[10,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[1,],4)),collapse = " "),
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[10,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[10,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[2,],4)),collapse = " "),
+                                      ps_line4statement2update = 2,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[10,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[10,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[3,],4)),collapse = " "),
+                                      ps_line4statement2update = 3,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[10,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[10,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[4,],4)),collapse = " "),
+                                      ps_line4statement2update = 4,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[10,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[10,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[5,],4)),collapse = " "),
+                                      ps_line4statement2update = 5,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[10,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[10,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[6,],4)),collapse = " "),
+                                      ps_line4statement2update = 6,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[10,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[10,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[7,],4)),collapse = " "),
+                                      ps_line4statement2update = 7,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[10,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[10,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[8,],4)),collapse = " "),
+                                      ps_line4statement2update = 8,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[10,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[10,2],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[9,],4)),collapse = " "),
+                                      ps_line4statement2update = 9,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
 
 
 }

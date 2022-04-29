@@ -223,7 +223,8 @@ read_file_input_flp <-  function(ps_input_file_flp,
   ### # Check if some columns-header are available in the input flp file
   vec_flpHeader_name <- names(tbl_input)
   vec_requested_flpHeader_name <- c("Schlachtdatum","Geburtsdatum Nako","Nako RaceRode","Schlacht-/Masttierkategorie","Markenprogramm",
-                                        "Geburtsgewicht Nako","Absetzgewicht effektiv","Absetzdatum Nako","Schlachtgewicht Nako","Laktationsnummer Ammen-Mutter")
+                                    "Geburtsgewicht Nako","Absetzgewicht effektiv","Absetzdatum Nako","Schlachtgewicht Nako","Laktationsnummer Ammen-Mutter",
+                                    "Fleischigkeit (1. Teil Handelsklasse CHTAX)","Fettgewebe (2. Teil Handelsklasse CHTAX)")
   if(all(vec_requested_flpHeader_name %in% vec_flpHeader_name)){
     qp4ewc_log_info(lgr, 'read_file_input_flp',paste0('All requested column-names in flp input file exist'))
   }else{
@@ -256,3 +257,64 @@ read_file_input_flp <-  function(ps_input_file_flp,
 }
 
 
+#' @title Read prices of a specific slaughtercategory
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will read the price for a slaughtercategory depending of
+#' carcass conformation and fat.
+#'
+#' @param ps_input_file_price path to file with price for a specific slaughtercategory
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return result_price_matrix matrix with prices for carcass conformation and fat
+#'
+#' @export read_price_conf_fat
+read_price_conf_fat <- function(ps_input_file_price,
+                                pb_log = FALSE,
+                                plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'read_price_conf_fat.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'read_price_conf_fat',
+                    paste0('Starting function with parameters:\n * ps_input_file_price: ', ps_input_file_price,'\n'))
+  }
+
+
+  ### # Check if file exist otherwise stop running the function
+  if(!file.exists(ps_input_file_price)){
+    stop("read_price_conf_fat: file ",ps_input_file_price," does not exist, please check the path !")
+  }else{
+    qp4ewc_log_info(lgr, 'read_price_conf_fat',paste0('File exists:\n * ps_input_file_price',ps_input_file_price))
+  }
+
+
+  ### # Read the input price file
+  tbl_input_price <- readr::read_delim(file = ps_input_file_price,delim = ";", col_names = FALSE)
+  qp4ewc_log_info(lgr, 'read_price_conf_fat',paste0('Read file: \n * ps_input_file_price: ',ps_input_file_price,"\n",
+                                                    ' * in a tibble'))
+
+
+  ### # Transform tibble to matrix
+  mat_price <- as.matrix(tbl_input_price)
+
+
+  ### # Calculate the coefficient matrices
+  mat_price <- round(mat_price/mat_price[1,3],4)
+  qp4ewc_log_info(lgr, 'read_price_conf_fat','calculate coefficient matrice of the price')
+
+
+  ### # Return matrix
+  return(mat_price)
+
+
+}
