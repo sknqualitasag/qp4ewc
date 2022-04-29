@@ -14,6 +14,12 @@ pre_process_ew_input(
   ps_input_file_calving,
   ps_start_date,
   ps_end_date,
+  ps_input_file_progeny_flp_statement,
+  ps_input_file_flp,
+  ps_input_file_flp_carcass_matrix_statement,
+  ps_input_file_price_cow,
+  ps_input_file_price_bull,
+  ps_input_file_price_heifer,
   pb_log = FALSE,
   plogger = NULL
 )
@@ -32,6 +38,18 @@ pre_process_ew_input(
 \item{ps_input_file_calving_statement}{path to file with statement based on calving for the input-parameter-file for ECOWEIGHT}
 
 \item{ps_input_file_calving}{path to file with input coming from calving for the input-parameter-file for ECOWEIGHT}
+
+\item{ps_input_file_progeny_flp_statement}{path to file with statement based on calving for the input-parameter-file for ECOWEIGHT}
+
+\item{ps_input_file_flp}{path to file with input coming from calving for the input-parameter-file for ECOWEIGHT}
+
+\item{ps_input_file_flp_carcass_matrix_statement}{path to file with statement based on calving for the input-parameter-file for ECOWEIGHT}
+
+\item{ps_input_file_price_cow}{path to file with price for cows}
+
+\item{ps_input_file_price_bull}{path to file with price for bulls}
+
+\item{ps_input_file_price_heifer}{path tho file with price for heifers}
 
 \item{pb_log}{indicator whether logs should be produced}
 
