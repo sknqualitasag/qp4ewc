@@ -67,15 +67,15 @@ At the beginning of the function depending of the setting for `pb_log` and `plog
 
 # Major steps of pre_process_ewbc_input() are
 
- * function `create_directory_scenario()` : create directory per scenario with input-parameter-file for ECOWEIGHT. Details in the vignette Explain the function create_directory_scenario().
+ 1) function `create_directory_scenario()` : create directory per scenario with input-parameter-file for ECOWEIGHT. Details in the vignette Explain the function create_directory_scenario().
  
- * Read file with input from literature research and update input-parameter-file coming from literature of ECOWEIGHT. Details in the vignette Explain the part only from literature.
+ 2) Read file with input from literature research and update input-parameter-file coming from literature of ECOWEIGHT. Details in the vignette Explain the part only from literature.
  
- * function `pre_process_ew_input_calving()` : Pre-processing the calving data for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_calving().
+ 3) function `pre_process_ew_input_calving()` : Pre-processing the calving data for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_calving().
  
- * function `pre_process_ewbc_input_progeny_data_flp()` : Pre-processing the progeny data flp for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_progeny_data_flp(). 
+ 4) function `pre_process_ewbc_input_progeny_data_flp()` : Pre-processing the progeny data flp for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_progeny_data_flp(). 
  
- * function `pre_process_ew_input_carcass_data_flp()` : Pre-processing the carcass conformation, fat, prices based on flp-data for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_carcass_data_flp().
+ 5) function `pre_process_ew_input_carcass_data_flp()` : Pre-processing the carcass conformation, fat, prices based on flp-data for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_carcass_data_flp().
 
 # Run pre_process_ewbc_input() in RStudio
 
