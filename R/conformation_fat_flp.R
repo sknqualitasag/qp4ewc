@@ -48,6 +48,20 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
                            ' * ps_flag_cow: ',ps_flag_cow))
   }
 
+  ### # Setting the ps_marketing_channel in world to the numeric variable s_marketing_channel
+  if(!is.null(ps_marketing_channel)){
+    if(ps_marketing_channel == "Natura-Beef"){
+      s_marketing_channel <- 2
+    }else if(ps_marketing_channel == "SwissPrimBeef"){
+      s_marketing_channel <- 3
+    }else{
+      s_marketing_channel <- NULL
+    }
+  }else{
+    s_marketing_channel <- NULL
+  }
+
+
 
   ### # Different tibble depending on ps_sex, ps_marketing_channel
   if(ps_sex == "F"){
@@ -63,7 +77,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
       ### # Slaughtercategory for female to consider is RG == 5
       tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "F") %>%
                    dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
-                   dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
+                   dplyr::filter(Markenprogramm == s_marketing_channel) %>%
                    dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
                    na.omit()
       qp4ewc_log_info(lgr, 'build_freq_conf_fat',
@@ -73,8 +87,8 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
     tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
                  dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
-                 dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
-                 dplyr::select(`Geburtsgewicht Nako`,`ageAtSlaughterInDays`) %>%
+                 dplyr::filter(Markenprogramm == s_marketing_channel) %>%
+                 dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
                  na.omit()
     qp4ewc_log_info(lgr, 'build_freq_conf_fat',
                     paste0('A Tibble for male has been created for build frequencies of conformation and fat'))

@@ -9,7 +9,6 @@ pre_process_ew_input_calving(
   ps_prodsystew,
   ps_marketchannel,
   ps_path_directory2create,
-  ps_input_file_literature,
   ps_input_file_calving_statement,
   ps_input_file_calving,
   ps_start_calving_date,
@@ -26,8 +25,6 @@ pre_process_ew_input_calving(
 \item{ps_marketchannel}{market channel}
 
 \item{ps_path_directory2create}{path of the directory that will be created}
-
-\item{ps_input_file_literature}{path to file with input coming from literature for the input-parameter-file for ECOWEIGHT}
 
 \item{ps_input_file_calving_statement}{path to file with statement based on calving for the input-parameter-file for ECOWEIGHT}
 

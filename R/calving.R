@@ -78,20 +78,21 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
   if(nrow(tbl_abort %>% dplyr::filter(Abort == 1)) != 0){
     qp4ewc_log_info(lgr, 'calculate_abortion_rate',
                     paste0('Abort information are available in the dataset so that abortion rate can be calculated'))
+
+    ### # Add frequence according to abort in a vector
+    abort_freq <- tbl_abort %>% dplyr::filter(Abort == 1) %>% dplyr::pull(n)
+    sum_abort_freq <- sum(tbl_abort$n)
+
+
+    ### # Calculate abortion rate
+    abortion_rate <- round(abort_freq/sum_abort_freq,4)
+    qp4ewc_log_info(lgr, 'calculate_abortion_rate',
+                    paste0('abortion_rate is : ',abortion_rate))
+
   }else{
-    stop("calculate_abortion_rate: no abort information are available in the dataset, please check the dataset !")
+    warning("calculate_abortion_rate: no abort information are available in the dataset !")
+    abortion_rate <- 0
   }
-
-
-  ### # Add frequence according to abort in a vector
-  abort_freq <- tbl_abort %>% dplyr::filter(Abort == 1) %>% dplyr::pull(n)
-  sum_abort_freq <- sum(tbl_abort$n)
-
-
-  ### # Calculate abortion rate
-  abortion_rate <- round(abort_freq/sum_abort_freq,4)
-  qp4ewc_log_info(lgr, 'calculate_abortion_rate',
-                  paste0('abortion_rate is : ',abortion_rate))
 
 
   return(abortion_rate)
@@ -182,20 +183,23 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
   if(nrow(tbl_stillbirth %>% dplyr::filter(Code_TotOLebend == 4)) != 0){
     qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
                     paste0('Stillbirth information are available in the dataset so that stillbirth rate can be calculated'))
+
+
+    ### # Add frequence according to stillbirth in a vector
+    stillbirth_freq <- tbl_stillbirth %>% dplyr::filter(Code_TotOLebend == 4) %>% dplyr::pull(n)
+    sum_stillbirth_freq <- sum(tbl_stillbirth$n)
+
+
+    ### # Calculate stillbirth rate
+    stillbirth_rate <- round(stillbirth_freq/sum_stillbirth_freq,4)
+    qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
+                    paste0('stillbirth_rate is : ',stillbirth_rate))
+
   }else{
-    stop("calculate_stillbirth_rate: no stillbirth information are available in the dataset, please check the dataset !")
+    warning("calculate_stillbirth_rate: no stillbirth information are available in the dataset !")
+    stillbirth_rate <- 0
+
   }
-
-
-  ### # Add frequence according to stillbirth in a vector
-  stillbirth_freq <- tbl_stillbirth %>% dplyr::filter(Code_TotOLebend == 4) %>% dplyr::pull(n)
-  sum_stillbirth_freq <- sum(tbl_stillbirth$n)
-
-
-  ### # Calculate stillbirth rate
-  stillbirth_rate <- round(stillbirth_freq/sum_stillbirth_freq,4)
-  qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
-                  paste0('stillbirth_rate is : ',stillbirth_rate))
 
 
   return(stillbirth_rate)
@@ -395,20 +399,22 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
   if(nrow(tbl_calvesdied24h %>% dplyr::filter(Code_TotOLebend == 2)) != 0){
     qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
                     paste0('Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated'))
+
+
+    ### # Add frequence in a vector
+    calvdied24h_freq <- tbl_calvesdied24h %>% dplyr::filter(Code_TotOLebend == 2) %>% dplyr::pull(n)
+    sum_calvdied24h_freq <- sum(tbl_calvesdied24h$n)
+
+
+    ### # Calculate proportion
+    calvingdied24h_prop <- round(calvdied24h_freq/sum_calvdied24h_freq,4)
+    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                    paste0('calves died in 24h proportion is : ',calvingdied24h_prop))
+
   }else{
-    stop("calculate_calvesdied24h_proportion: no stillbirth within 24h information are available in the dataset, please check the dataset !")
+    warning("calculate_calvesdied24h_proportion: no stillbirth within 24h information are available in the dataset!")
+    calvingdied24h_prop <- 0
   }
-
-
-  ### # Add frequence in a vector
-  calvdied24h_freq <- tbl_calvesdied24h %>% dplyr::filter(Code_TotOLebend == 2) %>% dplyr::pull(n)
-  sum_calvdied24h_freq <- sum(tbl_calvesdied24h$n)
-
-
-  ### # Calculate proportion
-  calvingdied24h_prop <- round(calvdied24h_freq/sum_calvdied24h_freq,4)
-  qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
-                  paste0('calves died in 24h proportion is : ',calvingdied24h_prop))
 
 
   return(calvingdied24h_prop)

@@ -16,5 +16,7 @@
 get_constants <- function(){
   # return list of default constants
   return(list(vec_dressing_female = 0.56,
-              vec_dressing_male = 0.58))
+              vec_dressing_male = 0.58,
+              vec_Natura_Beef = 2,
+              vec_SwissPrimBeef = 3))
 }
