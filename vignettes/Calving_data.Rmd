@@ -1,0 +1,400 @@
+---
+title: "Explain the function pre_process_ew_input_calving()"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Explain the function pre_process_ew_input_calving()}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(qp4ewc)
+```
+
+# Aim
+
+In this vignette, you will get more information about the construction of the function `pre_process_ew_input_calving()`. The task of this function is to pre-process the calving data (by calculating abortion rate, stillbirth rate, calving score proportions, proportion of calves died to 24 hours) to update the input-parameter-file of ECOWEIGHT.
+
+# Parameters
+
+The parameters needed are:
+
+```{r, echo = TRUE}
+# Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
+s_sirebreed <- "LM"
+# Production system according to ECOWEIGHT: 1,2,3,4 corresponding to purebreeding, crossbreeding, terminal crossing, dairy
+s_prodsystew <- "2"
+# Marketing channel can be: Natura-Beef, SwissPrimBeef
+s_marketingchannel <- "Natura-Beef"
+# Path to define from the working directory
+s_path_directory2create <- "/Users/skn/muku_Ecoweigth/2022/work"
+# Path to input from the calving. Based on this example an other file can be created with different input-values.
+s_input_file_calving_statement <- file.path(here::here(),"inst","extdata","input_calving_statement.txt")
+# Path to calving data file
+s_input_file_calving <- "/Users/skn/muku_Ecoweigth/2022/data/zws_muku_gal/test_ANAUCHLMSIOB_zws_muku_gal.csv"
+# Date YYYYMMDD used as start date to filter data for calving
+s_start_calving_date <- 20160101
+# Date YYYYMMDD used as end date to filter data for calving
+s_end_calving_date <- 20211231
+# Flag to set to TRUE, if a log-file is whished
+b_log <- TRUE
+```
+
+# Statements
+
+To update the ECOWEIGHT input-parameter-files, we need to know the statement as well as the INPUT{n}.TXT (where n represent the number of the input file. This n can be between 01 and 36). The statement is in the second column whereas the input-file is in the first column.
+
+```{r, warning=FALSE, message=FALSE}
+tbl_input_statement_calving <- read_file_input(ps_input_file = s_input_file_calving_statement,
+                                               pb_log = b_log)
+tbl_input_statement_calving
+```
+
+# gal data
+
+In the gal-data-file are the calving data readed. With the `s_start_calving_date` and `s_end_calving_date` , the time frame of the gal-data to consider is set. 
+
+```{r, warning=FALSE, message=FALSE}
+tbl_calving <- read_file_input_calving(ps_input_file_calving = s_input_file_calving,
+                                       ps_start_calving_date = s_start_calving_date,
+                                       ps_end_calving_date = s_end_calving_date,
+                                       pb_log = b_log)
+```
+
+Most of the calculation are done for primiparous (first lactation) as well as multiparous (more than first lactation).
+
+# Calculate abortion rate
+
+```{r}
+# Abortion rate for primiparous
+abortrate_prim <- calculate_abortion_rate(ps_input_calving_tibble = tbl_calving,
+                                          ps_statement_firstlactation = TRUE,
+                                          pb_log = b_log)
+abortrate_prim
+# Abortion rate for multiparous
+abortrate_multi <- calculate_abortion_rate(ps_input_calving_tibble = tbl_calving,
+                                           ps_statement_firstlactation = FALSE,
+                                           pb_log = b_log)
+abortrate_multi
+```
+
+```{r}
+# if abortion rate = 0, then set a default value coming from the internship of Jessica
+if(abortrate_prim == 0){
+  abortrate_prim <- unlist(strsplit(tbl_input_statement_calving[1,4]$input_value, split = " "))[1]
+}
+if(abortrate_multi == 0){
+  abortrate_multi <- unlist(strsplit(tbl_input_statement_calving[1,4]$input_value, split = " "))[2]
+}
+# Build a vector with 10 lactations for abortion rate
+value2update_abortrate <- paste0(c(abortrate_prim, rep(abortrate_multi,9)),collapse = " ")
+# Update ECOWEIGHT input-file with the calculated abortion rates in tbl_input_statement_calving[1,]
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_calving[1,1]),
+                                      ps_statement2search = tbl_input_statement_calving[1,2],
+                                      ps_value2update = value2update_abortrate,
+                                      pb_log = b_log)
+```
+
+# Calculate stillbirth rate
+
+```{r}
+# stillbirth rate for primiparous and for easy calving (calving scores 1 and 2)
+stillbirthrate_prim_easy <- calculate_stillbirth_rate(ps_input_calving_tibble = tbl_calving,
+                                                      ps_statement_firstlactation = TRUE,
+                                                      ps_statement_easycalving = TRUE,
+                                                      pb_log = b_log)
+stillbirthrate_prim_easy
+# stillbirth rate for multiparous and for easy calving (calving scores 1 and 2)
+stillbirthrate_multi_easy <- calculate_stillbirth_rate(ps_input_calving_tibble = tbl_calving,
+                                                       ps_statement_firstlactation = FALSE,
+                                                       ps_statement_easycalving = TRUE,
+                                                       pb_log = b_log)
+stillbirthrate_multi_easy
+# stillbirth rate for primiparous and for difficult calving (calving scores 3 and 4)
+stillbirthrate_prim_difficult <- calculate_stillbirth_rate(ps_input_calving_tibble = tbl_calving,
+                                                           ps_statement_firstlactation = TRUE,
+                                                           ps_statement_easycalving = FALSE,
+                                                           pb_log = b_log)
+stillbirthrate_prim_difficult
+# stillbirth rate for multiparous and for difficult calving (calving scores 3 and 4)
+stillbirthrate_multi_difficult <- calculate_stillbirth_rate(ps_input_calving_tibble = tbl_calving,
+                                                            ps_statement_firstlactation = FALSE,
+                                                            ps_statement_easycalving = FALSE,
+                                                            pb_log = b_log)
+stillbirthrate_multi_difficult
+```
+
+```{r}
+# if stillbirth rate = 0, then set a default value coming from the internship of Jessica
+if(stillbirthrate_prim_easy == 0){
+  stillbirthrate_prim_easy <- unlist(strsplit(tbl_input_statement_calving[2,4]$input_value, split = " "))[1]
+}
+if(stillbirthrate_multi_easy == 0){
+  stillbirthrate_multi_easy <- unlist(strsplit(tbl_input_statement_calving[2,4]$input_value, split = " "))[2]
+}
+# Build a vector with 10 lactations for stillbirth rate
+  value2update_stillbirthrate_easy <- paste0(c(stillbirthrate_prim_easy, rep(stillbirthrate_multi_easy,9)),collapse = " ")
+# Update ECOWEIGHT input-file with the calculated stillbirth rates in tbl_input_statement_calving[2,]
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_calving[2,1]),
+                                      ps_statement2search = tbl_input_statement_calving[2,2],
+                                      ps_value2update = value2update_stillbirthrate_easy,
+                                      pb_log = b_log)
+
+
+```
+
+# Update calving score parameter inputs
+```{r}
+# Update ECOWEIGHT input-file with tbl_input_statement_calving[4,]
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_calving[4,1]),
+                                      ps_statement2search = tbl_input_statement_calving[4,2],
+                                      ps_value2update = 4,
+                                      pb_log = b_log)
+# Update ECOWEIGHT input-file with tbl_input_statement_calving[5,]
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_calving[5,1]),
+                                      ps_statement2search = tbl_input_statement_calving[5,2],
+                                      ps_value2update = 3,
+                                      pb_log = b_log)
+```
+
+
+# Calculate calving score proportions
+
+```{r}
+# Calving score proportion for primiparous, a specific sire breed, female, calving score 2
+calvingscore_prop_prim_F_2 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                ps_statement_firstlactation = TRUE,
+                                                                ps_breed = s_sirebreed,
+                                                                ps_sex = "F",
+                                                                ps_calvingscore = 2,
+                                                                pb_log = b_log)
+calvingscore_prop_prim_F_2
+# Calving score proportion for primiparous, a specific sire breed, female, calving score 3
+calvingscore_prop_prim_F_3 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                ps_statement_firstlactation = TRUE,
+                                                                ps_breed = s_sirebreed,
+                                                                ps_sex = "F",
+                                                                ps_calvingscore = 3,
+                                                                pb_log = b_log)
+calvingscore_prop_prim_F_3
+# Calving score proportion for primiparous, a specific sire breed, female, calving score 4
+calvingscore_prop_prim_F_4 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                ps_statement_firstlactation = TRUE,
+                                                                ps_breed = s_sirebreed,
+                                                                ps_sex = "F",
+                                                                ps_calvingscore = 4,
+                                                                pb_log = b_log)
+calvingscore_prop_prim_F_4
+```
+
+```{r}
+# Calving score proportion for multiparous, a specific sire breed, female, calving score 2
+calvingscore_prop_multi_F_2 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                 ps_statement_firstlactation = FALSE,
+                                                                 ps_breed = s_sirebreed,
+                                                                 ps_sex = "F",
+                                                                 ps_calvingscore = 2,
+                                                                 pb_log = b_log)
+calvingscore_prop_multi_F_2
+# Calving score proportion for multiparous, a specific sire breed, female, calving score 3
+calvingscore_prop_multi_F_3 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                 ps_statement_firstlactation = FALSE,
+                                                                 ps_breed = s_sirebreed,
+                                                                 ps_sex = "F",
+                                                                 ps_calvingscore = 3,
+                                                                 pb_log = b_log)
+calvingscore_prop_multi_F_3
+# Calving score proportion for multiparous, a specific sire breed, female, calving score 4
+calvingscore_prop_multi_F_4 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                 ps_statement_firstlactation = FALSE,
+                                                                 ps_breed = s_sirebreed,
+                                                                 ps_sex = "F",
+                                                                 ps_calvingscore = 4,
+                                                                 pb_log = b_log)
+calvingscore_prop_multi_F_4
+```
+
+```{r}
+# Build a vector with 10 lactations for calving score 2 proportion for females
+value2update_calvingscoreprop_prim_F_2 <- paste0(c(calvingscore_prop_prim_F_2, rep(calvingscore_prop_multi_F_2,9)),collapse = " ")
+# Update ECOWEIGHT input-file with tbl_input_statement_calving[6,]
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_calving[6,1]),
+                                      ps_statement2search = tbl_input_statement_calving[6,2],
+                                      ps_value2update = value2update_calvingscoreprop_prim_F_2,
+                                      pb_log = b_log)
+# Build a vector with 10 lactations for calving score 3 proportion for females
+value2update_calvingscoreprop_prim_F_3 <- paste0(c(calvingscore_prop_prim_F_3, rep(calvingscore_prop_multi_F_3,9)),collapse = " ")
+# Update ECOWEIGHT input-file with tbl_input_statement_calving[7,]
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_calving[7,1]),
+                                      ps_statement2search = tbl_input_statement_calving[7,2],
+                                      ps_value2update = value2update_calvingscoreprop_prim_F_3,
+                                      pb_log = b_log)
+# Build a vector with 10 lactations for calving score 4 proportion for females
+value2update_calvingscoreprop_prim_F_4 <- paste0(c(calvingscore_prop_prim_F_4, rep(calvingscore_prop_multi_F_4,9)),collapse = " ")
+# Update ECOWEIGHT input-file with tbl_input_statement_calving[8,]
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_calving[8,1]),
+                                      ps_statement2search = tbl_input_statement_calving[8,2],
+                                      ps_value2update = value2update_calvingscoreprop_prim_F_4,
+                                      pb_log = b_log)
+```
+
+
+```{r}
+# Calving score proportion for primiparous, a specific sire breed, male, calving score 2
+calvingscore_prop_prim_M_2 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                ps_statement_firstlactation = TRUE,
+                                                                ps_breed = s_sirebreed,
+                                                                ps_sex = "M",
+                                                                ps_calvingscore = 2,
+                                                                pb_log = b_log)
+calvingscore_prop_prim_M_2
+# Calving score proportion for primiparous, a specific sire breed, male, calving score 3
+calvingscore_prop_prim_M_3 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                ps_statement_firstlactation = TRUE,
+                                                                ps_breed = s_sirebreed,
+                                                                ps_sex = "M",
+                                                                ps_calvingscore = 3,
+                                                                pb_log = b_log)
+calvingscore_prop_prim_M_3
+# Calving score proportion for primiparous, a specific sire breed, male, calving score 4
+calvingscore_prop_prim_M_4 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                ps_statement_firstlactation = TRUE,
+                                                                ps_breed = s_sirebreed,
+                                                                ps_sex = "M",
+                                                                ps_calvingscore = 4,
+                                                                pb_log = b_log)
+calvingscore_prop_prim_M_4
+```
+
+```{r}
+# Calving score proportion for multiparous, a specific sire breed, male, calving score 2
+calvingscore_prop_multi_M_2 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                 ps_statement_firstlactation = FALSE,
+                                                                 ps_breed = s_sirebreed,
+                                                                 ps_sex = "M",
+                                                                 ps_calvingscore = 2,
+                                                                 pb_log = b_log)
+calvingscore_prop_multi_M_2
+# Calving score proportion for multiparous, a specific sire breed, male, calving score 3
+calvingscore_prop_multi_M_3 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                 ps_statement_firstlactation = FALSE,
+                                                                 ps_breed = s_sirebreed,
+                                                                 ps_sex = "M",
+                                                                 ps_calvingscore = 3,
+                                                                 pb_log = b_log)
+calvingscore_prop_multi_M_3
+# Calving score proportion for multiparous, a specific sire breed, male, calving score 4
+calvingscore_prop_multi_M_4 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                 ps_statement_firstlactation = FALSE,
+                                                                 ps_breed = s_sirebreed,
+                                                                 ps_sex = "M",
+                                                                 ps_calvingscore = 4,
+                                                                 pb_log = b_log)
+calvingscore_prop_multi_M_4
+```
+
+```{r}
+# Build a vector with 10 lactations for calving score 2 proportion for males
+value2update_calvingscoreprop_prim_M_2 <- paste0(c(calvingscore_prop_prim_M_2, rep(calvingscore_prop_multi_M_2,9)),collapse = " ")
+# Update ECOWEIGHT input-file with tbl_input_statement_calving[9,]
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_calving[9,1]),
+                                      ps_statement2search = tbl_input_statement_calving[9,2],
+                                      ps_value2update = value2update_calvingscoreprop_prim_M_2,
+                                      pb_log = b_log)
+# Build a vector with 10 lactations for calving score 3 proportion for males
+value2update_calvingscoreprop_prim_M_3 <- paste0(c(calvingscore_prop_prim_M_3, rep(calvingscore_prop_multi_M_3,9)),collapse = " ")
+# Update ECOWEIGHT input-file with tbl_input_statement_calving[10,]
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_calving[10,1]),
+                                      ps_statement2search = tbl_input_statement_calving[10,2],
+                                      ps_value2update = value2update_calvingscoreprop_prim_M_3,
+                                      pb_log = b_log)
+# Build a vector with 10 lactations for calving score 4 proportion for males
+value2update_calvingscoreprop_prim_M_4 <- paste0(c(calvingscore_prop_prim_M_4, rep(calvingscore_prop_multi_M_4,9)),collapse = " ")
+# Update ECOWEIGHT input-file with tbl_input_statement_calving[11,]
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_calving[11,1]),
+                                      ps_statement2search = tbl_input_statement_calving[11,2],
+                                      ps_value2update = value2update_calvingscoreprop_prim_M_4,
+                                      pb_log = b_log)
+```
+
+
+# Calculate proportion of calves died into 24 hours
+
+```{r}
+# Proportion of calves died into 24 hours for primiparous and easy calving (calving scores 1 and 2)
+calvingdied24h_prop_prim_easy <- calculate_calvesdied24h_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                            ps_statement_firstlactation = TRUE,
+                                                                            ps_statement_easycalving = TRUE,
+                                                                            pb_log = b_log)
+calvingdied24h_prop_prim_easy
+# Proportion of calves died into 24 hours for multiparous and easy calving (calving scores 1 and 2)
+calvingdied24h_prop_multi_easy <- calculate_calvesdied24h_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                             ps_statement_firstlactation = FALSE,
+                                                                             ps_statement_easycalving = TRUE,
+                                                                             pb_log = b_log)
+calvingdied24h_prop_multi_easy
+```
+```{r}
+# if proportion of calves died into 24 hours = 0, then set a default value coming from the internship of Jessica
+  if(calvingdied24h_prop_prim_easy == 0){
+    calvingdied24h_prop_prim_easy <- unlist(strsplit(tbl_input_statement_calving[13,4]$input_value, split = " "))[1]
+  }
+  if(calvingdied24h_prop_multi_easy == 0){
+    calvingdied24h_prop_multi_easy <- unlist(strsplit(tbl_input_statement_calving[13,4]$input_value, split = " "))[2]
+  }
+```
+
+```{r}
+# Build a vector with 10 lactations for proportion of calves died into 24 hours and easy calving
+value2update_calvingdied24hprop_easy <- paste0(c(calvingdied24h_prop_prim_easy, rep(calvingdied24h_prop_multi_easy,9)),collapse = " ")
+# Update ECOWEIGHT input-file with tbl_input_statement_calving[13,]
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_calving[13,1]),
+                                      ps_statement2search = tbl_input_statement_calving[13,2],
+                                      ps_value2update = value2update_calvingdied24hprop_easy,
+                                      pb_log = b_log)
+
+```
+
+```{r}
+# Proportion of calves died into 24 hours for primiparous and difficult calving (calving scores 3 and 4)
+calvingdied24h_prop_prim_difficult <- calculate_calvesdied24h_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                         ps_statement_firstlactation = TRUE,
+                                                                         ps_statement_easycalving = FALSE,
+                                                                         pb_log = b_log)
+calvingdied24h_prop_prim_difficult
+# Proportion of calves died into 24 hours for multiparous and difficult calving (calving scores 3 and 4)
+calvingdied24h_prop_multi_difficult <- calculate_calvesdied24h_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                          ps_statement_firstlactation = FALSE,
+                                                                          ps_statement_easycalving = FALSE,
+                                                                          pb_log = b_log)
+calvingdied24h_prop_multi_difficult
+```
+
+```{r}
+# if proportion of calves died into 24 hours = 0, then set a default value coming from the internship of Jessica
+  if(calvingdied24h_prop_prim_difficult == 0){
+    calvingdied24h_prop_prim_difficult <- unlist(strsplit(tbl_input_statement_calving[12,4]$input_value, split = " "))[1]
+  }
+  if(calvingdied24h_prop_multi_difficult == 0){
+    calvingdied24h_prop_multi_difficult <- unlist(strsplit(tbl_input_statement_calving[12,4]$input_value, split = " "))[2]
+  }
+```
+
+```{r}
+# Build a vector with 10 lactations for proportion of calves died into 24 hours and difficult calving
+value2update_calvingdied24hprop_difficult <- paste0(c(calvingdied24h_prop_prim_difficult, rep(calvingdied24h_prop_multi_difficult,9)),collapse = " ")
+# Update ECOWEIGHT input-file with tbl_input_statement_calving[12,]
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_calving[12,1]),
+                                      ps_statement2search = tbl_input_statement_calving[12,2],
+                                      ps_value2update = value2update_calvingdied24hprop_difficult,
+                                      pb_log = b_log)
+
+```
+
