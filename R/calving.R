@@ -55,7 +55,8 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
                                dplyr::select(Abort) %>%
                                 na.omit() %>%
                                dplyr::group_by(Abort) %>%
-                               dplyr::count()
+                               dplyr::count() %>%
+                               tidyr::drop_na()
 
     qp4ewc_log_info(lgr, 'calculate_abortion_rate',
                     paste0('A Tibble for primiparous has been created for the calculation of abortion rate '))
@@ -65,7 +66,8 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
                                dplyr::select(Abort) %>%
                                na.omit() %>%
                                dplyr::group_by(Abort) %>%
-                               dplyr::count()
+                               dplyr::count() %>%
+                               tidyr::drop_na()
 
     qp4ewc_log_info(lgr, 'calculate_abortion_rate',
                     paste0('A Tibble for multiparous has been created for the calculation of abortion rate '))
@@ -160,7 +162,8 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
                                     dplyr::select(Code_TotOLebend) %>%
                                     na.omit() %>%
                                     dplyr::group_by(Code_TotOLebend) %>%
-                                    dplyr::count()
+                                    dplyr::count() %>%
+                                    tidyr::drop_na()
 
     qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
                     paste0('A Tibble for primiparous has been created for the calculation of stillbirth rate '))
@@ -170,7 +173,8 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
                                     dplyr::select(Code_TotOLebend) %>%
                                     na.omit() %>%
                                     dplyr::group_by(Code_TotOLebend) %>%
-                                    dplyr::count()
+                                    dplyr::count() %>%
+                                    tidyr::drop_na()
 
     qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
                     paste0('A Tibble for multiparous has been created for the calculation of stillbirth rate '))
@@ -378,7 +382,8 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
                                        dplyr::select(Code_TotOLebend) %>%
                                        dplyr::na_if(0) %>%
                                        dplyr::group_by(Code_TotOLebend) %>%
-                                       dplyr::count()
+                                       dplyr::count() %>%
+                                       tidyr::drop_na()
 
     qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
                     paste0('A Tibble for primiparous has been created for the calculation of proportion of calves died 24h'))
@@ -388,7 +393,8 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
                                        dplyr::select(Code_TotOLebend) %>%
                                        dplyr::na_if(0) %>%
                                        dplyr::group_by(Code_TotOLebend) %>%
-                                       dplyr::count()
+                                       dplyr::count() %>%
+                                       tidyr::drop_na()
 
     qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
                     paste0('A Tibble for multiparous has been created for the calculation of proportion of calves died 24h'))
