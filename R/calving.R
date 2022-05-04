@@ -268,7 +268,8 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
                                      na.omit() %>%
                                      dplyr::na_if(0) %>%
                                      dplyr::group_by(Geburtsverlauf) %>%
-                                     dplyr::count()
+                                     dplyr::count() %>%
+                                     tidyr::drop_na()
 
     qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
                     paste0('A Tibble for primiparous has been created for the calculation of calving score proportion '))
@@ -278,7 +279,8 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
                                      na.omit() %>%
                                      dplyr::na_if(0) %>%
                                      dplyr::group_by(Geburtsverlauf) %>%
-                                     dplyr::count()
+                                     dplyr::count() %>%
+                                     tidyr::drop_na()
 
     qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
                     paste0('A Tibble for multiparous has been created for the calculation of calving score proportion '))
