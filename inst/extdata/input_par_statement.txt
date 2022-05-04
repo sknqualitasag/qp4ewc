@@ -1,0 +1,23 @@
+input_file;input;input_unit;input_value
+PARA.TXT;"Production System";" ";2
+PARA.TXT;"Fattening";" ";1
+PARA.TXT;"Housing technology in fattening";" ";2
+PARA.TXT;"Maturity type of progeny";" ";3
+PARA.TXT;"Way of calculating feed cost";" ";1
+PARA.TXT;"Mating type for heifers";" ";1
+PARA.TXT;"Mating type for cows";" ";1
+PARA.TXT;"Sex for which gene flow is calculated";" ";2
+PARA.TXT;"Genetic standard deviations of the traits";" ";3
+INPUT01.TXT;"Number of different feeding seasons during the year";" ";2
+INPUT01.TXT;"Code of the feeding season on January 1st.";" ";1
+INPUT01.TXT;"Number of changes betweem feeding seasons during the year";" ";2
+INPUT01.TXT;"Code for housing technology in feeding seasons with code 1 ";" ";2
+INPUT01.TXT;"Code for housing technology in feeding seasons with code 2 ";" ";3
+INPUT01.TXT;"Date of starting the mating period";" ";1 4 7
+INPUT01.TXT;"Date of ending the first part of the mating period (with AI) covering the first possibility of a female to conceive";" ";1 4 28
+INPUT01.TXT;"Date of starting the second part of the mating period";" ";1 4 29
+INPUT01.TXT;"Date of ending the second part the mating period covering the second possibility of females to conceive";" ";1  5  20
+INPUT01.TXT;"Date of starting the third part of the mating period";" ";1  5  21
+INPUT01.TXT;"Date of ending the third part of the mating period (end of the mating period) covering the third possibility of females to conceive";" ";1  6 11
+INPUT01.TXT;"Date of weaning calves";" ";1  11 30
+INPUT01.TXT;"Starting date for the test of bulls (only needed for production system 1)";" ";1  11 21
