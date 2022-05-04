@@ -48,6 +48,7 @@ INPUT04.TXT;"Fixed cost per breeding bull in the herd per day";"MU/day";13.36;
 INPUT08.TXT;"Fixed cost per animal and day in intensive fattening";"MU/day";4.11;
 INPUT13.TXT;"Fixed costs from weaning to calving per breeding heifer and day";"MU/day";4.9;
 INPUT03.TXT;"Price per portion of semen for AI (including service)";"MU/portion";22;
+INPUT03.TXT;"Fraction of performance-tested cows";" ";0;
 INPUT03.TXT;"Price per re-insemination (for semen portion and service)";"MU/re-insemination";22;
 INPUT03.TXT;"Length of pregnancy";"days";289;
 INPUT03.TXT;"Number of cows per bull for natural mating";" ";100;
@@ -67,7 +68,9 @@ INPUT13.TXT;"Proportion of non-pregnant breeding heifers sold before the first m
 INPUT13.TXT;"Proportion of non-pregnant breeding heifers sold between the first and second mating period after their weaning";" ";0;
 INPUT04.TXT;"Age of breeding bulls at purchase for the herd (only for systems 2 to 3)";"days";420.6;
 INPUT04.TXT;"Weight of breeding bulls at purchase for the herd (only for systems 2 to 3)";"kg";562;
+INPUT04.TXT;"Average price per breeding bull purchased for natural mating";"MU/bull";6316;
 INPUT08.TXT;"Dressing proportion of bulls";" ";0.58;
+INPUT08.TXT;"Dressing proportion of bulls not reaching target slaughter weight as proportion of dressing proportion of bulls reaching target slaughter weight";" ";0.8;
 INPUT08.TXT;"Dressing proportion of heifers";" ";0.56;
 INPUT03.TXT;"Dressing proportion of cows";" ";0.56;
 INPUT19.TXT;"Peak milk in kg per day";"kg/day";5;
