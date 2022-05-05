@@ -430,3 +430,77 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
 
 }
 
+
+#' @title Calculate proportion of calves died after 24 hours
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate the proportion of calves died after 24h.
+#' It would be nice to have the information after 48h to weaning. But at this stage, we don't.
+#'
+#' @param ps_input_calving_tibble input calving tibble coming from read_file_input_calving in this package
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return calves died after 24 hours proportion vector
+#'
+#' @export calculate_calvesdiedafter24h_proportion
+calculate_calvesdiedafter24h_proportion <- function(ps_input_calving_tibble,
+                                               pb_log = FALSE,
+                                               plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_calvesdiedafter24h_proportion',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_calvesdiedafter24h_proportion',
+                    paste0('Starting function with parameters:\n * ps_input_calving_tibble'))
+  }
+
+
+  ### # Build a tibble for the calculation of proportion of calves died after 24h
+  tbl_calvesdiedafter24h <- ps_input_calving_tibble %>% dplyr::select(Code_TotOLebend) %>%
+                            dplyr::na_if(0) %>%
+                            dplyr::group_by(Code_TotOLebend) %>%
+                            dplyr::count() %>%
+                            tidyr::drop_na()
+
+  qp4ewc_log_info(lgr, 'calculate_calvesdiedafter24h_proportion',
+                    paste0('A Tibble has been created for the calculation of proportion of calves died after 24h'))
+
+
+
+  ### # The value in case of a stillbirth over 24 hours is 3
+  ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
+  ### # Check if data for stillbirth over 24 hours are available to calculate the proportion
+  if(nrow(tbl_calvesdiedafter24h %>% dplyr::filter(Code_TotOLebend == 3)) != 0){
+    qp4ewc_log_info(lgr, 'calculate_calvesdiedafter24h_proportion',
+                    paste0('Stillbirth over 24h information are available in the dataset so that proportion of calves died after 24h can be calculated'))
+
+
+    ### # Add frequence in a vector
+    calvdiedafter24h_freq <- tbl_calvesdiedafter24h %>% dplyr::filter(Code_TotOLebend == 3) %>% dplyr::pull(n)
+    sum_calvdiedafter24h_freq <- sum(calvdiedafter24h_freq$n)
+
+
+    ### # Calculate proportion
+    calvingdiedafter24h_prop <- round(calvdiedafter24h_freq/sum_calvdiedafter24h_freq,4)
+    qp4ewc_log_info(lgr, 'calculate_calvesdiedafter24h_proportion',
+                    paste0('calves died after 24h proportion is : ',calvingdiedafter24h_prop))
+
+  }else{
+    warning("calculate_calvesdiedafter24h_proportion: no stillbirth over 24h information are available in the dataset!")
+    calvingdiedafter24h_prop <- 0
+  }
+
+
+  return(calvingdiedafter24h_prop)
+
+
+}
