@@ -13,3 +13,5 @@ INPUT02.TXT;"Vector of probabilities of calving score 4 when male is born in rep
 INPUT02.TXT;"Vector of calves died to 48 hours as proportion of calves born alive after dystocia in reproductive cycles 1 to LL";" ";0.31 0.23 0.23 0.23 0.23 0.23 0.23 0.23 0.23 0.23 0.23
 INPUT02.TXT;"Vector of calves died to 48 hours as proportion of calves born alive after easy calving in reproductive cycles 1 to LL";" ";0.04 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
 INPUT03.TXT;"Losses of calves from 48 hours after calving to weaning averaged over reproductive cycles and sexes";" ";0.0019
+INPUT02.TXT;"Vector of cows having dystocia that were inseminated in 1st oestrus within reproductive cycles 1 to LL-1";" ";1 1 1 1 1 1 1 1 1 1
+INPUT02.TXT;"Vector of cows without dystocia that were inseminated in 1st oestrus within reproductive cycles 1 to LL-1";" ";1 1 1 1 1 1 1 1 1 1

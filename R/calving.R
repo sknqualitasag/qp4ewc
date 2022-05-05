@@ -486,7 +486,7 @@ calculate_calvesdiedafter24h_proportion <- function(ps_input_calving_tibble,
 
     ### # Add frequence in a vector
     calvdiedafter24h_freq <- tbl_calvesdiedafter24h %>% dplyr::filter(Code_TotOLebend == 3) %>% dplyr::pull(n)
-    sum_calvdiedafter24h_freq <- sum(calvdiedafter24h_freq$n)
+    sum_calvdiedafter24h_freq <- sum(tbl_calvesdiedafter24h$n)
 
 
     ### # Calculate proportion

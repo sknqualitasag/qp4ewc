@@ -491,6 +491,34 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                       pb_log = TRUE,
                                       plogger = lgr)
 
+
+  # Update Losses of calves from 48 hours after calving
+  calf_loss <- qp4ewc::calculate_calvesdiedafter24h_proportion(ps_input_calving_tibble = tbl_calving,
+                                                               pb_log = TRUE)
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[14,1]),
+                                      ps_statement2search = tbl_input_statement_calving[14,2],
+                                      ps_value2update = calf_loss,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
+  # Update proportion of cows artificially inseminated in first oestrus
+  dystocia_AI <- paste0(c(rep(1,10)),collapse = " ")
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[15,1]),
+                                      ps_statement2search = tbl_input_statement_calving[15,2],
+                                      ps_value2update = dystocia_AI,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
+  easy_AI <- paste0(c(rep(1,10)),collapse = " ")
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[16,1]),
+                                      ps_statement2search = tbl_input_statement_calving[16,2],
+                                      ps_value2update = easy_AI,
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
 }
 
 
