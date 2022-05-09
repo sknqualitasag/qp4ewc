@@ -53,7 +53,8 @@ calculate_mean_birthweight <- function(ps_input_flp_tibble,
                                          dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
                                          dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
                                          dplyr::select(`Geburtsgewicht Nako`,`ageAtSlaughterInDays`) %>%
-                                         na.omit()
+                                         na.omit() %>%
+                                         tidyr::drop_na()
     qp4ewc_log_info(lgr, 'calculate_mean_birthweight',
                     paste0('A Tibble for female has been created for the calculation of mean birthweight '))
   }else{
@@ -62,7 +63,8 @@ calculate_mean_birthweight <- function(ps_input_flp_tibble,
                                          dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
                                          dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
                                          dplyr::select(`Geburtsgewicht Nako`,`ageAtSlaughterInDays`) %>%
-                                         na.omit()
+                                         na.omit() %>%
+                                         tidyr::drop_na()
     qp4ewc_log_info(lgr, 'calculate_mean_birthweight',
                     paste0('A Tibble for male has been created for the calculation of mean birthweight '))
   }
@@ -125,7 +127,8 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
                                          dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
                                          dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
                                          dplyr::select(`Schlachtgewicht Nako`,ageAtSlaughterInDays) %>%
-                                         na.omit()
+                                         na.omit() %>%
+                                         tidyr::drop_na()
     qp4ewc_log_info(lgr, 'calculate_mean_liveweight_slaughter',
                     paste0('A Tibble for female has been created for the calculation of mean live weight at slaughter '))
   }else{
@@ -134,7 +137,8 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
                                          dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
                                          dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
                                          dplyr::select(`Schlachtgewicht Nako`,ageAtSlaughterInDays) %>%
-                                         na.omit()
+                                         na.omit() %>%
+                                         tidyr::drop_na()
     qp4ewc_log_info(lgr, 'calculate_mean_liveweight_slaughter',
                     paste0('A Tibble for male has been created for the calculation of mean live weight at slaughter '))
   }
@@ -214,7 +218,8 @@ calculate_mean_weaningweight <- function(ps_input_flp_tibble,
                                          dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
                                          dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
                                          dplyr::select(`Absetzgewicht effektiv`) %>%
-                                         na.omit()
+                                         na.omit() %>%
+                                         tidyr::drop_na()
     qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
                     paste0('A Tibble for female has been created for the calculation of mean weaning weight '))
   }else{
@@ -223,7 +228,8 @@ calculate_mean_weaningweight <- function(ps_input_flp_tibble,
                                          dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
                                          dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
                                          dplyr::select(`Absetzgewicht effektiv`) %>%
-                                         na.omit()
+                                         na.omit() %>%
+                                         tidyr::drop_na()
     qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
                     paste0('A Tibble for male has been created for the calculation of mean weaning weight '))
   }
@@ -289,7 +295,8 @@ calculate_mean_weaningage <- function(ps_input_flp_tibble,
       dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
       dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
       dplyr::select(ageAtWeaningInDays) %>%
-      na.omit()
+      na.omit() %>%
+      tidyr::drop_na()
     qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
                     paste0('A Tibble for female has been created for the calculation of mean weaning age '))
   }else{
@@ -298,7 +305,8 @@ calculate_mean_weaningage <- function(ps_input_flp_tibble,
       dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
       dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
       dplyr::select(ageAtWeaningInDays) %>%
-      na.omit()
+      na.omit() %>%
+      tidyr::drop_na()
     qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
                     paste0('A Tibble for male has been created for the calculation of mean weaning age '))
   }
@@ -365,7 +373,8 @@ calculate_mean_slaughterage <- function(ps_input_flp_tibble,
       dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
       dplyr::select(`Geburtsgewicht Nako`,ageAtSlaughterInDays) %>%
       na.omit() %>%
-      dplyr::select(ageAtSlaughterInDays)
+      dplyr::select(ageAtSlaughterInDays) %>%
+      tidyr::drop_na()
     qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
                     paste0('A Tibble for female has been created for the calculation of mean slaughter age '))
   }else{
@@ -375,7 +384,8 @@ calculate_mean_slaughterage <- function(ps_input_flp_tibble,
       dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
       dplyr::select(`Geburtsgewicht Nako`,ageAtSlaughterInDays) %>%
       na.omit() %>%
-      dplyr::select(ageAtSlaughterInDays)
+      dplyr::select(ageAtSlaughterInDays) %>%
+      tidyr::drop_na()
     qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
                     paste0('A Tibble for male has been created for the calculation of mean slaughter age '))
   }
@@ -568,14 +578,16 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
     tbl_input <- ps_input_flp_tibble %>%
                  dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
                  dplyr::filter(`Laktationsnummer Ammen-Mutter` < 4) %>%
-                 dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)
+                 dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)  %>%
+                 tidyr::drop_na()
   }else{
     ### # Calculate mature cow weight
     tbl_input <- ps_input_flp_tibble %>%
                  dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
                  dplyr::filter(`Laktationsnummer Ammen-Mutter` > 3) %>%
                  dplyr::filter(ageAtSlaughterInDays > 1460) %>%
-                 dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)
+                 dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)  %>%
+                 tidyr::drop_na()
   }
 
 
@@ -639,11 +651,12 @@ calculate_bull_liveweight <- function(ps_input_flp_tibble,
   tbl_input <- ps_input_flp_tibble %>%
                dplyr::filter(`Schlacht-/Masttierkategorie` == 4) %>%
                dplyr::filter(ageAtSlaughterInDays > 1460) %>%
-               dplyr::select(`Schlachtgewicht Nako`)
+               dplyr::select(`Schlachtgewicht Nako`) %>%
+               tidyr::drop_na()
 
 
   ### # Calculate mean carcass weight for bull
-  bullwt <- round(as.numeric(dplyr::summarise(tbl_input, mean_cowwt = mean(`Schlachtgewicht Nako`))),4)
+  bullwt <- round(as.numeric(dplyr::summarise(tbl_input, mean_bullwt = mean(`Schlachtgewicht Nako`))),4)
 
 
   ### # Get the constants
