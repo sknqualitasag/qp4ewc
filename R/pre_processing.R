@@ -72,6 +72,7 @@ pre_process_ewbc_input <- function(ps_sirebreed,
   }
 
 
+  ### # Major step 1 ### #
   ### # Create directory per scenario with input-parameter-file for ECOWEIGHT
   qp4ewc::create_directory_scenario(ps_sirebreed,
                                     ps_prodsystew,
@@ -84,6 +85,7 @@ pre_process_ewbc_input <- function(ps_sirebreed,
   # ****************************************************************************
   ## ---- Literature ----
   # ****************************************************************************
+  ### # Major step 2 ### #
   ### # Read file with input from literature research for input-parameter-file of ECOWEIGHT
   tbl_input_literature <- qp4ewc::read_file_input(ps_input_file_literature,
                                                   pb_log = TRUE,
@@ -102,6 +104,7 @@ pre_process_ewbc_input <- function(ps_sirebreed,
   # ****************************************************************************
   ## ---- Calving ----
   # ****************************************************************************
+  ### # Major step 3 ### #
   ### # Pre-processing the calving data for input-parameter-file of ECOWEIGHT
   qp4ewc::pre_process_ew_input_calving(ps_sirebreed,
                                        ps_prodsystew,
@@ -122,6 +125,7 @@ pre_process_ewbc_input <- function(ps_sirebreed,
   # ****************************************************************************
   ## ---- Progreny data about weighing and slaughter ----
   # ****************************************************************************
+  ### # Major step 4 ### #
   qp4ewc::pre_process_ewbc_input_progeny_data_flp(ps_sirebreed,
                                                   ps_prodsystew,
                                                   ps_marketchannel,
@@ -141,6 +145,7 @@ pre_process_ewbc_input <- function(ps_sirebreed,
   # ****************************************************************************
   ## ---- Conformation & fat scores and price matrices ----
   # ****************************************************************************
+  ### # Major step 5 ### #
   qp4ewc::pre_process_ew_input_carcass_data_flp(ps_sirebreed,
                                                 ps_prodsystew,
                                                 ps_marketchannel,
