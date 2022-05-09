@@ -321,12 +321,111 @@ Statement for 302 days:
 tbl_input_statement_flp[10,2]
 ```
 
-Same process for 302 days as for 300 days.
+```{r}
+# extrapolated to 302 days
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp[10,1]),
+                                        ps_statement2search = tbl_input_statement_flp[10,2],
+                                        ps_value2update = 302,
+                                        pb_log = b_log)
+
+```
+
+```{r}
+# weaning weight at 302 days
+weight_302d_f <- calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_f,
+                                                      pv_daily_gain = dailygain_f,
+                                                      pv_mean_weaningwt = weaningwt_f,
+                                                      pv_t_days = 302,
+                                                      pb_log = b_log)
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp[12,1]),
+                                        ps_statement2search = tbl_input_statement_flp[12,2],
+                                        ps_value2update = weight_302d_f,
+                                        pb_log = b_log)
+weight_302d_m <- calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_m,
+                                                      pv_daily_gain = dailygain_m,
+                                                      pv_mean_weaningwt = weaningwt_m,
+                                                      pv_t_days = 302,
+                                                      pb_log = b_log)
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp[13,1]),
+                                        ps_statement2search = tbl_input_statement_flp[13,2],
+                                        ps_value2update = weight_302d_m,
+                                        pb_log = b_log)
+```
 
 Statement for 304 days:
 ```{r}
 tbl_input_statement_flp[11,2]
 ```
 
-Same process for 304 days as for 300 days.
+```{r}
+# extrapolated to 304 days
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp[11,1]),
+                                        ps_statement2search = tbl_input_statement_flp[11,2],
+                                        ps_value2update = 304,
+                                        pb_log = b_log)
+```
+
+```{r}
+# weaning weight at 304 days
+weight_304d_f <- calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_f,
+                                                      pv_daily_gain = dailygain_f,
+                                                      pv_mean_weaningwt = weaningwt_f,
+                                                      pv_t_days = 304,
+                                                      pb_log = b_log)
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp[14,1]),
+                                        ps_statement2search = tbl_input_statement_flp[14,2],
+                                        ps_value2update = weight_304d_f,
+                                        pb_log = b_log)
+weight_304d_m <- calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_m,
+                                                      pv_daily_gain = dailygain_m,
+                                                      pv_mean_weaningwt = weaningwt_m,
+                                                      pv_t_days = 304,
+                                                      pb_log = b_log)
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp[15,1]),
+                                        ps_statement2search = tbl_input_statement_flp[15,2],
+                                        ps_value2update = weight_304d_m,
+                                        pb_log = b_log)
+```
+
+# Calculating cow weight after second calving
+
+```{r}
+second_calving_wt <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_flp,
+                                              ps_second_calvingweight = TRUE,
+                                              pb_log = b_log)
+```
+
+```{r}
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp[16,1]),
+                                      ps_statement2search = tbl_input_statement_flp[16,2],
+                                      ps_value2update = second_calving_wt,
+                                      pb_log = b_log)
+```
+
+# Calculate mature cow weight
+
+```{r}
+mature_weight_cow <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_flp,
+                                              ps_second_calvingweight = FALSE,
+                                              pb_log = b_log)
+```
+
+```{r}
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp[17,1]),
+                                      ps_statement2search = tbl_input_statement_flp[17,2],
+                                      ps_value2update = mature_weight_cow,
+                                      pb_log = b_log)
+```
+
+# Calculate mature weight bulls
+
+```{r}
+bull_mature_weight <- calculate_bull_liveweight(ps_input_flp_tibble = tbl_flp,
+                                                pb_log = b_log)
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp[18,1]),
+                                      ps_statement2search = tbl_input_statement_flp[18,2],
+                                      ps_value2update = bull_mature_weight,
+                                      pb_log = b_log)
+```
+
 
