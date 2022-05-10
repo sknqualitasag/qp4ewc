@@ -9,3 +9,5 @@ INPUT08.TXT;"Price per kg carcass of heifers for the base class";"MU/kg";12.25
 INPUT16.TXT;"Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)";" ";
 INPUT16.TXT;"Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)";" ";
 INPUT17.TXT;"Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class";" ";
+INPUT08.TXT;"Number of classes for fleshiness (maximum 20)";" ";9
+INPUT08.TXT;"Number of classes for fat covering (maximum 20)";" ";5

@@ -1110,6 +1110,22 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
                                          plogger = lgr)
 
 
+  ### # Number of classes for fleshiness
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[11,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[11,2],
+                                      ps_value2update = tbl_input_statement_flp_carcass[11,4],
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
+  ### # Number of classes for fat covering
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[12,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[12,2],
+                                      ps_value2update = tbl_input_statement_flp_carcass[12,4],
+                                      pb_log = TRUE,
+                                      plogger = lgr)
+
+
   # ****************************************************************************
   ## ---- Cows frequencies ----
   # ****************************************************************************

@@ -81,6 +81,21 @@ tbl_flp <- read_file_input_flp(ps_input_file_flp = s_input_file_flp,
 tbl_flp
 ```
 
+# Number of classes for fleshiness and fat covering
+
+```{r}
+# Number of classes for fleshiness
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[11,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[11,2],
+                                      ps_value2update = tbl_input_statement_flp_carcass[11,4],
+                                      pb_log = b_log)
+# Number of classes for fat covering
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[12,1]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[12,2],
+                                      ps_value2update = tbl_input_statement_flp_carcass[12,4],
+                                      pb_log = b_log)
+```
+
 # Frequency per slaughtercategory
 
 The flp-data are used to calculate the frequencies per slaughtercategory (cow, bull, heifer). 
