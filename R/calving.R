@@ -297,20 +297,22 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
   if(nrow(tbl_calvingprop %>% dplyr::filter(Geburtsverlauf == ps_calvingscore)) != 0){
     qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
                     paste0('Calving score information are available in the dataset so that calving score proportion can be calculated'))
+
+    ### # Add frequence according to calving score in a vector
+    calvingscore_freq <- tbl_calvingprop %>% dplyr::filter(Geburtsverlauf == ps_calvingscore) %>% dplyr::pull(n)
+    sum_calvingscore_freq <- sum(tbl_calvingprop$n)
+
+
+    ### # Calculate calving score proportion
+    calvingscore_prop <- round(calvingscore_freq/sum_calvingscore_freq,4)
+    qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
+                    paste0('calving score ',ps_calvingscore,' proportion is : ',calvingscore_prop))
+
+
   }else{
-    stop("calculate_calvingscore_proportion: no calving score information are available in the dataset, please check the dataset !")
+    warning("calculate_calvingscore_proportion: no calving score information are available in the dataset!")
+    calvingscore_prop <- 0
   }
-
-
-  ### # Add frequence according to calving score in a vector
-  calvingscore_freq <- tbl_calvingprop %>% dplyr::filter(Geburtsverlauf == ps_calvingscore) %>% dplyr::pull(n)
-  sum_calvingscore_freq <- sum(tbl_calvingprop$n)
-
-
-  ### # Calculate calving score proportion
-  calvingscore_prop <- round(calvingscore_freq/sum_calvingscore_freq,4)
-  qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
-                  paste0('calving score ',ps_calvingscore,' proportion is : ',calvingscore_prop))
 
 
   return(calvingscore_prop)
