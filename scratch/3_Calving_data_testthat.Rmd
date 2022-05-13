@@ -25,7 +25,7 @@ In this vignette, we will try to build unit tests for the differrent sub-functio
 # Prepare test-read_file_input_calving.R
 
 ```{r}
-s_input_file_calving <- file.path(here::here(),"inst","extdata","test","test_zws_muku_gal.csv")
+s_input_file_calving <- file.path(here::here(),"inst","extdata","ewbc","test","test_zws_muku_gal.csv")
 s_start_calving_date <- 20150101
 s_end_calving_date <- 20220504
 b_log <- TRUE
@@ -34,11 +34,11 @@ tbl_calving <- read_file_input_calving(ps_input_file_calving = s_input_file_calv
                                        ps_end_calving_date = s_end_calving_date,
                                        pb_log = b_log)
 #Write output to use in test-read_file_input_calving.R
-readr::write_delim(tbl_calving, file = file.path(here::here(),"inst","extdata","test","test_tbl_calving.csv"), delim = ";")
+readr::write_delim(tbl_calving, file = file.path(here::here(),"inst","extdata","ewbc","test","test_tbl_calving.csv"), delim = ";")
 ```
 
 ```{r}
-s_output_file_calving <- file.path(here::here(),"inst","extdata","test","test_tbl_calving.csv")
+s_output_file_calving <- file.path(here::here(),"inst","extdata","ewbc","test","test_tbl_calving.csv")
 tbl_output_file_calving <- readr::read_delim(file = s_output_file_calving, delim = ";")
 ```
 
@@ -63,13 +63,13 @@ value2update_abortrate <- paste0(c(abortrate_prim, rep(abortrate_multi,9)),colla
 
 ```{r}
 # Read Statements
-s_input_file_calving_statement <- file.path(here::here(),"inst","extdata","input_calving_statement.txt")
+s_input_file_calving_statement <- file.path(here::here(),"inst","extdata","ewbc","input_calving_statement.txt")
 tbl_input_statement_calving <- read_file_input(ps_input_file = s_input_file_calving_statement,
                                                pb_log = b_log)
 ```
 
 ```{r}
-s_path_directory2create <- "/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/test/"
+s_path_directory2create <- "/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/"
 s_sirebreed <- "LM"
 s_prodsystew <- "2"
 s_marketingchannel <- "Natura-Beef"

@@ -36,7 +36,7 @@ s_marketingchannel <- "Natura-Beef"
 # Path to define from the working directory
 s_path_directory2create <- "/Users/skn/muku_Ecoweigth/2022/work"
 # Path to input from the progeny flp data. Based on this example an other file can be created with different input-values.
-s_input_file_progeny_flp_statement <- file.path(here::here(),"inst","extdata","input_flp_statement.txt")
+s_input_file_progeny_flp_statement <- file.path(here::here(),"inst","extdata","ewbc","input_flp_statement.txt")
 # Path to flp data file
 s_input_file_flp <- "/Users/skn/muku_Ecoweigth/2022/data/internship/muku_flp_2015.csv"
 # Date YYYYMMDD used as start date to filter data for carcass

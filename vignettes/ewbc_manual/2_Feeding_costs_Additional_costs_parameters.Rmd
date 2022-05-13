@@ -36,7 +36,7 @@ s_marketingchannel <- "Natura-Beef"
 # Path to define from the working directory
 s_path_directory2create <- "/Users/skn/muku_Ecoweigth/2022/work"
 # Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
-s_input_file_literature <- file.path(here::here(),"inst","extdata","input_literature.txt")
+s_input_file_literature <- file.path(here::here(),"inst","extdata","ewbc","input_literature.txt")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
