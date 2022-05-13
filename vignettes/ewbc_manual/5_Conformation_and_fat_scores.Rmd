@@ -34,11 +34,11 @@ s_prodsystew <- "2"
 # Marketing channel can be: Natura-Beef, SwissPrimBeef
 s_marketingchannel <- "Natura-Beef"
 # Path to define from the working directory
-s_path_directory2create <- "/Users/skn/muku_Ecoweigth/2022/work"
+s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc")
 # Path to input statement for carcass and price
 s_input_file_flp_carcass_matrix_statement <- file.path(here::here(),"inst","extdata","ewbc","input_flp_carcass_matrix_statement.txt")
 # Path to flp data file
-s_input_file_flp <- "/Users/skn/muku_Ecoweigth/2022/data/zws_muku_flp/test_ANAUCHLMSIOB_zws_muku_flp.csv"
+s_input_file_flp <- file.path(here::here(),"inst","extdata","ewbc","test","test_zws_muku_flp.csv")
 # Date YYYYMMDD used as start date to filter data for calving or carcass
 s_start_flp_date <- 20160101
 # Date YYYYMMDD used as end date to filter data for calving or carcass

@@ -34,7 +34,7 @@ s_prodsystew <- "2"
 # Marketing channel can be: Natura-Beef, SwissPrimBeef
 s_marketingchannel <- "Natura-Beef"
 # Path to define from the working directory
-s_path_directory2create <- "/Users/skn/muku_Ecoweigth/2022/work"
+s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```

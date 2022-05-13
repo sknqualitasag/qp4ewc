@@ -34,11 +34,11 @@ s_prodsystew <- "2"
 # Marketing channel can be: Natura-Beef, SwissPrimBeef
 s_marketingchannel <- "Natura-Beef"
 # Path to define from the working directory
-s_path_directory2create <- "/Users/skn/muku_Ecoweigth/2022/work"
+s_path_directory2create <-  file.path(here::here(),"inst","extdata","ewbc")
 # Path to input from the calving. Based on this example an other file can be created with different input-values.
 s_input_file_calving_statement <- file.path(here::here(),"inst","extdata","ewbc","input_calving_statement.txt")
 # Path to calving data file
-s_input_file_calving <- "/Users/skn/muku_Ecoweigth/2022/data/zws_muku_gal/test_ANAUCHLMSIOB_zws_muku_gal.csv"
+s_input_file_calving <- file.path(here::here(),"inst","extdata","ewbc","test","test_zws_muku_gal.csv")
 # Date YYYYMMDD used as start date to filter data for calving
 s_start_calving_date <- 20160101
 # Date YYYYMMDD used as end date to filter data for calving
