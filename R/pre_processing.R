@@ -19,6 +19,7 @@
 #' @param ps_marketchannel market channel
 #' @param ps_path_directory2create path of the directory that will be created
 #' @param ps_input_file_literature path to file with input coming from literature for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file_par path to file with input as parameter for each scenanario for the input-parameter-file for ECOWEIGHT
 #' @param ps_input_file_calving_statement path to file with statement based on calving for the input-parameter-file for ECOWEIGHT
 #' @param ps_input_file_calving path to file with input coming from calving for the input-parameter-file for ECOWEIGHT
 #' @param ps_start_date setting the start of the calving date to filter in the calving data
@@ -38,6 +39,7 @@ pre_process_ewbc_input <- function(ps_sirebreed,
                                  ps_marketchannel,
                                  ps_path_directory2create,
                                  ps_input_file_literature,
+                                 ps_input_file_par,
                                  ps_input_file_calving_statement,
                                  ps_input_file_calving,
                                  ps_start_date,
@@ -65,6 +67,7 @@ pre_process_ewbc_input <- function(ps_sirebreed,
                            ' * ps_marketchannel: ', ps_marketchannel, '\n',
                            ' * ps_path_directory2create: ', ps_path_directory2create, '\n',
                            ' * ps_input_file_literature: ', ps_input_file_literature, '\n',
+                           ' * ps_input_file_par: ',ps_input_file_par,'\n',
                            ' * ps_input_file_calving_statement: ',ps_input_file_calving_statement, '\n',
                            ' * ps_input_file_calving: ', ps_input_file_calving, '\n',
                            ' * ps_start_date: ',ps_start_date,'\n',
@@ -100,6 +103,24 @@ pre_process_ewbc_input <- function(ps_sirebreed,
                                         pb_log = TRUE,
                                         plogger = lgr)
   }
+
+
+  ### # Read file with input to set parameter per scenario for input-parameter-file of ECOWEIGHT
+  tbl_input_par <- qp4ewc::read_file_input(ps_input_file_par,
+                                           pb_log = TRUE,
+                                           plogger = lgr)
+  ### # Update input-parameter-file coming from parameter of ECOWEIGHT
+  for(l in 1:nrow(tbl_input_par)){
+    qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
+                    paste0('Updating parameter with input coming from the parameter file:\n * line number l: ', l, '\n'))
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_par[l,1]),
+                                        ps_statement2search = tbl_input_par[l,2],
+                                        ps_value2update = tbl_input_par[l,4],
+                                        pb_log = TRUE,
+                                        plogger = lgr)
+  }
+
+
 
   # ****************************************************************************
   ## ---- Calving ----

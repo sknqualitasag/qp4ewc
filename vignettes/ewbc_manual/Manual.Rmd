@@ -37,6 +37,8 @@ s_marketingchannel <- "Natura-Beef"
 s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc")
 # Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
 s_input_file_literature <- file.path(here::here(),"inst","extdata","ewbc","input_literature.txt")
+# Path to input from the parameter specific for the scenario. Based on this example an other file can be created with different input-value.
+s_input_file_par <- file.path(here::here(),"inst","extdata","ewbc","input_par_statement.txt")
 # Path to input from the calving. Based on this example an other file can be created with different input-values.
 s_input_file_calving_statement <- file.path(here::here(),"inst","extdata","ewbc","input_calving_statement.txt")
 # Path to calving data file
@@ -85,6 +87,7 @@ pre_process_ewbc_input(ps_sirebreed = s_sirebreed,
                        ps_marketchannel = s_marketingchannel,
                        ps_path_directory2create = s_path_directory2create,
                        ps_input_file_literature = s_input_file_literature,
+                       ps_input_file_par = s_input_file_par,
                        ps_input_file_calving_statement = s_input_file_calving_statement,
                        ps_input_file_calving = s_input_file_calving,
                        ps_start_date = s_start_date,
