@@ -615,7 +615,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
     male_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                                   ps_sex = "M",
-                                                  ps_marketing_channel = 2,
+                                                  ps_marketing_channel = l_constants$vec_Natura_Beef,
                                                   pb_log = TRUE,
                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[2,1]),
@@ -628,7 +628,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     # Update statement-progeny-flp-input from the data by calculating mean live weight at slaughter
     livewt_slaughter_f <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                                       ps_sex = "F",
-                                                                      ps_marketing_channel = 2,
+                                                                      ps_marketing_channel = l_constants$vec_Natura_Beef,
                                                                       pb_log = TRUE,
                                                                       plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[3,1]),
@@ -639,7 +639,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
     livewt_slaughter_m <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                                       ps_sex = "M",
-                                                                      ps_marketing_channel = 2,
+                                                                      ps_marketing_channel = l_constants$vec_Natura_Beef,
                                                                       pb_log = TRUE,
                                                                       plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[4,1]),
@@ -652,32 +652,32 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     # Calculate weaning weight, weaning age, slaughter age
     weaningwt_f <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                                         ps_sex = "F",
-                                                        ps_marketing_channel = 2,
+                                                        ps_marketing_channel = l_constants$vec_Natura_Beef,
                                                         pb_log = TRUE,
                                                         plogger = lgr)
     weaningwt_m <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                                         ps_sex = "M",
-                                                        ps_marketing_channel = 2,
+                                                        ps_marketing_channel = l_constants$vec_Natura_Beef,
                                                         pb_log = TRUE,
                                                         plogger = lgr)
     weaningage_f <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
                                                       ps_sex = "F",
-                                                      ps_marketing_channel = 2,
+                                                      ps_marketing_channel = l_constants$vec_Natura_Beef,
                                                       pb_log = TRUE,
                                                       plogger = lgr)
     weaningage_m <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
                                                       ps_sex = "M",
-                                                      ps_marketing_channel = 2,
+                                                      ps_marketing_channel = l_constants$vec_Natura_Beef,
                                                       pb_log = TRUE,
                                                       plogger = lgr)
     slaughterage_f <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
                                                           ps_sex = "F",
-                                                          ps_marketing_channel = 2,
+                                                          ps_marketing_channel = l_constants$vec_Natura_Beef,
                                                           pb_log = TRUE,
                                                           plogger = lgr)
     slaughterage_m <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
                                                           ps_sex = "M",
-                                                          ps_marketing_channel = 2,
+                                                          ps_marketing_channel = l_constants$vec_Natura_Beef,
                                                           pb_log = TRUE,
                                                           plogger = lgr)
 
@@ -807,7 +807,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     # Update statement-progeny-flp-input from the data by calculating mean birth weight
     female_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                                     ps_sex = "F",
-                                                    ps_marketing_channel = 3,
+                                                    ps_marketing_channel = l_constants$vec_SwissPrimBeef,
                                                     pb_log = TRUE,
                                                     plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[1,1]),
@@ -818,7 +818,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
     male_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                                   ps_sex = "M",
-                                                  ps_marketing_channel = 3,
+                                                  ps_marketing_channel = l_constants$vec_SwissPrimBeef,
                                                   pb_log = TRUE,
                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[2,1]),
@@ -831,7 +831,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     # Update statement-progeny-flp-input from the data by calculating mean weaning weight
     weaningwt_f <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                                         ps_sex = "F",
-                                                        ps_marketing_channel = 3,
+                                                        ps_marketing_channel = l_constants$vec_SwissPrimBeef,
                                                         pb_log = TRUE,
                                                         plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[8,1]),
@@ -841,7 +841,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                         plogger = lgr)
     weaningwt_m <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                                         ps_sex = "M",
-                                                        ps_marketing_channel = 3,
+                                                        ps_marketing_channel = l_constants$vec_SwissPrimBeef,
                                                         pb_log = TRUE,
                                                         plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[9,1]),
@@ -854,12 +854,12 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     # Update statement-progeny-flp-input from the data by calculating mean weaning age
     weaningage_f <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
                                                       ps_sex = "F",
-                                                      ps_marketing_channel = 3,
+                                                      ps_marketing_channel = l_constants$vec_SwissPrimBeef,
                                                       pb_log = TRUE,
                                                       plogger = lgr)
     weaningage_m <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
                                                       ps_sex = "M",
-                                                      ps_marketing_channel = 3,
+                                                      ps_marketing_channel = l_constants$vec_SwissPrimBeef,
                                                       pb_log = TRUE,
                                                       plogger = lgr)
     weaningage_average <- round(as.numeric(weaningage_f+weaningage_m)/2,4)
@@ -873,7 +873,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     # Update statement-progeny-flp-input from the data by calculating mean live weight at slaughter
     livewt_slaughter_f <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                                       ps_sex = "F",
-                                                                      ps_marketing_channel = 3,
+                                                                      ps_marketing_channel = l_constants$vec_SwissPrimBeef,
                                                                       pb_log = TRUE,
                                                                       plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[3,1]),
@@ -884,7 +884,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
     livewt_slaughter_m <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                                       ps_sex = "M",
-                                                                      ps_marketing_channel = 3,
+                                                                      ps_marketing_channel = l_constants$vec_SwissPrimBeef,
                                                                       pb_log = TRUE,
                                                                       plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[4,1]),
@@ -897,12 +897,12 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     # Calculate slaughter age
     slaughterage_f <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
                                                           ps_sex = "F",
-                                                          ps_marketing_channel = 3,
+                                                          ps_marketing_channel = l_constants$vec_SwissPrimBeef,
                                                           pb_log = TRUE,
                                                           plogger = lgr)
     slaughterage_m <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
                                                           ps_sex = "M",
-                                                          ps_marketing_channel = 3,
+                                                          ps_marketing_channel = l_constants$vec_SwissPrimBeef,
                                                           pb_log = TRUE,
                                                           plogger = lgr)
 
