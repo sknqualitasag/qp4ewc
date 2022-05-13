@@ -1,0 +1,200 @@
+---
+title: "Explain the function pre_process_ew_input_progeny_data_flp()"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Explain the function pre_process_ew_input_progeny_data_flp()}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(qp4ewc)
+```
+
+# Aim
+
+In this vignette, we will try to build unit tests for the differrent sub-function of `pre_process_ew_input_progeny_data_flp()`. 
+
+# Parameters
+
+The parameters needed are:
+
+```{r, echo = TRUE}
+# Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
+s_sirebreed <- "LM"
+# Production system according to ECOWEIGHT: 1,2,3,4 corresponding to purebreeding, crossbreeding, terminal crossing, dairy
+s_prodsystew <- "2"
+# Marketing channel can be: Natura-Beef, SwissPrimBeef
+s_marketingchannel <- "Natura-Beef"
+# Path to define from the working directory
+s_path_directory2create <- "/Users/skn/muku_Ecoweigth/2022/work"
+# Path to input from the progeny flp data. Based on this example an other file can be created with different input-values.
+s_input_file_progeny_flp_statement <- file.path(here::here(),"inst","extdata","ewbc","input_flp_statement.txt")
+# Path to flp data file
+s_input_file_flp <- file.path(here::here(),"inst","extdata","ewbc","test","test_zws_muku_flp.csv")
+# Date YYYYMMDD used as start date to filter data for carcass
+s_start_flp_date <- 20050101
+# Date YYYYMMDD used as end date to filter data for carcass
+s_end_flp_date <- 20211231
+# Flag to set to TRUE, if a log-file is whished
+b_log <- TRUE
+```
+
+
+# Prepare test-read_file_input.R
+
+```{r, warning=FALSE, message=FALSE}
+tbl_input_statement_flp <- read_file_input(ps_input_file = s_input_file_progeny_flp_statement,
+                                           pb_log = b_log)
+```
+
+# Prepare test-read_file_input_flp.R
+
+```{r, warning=FALSE, message=FALSE}
+tbl_flp <- read_file_input_flp(ps_input_file_flp = s_input_file_flp,
+                               ps_start_flp_date = s_start_flp_date,
+                               ps_end_flp_date = s_end_flp_date,
+                               ps_sirebreed = s_sirebreed,
+                               pb_log = b_log)
+#Write output to use intest-read_file_input_flp.R
+readr::write_delim(tbl_flp, file = file.path(here::here(),"inst","extdata","ewbc","test","test_tbl_flp.csv"), delim = ";")
+```
+
+# Prepare test-get_constants.R
+
+```{r, warning=FALSE, message=FALSE}
+l_constants <- get_constants()
+l_constants
+```
+
+# Prepare test-calculate_mean_birthweight.R
+
+```{r, warning=FALSE, message=FALSE}
+# mean birth weight for female in Natura-Beef
+female_bw <- calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
+                                       ps_sex = "F",
+                                       ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                       pb_log = b_log)
+female_bw
+```
+
+```{r, warning=FALSE, message=FALSE}
+male_bw <- calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
+                                      ps_sex = "M",
+                                      ps_marketing_channel = l_constants$vec_SwissPrimBeef,
+                                      pb_log = b_log)
+
+```
+
+# Prepare test-calculate_mean_liveweight_slaughter.R
+
+```{r, warning=FALSE, message=FALSE}
+# mean live weight at slaughter for female in Natura-Beef
+livewt_slaughter_f <- calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
+                                                          ps_sex = "F",
+                                                          ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                                          pb_log = b_log)
+livewt_slaughter_f
+```
+
+```{r, warning=FALSE, message=FALSE}
+# mean live weight at slaughter for male in Natura-Beef
+livewt_slaughter_m <- calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
+                                                          ps_sex = "M",
+                                                          ps_marketing_channel = l_constants$vec_SwissPrimBeef,
+                                                          pb_log = b_log)
+```
+
+# Prepare test-calculate_mean_weaningweight.R
+
+```{r, warning=FALSE, message=FALSE}
+# mean weaning weight for female in Natura-Beef
+weaningwt_f <- calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
+                                            ps_sex = "F",
+                                            ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                            pb_log = b_log)
+weaningwt_f
+```
+
+```{r}
+# mean weaning weight for male in Natura-Beef
+weaningwt_m <- calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
+                                            ps_sex = "M",
+                                            ps_marketing_channel = l_constants$vec_SwissPrimBeef,
+                                            pb_log = b_log)
+weaningwt_m
+```
+
+# Prepare test-calculate_mean_weaningage.R
+
+```{r}
+weaningage_f <- calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
+                                          ps_sex = "F",
+                                          ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                          pb_log = b_log)
+
+```
+
+# Prepare test-calculate_mean_slaughterage.R
+
+```{r}
+# mean slaughter ag for female in Natura-Beef
+slaughterage_f <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
+                                              ps_sex = "F",
+                                              ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                              pb_log = b_log)
+slaughterage_f
+```
+
+# Prepare test-calculate_dailygain.R
+
+```{r}
+# Mean daily gain for female from weaning to slaughter
+dailygain_f <- calculate_dailygain(pv_mean_slaughterage = slaughterage_f,
+                                   pv_mean_weaningage = weaningage_f,
+                                   pv_mean_livewt_atslaughter = livewt_slaughter_f,
+                                   pv_mean_weaningwt = weaningwt_f,
+                                   pb_log = b_log)
+dailygain_f
+```
+
+# Prepare test-calculate_extrapolated_weaningweight.R
+
+```{r}
+# Extrapolated weight at 300 days for female
+weight_300d_f <- calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_f,
+                                                      pv_daily_gain = dailygain_f,
+                                                      pv_mean_weaningwt = weaningwt_f,
+                                                      pv_t_days = 300,
+                                                      pb_log = b_log)
+weight_300d_f
+```
+
+# Prepare test-calculate_cow_liveweight.R
+
+```{r}
+second_calving_wt <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_flp,
+                                              ps_second_calvingweight = TRUE,
+                                              pb_log = b_log)
+```
+
+```{r}
+mature_weight_cow <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_flp,
+                                              ps_second_calvingweight = FALSE,
+                                              pb_log = b_log)
+```
+
+
+# Calculate mature weight bulls
+
+```{r}
+bull_mature_weight <- calculate_bull_liveweight(ps_input_flp_tibble = tbl_flp,
+                                                pb_log = b_log)
+```
