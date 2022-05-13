@@ -1,7 +1,7 @@
 test_that("testing function calculate_stillbirth_rate()", {
 
   # Read calving-file
-  s_input_file_calving <- file.path(here::here(),"inst","extdata","test","test_zws_muku_gal.csv")
+  s_input_file_calving <- file.path(here::here(),"inst","extdata","ewbc","test","test_zws_muku_gal.csv")
   s_start_calving_date <- 20150101
   s_end_calving_date <- 20220504
   b_log <- TRUE

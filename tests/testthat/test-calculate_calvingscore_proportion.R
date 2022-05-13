@@ -1,7 +1,7 @@
 test_that("testing function calculate_calvingscore_proportion()", {
 
   # Read calving-file
-  s_input_file_calving <- file.path(here::here(),"inst","extdata","test","test_zws_muku_gal.csv")
+  s_input_file_calving <- file.path(here::here(),"inst","extdata","ewbc","test","test_zws_muku_gal.csv")
   s_start_calving_date <- 20150101
   s_end_calving_date <- 20220504
   b_log <- TRUE
@@ -11,6 +11,7 @@ test_that("testing function calculate_calvingscore_proportion()", {
                                          pb_log = b_log)
 
 
+  s_sirebreed <- "LM"
   #  Proportion for calving score 2 for females
   calvingscore_prop_prim_F_2_expected <- 0.5
   calvingscore_prop_prim_F_2 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
