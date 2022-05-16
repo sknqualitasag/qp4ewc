@@ -114,6 +114,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
 
   ### # vec_rownames content the carcass conformation occuring in the ps_input_flp_tibble
   vec_rownames <- row.names(freq_input)
+  vec_colnames <- colnames(freq_input)
 
 
   ### # These frequencies are set in a 0-matrix. This step reorder the content starting with 1.
@@ -123,7 +124,11 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
   ### # Update the result_matrix with freq_input. If a class is missing, the default value is 0.
   for(i in 1:nrow(freq_input)){
     if(as.character(i+1) == vec_rownames[i]){
-      result_matrix[i,] <- freq_input[i,]
+      for(j in 1:ncol(freq_input)){
+        if(as.character(j) == vec_colnames[j]){
+          result_matrix[i,j] <- freq_input[i,j]
+        }
+      }
     }
   }
 
