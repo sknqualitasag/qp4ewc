@@ -306,6 +306,7 @@ read_price_conf_fat <- function(ps_input_file_price,
 
   ### # Transform tibble to matrix
   mat_price <- as.matrix(tbl_input_price)
+  dimnames(mat_price) <- NULL
 
 
   ### # Calculate the coefficient matrices

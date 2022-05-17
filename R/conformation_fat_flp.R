@@ -132,6 +132,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
     }
   }
 
+
   return(result_matrix)
   qp4ewc_log_info(lgr, 'build_freq_conf_fat',
                   paste0('A matrix with all classes for conformationXfat has been set up'))
