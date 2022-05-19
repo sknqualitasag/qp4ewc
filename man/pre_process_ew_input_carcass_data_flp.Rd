@@ -16,7 +16,7 @@ pre_process_ew_input_carcass_data_flp(
   ps_input_file_price_cow,
   ps_input_file_price_bull,
   ps_input_file_price_heifer,
-  pb_log = FALSE,
+  pb_log,
   plogger = NULL
 )
 }

@@ -48,8 +48,10 @@ create_directory_scenario <- function(ps_sirebreed,
 
   ### # Build a name for each scenario
   s_scenario <- file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel))
-  qp4ewc_log_info(lgr, 'create_directory_scenario',
-                  paste0('Define the name of the scenario:\n * s_scenario: ', s_scenario))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'create_directory_scenario',
+                    paste0('Define the name of the scenario:\n * s_scenario: ', s_scenario))
+  }
 
 
   ### # Create a directory per scenario
@@ -57,8 +59,10 @@ create_directory_scenario <- function(ps_sirebreed,
     stop("The directory ",s_scenario," exists already!")
   }else{
     dir.create(s_scenario)
-    qp4ewc_log_info(lgr, 'create_directory_scenario',
-                    paste0('Create a directory for scenario:\n * s_scenario: ', s_scenario))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'create_directory_scenario',
+                      paste0('Create a directory for scenario:\n * s_scenario: ', s_scenario))
+    }
   }
 
 
@@ -67,8 +71,10 @@ create_directory_scenario <- function(ps_sirebreed,
   if(ps_prodsystew != "4"){
     list_of_files <- list.files(system.file("templates","ewbc", package = "qp4ewc"), full.names = TRUE)
     file.copy(list_of_files,s_scenario)
-    qp4ewc_log_info(lgr, 'create_directory_scenario',
-                    paste0('Copy the default input-parameter-files in the scenario directory based on the templates for ewbc','\n'))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'create_directory_scenario',
+                      paste0('Copy the default input-parameter-files in the scenario directory based on the templates for ewbc','\n'))
+    }
   }
 
 }

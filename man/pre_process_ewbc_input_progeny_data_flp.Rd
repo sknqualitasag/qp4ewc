@@ -13,7 +13,7 @@ pre_process_ewbc_input_progeny_data_flp(
   ps_input_file_flp,
   ps_start_flp_date,
   ps_end_flp_date,
-  pb_log = FALSE,
+  pb_log,
   plogger = NULL
 )
 }

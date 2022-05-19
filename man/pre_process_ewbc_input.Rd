@@ -21,7 +21,7 @@ pre_process_ewbc_input(
   ps_input_file_price_cow,
   ps_input_file_price_bull,
   ps_input_file_price_heifer,
-  pb_log = FALSE,
+  pb_log,
   plogger = NULL
 )
 }

@@ -13,7 +13,7 @@ pre_process_ew_input_calving(
   ps_input_file_calving,
   ps_start_calving_date,
   ps_end_calving_date,
-  pb_log = FALSE,
+  pb_log,
   plogger = NULL
 )
 }

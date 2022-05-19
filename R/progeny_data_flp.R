@@ -55,8 +55,10 @@ calculate_mean_birthweight <- function(ps_input_flp_tibble,
                                          dplyr::select(`Geburtsgewicht Nako`,`ageAtSlaughterInDays`) %>%
                                          na.omit() %>%
                                          tidyr::drop_na()
-    qp4ewc_log_info(lgr, 'calculate_mean_birthweight',
-                    paste0('A Tibble for female has been created for the calculation of mean birthweight '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_mean_birthweight',
+                      paste0('A Tibble for female has been created for the calculation of mean birthweight '))
+    }
   }else{
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
     tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
@@ -65,15 +67,19 @@ calculate_mean_birthweight <- function(ps_input_flp_tibble,
                                          dplyr::select(`Geburtsgewicht Nako`,`ageAtSlaughterInDays`) %>%
                                          na.omit() %>%
                                          tidyr::drop_na()
-    qp4ewc_log_info(lgr, 'calculate_mean_birthweight',
-                    paste0('A Tibble for male has been created for the calculation of mean birthweight '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_mean_birthweight',
+                      paste0('A Tibble for male has been created for the calculation of mean birthweight '))
+    }
   }
 
 
   ### # Calculate the mean birthweight
   birthwt <- round(as.numeric(dplyr::summarise(tbl_input, mean_birthwt = mean(`Geburtsgewicht Nako`))),4)
-  qp4ewc_log_info(lgr, 'calculate_mean_birthweight',
-                  paste0('Mean birthweight for ',ps_sex,' is : ',birthwt))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_mean_birthweight',
+                    paste0('Mean birthweight for ',ps_sex,' is : ',birthwt))
+  }
 
   return(birthwt)
 
@@ -129,8 +135,10 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
                                          dplyr::select(`Schlachtgewicht Nako`,ageAtSlaughterInDays) %>%
                                          na.omit() %>%
                                          tidyr::drop_na()
-    qp4ewc_log_info(lgr, 'calculate_mean_liveweight_slaughter',
-                    paste0('A Tibble for female has been created for the calculation of mean live weight at slaughter '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_mean_liveweight_slaughter',
+                      paste0('A Tibble for female has been created for the calculation of mean live weight at slaughter '))
+    }
   }else{
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
     tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
@@ -139,8 +147,10 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
                                          dplyr::select(`Schlachtgewicht Nako`,ageAtSlaughterInDays) %>%
                                          na.omit() %>%
                                          tidyr::drop_na()
-    qp4ewc_log_info(lgr, 'calculate_mean_liveweight_slaughter',
-                    paste0('A Tibble for male has been created for the calculation of mean live weight at slaughter '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_mean_liveweight_slaughter',
+                      paste0('A Tibble for male has been created for the calculation of mean live weight at slaughter '))
+    }
   }
 
 
@@ -162,8 +172,10 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
   }
 
 
-  qp4ewc_log_info(lgr, 'calculate_mean_liveweight_slaughter',
-                  paste0('Mean live weight at slaughter for ',ps_sex,' is : ',livewt_atslaughter, ' based on mean carcass weight: ',carcasswt))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_mean_liveweight_slaughter',
+                    paste0('Mean live weight at slaughter for ',ps_sex,' is : ',livewt_atslaughter, ' based on mean carcass weight: ',carcasswt))
+  }
 
 
   return(livewt_atslaughter)
@@ -220,8 +232,10 @@ calculate_mean_weaningweight <- function(ps_input_flp_tibble,
                                          dplyr::select(`Absetzgewicht effektiv`) %>%
                                          na.omit() %>%
                                          tidyr::drop_na()
-    qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
-                    paste0('A Tibble for female has been created for the calculation of mean weaning weight '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
+                      paste0('A Tibble for female has been created for the calculation of mean weaning weight '))
+    }
   }else{
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
     tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
@@ -230,8 +244,10 @@ calculate_mean_weaningweight <- function(ps_input_flp_tibble,
                                          dplyr::select(`Absetzgewicht effektiv`) %>%
                                          na.omit() %>%
                                          tidyr::drop_na()
-    qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
-                    paste0('A Tibble for male has been created for the calculation of mean weaning weight '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
+                      paste0('A Tibble for male has been created for the calculation of mean weaning weight '))
+    }
   }
 
 
@@ -239,8 +255,10 @@ calculate_mean_weaningweight <- function(ps_input_flp_tibble,
   weaningwt <- round(as.numeric(dplyr::summarise(tbl_input, mean_weaningwt = mean(`Absetzgewicht effektiv`))),4)
 
 
-  qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
-                  paste0('Mean weaning weight for ',ps_sex,' is : ',weaningwt))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
+                    paste0('Mean weaning weight for ',ps_sex,' is : ',weaningwt))
+  }
 
 
   return(weaningwt)
@@ -297,8 +315,10 @@ calculate_mean_weaningage <- function(ps_input_flp_tibble,
       dplyr::select(ageAtWeaningInDays) %>%
       na.omit() %>%
       tidyr::drop_na()
-    qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
-                    paste0('A Tibble for female has been created for the calculation of mean weaning age '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
+                      paste0('A Tibble for female has been created for the calculation of mean weaning age '))
+    }
   }else{
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
     tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
@@ -307,8 +327,10 @@ calculate_mean_weaningage <- function(ps_input_flp_tibble,
       dplyr::select(ageAtWeaningInDays) %>%
       na.omit() %>%
       tidyr::drop_na()
-    qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
-                    paste0('A Tibble for male has been created for the calculation of mean weaning age '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
+                      paste0('A Tibble for male has been created for the calculation of mean weaning age '))
+    }
   }
 
 
@@ -316,8 +338,10 @@ calculate_mean_weaningage <- function(ps_input_flp_tibble,
   weaningage <- round(as.numeric(dplyr::summarise(tbl_input, mean_weaningage = mean(ageAtWeaningInDays))),4)
 
 
-  qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
-                  paste0('Mean weaning age for ',ps_sex,' is : ',weaningage))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
+                    paste0('Mean weaning age for ',ps_sex,' is : ',weaningage))
+  }
 
 
   return(weaningage)
@@ -375,8 +399,10 @@ calculate_mean_slaughterage <- function(ps_input_flp_tibble,
       na.omit() %>%
       dplyr::select(ageAtSlaughterInDays) %>%
       tidyr::drop_na()
-    qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
-                    paste0('A Tibble for female has been created for the calculation of mean slaughter age '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
+                      paste0('A Tibble for female has been created for the calculation of mean slaughter age '))
+    }
   }else{
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
     tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
@@ -386,8 +412,10 @@ calculate_mean_slaughterage <- function(ps_input_flp_tibble,
       na.omit() %>%
       dplyr::select(ageAtSlaughterInDays) %>%
       tidyr::drop_na()
-    qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
-                    paste0('A Tibble for male has been created for the calculation of mean slaughter age '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
+                      paste0('A Tibble for male has been created for the calculation of mean slaughter age '))
+    }
   }
 
 
@@ -395,8 +423,10 @@ calculate_mean_slaughterage <- function(ps_input_flp_tibble,
   slaughterage <- round(as.numeric(dplyr::summarise(tbl_input, mean_slaughterage = mean(ageAtSlaughterInDays))),4)
 
 
-  qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
-                  paste0('Mean slaughter age for ',ps_sex,' is : ',slaughterage))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
+                    paste0('Mean slaughter age for ',ps_sex,' is : ',slaughterage))
+  }
 
 
   return(slaughterage)
@@ -448,20 +478,26 @@ calculate_dailygain <- function(pv_mean_slaughterage,
 
   ### # Calculate fattening days
   fattening_days <- as.numeric(pv_mean_slaughterage - pv_mean_weaningage)
-  qp4ewc_log_info(lgr, 'calculate_dailygain',
-                  paste0('Fattening days: ',fattening_days,' is the difference between pv_mean_slaughterage ',pv_mean_slaughterage,' and pv_mean_weaningage ', pv_mean_weaningage))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_dailygain',
+                    paste0('Fattening days: ',fattening_days,' is the difference between pv_mean_slaughterage ',pv_mean_slaughterage,' and pv_mean_weaningage ', pv_mean_weaningage))
+  }
 
 
   ### # Calculate fattening weight
   fattening_weight <- pv_mean_livewt_atslaughter - pv_mean_weaningwt
-  qp4ewc_log_info(lgr, 'calculate_dailygain',
-                  paste0('Fattening weight: ',fattening_weight,' is the difference between pv_mean_livewt_atslaughter ',pv_mean_livewt_atslaughter,' and pv_mean_weaningwt ', pv_mean_weaningwt))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_dailygain',
+                    paste0('Fattening weight: ',fattening_weight,' is the difference between pv_mean_livewt_atslaughter ',pv_mean_livewt_atslaughter,' and pv_mean_weaningwt ', pv_mean_weaningwt))
+  }
 
 
   ### # Calculate daily gain
   dailygain <- round(fattening_weight/fattening_days,4)
-  qp4ewc_log_info(lgr, 'calculate_dailygain',
-                  paste0('Daily gain during fattening is : ',dailygain))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_dailygain',
+                    paste0('Daily gain during fattening is : ',dailygain))
+  }
 
 
   return(dailygain)
@@ -514,19 +550,25 @@ calculate_extrapolated_weaningweight <- function(pv_mean_weaningage,
 
   ### # Calculate extrapolated weaning days
   extrapolatedweaning_days <- as.numeric(pv_t_days - pv_mean_weaningage)
-  qp4ewc_log_info(lgr, 'calculate_extrapolated_weaningweight',
-                  paste0('Extrapolated weaning days: ',extrapolatedweaning_days,' is the difference between pv_t_days ',pv_t_days,' and pv_mean_weaningage ', pv_mean_weaningage))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_extrapolated_weaningweight',
+                    paste0('Extrapolated weaning days: ',extrapolatedweaning_days,' is the difference between pv_t_days ',pv_t_days,' and pv_mean_weaningage ', pv_mean_weaningage))
+  }
 
 
   ### # Extrapolated weaning weight
   extrapolatedweaning_weight <- pv_mean_weaningwt + (extrapolatedweaning_days * pv_daily_gain)
-  qp4ewc_log_info(lgr, 'calculate_extrapolated_weaningweight',
-                  paste0('Extrapolated weaning weight: ',extrapolatedweaning_weight,' is based on pv_mean_weaningwt ',pv_mean_weaningwt,' , extrapolatedweaning_days ', extrapolatedweaning_days, ' and pv_daily_gain ',pv_daily_gain))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_extrapolated_weaningweight',
+                    paste0('Extrapolated weaning weight: ',extrapolatedweaning_weight,' is based on pv_mean_weaningwt ',pv_mean_weaningwt,' , extrapolatedweaning_days ', extrapolatedweaning_days, ' and pv_daily_gain ',pv_daily_gain))
+  }
 
 
   extrapolatedweaning_weight <- round(as.numeric(extrapolatedweaning_weight),2)
-  qp4ewc_log_info(lgr, 'calculate_extrapolated_weaningweight',
-                  paste0('Extrapolated weaning weight is : ',extrapolatedweaning_weight))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_extrapolated_weaningweight',
+                    paste0('Extrapolated weaning weight is : ',extrapolatedweaning_weight))
+  }
 
 
   return(extrapolatedweaning_weight)
@@ -604,8 +646,10 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
    cowlivewt_atslaughter <- round(as.numeric((cowwt/l_constants$vec_dressing_female),4))
 
 
-   qp4ewc_log_info(lgr, 'calculate_cow_liveweight',
-                   paste0('Mean cow live weight at slaughter is : ',cowlivewt_atslaughter, ' based on mean cow carcass weight: ',cowwt))
+   if(pb_log){
+     qp4ewc_log_info(lgr, 'calculate_cow_liveweight',
+                     paste0('Mean cow live weight at slaughter is : ',cowlivewt_atslaughter, ' based on mean cow carcass weight: ',cowwt))
+   }
 
 
    return(cowlivewt_atslaughter)
@@ -668,8 +712,10 @@ calculate_bull_liveweight <- function(ps_input_flp_tibble,
   bulllivewt_atslaughter <- round(as.numeric((bullwt/l_constants$vec_dressing_male),4))
 
 
-  qp4ewc_log_info(lgr, 'calculate_bull_liveweight',
-                  paste0('Mean bull live weight at slaughter is : ',bulllivewt_atslaughter, ' based on mean bull carcass weight: ',bullwt))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_bull_liveweight',
+                    paste0('Mean bull live weight at slaughter is : ',bulllivewt_atslaughter, ' based on mean bull carcass weight: ',bullwt))
+  }
 
 
   return(bulllivewt_atslaughter)

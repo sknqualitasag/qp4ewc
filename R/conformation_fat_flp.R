@@ -71,8 +71,10 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
                    dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
                    dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
                    na.omit()
-      qp4ewc_log_info(lgr, 'build_freq_conf_fat',
-                      paste0('A Tibble for cow has been created for build frequencies of conformation and fat'))
+      if(pb_log){
+        qp4ewc_log_info(lgr, 'build_freq_conf_fat',
+                        paste0('A Tibble for cow has been created for build frequencies of conformation and fat'))
+      }
     }else{
       ### # Slaughtercategory for female to consider is RG == 5
       tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "F") %>%
@@ -80,8 +82,10 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
                    dplyr::filter(Markenprogramm == s_marketing_channel) %>%
                    dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
                    na.omit()
-      qp4ewc_log_info(lgr, 'build_freq_conf_fat',
-                      paste0('A Tibble for female has been created for build frequencies of conformation and fat'))
+      if(pb_log){
+        qp4ewc_log_info(lgr, 'build_freq_conf_fat',
+                        paste0('A Tibble for female has been created for build frequencies of conformation and fat'))
+      }
     }
   }else{
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
@@ -90,15 +94,19 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
                  dplyr::filter(Markenprogramm == s_marketing_channel) %>%
                  dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
                  na.omit()
-    qp4ewc_log_info(lgr, 'build_freq_conf_fat',
-                    paste0('A Tibble for male has been created for build frequencies of conformation and fat'))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'build_freq_conf_fat',
+                      paste0('A Tibble for male has been created for build frequencies of conformation and fat'))
+    }
   }
 
 
   ### # Build a matrix
   mat_input <- as.matrix(table(tbl_input))
-  qp4ewc_log_info(lgr, 'build_freq_conf_fat',
-                  paste0('A matrix has been created based on the count for conformationXfat'))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'build_freq_conf_fat',
+                    paste0('A matrix has been created based on the count for conformationXfat'))
+  }
 
 
 
@@ -109,8 +117,10 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
   ### # The content of column Fleischigkeit can be
   ### # empty, 1 = unknown, 2 = C, 3 = H, 4 = T+, 5 = T, 6 = T-, 7 = A, 8 = 1X, 9 = 2X, 10 = 3X
   freq_input <- (mat_input/total_input)*100
-  qp4ewc_log_info(lgr, 'build_freq_conf_fat',
-                  paste0('A matrix has been updated based on the frequencies for conformationXfat'))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'build_freq_conf_fat',
+                    paste0('A matrix has been updated based on the frequencies for conformationXfat'))
+  }
 
   ### # vec_rownames content the carcass conformation occuring in the ps_input_flp_tibble
   vec_rownames <- row.names(freq_input)
@@ -134,7 +144,9 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
 
 
   return(result_matrix)
-  qp4ewc_log_info(lgr, 'build_freq_conf_fat',
-                  paste0('A matrix with all classes for conformationXfat has been set up'))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'build_freq_conf_fat',
+                    paste0('A matrix with all classes for conformationXfat has been set up'))
+  }
 
 }

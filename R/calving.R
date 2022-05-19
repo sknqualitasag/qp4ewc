@@ -45,8 +45,10 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
 
   ### # Consider only known calving score
   tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf != 0)
-  qp4ewc_log_info(lgr, 'calculate_abortion_rate',
-                  paste0('Only consider known calving score to calculate abortion rate'))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_abortion_rate',
+                    paste0('Only consider known calving score to calculate abortion rate'))
+  }
 
 
   ### # Different calculation depending on ps_statement_firstlactation
@@ -58,8 +60,10 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
                                dplyr::count() %>%
                                tidyr::drop_na()
 
-    qp4ewc_log_info(lgr, 'calculate_abortion_rate',
-                    paste0('A Tibble for primiparous has been created for the calculation of abortion rate '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_abortion_rate',
+                      paste0('A Tibble for primiparous has been created for the calculation of abortion rate '))
+    }
 
   }else{
     tbl_abort <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
@@ -69,8 +73,10 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
                                dplyr::count() %>%
                                tidyr::drop_na()
 
-    qp4ewc_log_info(lgr, 'calculate_abortion_rate',
-                    paste0('A Tibble for multiparous has been created for the calculation of abortion rate '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_abortion_rate',
+                      paste0('A Tibble for multiparous has been created for the calculation of abortion rate '))
+    }
   }
 
 
@@ -78,8 +84,10 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
   ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
   ### # Check if data for abort are available to calculate abortion rate
   if(nrow(tbl_abort %>% dplyr::filter(Abort == 1)) != 0){
-    qp4ewc_log_info(lgr, 'calculate_abortion_rate',
-                    paste0('Abort information are available in the dataset so that abortion rate can be calculated'))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_abortion_rate',
+                      paste0('Abort information are available in the dataset so that abortion rate can be calculated'))
+    }
 
     ### # Add frequence according to abort in a vector
     abort_freq <- tbl_abort %>% dplyr::filter(Abort == 1) %>% dplyr::pull(n)
@@ -88,8 +96,10 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
 
     ### # Calculate abortion rate
     abortion_rate <- round(abort_freq/sum_abort_freq,4)
-    qp4ewc_log_info(lgr, 'calculate_abortion_rate',
-                    paste0('abortion_rate is : ',abortion_rate))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_abortion_rate',
+                      paste0('abortion_rate is : ',abortion_rate))
+    }
 
   }else{
     warning("calculate_abortion_rate: no abort information are available in the dataset !")
@@ -147,13 +157,17 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
     ### # The calving score of 1 = without help or 2 = slight help are considered as easy calving
     ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
     tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == 1 | Geburtsverlauf == 2)
-    qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
-                    paste0('A Tibble for easy calving has been created for the calculation of stillbirth rate '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
+                      paste0('A Tibble for easy calving has been created for the calculation of stillbirth rate '))
+    }
   }else{
     ### # The calving score of 3 = difficult or 4 = cesarean are considered as difficult calving
     tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == 3 | Geburtsverlauf == 4)
-    qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
-                    paste0('A Tibble for difficult calving has been created for the calculation of stillbirth rate '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
+                      paste0('A Tibble for difficult calving has been created for the calculation of stillbirth rate '))
+    }
   }
 
   ### # Different calculation depending on ps_statement_firstlactation
@@ -165,8 +179,10 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
                                     dplyr::count() %>%
                                     tidyr::drop_na()
 
-    qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
-                    paste0('A Tibble for primiparous has been created for the calculation of stillbirth rate '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
+                      paste0('A Tibble for primiparous has been created for the calculation of stillbirth rate '))
+    }
 
   }else{
     tbl_stillbirth <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
@@ -176,8 +192,10 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
                                     dplyr::count() %>%
                                     tidyr::drop_na()
 
-    qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
-                    paste0('A Tibble for multiparous has been created for the calculation of stillbirth rate '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
+                      paste0('A Tibble for multiparous has been created for the calculation of stillbirth rate '))
+    }
   }
 
 
@@ -185,8 +203,10 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
   ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
   ### # Check if data for stillbirth are available to calculate stillbirth rate
   if(nrow(tbl_stillbirth %>% dplyr::filter(Code_TotOLebend == 4)) != 0){
-    qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
-                    paste0('Stillbirth information are available in the dataset so that stillbirth rate can be calculated'))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
+                      paste0('Stillbirth information are available in the dataset so that stillbirth rate can be calculated'))
+    }
 
 
     ### # Add frequence according to stillbirth in a vector
@@ -196,8 +216,10 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
 
     ### # Calculate stillbirth rate
     stillbirth_rate <- round(stillbirth_freq/sum_stillbirth_freq,4)
-    qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
-                    paste0('stillbirth_rate is : ',stillbirth_rate))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
+                      paste0('stillbirth_rate is : ',stillbirth_rate))
+    }
 
   }else{
     warning("calculate_stillbirth_rate: no stillbirth information are available in the dataset !")
@@ -260,8 +282,10 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
   ### # Filter criteria depending on ps_breed and ps_sex
   tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Nachkomme_RasseCode == ps_breed) %>%
                                            dplyr::filter(Geschlecht == ps_sex)
-  qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
-                  paste0('A Tibble depending on the breed and sex has been created for the calculation of calving score proportion '))
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
+                    paste0('A Tibble depending on the breed and sex has been created for the calculation of calving score proportion '))
+  }
 
 
 
@@ -275,8 +299,10 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
                                      dplyr::count() %>%
                                      tidyr::drop_na()
 
-    qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
-                    paste0('A Tibble for primiparous has been created for the calculation of calving score proportion '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
+                      paste0('A Tibble for primiparous has been created for the calculation of calving score proportion '))
+    }
   }else{
     tbl_calvingprop <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
                                      dplyr::select(Geburtsverlauf) %>%
@@ -286,8 +312,10 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
                                      dplyr::count() %>%
                                      tidyr::drop_na()
 
-    qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
-                    paste0('A Tibble for multiparous has been created for the calculation of calving score proportion '))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
+                      paste0('A Tibble for multiparous has been created for the calculation of calving score proportion '))
+    }
   }
 
 
@@ -295,8 +323,11 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
   ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
   ### # Check if data for specific calving score are available
   if(nrow(tbl_calvingprop %>% dplyr::filter(Geburtsverlauf == ps_calvingscore)) != 0){
-    qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
-                    paste0('Calving score information are available in the dataset so that calving score proportion can be calculated'))
+
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
+                      paste0('Calving score information are available in the dataset so that calving score proportion can be calculated'))
+    }
 
     ### # Add frequence according to calving score in a vector
     calvingscore_freq <- tbl_calvingprop %>% dplyr::filter(Geburtsverlauf == ps_calvingscore) %>% dplyr::pull(n)
@@ -305,8 +336,10 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
 
     ### # Calculate calving score proportion
     calvingscore_prop <- round(calvingscore_freq/sum_calvingscore_freq,4)
-    qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
-                    paste0('calving score ',ps_calvingscore,' proportion is : ',calvingscore_prop))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
+                      paste0('calving score ',ps_calvingscore,' proportion is : ',calvingscore_prop))
+    }
 
 
   }else{
@@ -368,13 +401,17 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
     ### # The calving score of 1 = without help or 2 = slight help are considered as easy calving
     ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
     tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == 1 | Geburtsverlauf == 2)
-    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
-                    paste0('A Tibble for easy calving has been created for the calculation of proportion of calves died 24h'))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                      paste0('A Tibble for easy calving has been created for the calculation of proportion of calves died 24h'))
+    }
   }else{
     ### # The calving score of 3 = difficult or 4 = cesarean are considered as difficult calving
     tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == 3 | Geburtsverlauf == 4)
-    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
-                    paste0('A Tibble for difficult calving has been created for the calculation of proportion of calves died 24h'))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                      paste0('A Tibble for difficult calving has been created for the calculation of proportion of calves died 24h'))
+    }
   }
 
 
@@ -387,8 +424,10 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
                                        dplyr::count() %>%
                                        tidyr::drop_na()
 
-    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
-                    paste0('A Tibble for primiparous has been created for the calculation of proportion of calves died 24h'))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                      paste0('A Tibble for primiparous has been created for the calculation of proportion of calves died 24h'))
+    }
 
   }else{
     tbl_calvesdied24h <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
@@ -398,8 +437,10 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
                                        dplyr::count() %>%
                                        tidyr::drop_na()
 
-    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
-                    paste0('A Tibble for multiparous has been created for the calculation of proportion of calves died 24h'))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                      paste0('A Tibble for multiparous has been created for the calculation of proportion of calves died 24h'))
+    }
   }
 
 
@@ -407,8 +448,10 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
   ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
   ### # Check if data for stillbirth within 24 hours are available to calculate the proportion
   if(nrow(tbl_calvesdied24h %>% dplyr::filter(Code_TotOLebend == 2)) != 0){
-    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
-                    paste0('Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated'))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                      paste0('Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated'))
+    }
 
 
     ### # Add frequence in a vector
@@ -418,8 +461,10 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
 
     ### # Calculate proportion
     calvingdied24h_prop <- round(calvdied24h_freq/sum_calvdied24h_freq,4)
-    qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
-                    paste0('calves died in 24h proportion is : ',calvingdied24h_prop))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
+                      paste0('calves died in 24h proportion is : ',calvingdied24h_prop))
+    }
 
   }else{
     warning("calculate_calvesdied24h_proportion: no stillbirth within 24h information are available in the dataset!")
@@ -473,8 +518,10 @@ calculate_calvesdiedafter24h_proportion <- function(ps_input_calving_tibble,
                             dplyr::count() %>%
                             tidyr::drop_na()
 
-  qp4ewc_log_info(lgr, 'calculate_calvesdiedafter24h_proportion',
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_calvesdiedafter24h_proportion',
                     paste0('A Tibble has been created for the calculation of proportion of calves died after 24h'))
+  }
 
 
 
@@ -482,8 +529,10 @@ calculate_calvesdiedafter24h_proportion <- function(ps_input_calving_tibble,
   ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
   ### # Check if data for stillbirth over 24 hours are available to calculate the proportion
   if(nrow(tbl_calvesdiedafter24h %>% dplyr::filter(Code_TotOLebend == 3)) != 0){
-    qp4ewc_log_info(lgr, 'calculate_calvesdiedafter24h_proportion',
-                    paste0('Stillbirth over 24h information are available in the dataset so that proportion of calves died after 24h can be calculated'))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_calvesdiedafter24h_proportion',
+                      paste0('Stillbirth over 24h information are available in the dataset so that proportion of calves died after 24h can be calculated'))
+    }
 
 
     ### # Add frequence in a vector
@@ -493,8 +542,10 @@ calculate_calvesdiedafter24h_proportion <- function(ps_input_calving_tibble,
 
     ### # Calculate proportion
     calvingdiedafter24h_prop <- round(calvdiedafter24h_freq/sum_calvdiedafter24h_freq,4)
-    qp4ewc_log_info(lgr, 'calculate_calvesdiedafter24h_proportion',
-                    paste0('calves died after 24h proportion is : ',calvingdiedafter24h_prop))
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'calculate_calvesdiedafter24h_proportion',
+                      paste0('calves died after 24h proportion is : ',calvingdiedafter24h_prop))
+    }
 
   }else{
     warning("calculate_calvesdiedafter24h_proportion: no stillbirth over 24h information are available in the dataset!")
