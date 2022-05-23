@@ -101,3 +101,8 @@ pre_process_ewbc_input(ps_sirebreed = s_sirebreed,
                        pb_log = b_log)
 ```
 
+
+```{r}
+cat(rmdhelp::get_latest_change())
+```
+
