@@ -1,0 +1,35 @@
+Trait;SearchPattern;IndexOffset
+"CalvingPerformance";"Mean class of calving performance";1
+"LossAtBirth";"Losses of calves at calving";0
+"Loss48hours";"Losses of calves from 48 hours";1
+"CowMatureWeight";"Mature weight of cows";0
+"BirthWeightCalves";"Birth weight of calves";0
+"AverageDailyGainFattening";"Average daily gain in fattening";0
+"DressingPercentage";"Dressing percentage";0
+"ConceptionRateHeifers";"Conception rate of heifers";0
+"ConceptionRateCows";"Conception rate of cows";0
+"Fleshiness";"Mean class of fleshiness";1
+"Fat";"Mean class of fat";1
+"WeightGainWeaning";"Weight gain of calves from birth to 1st weighing";1
+"WeightGain2";"Weight gain of calves from 1st to 2nd weighing";1
+"WeightGain3";"Weight gain of calves from 2nd to 3rd weighing";1
+"AvgLifetimeCows";"Average lifetime of cows";0
+"Weaning_wt_direct";"Weight gain of calves from birth to 1st weighing";2
+"Weaning_wt_maternal";"Weight gain of calves from birth to 1st weighing";2
+"Length_fattening_male";"Length of the fattening period for which the feed costs are calculated";1
+"Length_fattening_female";"Length of fattening period for which the feed costs are calculated";1
+"Proportion_males_slaughtered";"Number of male calves available for fattening (per cow and year)";0
+"Proportion_females_slaughtered";"Number of weaned female calves available for fattening or selling";1
+"Fat_bulls";"Mean class of fat covering for bulls";0
+"Fat_cows";"Mean class of fat covering for cows";0
+"Fat_heifers";"Mean class of fat covering for heifers";0
+"Fleshiness_bulls";"Mean class of fleshiness for bulls";0
+"Fleshiness_cows";"Mean class of fleshiness for cows";0
+"Fleshiness_heifers";"Mean class of fleshiness for heifers";0
+"Calving_score";"Mean class of calving performance";0
+"Birth_wt_female";"Birth weight of female calves";1
+"Birth_wt_male";"Birth weight of male calves";1
+"Wean_wt_female";"Weight of female calves at first weighing";1
+"Wean_wt_male";"Weight of male calves at first weighing";1
+"Slaughter_wt_bulls";"Live weight of bulls at slaughter in intensive fattening";1
+"Slaughter_wt_heifers";"Live weight of heifers at slaughter";1

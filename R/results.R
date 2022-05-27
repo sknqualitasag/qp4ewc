@@ -11,7 +11,7 @@
 #'
 #' @description
 #' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
-#' produce ouptut file with the results. This function will extract the results needed.
+#' produce output file with the results. This function will extract the results needed.
 #'
 #' @param ps_path_2outputfile path to output file of ECOWEIGHT
 #' @param ps_start_statement2extract string as statement to set the beginning of the extraction
@@ -71,3 +71,57 @@ extract_result <- function(ps_path_2outputfile,
 
 
 }
+
+
+
+#' @title Get the value of interest of the results coming from ECOWEIGHT output
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' produce output file with the results. This function will extract the value needed.
+#'
+#' @param pvec_ecow_result_2extract vector result of output file of ECOWEIGHT
+#' @param ptibble_search tibble with the parttern to search
+#' @param ps_line2get line to get
+#' @param ps_splitby string to say how it is splitted
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @return vec_cur_result
+#'
+#' @export get_result_value
+get_result_value <- function(pvec_ecow_result_2extract,
+                             ps_statement2search,
+                             ps_line2get,
+                             ps_splitby,
+                             pb_log = FALSE,
+                             plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'get_result_value.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'get_result_value',
+                    paste0('Starting function with parameters:\n * pvec_ecow_result_2extract \n',
+                           ' * ps_statement2search \n',
+                           ' * ps_line2get: ',ps_line2get,'\n',
+                           ' * ps_splitby: ',ps_splitby))
+  }
+
+
+  ### # Find in the output vector based on the tibble with the information to search and the line after the statement to get
+  n_cur_trait_idx <- grep(pattern = ps_statement2search, pvec_ecow_result_2extract, fixed = TRUE) + ps_line2get
+  s_cur_result <- pvec_ecow_result_2extract[n_cur_trait_idx]
+  ### # Get the value
+  vec_cur_result <- unlist(strsplit(s_cur_result, split = ps_splitby, fixed = TRUE))
+
+
+  return(vec_cur_result)
+
+
+}
+

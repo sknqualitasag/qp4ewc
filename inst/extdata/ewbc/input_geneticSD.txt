@@ -1,0 +1,8 @@
+trait;genetic_standarddeviation
+"Age adjusted carcass weight conventional";0.2082
+"Fleshiness conventional";0.445
+"Fat conventional";0.447
+"Calving performance";2.61
+"Birth weight";2.86
+"Weaning weight direct";19.49
+"Weaning weight maternal";0.72

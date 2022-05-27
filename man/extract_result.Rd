@@ -28,5 +28,5 @@ vec_ecow_result_2extract
 }
 \description{
 The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
-produce ouptut file with the results. This function will extract the results needed.
+produce output file with the results. This function will extract the results needed.
 }

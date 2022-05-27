@@ -1,0 +1,68 @@
+---
+title: "Results_and_pie_charts_developping"
+author: "Sophie Kunz"
+date: "5/20/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r setup}
+library(qp4ewc)
+```
+
+# Parameters
+
+The parameters needed are:
+
+```{r}
+s_path_2outputfile <- "/Users/skn/muku_Ecoweigth/2022/work/LM_2_Natura-Beef/price_trial_10_08.txt"
+s_output_file <- file.path(here::here(),"inst","extdata","ewbc","output_statement.txt")
+s_output_search_pattern <- file.path(here::here(),"inst","extdata","ewbc","output_searchpattern.txt")
+b_log <- TRUE
+
+```
+
+
+```{r}
+ps_path_2outputfile = s_path_2outputfile
+ps_output_statement = s_output_file
+ps_output_search_pattern = s_output_search_pattern
+pb_log = b_log
+plogger = NULL
+```
+
+
+
+```{r}
+tbl_output_statement <- read_file_input(ps_input_file = s_output_file,
+                                        pb_log = b_log)
+```
+
+
+# Developping extract_result()
+
+```{r}
+vec_ecow_result_EW <- extract_result(ps_path_2outputfile = s_path_2outputfile,
+                                     ps_start_statement2extract = tbl_output_statement[1,],
+                                     ps_end_statement2extract = tbl_output_statement[2,],
+                                     pb_log = b_log)
+```
+
+# Developpint get_result_value()
+
+```{r}
+tbl_search <- read_file_input(ps_input_file = s_output_search_pattern,
+                                        pb_log = b_log)
+```
+
+```{r}
+n_cur_ew <- get_result_value(pvec_ecow_result_2extract = vec_ecow_result_EW,
+                             ps_statement2search = tbl_search$SearchPattern[1],
+                             ps_line2get = tbl_search$IndexOffset[1],
+                             ps_splitby = ":",
+                             pb_log = b_log)
+```
+
