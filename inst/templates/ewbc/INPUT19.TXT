@@ -1,9 +1,9 @@
 /* Parameters for the lactation curve
    The file is needed for program EWBC (Production Systems 1 to 3)
-   and is only read if the parameters are calculated according to
-   Fox et al. (1990).
+   and is only read if the parameters are calculated according to 
+   Fox et al. (1990). 
    For details see the Manual. */
-5
+8
 "Peak milk in kg per day"
 "kg/day"
 6

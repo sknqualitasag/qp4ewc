@@ -7,7 +7,7 @@
    will not be read.
    All input data are arranged in the following way:
 	each parameter takes three rows,
-	in the first row stands its value,
+	in the first row stands its value, 
 	the string expression in the second row describes the parameter and
 	the last string in the third row contains the units of the parameter.
 	If there is no unit given, enter [SPACE] enclosed into quotation
@@ -16,7 +16,7 @@
 420.6
 "Age of breeding bulls at purchase for the herd (only for systems 2 to 3)"
 "days"
-562
+594.1
 "Weight of breeding bulls at purchase for the herd (only for systems 2 to 3)"
 "kg"
 5
@@ -25,10 +25,10 @@
 1095
 "Age of breeding bulls at reaching mature body weight"
 "days"
-0.57
+0.44
 "Dry matter per kg feed ration with code 1 for breeding bulls in the herd"
 "kg/kg"
-0.24
+0.36
 "Dry matter per kg feed ration with code 2 for breeding bulls in the herd"
 "kg/kg"
 /* The following two inputs are read only if the economic weight for
@@ -39,37 +39,37 @@ residual feed intake of adult animals is to be calculated */
 0.0
 "Residual dry matter intake of breeding bulls from feed ration of code 2"
 "kg/day"
-5.5
+4.81
 "Net energy content per kg dry matter of feed ration of code 1 for breeding bulls in the herd"
 "MJ NE/kg dry matter"
-6.1
+4.96
 "Net energy content per kg dry matter of feed ration of code 2 for breeding bulls in the herd"
 "MJ NE/kg dry matter"
-78.3
+69.85
 "Protein content per kg dry matter of feed ration of code 1 for breeding bulls in the herd"
 "g PDI/kg"
-98.2
+70.56
 "Protein content per kg dry matter of feed ration of code 2 for breeding bulls in the herd"
 "g PDI/kg"
-0.09
+0.85
 "Price per kg fresh matter of feed ration of code 1 for breeding bulls in the herd"
 "MU/kg"
-0.02
+0.69
 "Price per kg fresh matter of feed ration of code 2 for breeding bulls in the herd"
 "MU/kg"
-0.15
+0.12
 "Amount of minerals per day and breeding bull"
 "kg/day"
-1.6
+15
 "Price per kg minerals for breeding bulls"
 "MU/kg"
-3.5
+8
 "Amount of straw per day per breeding bull in the herd during feeding season with code 1"
 "kg/day"
 0
 "Amount of straw per day per breeding bull in the herd during feeding season with code 2"
 "kg/day"
-0
+10.5
 "Amount of dung per day per breeding bull in the herd during feeding season with code 1"
 "kg/day"
 0
@@ -81,12 +81,12 @@ residual feed intake of adult animals is to be calculated */
 80000
 "Average price per breeding bull purchased for natural mating"
 "MU/bull"
-127
+808
 "Cost for veterinary treatment per breeding bull in the herd per reproductive cycle"
 "MU/reproductive cycle"
-13.36
+36.36
 "Fixed cost per breeding bull in the herd per day"
 "MU/day"
-9.9
+84
 "Average price per kg carcass weight of culled (old) breeding bulls"
 "MU/kg"

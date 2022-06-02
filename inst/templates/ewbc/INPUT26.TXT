@@ -2,8 +2,8 @@
    and both options 1 and 2 for fattening.
    This file contains input parameters for gene flow.
    For changing input data, change the number(s).
-   Be careful when changing input parameters. Please notice that
-     the description of the given parameter or vector is posted under
+   Be careful when changing input parameters. Please notice that 
+     the description of the given parameter or vector is posted under 
      the number(s). */
 7
 "Number of age classes for sires"
@@ -23,6 +23,6 @@
 0 0.075 0.122 0.10 0.0815 0.0665 0.055
 "Proportion of genes from individual age classes of sires in the female progeny (path sires to dams) or in slaughter progeny (the numbers must sum to 0.5)"
 " "
-0 0 0.0749 0.0673 0.0611 0.0555 0.0504 0.0458 0.0416 0.0378 0.0343 0.0313 0
+0 0 0.0749 0.0673 0.0611 0.0555 0.0504 0.0458 0.0416 0.0378 0.0343 0.0313 0  
 "Proportion of genes from individual age classes of dams in the male progeny (path dames to sires, the numbers must sum to 0.5)"
 " "

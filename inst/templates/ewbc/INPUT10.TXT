@@ -1,27 +1,27 @@
-/* This file is necessary for program EWBC for intensive fattening (variant 1
-   of fattening) of heifers and castrates in Production Systems 1 to 3.
+/* This file is necessary for program EWBC for intensive fattening (variant 1 
+   of fattening) of heifers and castrates in Production Systems 1 to 3. 
    If no castrates are fattened the input parameters referring to castrates
    will be ignored.
-   Losses of animals are defined as animals died during the fattening period
-   as proportion of all animals entering fattening.
+   Losses of animals are defined as animals died during the fattening period 
+   as proportion of all animals entering fattening. 
    All input data are arranged in the following way:
 	each parameter takes three rows,
-	in the first row stands its value,
+	in the first row stands its value, 
 	the string expression in the second row describes the parameter and
 	the last string in the third row contains the units of the parameter.
 	If there is no unit given, enter [SPACE] enclosed into quotation
-	marks.
+	marks. 
    MU: monetary unit */
 1.4
 "Daily gain of castrates in intensive fattening"
 "kg/day"
-1.1491
+1.3
 "Daily gain of heifers in intensive fattening"
 "kg/day"
 650
 "Live weight of castrates at slaughter"
 "kg"
-387.111
+600
 "Live weight of heifers at slaughter"
 "kg"
 0.05
@@ -51,46 +51,46 @@
 0.47
 "Dry matter per kg feed ration for intensively fattened castrates"
 "kg/kg"
-0.44
+0.5
 "Dry matter per kg feed ration for intensively fattened heifers"
 "kg/kg"
-0.0
+0.0  
 "Average residual daily dry matter intake of castrates in intensive fattening"
 "kg/day"
-0.0
+0.0  
 "Average residual daily dry matter intake of heifers in intensive fattening"
 "kg/day"
 7.08
 "Net energy content per kg dry matter of feed ration for intensively fattened castrates"
 "MJ NE/kg dry matter"
-6.76
+6.7
 "Net energy content per kg dry matter of feed ration for intensively fattened heifers"
 "MJ NE/kg dry matter"
 107.87
 "Protein content per kg dry matter of feed ration for intensively fattened castrates"
 "g PDI/kg"
-86
+114.35
 "Protein content per kg dry matter of feed ration for intensively fattened heifers"
 "g PDI/kg"
 0.0796
 "Price per kg fresh matter of feed ration for intensively fattened castrates"
 "MU/kg"
-0.18
+0.076
 "Price per kg fresh matter of feed ration for intensively fattened heifers"
 "MU/kg"
 2.9
 "Price per kg carcass of intensively fattened castrates for the base class"
 "MU/kg"
 0.8
-"Coefficient for price decrease for castrates involuntarily culled (ratio
-between the price per kg carcass of involuntarily culled castrates and
+"Coefficient for price decrease for castrates involuntarily culled (ratio 
+between the price per kg carcass of involuntarily culled castrates and 
 the price per kg carcass of castrates that reached target slaughter weight)"
 " "
 0.8
-"Coefficient for price decrease for heifers involuntarily culled (ratio
-between the price per kg carcass of involuntarily culled heifers and
+"Coefficient for price decrease for heifers involuntarily culled (ratio 
+between the price per kg carcass of involuntarily culled heifers and 
 the price per kg carcass of heifers that reached target slaughter weight)"
 " "
-280
+0
 "Governmental support per fattened animal"
 "MU/animal"

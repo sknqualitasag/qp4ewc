@@ -1,19 +1,19 @@
-/* This file is necessary for program EWBC only if Production System 1
+/* This file is necessary for program EWBC only if Production System 1 
    is calculated.
    It includes input parameters referring to performance tested breeding
    bulls. The feed rations as well as other costs refer to three time periods.
    The first period is before the test when the weaned calves are getting
    used to the intensive feed ration. The second period is the test with a fixed
    length, and the third period, in which the exterior and sperm quality is
-   proved, is from the test end to the time when selecting and selling bulls.
+   proved, is from the test end to the time when selecting and selling bulls. 
 
    All input data are arranged in the following way:
 	each parameter takes three rows,
-	in the first row stands its value,
+	in the first row stands its value, 
 	the string expression in the second row describes the parameter and
 	the last string in the third row contains the units of the parameter.
 	If there is no unit given, enter [SPACE] enclosed into quotation
-	marks.
+	marks. 
    MU: monetary unit */
 1.804
 "Daily gain of bulls in test"

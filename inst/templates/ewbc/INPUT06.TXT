@@ -1,46 +1,46 @@
 /* This file is necessary for program EWBC for Production Systems 1 to 3.
-   It includes input parameters mainly connected with the
+   It includes input parameters mainly connected with the 
    progeny testing system for beef bulls.
    All input data are arranged in the following way:
 	each parameter takes three rows,
-	in the first row stands its value,
+	in the first row stands its value, 
 	the string expression in the second row describes the parameter and
 	the last string in the third row contains the units of the parameter.
 	If there is no unit given, enter [SPACE] enclosed into quotation
 	marks. */
-39.4178
+35
 "Birth weight of female calves"
 "kg"
-41.2626
+37
 "Birth weight of male calves"
 "kg"
-300
-"Age of calves at first weighing (first control)"
+120
+"Age of calves at first weighing (first control)"	
 "days"
-370.01
+165
 "Weight of female calves at first weighing"
 "kg"
-405.14
+170
 "Weight of male calves at first weighing"
 "kg"
-302
+210
 "Age of calves at second weighing (second control)"
 "days"
-372.3057
+255
 "Weight of female calves at second weighing"
 "kg"
-407.6433
+272
 "Weight of male calves at second weighing"
 "kg"
-304
+365
 "Age of calves at third weighing (third control)"
 "days"
-374.6039
+345
 "Weight of female calves at third weighing"
 "kg"
-410.1467
+492
 "Weight of male calves at third weighing"
 "kg"
-1037.241
+1050
 "Mature weight of bulls used in the herd"
 "kg"
