@@ -101,7 +101,7 @@ pre_process_ewbc_input <- function(ps_sirebreed,
     }
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_literature[l,1]),
                                         ps_statement2search = tbl_input_literature[l,2],
-                                        ps_value2update = tbl_input_literature[l,4],
+                                        ps_value2update = tbl_input_literature[l,4]$input_value,
                                         pb_log,
                                         plogger = lgr)
   }
@@ -119,7 +119,7 @@ pre_process_ewbc_input <- function(ps_sirebreed,
     }
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_par[l,1]),
                                         ps_statement2search = tbl_input_par[l,2],
-                                        ps_value2update = tbl_input_par[l,4],
+                                        ps_value2update = tbl_input_par[l,4]$input_value,
                                         pb_log,
                                         plogger = lgr)
   }
@@ -1145,7 +1145,7 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
   ### # Number of classes for fleshiness
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[11,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[11,2],
-                                      ps_value2update = tbl_input_statement_flp_carcass[11,4],
+                                      ps_value2update = tbl_input_statement_flp_carcass[11,4]$input_value,
                                       pb_log,
                                       plogger = lgr)
 
@@ -1153,7 +1153,7 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
   ### # Number of classes for fat covering
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[12,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[12,2],
-                                      ps_value2update = tbl_input_statement_flp_carcass[12,4],
+                                      ps_value2update = tbl_input_statement_flp_carcass[12,4]$input_value,
                                       pb_log,
                                       plogger = lgr)
 
@@ -1393,25 +1393,25 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
   # base price for cow
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[4,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[4,2],
-                                      ps_value2update = tbl_input_statement_flp_carcass[4,4],
+                                      ps_value2update = tbl_input_statement_flp_carcass[4,4]$input_value,
                                       pb_log,
                                       plogger = lgr)
   # average price bull
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[5,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[5,2],
-                                      ps_value2update = tbl_input_statement_flp_carcass[5,4],
+                                      ps_value2update = tbl_input_statement_flp_carcass[5,4]$input_value,
                                       pb_log,
                                       plogger = lgr)
   # basis price bull
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[6,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[6,2],
-                                      ps_value2update = tbl_input_statement_flp_carcass[6,4],
+                                      ps_value2update = tbl_input_statement_flp_carcass[6,4]$input_value,
                                       pb_log,
                                       plogger = lgr)
   # basis price heifer
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[7,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[7,2],
-                                      ps_value2update = tbl_input_statement_flp_carcass[7,4],
+                                      ps_value2update = tbl_input_statement_flp_carcass[7,4]$input_value,
                                       pb_log,
                                       plogger = lgr)
 
