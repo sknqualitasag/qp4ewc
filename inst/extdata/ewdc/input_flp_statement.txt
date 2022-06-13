@@ -1,0 +1,26 @@
+input_file;input;input_unit;input_value
+INPUT11.TXT;"Mature weight of dairy cows (weight of cows after 3rd calving)";"kg";
+INPUT11.TXT;"Mature weight of beef cows of the same breed the bulls of which are used for terminal crossing (weight of cows after 3rd calving)";"kg";
+INPUT11.TXT;"Average daily gain of cows in the 1st reproductive cycle";"kg/day";
+INPUT15.TXT;"Weight of female calves at birth";"kg";
+INPUT15.TXT;"Weight of male calves at birth";"kg";
+INPUT15.TXT;"Age of calves at the end of the first feeding period";"days";
+INPUT15.TXT;"Age of calves at the end of the rearing period";"days";
+INPUT15.TXT;"Age of female calves sold for export";"days";
+INPUT15.TXT;"Age of breeding heifers not mated at selling";"days";
+INPUT15.TXT;"Age of pregnant heifers at selling";"days";
+INPUT15.TXT;"Age of male calves sold for export";"days";
+INPUT15.TXT;"Daily gain of female calves from birth till the end of the rearing period";"kg/day";
+INPUT15.TXT;"Daily gain of male calves from birth till the end of the rearing period";"kg/day";
+INPUT15.TXT;"Weight of heifers at 1st mating";"kg";
+INPUT15.TXT;"Daily gain of breeding heifers from the end of the rearing period to 1st mating";"kg/day";
+INPUT15.TXT;"Daily gain of replacement heifers from the 1st mating to calving (without foetus)";"kg/day";
+INPUT15.TXT;"Daily gain of heifers in fattening";"kg/day";
+INPUT15.TXT;"Daily gain of bulls in fattening";"kg/day";
+INPUT15.TXT;"Daily gain of castrates in fattening";"kg/day";
+INPUT23.TXT;"Slaughter weight of pure-bred beef bulls at the end of fattening";"kg";
+INPUT23.TXT;"Slaughter weight of pure-bred beef heifers at the end of fattening";"kg";
+INPUT23.TXT;"Slaughter weight of pure-bred beef castrates at the end of fattening";"kg";
+INPUT23.TXT;"Slaughter weight of pure-bred dairy heifers at the end of fattening";"kg";
+INPUT23.TXT;"Slaughter weight of pure-bred dairy bulls at the end of fattening";"kg";
+INPUT23.TXT;"Slaughter weight of pure-bred dairy castrates at the end of fattening";"kg";

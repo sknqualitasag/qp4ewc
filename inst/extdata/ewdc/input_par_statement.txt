@@ -1,0 +1,26 @@
+input_file;input;input_unit;input_value
+PARAD.TXT;"Crossbreeding in the system";" ";1
+PARAD.TXT;"Housing technology in fattening";" ";2
+PARAD.TXT;"Housing technology in cow herds";" ";2
+PARAD.TXT;"Maturity type of pure-bred progeny";" ";1
+PARAD.TXT;"Maturity type of cross-bred progeny";" ";3
+PARAD.TXT;"Utilization of pure-bred female calves which are not needed for replacement";" ";1
+PARAD.TXT;"Utilization of cross-bred female calves which are not needed for replacement";" ";1
+PARAD.TXT;"Pure-bred castrates in fattening";" ";0
+PARAD.TXT;"Cross-bred castrates in fattening";" ";1
+PARAD.TXT;"Way of calculating feed cost";" ";1
+PARAD.TXT;"Option for calculating economic weights";" ";1
+PARAD.TXT;"Selection group for which gene flow is calculated";" ";3
+PARAD.TXT;"Data for mastitis incidence";" ";0
+PARAD.TXT;"Quota for milk market";" ";1
+PARAD.TXT;"Option for the calculation of the milk price";" ";1
+PARAD.TXT;"Data for curd firmness";" ";0
+PARAD.TXT;"Data for rennet coagulation time";" ";0
+PARAD.TXT;"Number of reproductive cycles (should be in the range from 4";" ";10
+PARAD.TXT;"Genetic standard deviation of the traits";" ";2
+PARAD.TXT;"Data for claw disease incidence";" ";0
+PARAD.TXT;"Data for milking speed";" ";0
+PARAD.TXT;"Calculation of economic value for residual dry matter intake of calves in rearing";" ";0
+PARAD.TXT;"Calculation of economic value for residual dry matter intake of heifers in rearing";" ";0
+PARAD.TXT;"Calculation of economic value for residual dry matter intake of animals in fattening";" ";0
+PARAD.TXT;"Calculation of economic value for residual dry matter intake of cows";" ";0
