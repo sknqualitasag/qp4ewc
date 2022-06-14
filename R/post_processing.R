@@ -36,7 +36,9 @@ post_process_ewbc_output <- function(ps_path_2outputfile,
       lgr <- plogger
     }
     qp4ewc_log_info(lgr, 'post_process_ewbc_output',
-                    paste0('Starting function with parameters:\n * ps_path_2outputfile', ps_path_2outputfile))
+                    paste0('Starting function with parameters:\n * ps_path_2outputfile', ps_path_2outputfile, '\n',
+                           ' * ps_output_statement: ', ps_output_statement, '\n',
+                           ' * ps_output_search_pattern: ', ps_output_search_pattern, '\n'))
   }
 
 
@@ -291,3 +293,127 @@ post_process_ewbc_output <- function(ps_path_2outputfile,
 
 }
 
+
+#' @title Plot pie chart of the results coming from ECOWEIGHT beef cattle
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' produce output file. This function processed different functions
+#' to prepare information to be plot.
+#'
+#' @param ps_path_2genSD path to file with genetic standard deviation
+#' @param ptbl_aggregate_results resulting tibble from post_process_ewbc_output()
+#' @param ps_traitgroup2consider traitgroup may be Carcass or Functional Traits
+#' @param ps_sirebreed sire breed
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
+#' @param ps_marketchannel market channel
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @export plot_piechart_ewbc
+plot_piechart_ewbc <- function(ps_path_2genSD,
+                              ptbl_aggregate_results,
+                              ps_traitgroup2consider,
+                              ps_sirebreed,
+                              ps_prodsystew,
+                              ps_marketchannel,
+                              pb_log,
+                              plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'plot_piechart_ewbc.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'plot_piechart_ewbc',
+                    paste0('Starting function with parameters:\n * ps_path_2genSD', ps_path_2genSD,'\n',
+                           ' * ptbl_aggregate_results \n',
+                           ' * ps_traitgroup2consider: ', ps_traitgroup2consider, '\n',
+                           ' * ps_sirebreed: ', ps_sirebreed, '\n',
+                           ' * ps_prodsystew: ', ps_prodsystew, '\n',
+                           ' * ps_marketchannel: ', ps_marketchannel))
+  }
+
+
+  ### # Read file with genetic standard deviation
+  tbl_gen_SD <- qp4ewc::read_file_input(ps_path_2genSD,
+                                        pb_log,
+                                        plogger = lgr)
+
+
+  ### # Transform to the economic weight to the same unit as CHE-EBV
+  ### # Fleshiness in ECOWEIGHT output: mean class by 0.01 -> class 1
+  fleshiness_score <- ptbl_aggregate_results[4,2]$Economic_weight * 100
+  ### # Fat in ECOWEIGHT output: mean class by 0.01 -> class 1
+  fat_score <- ptbl_aggregate_results[5,2]$Economic_weight * 100
+  ### # Age adjusted carcass weight from 1 dt to 100 kg
+  carcass_wt_kg <- ptbl_aggregate_results[3,2]$Economic_weight * 100
+  ### # Calving in ECOWEIGHT output: mean class by 0.01 -> class 1
+  calving_score <- ptbl_aggregate_results[1,2]$Economic_weight * 100
+
+
+  ### # Insure that the sign is positiv egal the trait so use absolute value
+  ### # when multipling economic weight with the genetic standarddeviation to transform all the traits to the same unit
+  ### # such as the trait are comparable
+  fleshiness <- abs(fleshiness_score*tbl_gen_SD[2,2]$genetic_standarddeviation)
+  fat <- abs(fat_score*tbl_gen_SD[3,2]$genetic_standarddeviation)
+  carcass_weight <- abs(carcass_wt_kg*tbl_gen_SD[1,2]$genetic_standarddeviation)
+  Weaning_weight_maternal <- abs(ptbl_aggregate_results[7,2]$Economic_weight*tbl_gen_SD[7,2]$genetic_standarddeviation)
+  Weaning_weight_direct <- abs(ptbl_aggregate_results[6,2]$Economic_weight*tbl_gen_SD[6,2]$genetic_standarddeviation)
+  Calving_ease <- abs(calving_score*tbl_gen_SD[4,2]$genetic_standarddeviation)
+  Birth_weight <- abs(ptbl_aggregate_results[2,2]$Economic_weight*tbl_gen_SD[5,2]$genetic_standarddeviation)
+
+
+  ### # Transform in percentage
+  sum_carcass <- sum(fleshiness, fat, carcass_weight)
+  fleshiness_percentage <- (fleshiness/sum_carcass)*100
+  fat_percentage <- (fat/sum_carcass)*100
+  carcass_weight_percentage <- (carcass_weight/sum_carcass)*100
+
+  sum_functional <- sum(Weaning_weight_maternal, Weaning_weight_direct, Calving_ease, Birth_weight)
+  Weaning_wt_maternal_perc <- (Weaning_weight_maternal/sum_functional)*100
+  Weaning_wt_direct_perc <- (Weaning_weight_direct/sum_functional)*100
+  Calving_ease_perc <- (Calving_ease/sum_functional)*100
+  Birth_weight_perc <- (Birth_weight/sum_functional)*100
+
+
+
+  ### # Depending on the traitgroup to consider
+  if(ps_traitgroup2consider == "Carcass Traits"){
+    df <- data.frame(trait = c("Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
+                     value = c(carcass_weight_percentage, fleshiness_percentage, fat_percentage))
+  }else if(ps_traitgroup2consider == "Functional Traits"){
+    df <- data.frame(trait = c("Calving ease", "Weaning weight direct", "Birth weight", "Weaning weight maternal"),
+                     value = c(Calving_ease_perc, Weaning_wt_direct_perc, Birth_weight_perc, Weaning_wt_maternal_perc))
+  }
+
+
+  ### # Pie chart
+  carcass_pie <- ggplot(df, aes(x = "" , y = value, fill = fct_inorder(trait))) +
+                   ggtitle(paste0("Economic Weights for ",ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                           subtitle = ps_traitgroup2consider)+
+                   geom_col(width = 1) +
+                   coord_polar(theta = "y", start = 0 ) +
+                   geom_text(aes(x = 1.6, label = paste0(round(value, 0), "%")),
+                             position = position_stack(vjust = 0.5))+
+                   guides(fill = guide_legend(title = "Trait")) +
+                   theme(plot.title = element_text(hjust = 0.5, size = 15),
+                         axis.title = element_blank(),
+                         axis.text = element_blank(),
+                         axis.ticks = element_blank(),
+                         panel.grid = element_blank(),
+                         panel.border = element_blank(),
+                         plot.margin = margin(10, 0, 0, 50))
+  if(ps_traitgroup2consider == "Carcass Traits"){
+    piechart <- carcass_pie + scale_fill_manual(values=c("deepskyblue3", "darkolivegreen3", "gold1"))
+  }else if(ps_traitgroup2consider == "Functional Traits"){
+    piechart <- carcass_pie + scale_fill_manual(values=c("darkorchid1","coral1" , "chartreuse3", "cadetblue3"))
+  }
+
+
+  return(piechart)
+
+}
