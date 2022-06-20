@@ -1,0 +1,74 @@
+"Comment:
+    Calculation for example data, December 2013"
+1
+"Production System
+  (1 Closed purebred beef cow herd with pasture system producing males and
+     females for replacement
+   2 Closed crossbred cow herd with pasture system producing its own female 
+     replacement but buying the breeding bulls
+   3 Open beef x dairy or beef x dual purpose crossbred cow herd with pasture
+     system with purchase of cow and bull replacement)"
+0
+"Fattening
+  (0 No fattening at all
+   1 Intensive fattening of bulls, heifers or castrates
+   2 Intensive fattening of bulls, extensive fattening of heifers and castrates
+     on pasture)"
+2
+"Housing technology in fattening
+  (1 Bind technology
+   2 Free technology
+   3 Pasture)"
+2
+"Maturity type of progeny
+  (1 Early
+   2 Medium
+   3 Late)"
+2
+"Way of calculating parameters for lactation curve
+  (1 The values are read from the input file INPUT20.TXT
+   2 The parameters are calculated in the program)"
+1
+"Way of calculating feed cost
+  (1 on the base of energy and protein content in feed rations
+   2 only on the base of energy content in feed)"
+1
+"Mating type for heifers
+  (1 Artificial insemination is used in the first oestrus within
+     one mating period.
+   2 Natural mating is used throughout.)"
+1
+"Mating type for cows
+  (Same options as above)"
+1
+"Sex for which gene flow is calculated
+  (1 Sires
+   2 Dams)"
+11
+"Number of reproductive cycles (should be in the range from 4
+  to 20. If you want to use a value greater than 20, change the parameter 
+  L in the program and recompile the program)"
+3
+"Genetic standard deviations of the traits
+  (1: are not known or are not intended to be used for the calculation of
+      relative economic weights,
+   2: are known for the direct and maternal components of the traits and 
+      given in INPUT35.TXT - this option must not be used for Production
+      System 3,
+   3: are not differentiated between direct and maternal components and 
+      given in INPUT36.TXT)."
+1
+"Calculation of economic value for residual dry matter intake of heifers in
+   rearing
+  (0: no
+   1: yes)"
+0
+"Calculation of economic value for residual dry matter intake of animals in
+   fattening
+  (0: no
+   1: yes)"
+1
+"Calculation of economic value for residual dry matter intake of adult animals
+  (0: no
+   1: yes)"      
+  
