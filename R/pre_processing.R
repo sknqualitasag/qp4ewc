@@ -155,6 +155,35 @@ pre_process_ewbc_input <- function(ps_sirebreed,
   }
 
 
+  ### # Maturity type of progeny depends on ps_sirebreed
+  ### # 1 = Early = AN
+  if(ps_sirebreed == "AN"){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
+                                        ps_statement2search = "Maturity type of progeny",
+                                        ps_value2update = 1,
+                                        pb_log,
+                                        plogger = lgr)
+  ### # 2 = Medium = AU, OB
+  }else if(ps_sirebreed == "AU" || ps_sirebreed == "OB"){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
+                                        ps_statement2search = "Maturity type of progeny",
+                                        ps_value2update = 2,
+                                        pb_log,
+                                        plogger = lgr)
+  ### # 1 = Early = AN; 2 = Medium = AU, OB, 3 = Late = CH, LM, SI)
+  }else if(ps_sirebreed == "CH" || ps_sirebreed == "LM" || ps_sirebreed == "SI"){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
+                                        ps_statement2search = "Maturity type of progeny",
+                                        ps_value2update = 3,
+                                        pb_log,
+                                        plogger = lgr)
+  }else{
+    qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
+                    paste0('Sire breed is not AN, AU, CH, LM, SI, OB for EWBC, please check!'))
+  }
+
+
+
 
   for(l in 1:nrow(tbl_input_par)){
     if(pb_log){

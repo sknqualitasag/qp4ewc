@@ -19,7 +19,7 @@
   (1 Bind technology
    2 Free technology
    3 Pasture)"
-2
+3
 "Maturity type of progeny
   (1 Early
    2 Medium
@@ -71,4 +71,4 @@
 "Calculation of economic value for residual dry matter intake of adult animals
   (0: no
    1: yes)"      
-   
+    
