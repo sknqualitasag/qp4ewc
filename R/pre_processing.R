@@ -139,6 +139,22 @@ pre_process_ewbc_input <- function(ps_sirebreed,
   }
 
 
+  ### # ps_marketchannel = Natura-Beef : no fattening period, therefore set 0, otherwise 1.
+  if(ps_marketchannel == "Natura-Beef"){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
+                                        ps_statement2search = "Fattening",
+                                        ps_value2update = 0,
+                                        pb_log,
+                                        plogger = lgr)
+  }else{
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
+                                        ps_statement2search = "Fattening",
+                                        ps_value2update = 1,
+                                        pb_log,
+                                        plogger = lgr)
+  }
+
+
 
   for(l in 1:nrow(tbl_input_par)){
     if(pb_log){
