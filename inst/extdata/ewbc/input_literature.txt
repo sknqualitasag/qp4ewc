@@ -66,9 +66,8 @@ INPUT13.TXT;"Breeding heifers sold before mating expressed as proportion of surp
 INPUT13.TXT;"Heifers inseminated in 1st oestrus within the mating period as proportion of heifers available for mating";" ";1;
 INPUT13.TXT;"Proportion of non-pregnant breeding heifers sold before the first mating period after their weaning";" ";0;
 INPUT13.TXT;"Proportion of non-pregnant breeding heifers sold between the first and second mating period after their weaning";" ";0;
-INPUT04.TXT;"Age of breeding bulls at purchase for the herd (only for systems 2 to 3)";"days";420.6;
-INPUT04.TXT;"Weight of breeding bulls at purchase for the herd (only for systems 2 to 3)";"kg";562;
-INPUT04.TXT;"Average price per breeding bull purchased for natural mating";"MU/bull";6316;
+INPUT04.TXT;"Age of breeding bulls at purchase for the herd (only for systems 2 to 3)";"days";462;
+INPUT04.TXT;"Weight of breeding bulls at purchase for the herd (only for systems 2 to 3)";"kg";592;
 INPUT08.TXT;"Dressing proportion of bulls";" ";0.58;
 INPUT08.TXT;"Dressing proportion of bulls not reaching target slaughter weight as proportion of dressing proportion of bulls reaching target slaughter weight";" ";0.8;
 INPUT08.TXT;"Dressing proportion of heifers";" ";0.56;

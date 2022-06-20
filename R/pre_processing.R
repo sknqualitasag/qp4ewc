@@ -94,6 +94,38 @@ pre_process_ewbc_input <- function(ps_sirebreed,
                                                   pb_log,
                                                   plogger = lgr)
   ### # Update input-parameter-file coming from literature of ECOWEIGHT
+  if(ps_sirebreed == "AN"){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"INPUT04.TXT"),
+                                        ps_statement2search = "Average price per breeding bull purchased for natural mating",
+                                        ps_value2update = 5333,
+                                        pb_log,
+                                        plogger = lgr)
+  }else if(ps_sirebreed == "AU" || ps_sirebreed == "OB" || ps_sirebreed == "CH"){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"INPUT04.TXT"),
+                                        ps_statement2search = "Average price per breeding bull purchased for natural mating",
+                                        ps_value2update = 4750,
+                                        pb_log,
+                                        plogger = lgr)
+  }else if(ps_sirebreed == "LM"){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"INPUT04.TXT"),
+                                        ps_statement2search = "Average price per breeding bull purchased for natural mating",
+                                        ps_value2update = 6059,
+                                        pb_log,
+                                        plogger = lgr)
+  }else if(ps_sirebreed == "SI"){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"INPUT04.TXT"),
+                                        ps_statement2search = "Average price per breeding bull purchased for natural mating",
+                                        ps_value2update = 5256,
+                                        pb_log,
+                                        plogger = lgr)
+  }else{
+    qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
+                    paste0('Price for sire breed other than AN, AU, CH, LM, SI, OB are not available for EWBC, please check!'))
+  }
+
+
+
+
   for(l in 1:nrow(tbl_input_literature)){
     if(pb_log){
       qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
