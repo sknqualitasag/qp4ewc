@@ -1,8 +1,6 @@
 input_file;input;input_unit;input_value
 PARA.TXT;"Housing technology in fattening";" ";2
 PARA.TXT;"Way of calculating feed cost";" ";1
-PARA.TXT;"Mating type for heifers";" ";1
-PARA.TXT;"Mating type for cows";" ";1
 PARA.TXT;"Sex for which gene flow is calculated";" ";2
 PARA.TXT;"Genetic standard deviations of the traits";" ";3
 INPUT01.TXT;"Number of different feeding seasons during the year";" ";2

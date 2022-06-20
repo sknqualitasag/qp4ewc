@@ -170,7 +170,7 @@ pre_process_ewbc_input <- function(ps_sirebreed,
                                         ps_value2update = 2,
                                         pb_log,
                                         plogger = lgr)
-  ### # 1 = Early = AN; 2 = Medium = AU, OB, 3 = Late = CH, LM, SI)
+  ### # 3 = Late = CH, LM, SI
   }else if(ps_sirebreed == "CH" || ps_sirebreed == "LM" || ps_sirebreed == "SI"){
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
                                         ps_statement2search = "Maturity type of progeny",
@@ -180,6 +180,36 @@ pre_process_ewbc_input <- function(ps_sirebreed,
   }else{
     qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
                     paste0('Sire breed is not AN, AU, CH, LM, SI, OB for EWBC, please check!'))
+  }
+
+
+  ### # Mating type for heifers or cows
+  ### # 1 : Artificial insemination is used in the first oestrus within one mating period
+  if(ps_prodsystew == as.character(1) || ps_prodsystew == as.character(2)){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
+                                        ps_statement2search = "Mating type for heifers",
+                                        ps_value2update = 1,
+                                        pb_log,
+                                        plogger = lgr)
+
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
+                                        ps_statement2search = "Mating type for cows",
+                                        ps_value2update = 1,
+                                        pb_log,
+                                        plogger = lgr)
+  ### # 2 : Natural mating is used throughout.
+  }else if(ps_prodsystew == as.character(3)){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
+                                        ps_statement2search = "Mating type for heifers",
+                                        ps_value2update = 2,
+                                        pb_log,
+                                        plogger = lgr)
+
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
+                                        ps_statement2search = "Mating type for cows",
+                                        ps_value2update = 2,
+                                        pb_log,
+                                        plogger = lgr)
   }
 
 

@@ -71,4 +71,4 @@
 "Calculation of economic value for residual dry matter intake of adult animals
   (0: no
    1: yes)"      
-    
+      
