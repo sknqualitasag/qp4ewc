@@ -112,6 +112,34 @@ pre_process_ewbc_input <- function(ps_sirebreed,
                                            pb_log,
                                            plogger = lgr)
   ### # Update input-parameter-file coming from parameter of ECOWEIGHT
+  ### # ps_prodsystew = 1: Closed purebred beef cow herd with pasture system producing males and females for replacement
+  if(ps_prodsystew == as.character(1)){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
+                                        ps_statement2search = "Production System",
+                                        ps_value2update = 1,
+                                        pb_log,
+                                        plogger = lgr)
+  ### # ps_prodsystew = 2: Closed crossbred cow herd with pasture system producing its own female replacement but buying the breeding bulls
+  }else if(ps_prodsystew == as.character(2)){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
+                                        ps_statement2search = "Production System",
+                                        ps_value2update = 2,
+                                        pb_log,
+                                        plogger = lgr)
+  ### # ps_prodsystew = 3: Open beef x dairy or beef x dual purpose crossbred cow herd with pasture system with purchase of cow and bull replacement
+  }else if(ps_prodsystew == as.character(3)){
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
+                                        ps_statement2search = "Production System",
+                                        ps_value2update = 3,
+                                        pb_log,
+                                        plogger = lgr)
+  }else{
+    qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
+                    paste0('Production System is not 1 or 2 or 3 for EWBC, please use an other function as pre_process_ewbc_input()!'))
+  }
+
+
+
   for(l in 1:nrow(tbl_input_par)){
     if(pb_log){
       qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
