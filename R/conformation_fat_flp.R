@@ -131,12 +131,15 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
   ### # With this step the rownames are not any more corresponding to the content of the column Fleischigkeit in ps_input_flp_tibble.
   ### # Build a 0-matrix with 9 rows (for carcass conformation) and 5 columns (for carcass fat)
   result_matrix <- matrix(0,nrow = 9, ncol = 5)
-  ### # Update the result_matrix with freq_input. If a class is missing, the default value is 0.
-  for(i in 1:nrow(freq_input)){
-    if(as.character(i+1) == vec_rownames[i]){
-      for(j in 1:ncol(freq_input)){
-        if(as.character(j) == vec_colnames[j]){
-          result_matrix[i,j] <- freq_input[i,j]
+  ### # If vec_rownames is not null, the result_matrix will be updated
+  if(!is.null(vec_rownames)){
+    ### # Update the result_matrix with freq_input. If a class is missing, the default value is 0.
+    for(i in 1:nrow(freq_input)){
+      if(as.character(i+1) == vec_rownames[i]){
+        for(j in 1:ncol(freq_input)){
+          if(as.character(j) == vec_colnames[j]){
+            result_matrix[i,j] <- freq_input[i,j]
+          }
         }
       }
     }

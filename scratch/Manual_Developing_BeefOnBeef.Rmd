@@ -86,48 +86,49 @@ At the beginning of the function depending of the setting for `pb_log` and `plog
 # Run pre_process_ewbc_input() in RStudio
 
 ```{r, warning=FALSE, message=FALSE}
-#pre_process_ewbc_input(ps_sirebreed = s_sirebreed,
-#                       ps_prodsystew = s_prodsystew,
-#                       ps_marketchannel = s_marketingchannel,
-#                       ps_path_directory2create = s_path_directory2create,
-#                       ps_input_file_literature = s_input_file_literature,
-#                       ps_input_file_par = s_input_file_par,
-#                       ps_input_file_testedbulls = s_input_file_testedbulls,
-#                       ps_input_file_calving_statement = s_input_file_calving_statement,
-#                       ps_input_file_calving = s_input_file_calving,
-#                       ps_start_date = s_start_date,
-#                       ps_end_date = s_end_date,
-#                       ps_input_file_progeny_flp_statement = s_input_file_progeny_flp_statement,
-#                       ps_input_file_flp = s_input_file_flp,
-#                       ps_input_file_flp_carcass_matrix_statement = s_input_file_flp_carcass_matrix_statement,
-#                       ps_input_file_price_cow = s_input_file_price_cow,
-#                       ps_input_file_price_bull = s_input_file_price_bull,
-#                       ps_input_file_price_heifer = s_input_file_price_heifer,
-#                       pb_log = b_log)
+pre_process_ewbc_input(ps_sirebreed = s_sirebreed,
+                       ps_prodsystew = s_prodsystew,
+                       ps_marketchannel = s_marketingchannel,
+                       ps_path_directory2create = s_path_directory2create,
+                       ps_input_file_literature = s_input_file_literature,
+                       ps_input_file_par = s_input_file_par,
+                       ps_input_file_testedbulls = s_input_file_testedbulls,
+                       ps_input_file_purchasedreplacementheifers = s_input_file_purchasedreplacementheifers,
+                       ps_input_file_calving_statement = s_input_file_calving_statement,
+                       ps_input_file_calving = s_input_file_calving,
+                       ps_start_date = s_start_date,
+                       ps_end_date = s_end_date,
+                       ps_input_file_progeny_flp_statement = s_input_file_progeny_flp_statement,
+                       ps_input_file_flp = s_input_file_flp,
+                       ps_input_file_flp_carcass_matrix_statement = s_input_file_flp_carcass_matrix_statement,
+                       ps_input_file_price_cow = s_input_file_price_cow,
+                       ps_input_file_price_bull = s_input_file_price_bull,
+                       ps_input_file_price_heifer = s_input_file_price_heifer,
+                       pb_log = b_log)
 ```
 
 # Debugging
 
 ```{r}
-ps_sirebreed = s_sirebreed
-ps_prodsystew = s_prodsystew
-ps_marketchannel = s_marketingchannel
-ps_path_directory2create = s_path_directory2create
-ps_input_file_literature = s_input_file_literature
-ps_input_file_par = s_input_file_par
-ps_input_file_testedbulls = s_input_file_testedbulls
-ps_input_file_purchasedreplacementheifers = s_input_file_purchasedreplacementheifers
-ps_input_file_calving_statement = s_input_file_calving_statement
-ps_input_file_calving = s_input_file_calving
-ps_start_date = s_start_date
-ps_end_date = s_end_date
-ps_input_file_progeny_flp_statement = s_input_file_progeny_flp_statement
-ps_input_file_flp = s_input_file_flp
-ps_input_file_flp_carcass_matrix_statement = s_input_file_flp_carcass_matrix_statement
-ps_input_file_price_cow = s_input_file_price_cow
-ps_input_file_price_bull = s_input_file_price_bull
-ps_input_file_price_heifer = s_input_file_price_heifer
-pb_log = b_log
-plogger = NULL
+#ps_sirebreed = s_sirebreed
+#ps_prodsystew = s_prodsystew
+#ps_marketchannel = s_marketingchannel
+#ps_path_directory2create = s_path_directory2create
+#ps_input_file_literature = s_input_file_literature
+#ps_input_file_par = s_input_file_par
+#ps_input_file_testedbulls = s_input_file_testedbulls
+#ps_input_file_purchasedreplacementheifers = s_input_file_purchasedreplacementheifers
+#ps_input_file_calving_statement = s_input_file_calving_statement
+#ps_input_file_calving = s_input_file_calving
+#ps_start_date = s_start_date
+#ps_end_date = s_end_date
+#ps_input_file_progeny_flp_statement = s_input_file_progeny_flp_statement
+#ps_input_file_flp = s_input_file_flp
+#ps_input_file_flp_carcass_matrix_statement = s_input_file_flp_carcass_matrix_statement
+#ps_input_file_price_cow = s_input_file_price_cow
+#ps_input_file_price_bull = s_input_file_price_bull
+#ps_input_file_price_heifer = s_input_file_price_heifer
+#pb_log = b_log
+#plogger = NULL
 ```
 

@@ -1,0 +1,1667 @@
+INFO  [2022-06-21 16:20:59] pre_process_ewbc_input -- Starting function with parameters:
+ * ps_sirebreed: LM
+ * ps_prodsystew: 1
+ * ps_marketchannel: Natura-Beef
+ * ps_path_directory2create: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc
+ * ps_input_file_literature: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_literature.txt
+ * ps_input_file_par: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_par_statement.txt
+ * ps_input_file_testedbulls: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_testedbulls.txt
+ * ps_input_file_purchasedreplacementheifers: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_purchasedreplacementheifers.txt
+ * ps_input_file_calving_statement: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_calving_statement.txt
+ * ps_input_file_calving: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+ * ps_start_date: 20160101
+ * ps_end_date: 20211231
+
+INFO  [2022-06-21 16:20:59] create_directory_scenario -- Starting function with parameters:
+ * ps_sirebreed: LM
+ * ps_prodsystew: 1
+ * ps_marketchannel: Natura-Beef
+ * ps_path_directory2create: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc
+INFO  [2022-06-21 16:20:59] create_directory_scenario -- Define the name of the scenario:
+ * s_scenario: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef
+INFO  [2022-06-21 16:20:59] create_directory_scenario -- Create a directory for scenario:
+ * s_scenario: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef
+INFO  [2022-06-21 16:20:59] create_directory_scenario -- Copy the default input-parameter-files in the scenario directory based on the templates for ewbc
+
+INFO  [2022-06-21 16:20:59] read_file_input -- Starting function with parameters:
+ * ps_input_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_literature.txt
+INFO  [2022-06-21 16:20:59] read_file_input -- File exists:
+ * ps_input_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_literature.txt
+INFO  [2022-06-21 16:21:00] read_file_input -- Read file: 
+ * ps_input_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_literature.txt
+ * in a tibble
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 1
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 2
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 3
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 4
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 5
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 6
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 7
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 8
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 9
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 10
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 11
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 12
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 13
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 14
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 15
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 16
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 17
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 18
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 19
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 20
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 21
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 22
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 23
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 24
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 25
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 26
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 27
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 28
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 29
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 30
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 31
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 32
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 33
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 34
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 35
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 36
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 37
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 38
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 39
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 40
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 41
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 42
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 43
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 44
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 45
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 46
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 47
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 48
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 49
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 50
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 51
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 52
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 53
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 54
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 55
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 56
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 57
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 58
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 59
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 60
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 61
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 62
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 63
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 64
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 65
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 66
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 67
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 68
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 69
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 70
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 71
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 72
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 73
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 74
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 75
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 76
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 77
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 78
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 79
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 80
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 81
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 82
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 83
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 84
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 85
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 86
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 87
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 88
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 89
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 90
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 91
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 92
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 93
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 94
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 95
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 96
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 97
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 98
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 99
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 100
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 101
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 102
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 103
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 104
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 105
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 106
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 107
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 108
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 109
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 110
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 111
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 112
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 113
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 114
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 115
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 116
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 117
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 118
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 119
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 120
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 121
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the literature file:
+ * line number l: 122
+
+INFO  [2022-06-21 16:21:00] read_file_input -- Starting function with parameters:
+ * ps_input_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_par_statement.txt
+INFO  [2022-06-21 16:21:00] read_file_input -- File exists:
+ * ps_input_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_par_statement.txt
+INFO  [2022-06-21 16:21:00] read_file_input -- Read file: 
+ * ps_input_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_par_statement.txt
+ * in a tibble
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 1
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 2
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 3
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 4
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 5
+
+INFO  [2022-06-21 16:21:00] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 6
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 7
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 8
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 9
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 10
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 11
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 12
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 13
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 14
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 15
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 16
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 17
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number l: 18
+
+INFO  [2022-06-21 16:21:01] read_file_input -- Starting function with parameters:
+ * ps_input_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_testedbulls.txt
+INFO  [2022-06-21 16:21:01] read_file_input -- File exists:
+ * ps_input_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_testedbulls.txt
+INFO  [2022-06-21 16:21:01] read_file_input -- Read file: 
+ * ps_input_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_testedbulls.txt
+ * in a tibble
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 1
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 2
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 3
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 4
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 5
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 6
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 7
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 8
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 9
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 10
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 11
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 12
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 13
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 14
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 15
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 16
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 17
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 18
+
+INFO  [2022-06-21 16:21:01] pre_process_ewbc_input -- Updating parameter with input coming from the parameter file:
+ * line number m: 19
+
+INFO  [2022-06-21 16:21:01] pre_process_ew_input_calving -- Starting function with parameters:
+ * ps_sirebreed: LM
+ * ps_prodsystew: 1
+ * ps_marketchannel: Natura-Beef
+ * ps_path_directory2create: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc
+ * ps_input_file_calving_statement: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_calving_statement.txt
+ * ps_input_file_calving: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+ * ps_start_calving_date: 20160101
+ * ps_end_calving_date: 20211231
+
+INFO  [2022-06-21 16:21:01] read_file_input -- Starting function with parameters:
+ * ps_input_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_calving_statement.txt
+INFO  [2022-06-21 16:21:01] read_file_input -- File exists:
+ * ps_input_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_calving_statement.txt
+INFO  [2022-06-21 16:21:01] read_file_input -- Read file: 
+ * ps_input_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_calving_statement.txt
+ * in a tibble
+
+INFO  [2022-06-21 16:21:01] read_file_input_calving -- Starting function with parameters:
+ * ps_input_file_calving: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+ * ps_start_calving_date: 20160101
+ * ps_end_calving_date: 20211231
+INFO  [2022-06-21 16:21:01] read_file_input_calving -- File exists:
+ * ps_input_file_calving/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+INFO  [2022-06-21 16:21:01] read_file_input_calving -- Read file: 
+ * ps_input_file_calving: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+ * in a tibble
+INFO  [2022-06-21 16:21:01] read_file_input_calving -- All requested column-names in calving input file exist
+INFO  [2022-06-21 16:21:01] read_file_input_calving -- Considered data from input calving file from: 20160101 to 20211231
+INFO  [2022-06-21 16:21:01] calculate_abortion_rate -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+INFO  [2022-06-21 16:21:01] calculate_abortion_rate -- Only consider known calving score to calculate abortion rate
+INFO  [2022-06-21 16:21:01] calculate_abortion_rate -- A Tibble for primiparous has been created for the calculation of abortion rate 
+INFO  [2022-06-21 16:21:01] calculate_abortion_rate -- Abort information are available in the dataset so that abortion rate can be calculated
+INFO  [2022-06-21 16:21:01] calculate_abortion_rate -- abortion_rate is : 0.2
+INFO  [2022-06-21 16:21:01] calculate_abortion_rate -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+INFO  [2022-06-21 16:21:01] calculate_abortion_rate -- Only consider known calving score to calculate abortion rate
+INFO  [2022-06-21 16:21:01] calculate_abortion_rate -- A Tibble for multiparous has been created for the calculation of abortion rate 
+INFO  [2022-06-21 16:21:01] calculate_stillbirth_rate -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_statement_easycalving: TRUE
+INFO  [2022-06-21 16:21:01] calculate_stillbirth_rate -- A Tibble for easy calving has been created for the calculation of stillbirth rate 
+INFO  [2022-06-21 16:21:01] calculate_stillbirth_rate -- A Tibble for primiparous has been created for the calculation of stillbirth rate 
+INFO  [2022-06-21 16:21:01] calculate_stillbirth_rate -- Stillbirth information are available in the dataset so that stillbirth rate can be calculated
+INFO  [2022-06-21 16:21:01] calculate_stillbirth_rate -- stillbirth_rate is : 0.6667
+INFO  [2022-06-21 16:21:01] calculate_stillbirth_rate -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_statement_easycalving: TRUE
+INFO  [2022-06-21 16:21:01] calculate_stillbirth_rate -- A Tibble for easy calving has been created for the calculation of stillbirth rate 
+INFO  [2022-06-21 16:21:02] calculate_stillbirth_rate -- A Tibble for multiparous has been created for the calculation of stillbirth rate 
+INFO  [2022-06-21 16:21:02] calculate_stillbirth_rate -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_statement_easycalving: FALSE
+INFO  [2022-06-21 16:21:02] calculate_stillbirth_rate -- A Tibble for difficult calving has been created for the calculation of stillbirth rate 
+INFO  [2022-06-21 16:21:02] calculate_stillbirth_rate -- A Tibble for primiparous has been created for the calculation of stillbirth rate 
+INFO  [2022-06-21 16:21:02] calculate_stillbirth_rate -- Stillbirth information are available in the dataset so that stillbirth rate can be calculated
+INFO  [2022-06-21 16:21:02] calculate_stillbirth_rate -- stillbirth_rate is : 1
+INFO  [2022-06-21 16:21:02] calculate_stillbirth_rate -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_statement_easycalving: FALSE
+INFO  [2022-06-21 16:21:02] calculate_stillbirth_rate -- A Tibble for difficult calving has been created for the calculation of stillbirth rate 
+INFO  [2022-06-21 16:21:02] calculate_stillbirth_rate -- A Tibble for multiparous has been created for the calculation of stillbirth rate 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_breed: LM
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-21 16:21:02] calculate_stillbirth_rate -- calving score 2 proportion is : 0.5
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_breed: LM
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-21 16:21:02] calculate_stillbirth_rate -- calving score 3 proportion is : 0.5
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_breed: LM
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_breed: LM
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_breed: LM
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_breed: LM
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_breed: LM
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_breed: LM
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-21 16:21:02] calculate_stillbirth_rate -- calving score 3 proportion is : 0.3333
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_breed: LM
+ * ps_sex: M
+ * ps_calvingscore: 4
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_breed: LM
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_breed: LM
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_breed: LM
+ * ps_sex: M
+ * ps_calvingscore: 4
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-21 16:21:02] calculate_calvesdied24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_statement_easycalving: TRUE
+INFO  [2022-06-21 16:21:02] calculate_calvesdied24h_proportion -- A Tibble for easy calving has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-21 16:21:02] calculate_calvesdied24h_proportion -- A Tibble for primiparous has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-21 16:21:02] calculate_calvesdied24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_statement_easycalving: TRUE
+INFO  [2022-06-21 16:21:02] calculate_calvesdied24h_proportion -- A Tibble for easy calving has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-21 16:21:02] calculate_calvesdied24h_proportion -- A Tibble for multiparous has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-21 16:21:03] calculate_calvesdied24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_statement_easycalving: FALSE
+INFO  [2022-06-21 16:21:03] calculate_calvesdied24h_proportion -- A Tibble for difficult calving has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-21 16:21:03] calculate_calvesdied24h_proportion -- A Tibble for primiparous has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-21 16:21:03] calculate_calvesdied24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_statement_easycalving: FALSE
+INFO  [2022-06-21 16:21:03] calculate_calvesdied24h_proportion -- A Tibble for difficult calving has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-21 16:21:03] calculate_calvesdied24h_proportion -- A Tibble for multiparous has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-21 16:21:03] calculate_calvesdiedafter24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble
+INFO  [2022-06-21 16:21:03] calculate_calvesdiedafter24h_proportion -- A Tibble has been created for the calculation of proportion of calves died after 24h
+INFO  [2022-06-21 16:21:03] pre_process_ewbc_input -- Updating parameter with input coming from the calving file 
+INFO  [2022-06-21 16:21:03] pre_process_ew_input_progeny_data_flp -- Starting function with parameters:
+ * ps_sirebreed: LM
+ * ps_prodsystew: 1
+ * ps_marketchannel: Natura-Beef
+ * ps_path_directory2create: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc
+ * ps_input_file_progeny_flp_statement: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_flp_statement.txt
+ * ps_input_file_flp: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_flp.csv
+ * ps_start_flp_date: 20160101
+ * ps_end_flp_date: 20211231
+
+INFO  [2022-06-21 16:21:03] read_file_input -- Starting function with parameters:
+ * ps_input_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_flp_statement.txt
+INFO  [2022-06-21 16:21:03] read_file_input -- File exists:
+ * ps_input_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_flp_statement.txt
+INFO  [2022-06-21 16:21:03] read_file_input -- Read file: 
+ * ps_input_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_flp_statement.txt
+ * in a tibble
+
+INFO  [2022-06-21 16:21:03] read_file_input_flp -- Starting function with parameters:
+ * ps_input_file_flp: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_flp.csv
+ * ps_start_flp_date: 20160101
+ * ps_end_flp_date: 20211231
+ * ps_sirebreed: LM
+INFO  [2022-06-21 16:21:03] read_file_input_flp -- File exists:
+ * ps_input_file_flp/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_flp.csv
+INFO  [2022-06-21 16:21:03] read_file_input_flp -- Read file: 
+ * ps_input_file_flp: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_flp.csv
+ * in a tibble
+INFO  [2022-06-21 16:21:03] read_file_input_flp -- All requested column-names in flp input file exist
+INFO  [2022-06-21 16:21:03] read_file_input_flp -- Considered data from input flp file from: 20160101 to 20211231
+INFO  [2022-06-21 16:21:03] read_file_input_flp -- Considered data from input flp file from the breed: LM
+INFO  [2022-06-21 16:21:03] read_file_input_flp -- calculate age at slaughter in days
+INFO  [2022-06-21 16:21:03] read_file_input_flp -- calculate age at weaning in days
+INFO  [2022-06-21 16:21:03] calculate_mean_birthweight -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: F
+ * ps_marketing_channel: 2
+
+INFO  [2022-06-21 16:21:03] calculate_mean_birthweight -- A Tibble for female has been created for the calculation of mean birthweight 
+INFO  [2022-06-21 16:21:03] calculate_mean_birthweight -- Mean birthweight for F is : NaN
+INFO  [2022-06-21 16:21:03] calculate_mean_birthweight -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: M
+ * ps_marketing_channel: 2
+
+INFO  [2022-06-21 16:21:03] calculate_mean_birthweight -- A Tibble for male has been created for the calculation of mean birthweight 
+INFO  [2022-06-21 16:21:03] calculate_mean_birthweight -- Mean birthweight for M is : NaN
+INFO  [2022-06-21 16:21:03] calculate_mean_liveweight_slaughter -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: F
+ * ps_marketing_channel: 2
+
+INFO  [2022-06-21 16:21:03] calculate_mean_liveweight_slaughter -- A Tibble for female has been created for the calculation of mean live weight at slaughter 
+INFO  [2022-06-21 16:21:03] calculate_mean_liveweight_slaughter -- Mean live weight at slaughter for F is : NaN based on mean carcass weight: NaN
+INFO  [2022-06-21 16:21:03] calculate_mean_liveweight_slaughter -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: M
+ * ps_marketing_channel: 2
+
+INFO  [2022-06-21 16:21:03] calculate_mean_liveweight_slaughter -- A Tibble for male has been created for the calculation of mean live weight at slaughter 
+INFO  [2022-06-21 16:21:03] calculate_mean_liveweight_slaughter -- Mean live weight at slaughter for M is : NaN based on mean carcass weight: NaN
+INFO  [2022-06-21 16:21:03] calculate_mean_weaningweight -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: F
+ * ps_marketing_channel: 2
+
+INFO  [2022-06-21 16:21:03] calculate_mean_weaningweight -- A Tibble for female has been created for the calculation of mean weaning weight 
+INFO  [2022-06-21 16:21:03] calculate_mean_weaningweight -- Mean weaning weight for F is : NaN
+INFO  [2022-06-21 16:21:03] calculate_mean_weaningweight -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: M
+ * ps_marketing_channel: 2
+
+INFO  [2022-06-21 16:21:03] calculate_mean_weaningweight -- A Tibble for male has been created for the calculation of mean weaning weight 
+INFO  [2022-06-21 16:21:03] calculate_mean_weaningweight -- Mean weaning weight for M is : NaN
+INFO  [2022-06-21 16:21:03] calculate_mean_weaningage -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: F
+ * ps_marketing_channel: 2
+
+INFO  [2022-06-21 16:21:03] calculate_mean_weaningage -- A Tibble for female has been created for the calculation of mean weaning age 
+INFO  [2022-06-21 16:21:03] calculate_mean_weaningage -- Mean weaning age for F is : NaN
+INFO  [2022-06-21 16:21:03] calculate_mean_weaningage -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: M
+ * ps_marketing_channel: 2
+
+INFO  [2022-06-21 16:21:04] calculate_mean_weaningage -- A Tibble for male has been created for the calculation of mean weaning age 
+INFO  [2022-06-21 16:21:04] calculate_mean_weaningage -- Mean weaning age for M is : NaN
+INFO  [2022-06-21 16:21:04] calculate_mean_slaughterage -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: F
+ * ps_marketing_channel: 2
+
+INFO  [2022-06-21 16:21:04] calculate_mean_slaughterage -- A Tibble for female has been created for the calculation of mean slaughter age 
+INFO  [2022-06-21 16:21:04] calculate_mean_slaughterage -- Mean slaughter age for F is : NaN
+INFO  [2022-06-21 16:21:04] calculate_mean_slaughterage -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: M
+ * ps_marketing_channel: 2
+
+INFO  [2022-06-21 16:21:04] calculate_mean_slaughterage -- A Tibble for male has been created for the calculation of mean slaughter age 
+INFO  [2022-06-21 16:21:04] calculate_mean_slaughterage -- Mean slaughter age for M is : NaN
+INFO  [2022-06-21 16:21:04] calculate_dailygain -- Starting function with parameters:
+ * pv_mean_slaughterage: NaN
+ * pv_mean_weaningage: NaN
+ * pv_mean_livewt_atslaughter: NaN
+ * pv_mean_weaningwt: NaN
+INFO  [2022-06-21 16:21:04] calculate_dailygain -- Fattening days: NaN is the difference between pv_mean_slaughterage NaN and pv_mean_weaningage NaN
+INFO  [2022-06-21 16:21:04] calculate_dailygain -- Fattening weight: NaN is the difference between pv_mean_livewt_atslaughter NaN and pv_mean_weaningwt NaN
+INFO  [2022-06-21 16:21:04] calculate_dailygain -- Daily gain during fattening is : NaN
+INFO  [2022-06-21 16:21:04] calculate_dailygain -- Starting function with parameters:
+ * pv_mean_slaughterage: NaN
+ * pv_mean_weaningage: NaN
+ * pv_mean_livewt_atslaughter: NaN
+ * pv_mean_weaningwt: NaN
+INFO  [2022-06-21 16:21:04] calculate_dailygain -- Fattening days: NaN is the difference between pv_mean_slaughterage NaN and pv_mean_weaningage NaN
+INFO  [2022-06-21 16:21:04] calculate_dailygain -- Fattening weight: NaN is the difference between pv_mean_livewt_atslaughter NaN and pv_mean_weaningwt NaN
+INFO  [2022-06-21 16:21:04] calculate_dailygain -- Daily gain during fattening is : NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Starting function with parameters:
+ * pv_mean_weaningage: NaN
+ * pv_daily_gain: NaN
+ * pv_mean_weaningwt: NaN
+ * pv_t_days: 300
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning days: NaN is the difference between pv_t_days 300 and pv_mean_weaningage NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning weight: NaN is based on pv_mean_weaningwt NaN , extrapolatedweaning_days NaN and pv_daily_gain NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning weight is : NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Starting function with parameters:
+ * pv_mean_weaningage: NaN
+ * pv_daily_gain: NaN
+ * pv_mean_weaningwt: NaN
+ * pv_t_days: 300
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning days: NaN is the difference between pv_t_days 300 and pv_mean_weaningage NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning weight: NaN is based on pv_mean_weaningwt NaN , extrapolatedweaning_days NaN and pv_daily_gain NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning weight is : NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Starting function with parameters:
+ * pv_mean_weaningage: NaN
+ * pv_daily_gain: NaN
+ * pv_mean_weaningwt: NaN
+ * pv_t_days: 302
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning days: NaN is the difference between pv_t_days 302 and pv_mean_weaningage NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning weight: NaN is based on pv_mean_weaningwt NaN , extrapolatedweaning_days NaN and pv_daily_gain NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning weight is : NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Starting function with parameters:
+ * pv_mean_weaningage: NaN
+ * pv_daily_gain: NaN
+ * pv_mean_weaningwt: NaN
+ * pv_t_days: 302
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning days: NaN is the difference between pv_t_days 302 and pv_mean_weaningage NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning weight: NaN is based on pv_mean_weaningwt NaN , extrapolatedweaning_days NaN and pv_daily_gain NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning weight is : NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Starting function with parameters:
+ * pv_mean_weaningage: NaN
+ * pv_daily_gain: NaN
+ * pv_mean_weaningwt: NaN
+ * pv_t_days: 304
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning days: NaN is the difference between pv_t_days 304 and pv_mean_weaningage NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning weight: NaN is based on pv_mean_weaningwt NaN , extrapolatedweaning_days NaN and pv_daily_gain NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning weight is : NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Starting function with parameters:
+ * pv_mean_weaningage: NaN
+ * pv_daily_gain: NaN
+ * pv_mean_weaningwt: NaN
+ * pv_t_days: 304
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning days: NaN is the difference between pv_t_days 304 and pv_mean_weaningage NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning weight: NaN is based on pv_mean_weaningwt NaN , extrapolatedweaning_days NaN and pv_daily_gain NaN
+INFO  [2022-06-21 16:21:04] calculate_extrapolated_weaningweight -- Extrapolated weaning weight is : NaN
+INFO  [2022-06-21 16:21:04] calculate_cow_liveweight -- Starting function with parameters:
+ * ps_input_flp_tibble: 
+ * ps_second_calvingweight: TRUE
+INFO  [2022-06-21 16:21:04] calculate_cow_liveweight -- Mean cow live weight at slaughter is : 656 based on mean cow carcass weight: 367.4
+INFO  [2022-06-21 16:21:04] calculate_cow_liveweight -- Starting function with parameters:
+ * ps_input_flp_tibble: 
+ * ps_second_calvingweight: FALSE
+INFO  [2022-06-21 16:21:04] calculate_cow_liveweight -- Mean cow live weight at slaughter is : NaN based on mean cow carcass weight: NaN
+INFO  [2022-06-21 16:21:04] calculate_bull_liveweight -- Starting function with parameters:
+ * ps_input_flp_tibble
+INFO  [2022-06-21 16:21:04] calculate_bull_liveweight -- Mean bull live weight at slaughter is : NaN based on mean bull carcass weight: NaN
+INFO  [2022-06-21 16:21:04] calculate_cow_liveweight -- Starting function with parameters:
+ * ps_input_flp_tibble: 
+ * ps_second_calvingweight: FALSE
+INFO  [2022-06-21 16:21:04] calculate_cow_liveweight -- Mean cow live weight at slaughter is : 512 based on mean cow carcass weight: 286.8
+INFO  [2022-06-21 16:21:04] pre_process_ewbc_input -- Updating parameter with input coming from the progeny data flp file 
+INFO  [2022-06-21 16:21:04] pre_process_ew_input_carcass_data_flp -- Starting function with parameters:
+ * ps_sirebreed: LM
+ * ps_prodsystew: 1
+ * ps_marketchannel: Natura-Beef
+ * ps_path_directory2create: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc
+ * ps_input_file_flp_carcass_matrix_statement: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_flp_carcass_matrix_statement.txt
+ * ps_input_file_flp: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_flp.csv
+ * ps_start_flp_date: 20160101
+ * ps_end_flp_date: 20211231
+ * ps_input_file_price_cow: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/cow_price.txt
+ * ps_input_file_price_bull: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/bull_price.txt
+ * ps_input_file_price_heifer: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/heifer_price.txt
+INFO  [2022-06-21 16:21:04] read_file_input -- Starting function with parameters:
+ * ps_input_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_flp_carcass_matrix_statement.txt
+INFO  [2022-06-21 16:21:04] read_file_input -- File exists:
+ * ps_input_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_flp_carcass_matrix_statement.txt
+INFO  [2022-06-21 16:21:04] read_file_input -- Read file: 
+ * ps_input_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/input_flp_carcass_matrix_statement.txt
+ * in a tibble
+
+INFO  [2022-06-21 16:21:04] read_file_input_flp -- Starting function with parameters:
+ * ps_input_file_flp: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_flp.csv
+ * ps_start_flp_date: 20160101
+ * ps_end_flp_date: 20211231
+ * ps_sirebreed: LM
+INFO  [2022-06-21 16:21:04] read_file_input_flp -- File exists:
+ * ps_input_file_flp/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_flp.csv
+INFO  [2022-06-21 16:21:04] read_file_input_flp -- Read file: 
+ * ps_input_file_flp: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_flp.csv
+ * in a tibble
+INFO  [2022-06-21 16:21:04] read_file_input_flp -- All requested column-names in flp input file exist
+INFO  [2022-06-21 16:21:04] read_file_input_flp -- Considered data from input flp file from: 20160101 to 20211231
+INFO  [2022-06-21 16:21:04] read_file_input_flp -- Considered data from input flp file from the breed: LM
+INFO  [2022-06-21 16:21:04] read_file_input_flp -- calculate age at slaughter in days
+INFO  [2022-06-21 16:21:04] read_file_input_flp -- calculate age at weaning in days
+INFO  [2022-06-21 16:21:04] build_freq_conf_fat -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: F
+ * ps_marketing_channel: 
+ * ps_flag_cow: TRUE
+INFO  [2022-06-21 16:21:04] build_freq_conf_fat -- A Tibble for cow has been created for build frequencies of conformation and fat
+INFO  [2022-06-21 16:21:04] build_freq_conf_fat -- A matrix has been created based on the count for conformationXfat
+INFO  [2022-06-21 16:21:04] build_freq_conf_fat -- A matrix has been updated based on the frequencies for conformationXfat
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 50 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 32
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 50 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 30
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 32
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 29
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 32
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 28
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 32
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 27
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 32
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 26
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 32
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 25
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 32
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 24
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 32
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 23
+
+INFO  [2022-06-21 16:21:04] build_freq_conf_fat -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: F
+ * ps_marketing_channel: Natura-Beef
+ * ps_flag_cow: FALSE
+INFO  [2022-06-21 16:21:04] build_freq_conf_fat -- A Tibble for female has been created for build frequencies of conformation and fat
+INFO  [2022-06-21 16:21:04] build_freq_conf_fat -- A matrix has been created based on the count for conformationXfat
+INFO  [2022-06-21 16:21:04] build_freq_conf_fat -- A matrix has been updated based on the frequencies for conformationXfat
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * Find statement on vector-line: 25
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * on vector-line: 23
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * Find statement on vector-line: 25
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * on vector-line: 22
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * Find statement on vector-line: 25
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * on vector-line: 21
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * Find statement on vector-line: 25
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * on vector-line: 20
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * Find statement on vector-line: 25
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * on vector-line: 19
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * Find statement on vector-line: 25
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * on vector-line: 18
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * Find statement on vector-line: 25
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * on vector-line: 17
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * Find statement on vector-line: 25
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+ * on vector-line: 16
+
+INFO  [2022-06-21 16:21:04] build_freq_conf_fat -- Starting function with parameters:
+ * ps_input_flp_tibble 
+ * ps_sex: M
+ * ps_marketing_channel: Natura-Beef
+ * ps_flag_cow: FALSE
+INFO  [2022-06-21 16:21:04] build_freq_conf_fat -- A Tibble for male has been created for build frequencies of conformation and fat
+INFO  [2022-06-21 16:21:04] build_freq_conf_fat -- A matrix has been created based on the count for conformationXfat
+INFO  [2022-06-21 16:21:04] build_freq_conf_fat -- A matrix has been updated based on the frequencies for conformationXfat
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 21
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 19
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 21
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 18
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 21
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 17
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 21
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 16
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 21
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 15
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 21
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 14
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 21
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 13
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * Find statement on vector-line: 21
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+ * on vector-line: 12
+
+INFO  [2022-06-21 16:21:04] read_price_conf_fat -- Starting function with parameters:
+ * ps_input_file_price: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/cow_price.txt
+
+INFO  [2022-06-21 16:21:04] read_price_conf_fat -- File exists:
+ * ps_input_file_price/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/cow_price.txt
+INFO  [2022-06-21 16:21:04] read_price_conf_fat -- Read file: 
+ * ps_input_file_price: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/cow_price.txt
+ * in a tibble
+INFO  [2022-06-21 16:21:04] read_price_conf_fat -- calculate coefficient matrice of the price
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.9529 0.9738 0.9738 0.9424 0.9005
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 54
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.9529 0.9738 0.9738 0.9424 0.9005
+ * of the statement ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 52
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.9319 0.9529 0.9529 0.9215 0.8796
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 54
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.9319 0.9529 0.9529 0.9215 0.8796
+ * of the statement ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 51
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.911 0.9319 0.9319 0.9005 0.8586
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 54
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.911 0.9319 0.9319 0.9005 0.8586
+ * of the statement ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 50
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.8743 0.8953 0.8953 0.8639 0.822
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 54
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.8743 0.8953 0.8953 0.8639 0.822
+ * of the statement ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 49
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.7958 0.8272 0.8377 0.8063 0.7644
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 54
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.7958 0.8272 0.8377 0.8063 0.7644
+ * of the statement ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 48
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.7277 0.7592 0.7696 0.7382 0.6963
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 54
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.7277 0.7592 0.7696 0.7382 0.6963
+ * of the statement ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 47
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.6806 0.712 0.7225 0.6911 0.6492
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 54
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.6806 0.712 0.7225 0.6911 0.6492
+ * of the statement ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 46
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.6335 0.6649 0.6754 0.644 0.6021
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 54
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.6335 0.6649 0.6754 0.644 0.6021
+ * of the statement ps_statement2search: Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 45
+
+INFO  [2022-06-21 16:21:04] read_price_conf_fat -- Starting function with parameters:
+ * ps_input_file_price: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/bull_price.txt
+
+INFO  [2022-06-21 16:21:04] read_price_conf_fat -- File exists:
+ * ps_input_file_price/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/bull_price.txt
+INFO  [2022-06-21 16:21:04] read_price_conf_fat -- Read file: 
+ * ps_input_file_price: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/bull_price.txt
+ * in a tibble
+INFO  [2022-06-21 16:21:04] read_price_conf_fat -- calculate coefficient matrice of the price
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.7673 0.9469 0.9714 0.9551 0.7673
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 43
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.7673 0.9469 0.9714 0.9551 0.7673
+ * of the statement ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 41
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.751 0.9306 0.9551 0.9388 0.751
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 43
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.751 0.9306 0.9551 0.9388 0.751
+ * of the statement ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 40
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.7347 0.9143 0.9388 0.9224 0.7347
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 43
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.7347 0.9143 0.9388 0.9224 0.7347
+ * of the statement ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 39
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.7184 0.7673 0.7918 0.7673 0.7184
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 43
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.7184 0.7673 0.7918 0.7673 0.7184
+ * of the statement ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 38
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.6857 0.7347 0.7592 0.7347 0.6857
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 43
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.6857 0.7347 0.7592 0.7347 0.6857
+ * of the statement ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 37
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.6612 0.7102 0.7347 0.7102 0.6612
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 43
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.6612 0.7102 0.7347 0.7102 0.6612
+ * of the statement ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 36
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.6286 0.6776 0.702 0.6776 0.6286
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 43
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.6286 0.6776 0.702 0.6776 0.6286
+ * of the statement ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 35
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * ps_value2update: 0.5918 0.6408 0.6653 0.6408 0.5918
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT16.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * Find statement on vector-line: 43
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.5918 0.6408 0.6653 0.6408 0.5918
+ * of the statement ps_statement2search: Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+ * on vector-line: 34
+
+INFO  [2022-06-21 16:21:04] read_price_conf_fat -- Starting function with parameters:
+ * ps_input_file_price: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/heifer_price.txt
+
+INFO  [2022-06-21 16:21:04] read_price_conf_fat -- File exists:
+ * ps_input_file_price/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/heifer_price.txt
+INFO  [2022-06-21 16:21:04] read_price_conf_fat -- Read file: 
+ * ps_input_file_price: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/heifer_price.txt
+ * in a tibble
+INFO  [2022-06-21 16:21:04] read_price_conf_fat -- calculate coefficient matrice of the price
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * ps_value2update: 0.7673 0.9469 0.9714 0.9551 0.7673
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * Find statement on vector-line: 47
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.7673 0.9469 0.9714 0.9551 0.7673
+ * of the statement ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * on vector-line: 45
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * ps_value2update: 0.751 0.9306 0.9551 0.9388 0.751
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * Find statement on vector-line: 47
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.751 0.9306 0.9551 0.9388 0.751
+ * of the statement ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * on vector-line: 44
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * ps_value2update: 0.7347 0.9143 0.9388 0.9224 0.7347
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * Find statement on vector-line: 47
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.7347 0.9143 0.9388 0.9224 0.7347
+ * of the statement ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * on vector-line: 43
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * ps_value2update: 0.7184 0.7673 0.7918 0.7673 0.7184
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * Find statement on vector-line: 47
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0.7184 0.7673 0.7918 0.7673 0.7184
+ * of the statement ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * on vector-line: 42
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * Find statement on vector-line: 47
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * on vector-line: 41
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * Find statement on vector-line: 47
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * on vector-line: 40
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * Find statement on vector-line: 47
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * on vector-line: 39
+
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Starting function with parameters:
+ * ps_path2template_input_parameter_file: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * ps_value2update: 0 0 0 0 0
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- File exists:
+ * ps_path2template_input_parameter_file/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/LM_1_Natura-Beef/INPUT17.TXT
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Surch:
+ * ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * Find statement on vector-line: 47
+INFO  [2022-06-21 16:21:04] update_input_parameter_file -- Update the value:
+ * ps_value2update: 0 0 0 0 0
+ * of the statement ps_statement2search: Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+ * on vector-line: 38
+
+INFO  [2022-06-21 16:21:04] pre_process_ewbc_input -- Updating parameter with input coming from the conformation & fat scores, prices 

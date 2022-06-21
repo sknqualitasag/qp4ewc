@@ -6,6 +6,7 @@
 \usage{
 calculate_cow_liveweight(
   ps_input_flp_tibble,
+  ps_first_calvingweight,
   ps_second_calvingweight,
   pb_log = FALSE,
   plogger = NULL
@@ -14,7 +15,9 @@ calculate_cow_liveweight(
 \arguments{
 \item{ps_input_flp_tibble}{input flp tibble coming from read_file_input_flp in this package}
 
-\item{ps_second_calvingweight}{flag to calculate second calving weight (TRUE or FALSE = calculate mature weight of cow)}
+\item{ps_first_calvingweight}{flag to calculate first calving weight (TRUE or FALSE)}
+
+\item{ps_second_calvingweight}{flag to calculate second calving weight (TRUE or FALSE)}
 
 \item{pb_log}{indicator whether logs should be produced}
 

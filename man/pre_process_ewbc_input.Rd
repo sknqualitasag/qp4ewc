@@ -11,6 +11,8 @@ pre_process_ewbc_input(
   ps_path_directory2create,
   ps_input_file_literature,
   ps_input_file_par,
+  ps_input_file_testedbulls,
+  ps_input_file_purchasedreplacementheifers,
   ps_input_file_calving_statement,
   ps_input_file_calving,
   ps_start_date,
@@ -37,6 +39,10 @@ pre_process_ewbc_input(
 \item{ps_input_file_literature}{path to file with input coming from literature for the input-parameter-file for ECOWEIGHT}
 
 \item{ps_input_file_par}{path to file with input as parameter for each scenanario for the input-parameter-file for ECOWEIGHT}
+
+\item{ps_input_file_testedbulls}{path to file with input for ProdSyst 1 (tested bulls) for the input-parameter-file for ECOWEIGHT}
+
+\item{ps_input_file_purchasedreplacementheifers}{path to file with input for ProdSyst 3 (purchased replacement heifers) for the input-parameter-file for ECOWEIGHT}
 
 \item{ps_input_file_calving_statement}{path to file with statement based on calving for the input-parameter-file for ECOWEIGHT}
 
