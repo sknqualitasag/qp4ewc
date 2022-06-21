@@ -41,6 +41,8 @@ s_input_file_literature <- file.path(here::here(),"inst","extdata","ewbc","input
 s_input_file_par <- file.path(here::here(),"inst","extdata","ewbc","input_par_statement.txt")
 # Path to specific input for ProdSyst1 for tested bulls
 s_input_file_testedbulls <- file.path(here::here(),"inst","extdata","ewbc","input_testedbulls.txt")
+# Path to specific input for ProdSyst3 for replacement progeny heifers
+s_input_file_purchasedreplacementheifers  <- file.path(here::here(),"inst","extdata","ewbc","input_purchasedreplacementheifers.txt")
 # Path to input from the calving. Based on this example an other file can be created with different input-values.
 s_input_file_calving_statement <- file.path(here::here(),"inst","extdata","ewbc","input_calving_statement.txt")
 # Path to calving data file
@@ -114,6 +116,7 @@ ps_path_directory2create = s_path_directory2create
 ps_input_file_literature = s_input_file_literature
 ps_input_file_par = s_input_file_par
 ps_input_file_testedbulls = s_input_file_testedbulls
+ps_input_file_purchasedreplacementheifers = s_input_file_purchasedreplacementheifers
 ps_input_file_calving_statement = s_input_file_calving_statement
 ps_input_file_calving = s_input_file_calving
 ps_start_date = s_start_date
