@@ -1,0 +1,22 @@
+input_file;input;input_unit;input_value
+INPUT14.TXT;"Age of female for replacement at purchase";"days";852
+INPUT14.TXT;"Weight of female for replacement at purchase";"kg";688
+INPUT14.TXT;"Days of pregnancy of purchased females for replacement";"days";213
+INPUT14.TXT;"Age of cows at first calving";"days";912
+INPUT14.TXT;"Amount of straw per replacement heifer per day during feeding season with code 1";"kg/day";3.5
+INPUT14.TXT;"Amount of straw per replacement heifer per day during feeding season with code 2";"kg/day";0
+INPUT14.TXT;"Amount of dung per replacement heifer per day during feeding season with code 1";"kg/day";0
+INPUT14.TXT;"Amount of dung per replacement heifer per day during feeding season with code 2";"kg/day";0
+INPUT14.TXT;"Amount of minerals per replacement heifer and day";"kg";0.2
+INPUT14.TXT;"Amount of water per replacement heifer and day";"l/day";35
+INPUT14.TXT;"Dry matter per kg feed ration with code 1 for replacement heifers";"kg/kg";0.57
+INPUT14.TXT;"Dry matter per kg feed ration with code 1 for replacement heifers";"kg/kg";0.24
+INPUT14.TXT;"Net energy content per kg dry matter of feed ration of code 1 for replacement heifers";"MJ NE/kg dry matter";5.5
+INPUT14.TXT;"Net energy content per kg dry matter of feed ration of code 2 for replacement heifers";"MJ NE/kg dry matter";6.1
+INPUT14.TXT;"Protein content per kg dry matter of feed ration of code 1 for replacement heifers";"g PDI/kg";78.3
+INPUT14.TXT;"Protein content per kg dry matter of feed ration of code 2 for replacement heifers";"g PDI/kg";98.2
+INPUT14.TXT;"Price per kg fresh matter of feed ration of code 1 for replacement heifers";"MU/kg";0.09
+INPUT14.TXT;"Price per kg fresh matter of feed ration of code 2 for replacement heifers";"MU/kg";0.02
+INPUT14.TXT;"Price per kg live weight of replacement heifers at purchase";"MU/animal";6
+INPUT14.TXT;"Fixed cost from purchase to calving per replacement heifer and day";"MU/day";4.9
+INPUT14.TXT;"Cost for veterinary treatment per replacement heifer from purchase to calving";"MU/animal";46.5

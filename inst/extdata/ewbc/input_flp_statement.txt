@@ -17,3 +17,5 @@ INPUT06.TXT;"Weight of male calves at third weighing";"kg";492
 INPUT03.TXT;"Cow weight after second calving";"kg";670
 INPUT03.TXT;"Mature weight of cows (= cow weight after 3rd calving)";"kg";700
 INPUT06.TXT;"Mature weight of bulls used in the herd";"kg";1050
+INPUT14.TXT;"Weight of cows after 1st calving";"kg";650
+INPUT14.TXT;"Weight of cows after 2nd calving";"kg";700

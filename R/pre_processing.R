@@ -21,6 +21,7 @@
 #' @param ps_input_file_literature path to file with input coming from literature for the input-parameter-file for ECOWEIGHT
 #' @param ps_input_file_par path to file with input as parameter for each scenanario for the input-parameter-file for ECOWEIGHT
 #' @param ps_input_file_testedbulls path to file with input for ProdSyst 1 (tested bulls) for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file_purchasedreplacementheifers path to file with input for ProdSyst 3 (purchased replacement heifers) for the input-parameter-file for ECOWEIGHT
 #' @param ps_input_file_calving_statement path to file with statement based on calving for the input-parameter-file for ECOWEIGHT
 #' @param ps_input_file_calving path to file with input coming from calving for the input-parameter-file for ECOWEIGHT
 #' @param ps_start_date setting the start of the calving date to filter in the calving data
@@ -42,6 +43,7 @@ pre_process_ewbc_input <- function(ps_sirebreed,
                                  ps_input_file_literature,
                                  ps_input_file_par,
                                  ps_input_file_testedbulls,
+                                 ps_input_file_purchasedreplacementheifers,
                                  ps_input_file_calving_statement,
                                  ps_input_file_calving,
                                  ps_start_date,
@@ -71,6 +73,7 @@ pre_process_ewbc_input <- function(ps_sirebreed,
                            ' * ps_input_file_literature: ', ps_input_file_literature, '\n',
                            ' * ps_input_file_par: ',ps_input_file_par,'\n',
                            ' * ps_input_file_testedbulls: ',ps_input_file_testedbulls,'\n',
+                           ' * ps_input_file_purchasedreplacementheifers: ',ps_input_file_purchasedreplacementheifers,'\n',
                            ' * ps_input_file_calving_statement: ',ps_input_file_calving_statement, '\n',
                            ' * ps_input_file_calving: ', ps_input_file_calving, '\n',
                            ' * ps_start_date: ',ps_start_date,'\n',
@@ -275,6 +278,25 @@ pre_process_ewbc_input <- function(ps_sirebreed,
       qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_testedbull[l,1]),
                                           ps_statement2search = tbl_input_testedbull[l,2],
                                           ps_value2update = tbl_input_testedbull[l,4]$input_value,
+                                          pb_log,
+                                          plogger = lgr)
+    }
+  }
+
+
+  ### # If productionsystem 3 :Read file with input from purchased replacement heifers for input-parameter-file of ECOWEIGHT
+  if(ps_prodsystew == as.character(3)){
+    tbl_input_purchasedreplacementheifers <- qp4ewc::read_file_input(ps_input_file_purchasedreplacementheifers,
+                                                    pb_log,
+                                                    plogger = lgr)
+    for(r in 1:nrow(tbl_input_purchasedreplacementheifers)){
+      if(pb_log){
+        qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
+                        paste0('Updating parameter with input coming from the parameter file:\n * line number r: ', r, '\n'))
+      }
+      qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_purchasedreplacementheifers[l,1]),
+                                          ps_statement2search = tbl_input_purchasedreplacementheifers[l,2],
+                                          ps_value2update = tbl_input_purchasedreplacementheifers[l,4]$input_value,
                                           pb_log,
                                           plogger = lgr)
     }
@@ -1188,6 +1210,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
   # Update statement-progeny-flp-input from the data by calculating cow weight after second calving
   second_calving_wt <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_flp,
+                                                        ps_first_calvingweight = FALSE,
                                                         ps_second_calvingweight = TRUE,
                                                         pb_log,
                                                         plogger = lgr)
@@ -1196,10 +1219,16 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                       ps_value2update = second_calving_wt,
                                       pb_log,
                                       plogger = lgr)
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[20,1]),
+                                      ps_statement2search = tbl_input_statement_flp[20,2],
+                                      ps_value2update = second_calving_wt,
+                                      pb_log,
+                                      plogger = lgr)
 
 
   # Update statement-progeny-flp-input from the data by calculating mature cow weight
   mature_weight_cow <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_flp,
+                                                        ps_first_calvingweight = FALSE,
                                                         ps_second_calvingweight = FALSE,
                                                         pb_log,
                                                         plogger = lgr)
@@ -1220,6 +1249,18 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                       pb_log,
                                       plogger = lgr)
 
+
+  # Update statement-progeny-flp-input from the data by calculating cow weight after 1st calving
+  first_calving_wt <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_flp,
+                                                       ps_first_calvingweight = TRUE,
+                                                       ps_second_calvingweight = FALSE,
+                                                       pb_log,
+                                                       plogger = lgr)
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp[19,1]),
+                                      ps_statement2search = tbl_input_statement_flp[19,2],
+                                      ps_value2update = first_calving_wt,
+                                      pb_log,
+                                      plogger = lgr)
 
 
 }

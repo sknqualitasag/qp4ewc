@@ -584,7 +584,8 @@ calculate_extrapolated_weaningweight <- function(pv_mean_weaningage,
 #' need input parameter files. This function will calculate cow live weight
 #'
 #' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
-#' @param ps_second_calvingweight flag to calculate second calving weight (TRUE or FALSE = calculate mature weight of cow)
+#' @param ps_first_calvingweight flag to calculate first calving weight (TRUE or FALSE)
+#' @param ps_second_calvingweight flag to calculate second calving weight (TRUE or FALSE)
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -594,6 +595,7 @@ calculate_extrapolated_weaningweight <- function(pv_mean_weaningage,
 #'
 #' @export calculate_cow_liveweight
 calculate_cow_liveweight <- function(ps_input_flp_tibble,
+                                     ps_first_calvingweight,
                                      ps_second_calvingweight,
                                      pb_log = FALSE,
                                      plogger = NULL){
@@ -614,9 +616,16 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
 
 
   ### # Tibble depending on ps_second_calvingweight
-  ### # Calculate cow weight after second calving (this mean below 4th lactation number)
-  if(ps_second_calvingweight){
+  ### # Calculate cow weight after first calving (this mean below 2nd lactation number)
+  if(ps_first_calvingweight){
     ### # Slaughtercategory for cow to consider is VK == 7
+    tbl_input <- ps_input_flp_tibble %>%
+                 dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
+                 dplyr::filter(`Laktationsnummer Ammen-Mutter` < 2) %>%
+                 dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)  %>%
+                 tidyr::drop_na()
+  ### # Calculate cow weight after second calving (this mean below 4th lactation number)
+  }else if(ps_second_calvingweight){
     tbl_input <- ps_input_flp_tibble %>%
                  dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
                  dplyr::filter(`Laktationsnummer Ammen-Mutter` < 4) %>%
