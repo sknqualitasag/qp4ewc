@@ -83,7 +83,7 @@ residual feed intake of animals in intensive fattening is to be calculated */
 40
 "Amount of water per bull per day"
 "l/day"
-0
+39
 "Cost for veterinary treatment per bull at test station till selling"
 "MU/animal"
 120
@@ -94,4 +94,4 @@ residual feed intake of animals in intensive fattening is to be calculated */
 "MU/bull and day"
 100000
 "Average price for selected bulls at selling"
-"MU/bull"
+"MU/bull"                   

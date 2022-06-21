@@ -48,7 +48,7 @@
 "Number of reproductive cycles (should be in the range from 4
   to 20. If you want to use a value greater than 20, change the parameter 
   L in the program and recompile the program)"
-3
+2
 "Genetic standard deviations of the traits
   (1: are not known or are not intended to be used for the calculation of
       relative economic weights,
@@ -71,4 +71,4 @@
 "Calculation of economic value for residual dry matter intake of adult animals
   (0: no
    1: yes)"      
-      
+          

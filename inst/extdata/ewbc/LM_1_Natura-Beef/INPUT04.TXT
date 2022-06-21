@@ -13,10 +13,10 @@
 	If there is no unit given, enter [SPACE] enclosed into quotation
 	marks.
    MU: monetary unit */
-420.6
+462
 "Age of breeding bulls at purchase for the herd (only for systems 2 to 3)"
 "days"
-562
+592
 "Weight of breeding bulls at purchase for the herd (only for systems 2 to 3)"
 "kg"
 5
@@ -78,7 +78,7 @@ residual feed intake of adult animals is to be calculated */
 40
 "Amount of water per day and breeding bull"
 "l/day"
-6316
+6059
 "Average price per breeding bull purchased for natural mating"
 "MU/bull"
 127

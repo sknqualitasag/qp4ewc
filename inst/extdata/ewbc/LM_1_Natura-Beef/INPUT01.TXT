@@ -72,7 +72,7 @@ animals in extensive fattening): insert 1 for bind technology, 2 for free techno
 1 4 7
 "Date of starting the mating period"
 "year month day"
-1 4 28 
+1 4 28
 "Date of ending the first part of the mating period (with AI) covering the first possibility of a female to conceive"
 "year month day"
 1 4 29
@@ -81,15 +81,15 @@ animals in extensive fattening): insert 1 for bind technology, 2 for free techno
 1  5  20
 "Date of ending the second part the mating period covering the second possibility of females to conceive"
 "year month day"
-1  5  21 
+1  5  21
 "Date of starting the third part of the mating period"
 "year month day" 
 1  6 11
 "Date of ending the third part of the mating period (end of the mating period) covering the third possibility of females to conceive"
 "year month day"    
-1  10 15
+1  11 30
 "Date of weaning calves"
 "year month day"
-1  11 21
+1  12 1
 "Starting date for the test of bulls (only needed for production system 1)"
-"year month day"
+"year month day"             
