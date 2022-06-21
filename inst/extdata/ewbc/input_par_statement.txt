@@ -1,4 +1,5 @@
 input_file;input;input_unit;input_value
+PARA.TXT;"Fattening";" ";1
 PARA.TXT;"Housing technology in fattening";" ";2
 PARA.TXT;"Way of calculating feed cost";" ";1
 PARA.TXT;"Sex for which gene flow is calculated";" ";1
