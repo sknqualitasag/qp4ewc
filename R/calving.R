@@ -54,11 +54,11 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
   ### # Different calculation depending on ps_statement_firstlactation
   if(ps_statement_firstlactation){
     tbl_abort <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == 1) %>%
-                               dplyr::select(Abort) %>%
-                                na.omit() %>%
-                               dplyr::group_by(Abort) %>%
-                               dplyr::count() %>%
-                               tidyr::drop_na()
+      dplyr::select(Abort) %>%
+      na.omit() %>%
+      dplyr::group_by(Abort) %>%
+      dplyr::count() %>%
+      tidyr::drop_na()
 
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_abortion_rate',
@@ -67,11 +67,11 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
 
   }else{
     tbl_abort <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
-                               dplyr::select(Abort) %>%
-                               na.omit() %>%
-                               dplyr::group_by(Abort) %>%
-                               dplyr::count() %>%
-                               tidyr::drop_na()
+      dplyr::select(Abort) %>%
+      na.omit() %>%
+      dplyr::group_by(Abort) %>%
+      dplyr::count() %>%
+      tidyr::drop_na()
 
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_abortion_rate',
@@ -173,11 +173,11 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
   ### # Different calculation depending on ps_statement_firstlactation
   if(ps_statement_firstlactation){
     tbl_stillbirth <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == 1) %>%
-                                    dplyr::select(Code_TotOLebend) %>%
-                                    na.omit() %>%
-                                    dplyr::group_by(Code_TotOLebend) %>%
-                                    dplyr::count() %>%
-                                    tidyr::drop_na()
+      dplyr::select(Code_TotOLebend) %>%
+      na.omit() %>%
+      dplyr::group_by(Code_TotOLebend) %>%
+      dplyr::count() %>%
+      tidyr::drop_na()
 
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
@@ -186,11 +186,11 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
 
   }else{
     tbl_stillbirth <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
-                                    dplyr::select(Code_TotOLebend) %>%
-                                    na.omit() %>%
-                                    dplyr::group_by(Code_TotOLebend) %>%
-                                    dplyr::count() %>%
-                                    tidyr::drop_na()
+      dplyr::select(Code_TotOLebend) %>%
+      na.omit() %>%
+      dplyr::group_by(Code_TotOLebend) %>%
+      dplyr::count() %>%
+      tidyr::drop_na()
 
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
@@ -243,7 +243,8 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
 #'
 #' @param ps_input_calving_tibble input calving tibble coming from read_file_input_calving in this package
 #' @param ps_statement_firstlactation statement if in first lactation status (TRUE or FALSE)
-#' @param ps_breed set the breed (AN, AU, CH, LM, SI, OB)
+#' @param ps_sirebreed set the breed (AN, AU, CH, LM, SI, OB)
+#' @param ps_dambreed set the dam breed (HO, BS for beef-on-dairy, same as sire for beef-on-beef)
 #' @param ps_sex set the sex (F, M)
 #' @param ps_calvingscore set the calving score for which the proportion should be calculated (2,3,4)
 #' @param pb_log indicator whether logs should be produced
@@ -256,7 +257,8 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
 #' @export calculate_calvingscore_proportion
 calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
                                               ps_statement_firstlactation = TRUE,
-                                              ps_breed,
+                                              ps_sirebreed,
+                                              ps_dambreed,
                                               ps_sex,
                                               ps_calvingscore,
                                               pb_log = FALSE,
@@ -273,14 +275,16 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
     qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
                     paste0('Starting function with parameters:\n * ps_input_calving_tibble \n',
                            ' * ps_statement_firstlactation: ', ps_statement_firstlactation,'\n',
-                           ' * ps_breed: ',ps_breed,'\n',
+                           ' * ps_sirebreed: ',ps_sirebreed,'\n',
+                           ' * ps_dambreed: ',ps_dambreed,'\n',
                            ' * ps_sex: ',ps_sex,'\n',
                            ' * ps_calvingscore: ',ps_calvingscore))
   }
 
 
   ### # Filter criteria depending on ps_breed and ps_sex
-  tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Nachkomme_RasseCode == ps_breed) %>%
+  tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>%
+                                           dplyr::filter(Mutter_RasseCode == ps_dambreed) %>%
                                            dplyr::filter(Geschlecht == ps_sex)
   if(pb_log){
     qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
@@ -292,12 +296,12 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
   ### # Different calculation depending on ps_statement_firstlactation
   if(ps_statement_firstlactation){
     tbl_calvingprop <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == 1) %>%
-                                     dplyr::select(Geburtsverlauf) %>%
-                                     na.omit() %>%
-                                     dplyr::na_if(0) %>%
-                                     dplyr::group_by(Geburtsverlauf) %>%
-                                     dplyr::count() %>%
-                                     tidyr::drop_na()
+      dplyr::select(Geburtsverlauf) %>%
+      na.omit() %>%
+      dplyr::na_if(0) %>%
+      dplyr::group_by(Geburtsverlauf) %>%
+      dplyr::count() %>%
+      tidyr::drop_na()
 
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
@@ -305,12 +309,12 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
     }
   }else{
     tbl_calvingprop <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
-                                     dplyr::select(Geburtsverlauf) %>%
-                                     na.omit() %>%
-                                     dplyr::na_if(0) %>%
-                                     dplyr::group_by(Geburtsverlauf) %>%
-                                     dplyr::count() %>%
-                                     tidyr::drop_na()
+      dplyr::select(Geburtsverlauf) %>%
+      na.omit() %>%
+      dplyr::na_if(0) %>%
+      dplyr::group_by(Geburtsverlauf) %>%
+      dplyr::count() %>%
+      tidyr::drop_na()
 
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
@@ -418,11 +422,11 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
   ### # Different calculation depending on ps_statement_firstlactation
   if(ps_statement_firstlactation){
     tbl_calvesdied24h <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == 1) %>%
-                                       dplyr::select(Code_TotOLebend) %>%
-                                       dplyr::na_if(0) %>%
-                                       dplyr::group_by(Code_TotOLebend) %>%
-                                       dplyr::count() %>%
-                                       tidyr::drop_na()
+      dplyr::select(Code_TotOLebend) %>%
+      dplyr::na_if(0) %>%
+      dplyr::group_by(Code_TotOLebend) %>%
+      dplyr::count() %>%
+      tidyr::drop_na()
 
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
@@ -431,11 +435,11 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
 
   }else{
     tbl_calvesdied24h <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
-                                       dplyr::select(Code_TotOLebend) %>%
-                                       dplyr::na_if(0) %>%
-                                       dplyr::group_by(Code_TotOLebend) %>%
-                                       dplyr::count() %>%
-                                       tidyr::drop_na()
+      dplyr::select(Code_TotOLebend) %>%
+      dplyr::na_if(0) %>%
+      dplyr::group_by(Code_TotOLebend) %>%
+      dplyr::count() %>%
+      tidyr::drop_na()
 
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
@@ -495,8 +499,8 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
 #'
 #' @export calculate_calvesdiedafter24h_proportion
 calculate_calvesdiedafter24h_proportion <- function(ps_input_calving_tibble,
-                                               pb_log = FALSE,
-                                               plogger = NULL){
+                                                    pb_log = FALSE,
+                                                    plogger = NULL){
 
   ### # Setting the log-file
   if(pb_log){
@@ -513,10 +517,10 @@ calculate_calvesdiedafter24h_proportion <- function(ps_input_calving_tibble,
 
   ### # Build a tibble for the calculation of proportion of calves died after 24h
   tbl_calvesdiedafter24h <- ps_input_calving_tibble %>% dplyr::select(Code_TotOLebend) %>%
-                            dplyr::na_if(0) %>%
-                            dplyr::group_by(Code_TotOLebend) %>%
-                            dplyr::count() %>%
-                            tidyr::drop_na()
+    dplyr::na_if(0) %>%
+    dplyr::group_by(Code_TotOLebend) %>%
+    dplyr::count() %>%
+    tidyr::drop_na()
 
   if(pb_log){
     qp4ewc_log_info(lgr, 'calculate_calvesdiedafter24h_proportion',
