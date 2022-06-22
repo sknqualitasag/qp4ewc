@@ -39,6 +39,10 @@ s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc")
 s_input_file_literature <- file.path(here::here(),"inst","extdata","ewbc","input_literature.txt")
 # Path to input from the parameter specific for the scenario. Based on this example an other file can be created with different input-value.
 s_input_file_par <- file.path(here::here(),"inst","extdata","ewbc","input_par_statement.txt")
+# Path to specific input for ProdSyst1 for tested bulls
+s_input_file_testedbulls <- file.path(here::here(),"inst","extdata","ewbc","input_testedbulls.txt")
+# Path to specific input for ProdSyst3 for replacement progeny heifers
+s_input_file_purchasedreplacementheifers  <- file.path(here::here(),"inst","extdata","ewbc","input_purchasedreplacementheifers.txt")
 # Path to input from the calving. Based on this example an other file can be created with different input-values.
 s_input_file_calving_statement <- file.path(here::here(),"inst","extdata","ewbc","input_calving_statement.txt")
 # Path to calving data file
@@ -71,7 +75,9 @@ At the beginning of the function depending of the setting for `pb_log` and `plog
 
  1) function `create_directory_scenario()` : create directory per scenario with input-parameter-file for ECOWEIGHT. Details in the vignette Explain the function create_directory_scenario().
  
- 2) Read file with input from literature research and update input-parameter-file coming from literature of ECOWEIGHT. Details in the vignette Explain the part only from literature.
+ 2) Read file with input from literature research and update input-parameter-file coming from literature of ECOWEIGHT. Details in the vignette Explain the part only from literature. Next to the literature some initial parameter need to be set for EWBC. Further depending of the 
+ * `s_sirebreed` some values for average price per breeding bull purchased for natural mating or maturity type of progeny, 
+ * `s_prodsystew` some values for production system or mating type for heifers and cows or tested bulls or purchased replacement heifers.
  
  3) function `pre_process_ew_input_calving()` : Pre-processing the calving data for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_calving().
  
@@ -88,6 +94,8 @@ pre_process_ewbc_input(ps_sirebreed = s_sirebreed,
                        ps_path_directory2create = s_path_directory2create,
                        ps_input_file_literature = s_input_file_literature,
                        ps_input_file_par = s_input_file_par,
+                       ps_input_file_testedbulls = s_input_file_testedbulls,
+                       ps_input_file_purchasedreplacementheifers = s_input_file_purchasedreplacementheifers,
                        ps_input_file_calving_statement = s_input_file_calving_statement,
                        ps_input_file_calving = s_input_file_calving,
                        ps_start_date = s_start_date,
@@ -101,5 +109,7 @@ pre_process_ewbc_input(ps_sirebreed = s_sirebreed,
                        pb_log = b_log)
 ```
 
-# More Processing Steps
-More processing steps will follow here ...
+# Post-processing steps
+
+At this stage the post-processing steps done during the internship is in post_processing.R implemented.
+However this function needs to be reviewed as soon as new results are produced with pre_process_ewbc_input().

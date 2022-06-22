@@ -255,10 +255,10 @@ pre_process_ewbc_input <- function(ps_sirebreed,
                                                     pb_log,
                                                     plogger = lgr)
 
-    for(m in 1:nrow(tbl_input_testedbull)){
+    for(l in 1:nrow(tbl_input_testedbull)){
       if(pb_log){
         qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
-                        paste0('Updating parameter with input coming from the parameter file:\n * line number m: ', m, '\n'))
+                        paste0('Updating parameter with input coming from the parameter file:\n * line number m: ', l, '\n'))
       }
       qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_testedbull[l,1]),
                                           ps_statement2search = tbl_input_testedbull[l,2],
@@ -274,10 +274,10 @@ pre_process_ewbc_input <- function(ps_sirebreed,
     tbl_input_purchasedreplacementheifers <- qp4ewc::read_file_input(ps_input_file_purchasedreplacementheifers,
                                                     pb_log,
                                                     plogger = lgr)
-    for(r in 1:nrow(tbl_input_purchasedreplacementheifers)){
+    for(l in 1:nrow(tbl_input_purchasedreplacementheifers)){
       if(pb_log){
         qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
-                        paste0('Updating parameter with input coming from the parameter file:\n * line number r: ', r, '\n'))
+                        paste0('Updating parameter with input coming from the parameter file:\n * line number l: ', l, '\n'))
       }
       qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_purchasedreplacementheifers[l,1]),
                                           ps_statement2search = tbl_input_purchasedreplacementheifers[l,2],
