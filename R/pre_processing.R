@@ -91,6 +91,10 @@ pre_process_ewbc_input <- function(ps_sirebreed,
                                     plogger = lgr)
 
 
+  ### # Get the constants
+  l_constants_ewbc_input_beefOnbeef <- get_constants_ewbc_input_beefOnbeef()
+
+
   # ****************************************************************************
   ## ---- Literature ----
   # ****************************************************************************
@@ -101,27 +105,29 @@ pre_process_ewbc_input <- function(ps_sirebreed,
                                                   plogger = lgr)
   ### # Update input-parameter-file coming from literature of ECOWEIGHT
   if(ps_sirebreed == "AN"){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"INPUT04.TXT"),
-                                        ps_statement2search = "Average price per breeding bull purchased for natural mating",
-                                        ps_value2update = 5333,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                          paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                          l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AN,
                                         pb_log,
                                         plogger = lgr)
   }else if(ps_sirebreed == "AU" || ps_sirebreed == "OB" || ps_sirebreed == "CH"){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"INPUT04.TXT"),
-                                        ps_statement2search = "Average price per breeding bull purchased for natural mating",
-                                        ps_value2update = 4750,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AUCHOB,
                                         pb_log,
                                         plogger = lgr)
   }else if(ps_sirebreed == "LM"){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"INPUT04.TXT"),
-                                        ps_statement2search = "Average price per breeding bull purchased for natural mating",
-                                        ps_value2update = 6059,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_LM,
                                         pb_log,
                                         plogger = lgr)
   }else if(ps_sirebreed == "SI"){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"INPUT04.TXT"),
-                                        ps_statement2search = "Average price per breeding bull purchased for natural mating",
-                                        ps_value2update = 5256,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_SI,
                                         pb_log,
                                         plogger = lgr)
   }else{
@@ -137,9 +143,11 @@ pre_process_ewbc_input <- function(ps_sirebreed,
       qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
                       paste0('Updating parameter with input coming from the literature file:\n * line number l: ', l, '\n'))
     }
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_literature[l,1]),
-                                        ps_statement2search = tbl_input_literature[l,2],
-                                        ps_value2update = tbl_input_literature[l,4]$input_value,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                          paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                          tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
+                                        ps_statement2search = tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
+                                        ps_value2update = tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
                                         pb_log,
                                         plogger = lgr)
   }
@@ -152,23 +160,23 @@ pre_process_ewbc_input <- function(ps_sirebreed,
   ### # Update input-parameter-file coming from parameter of ECOWEIGHT
   ### # ps_prodsystew = 1: Closed purebred beef cow herd with pasture system producing males and females for replacement
   if(ps_prodsystew == as.character(1)){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
-                                        ps_statement2search = "Production System",
-                                        ps_value2update = 1,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$prodsyst,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$prodsyst1,
                                         pb_log,
                                         plogger = lgr)
   ### # ps_prodsystew = 2: Closed crossbred cow herd with pasture system producing its own female replacement but buying the breeding bulls
   }else if(ps_prodsystew == as.character(2)){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
-                                        ps_statement2search = "Production System",
-                                        ps_value2update = 2,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$prodsyst,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$prodsyst2,
                                         pb_log,
                                         plogger = lgr)
   ### # ps_prodsystew = 3: Open beef x dairy or beef x dual purpose crossbred cow herd with pasture system with purchase of cow and bull replacement
   }else if(ps_prodsystew == as.character(3)){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
-                                        ps_statement2search = "Production System",
-                                        ps_value2update = 3,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$prodsyst,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$prodsyst3,
                                         pb_log,
                                         plogger = lgr)
   }else{
@@ -181,23 +189,23 @@ pre_process_ewbc_input <- function(ps_sirebreed,
   ### # Maturity type of progeny depends on ps_sirebreed
   ### # 1 = Early = AN
   if(ps_sirebreed == "AN"){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
-                                        ps_statement2search = "Maturity type of progeny",
-                                        ps_value2update = 1,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$maturitytype,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$maturitytype_early,
                                         pb_log,
                                         plogger = lgr)
   ### # 2 = Medium = AU, OB
   }else if(ps_sirebreed == "AU" || ps_sirebreed == "OB"){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
-                                        ps_statement2search = "Maturity type of progeny",
-                                        ps_value2update = 2,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$maturitytype,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$maturitytype_medium,
                                         pb_log,
                                         plogger = lgr)
   ### # 3 = Late = CH, LM, SI
   }else if(ps_sirebreed == "CH" || ps_sirebreed == "LM" || ps_sirebreed == "SI"){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
-                                        ps_statement2search = "Maturity type of progeny",
-                                        ps_value2update = 3,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$maturitytype,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$maturitytype_late,
                                         pb_log,
                                         plogger = lgr)
   }else{
@@ -209,28 +217,28 @@ pre_process_ewbc_input <- function(ps_sirebreed,
   ### # Mating type for heifers or cows
   ### # 1 : Artificial insemination is used in the first oestrus within one mating period
   if(ps_prodsystew == as.character(1) || ps_prodsystew == as.character(2)){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
-                                        ps_statement2search = "Mating type for heifers",
-                                        ps_value2update = 1,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_heifer,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_AI,
                                         pb_log,
                                         plogger = lgr)
 
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
-                                        ps_statement2search = "Mating type for cows",
-                                        ps_value2update = 1,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_cow,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_AI,
                                         pb_log,
                                         plogger = lgr)
   ### # 2 : Natural mating is used throughout.
   }else if(ps_prodsystew == as.character(3)){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
-                                        ps_statement2search = "Mating type for heifers",
-                                        ps_value2update = 2,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_heifer,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_NM,
                                         pb_log,
                                         plogger = lgr)
 
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),"PARA.TXT"),
-                                        ps_statement2search = "Mating type for cows",
-                                        ps_value2update = 2,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_cow,
+                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_NM,
                                         pb_log,
                                         plogger = lgr)
   }
@@ -241,9 +249,11 @@ pre_process_ewbc_input <- function(ps_sirebreed,
       qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
                       paste0('Updating parameter with input coming from the parameter file:\n * line number l: ', l, '\n'))
     }
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_par[l,1]),
-                                        ps_statement2search = tbl_input_par[l,2],
-                                        ps_value2update = tbl_input_par[l,4]$input_value,
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                          paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                          tbl_input_par[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
+                                        ps_statement2search = tbl_input_par[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
+                                        ps_value2update = tbl_input_par[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
                                         pb_log,
                                         plogger = lgr)
   }
@@ -260,9 +270,11 @@ pre_process_ewbc_input <- function(ps_sirebreed,
         qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
                         paste0('Updating parameter with input coming from the parameter file:\n * line number m: ', l, '\n'))
       }
-      qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_testedbull[l,1]),
-                                          ps_statement2search = tbl_input_testedbull[l,2],
-                                          ps_value2update = tbl_input_testedbull[l,4]$input_value,
+      qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                            paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                            tbl_input_testedbull[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
+                                          ps_statement2search = tbl_input_testedbull[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
+                                          ps_value2update = tbl_input_testedbull[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
                                           pb_log,
                                           plogger = lgr)
     }
@@ -279,9 +291,11 @@ pre_process_ewbc_input <- function(ps_sirebreed,
         qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
                         paste0('Updating parameter with input coming from the parameter file:\n * line number l: ', l, '\n'))
       }
-      qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_purchasedreplacementheifers[l,1]),
-                                          ps_statement2search = tbl_input_purchasedreplacementheifers[l,2],
-                                          ps_value2update = tbl_input_purchasedreplacementheifers[l,4]$input_value,
+      qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                            paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                            tbl_input_purchasedreplacementheifers[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
+                                          ps_statement2search = tbl_input_purchasedreplacementheifers[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
+                                          ps_value2update = tbl_input_purchasedreplacementheifers[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
                                           pb_log,
                                           plogger = lgr)
     }

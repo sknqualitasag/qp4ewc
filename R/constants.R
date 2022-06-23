@@ -7,6 +7,41 @@
 ### # ##################################################################### ###
 
 
+#' @title Get constants for ewbc input in beef-on-beef production systems
+#'
+#' @description
+#' Return a list with specific calving constants in beef-on-beef production systems
+#' that are used.
+#'
+#' @export get_constants_ewbc_input_beefOnbeef
+get_constants_ewbc_input_beefOnbeef <- function(){
+  # return list of default constants
+  return(list(idx_col_input_file = 1,
+              idx_col_input = 2,
+              idx_col_input_value = 4,
+              file_av_price_breeding_bull = "INPUT04.TXT",
+              av_price_breeding_bull= "Average price per breeding bull purchased for natural mating",
+              av_price_breeding_bull_AN = 5333,
+              av_price_breeding_bull_AUCHOB = 4750,
+              av_price_breeding_bull_LM = 6059,
+              av_price_breeding_bull_SI = 5256,
+              file_par = "PARA.TXT",
+              prodsyst = "Production System",
+              prodsyst1 = 1,
+              prodsyst2 = 2,
+              prodsyst3 = 3,
+              maturitytype = "Maturity type of progeny",
+              maturitytype_early = 1,
+              maturitytype_medium = 2,
+              maturitytype_late = 3,
+              matingtype_heifer = "Mating type for heifers",
+              matingtype_cow = "Mating type for cows",
+              matingtype_AI = 1,
+              matingtype_NM = 2))
+}
+
+
+
 #' @title Get constants for calving in beef-on-beef production systems
 #'
 #' @description
