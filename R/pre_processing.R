@@ -426,6 +426,9 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                  pb_log,
                                                  plogger = lgr)
 
+  ### # Get the constants for calving
+  l_constants_calving_beefOnbeef <- get_constants_calving_beefOnbeef()
+
 
   # Update statement-calving-input from the data by calculating abortion rate
   abortrate_prim <- qp4ewc::calculate_abortion_rate(ps_input_calving_tibble = tbl_calving,
@@ -434,7 +437,8 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                     plogger = lgr)
   # Check if abortrate_prim is zero. If it is the case, set a default value
   if(abortrate_prim == 0){
-    abortrate_prim <- unlist(strsplit(tbl_input_statement_calving[1,4]$input_value, split = " "))[1]
+    abortrate_prim <- unlist(strsplit(tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_abortrate,l_constants_calving_beefOnbeef$idx_col_input_value]$input_value,
+                                      split = " "))[l_constants_calving_beefOnbeef$first_element_vector]
   }
   abortrate_multi <- qp4ewc::calculate_abortion_rate(ps_input_calving_tibble = tbl_calving,
                                                      ps_statement_firstlactation = FALSE,
@@ -442,11 +446,14 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                      plogger = lgr)
   # Check if abortrate_multi is zero. If it is the case, set a default value
   if(abortrate_multi == 0){
-    abortrate_multi <- unlist(strsplit(tbl_input_statement_calving[1,4]$input_value, split = " "))[2]
+    abortrate_multi <- unlist(strsplit(tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_abortrate,l_constants_calving_beefOnbeef$idx_col_input_value]$input_value,
+                                       split = " "))[l_constants_calving_beefOnbeef$second_element_vector]
   }
   value2update_abortrate <- paste0(c(abortrate_prim, rep(abortrate_multi,9)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[1,1]),
-                                      ps_statement2search = tbl_input_statement_calving[1,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_abortrate,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_abortrate,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = value2update_abortrate,
                                       pb_log,
                                       plogger = lgr)
@@ -460,7 +467,8 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                 plogger = lgr)
   # Check if stillbirthrate_prim_easy is zero. If it is the case, set a default value
   if(stillbirthrate_prim_easy == 0){
-    stillbirthrate_prim_easy <- unlist(strsplit(tbl_input_statement_calving[2,4]$input_value, split = " "))[1]
+    stillbirthrate_prim_easy <- unlist(strsplit(tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_stillborn_easy,l_constants_calving_beefOnbeef$idx_col_input_value]$input_value,
+                                                split = " "))[l_constants_calving_beefOnbeef$first_element_vector]
   }
   stillbirthrate_multi_easy <- qp4ewc::calculate_stillbirth_rate(ps_input_calving_tibble = tbl_calving,
                                                                  ps_statement_firstlactation = FALSE,
@@ -469,11 +477,14 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                  plogger = lgr)
   # Check if stillbirthrate_multi_easy is zero. If it is the case, set a default value
   if(stillbirthrate_multi_easy == 0){
-    stillbirthrate_multi_easy <- unlist(strsplit(tbl_input_statement_calving[2,4]$input_value, split = " "))[2]
+    stillbirthrate_multi_easy <- unlist(strsplit(tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_stillborn_easy,l_constants_calving_beefOnbeef$idx_col_input_value]$input_value,
+                                                 split = " "))[l_constants_calving_beefOnbeef$second_element_vector]
   }
   value2update_stillbirthrate_easy <- paste0(c(stillbirthrate_prim_easy, rep(stillbirthrate_multi_easy,9)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[2,1]),
-                                      ps_statement2search = tbl_input_statement_calving[2,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_stillborn_easy,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_stillborn_easy,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = value2update_stillbirthrate_easy,
                                       pb_log,
                                       plogger = lgr)
@@ -486,7 +497,8 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                      plogger = lgr)
   # Check if stillbirthrate_prim_difficult is zero. If it is the case, set a default value
   if(stillbirthrate_prim_difficult == 0){
-    stillbirthrate_prim_difficult <- unlist(strsplit(tbl_input_statement_calving[3,4]$input_value, split = " "))[1]
+    stillbirthrate_prim_difficult <- unlist(strsplit(tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_stillborn_diff,l_constants_calving_beefOnbeef$idx_col_input_value]$input_value,
+                                                     split = " "))[l_constants_calving_beefOnbeef$first_element_vector]
   }
   stillbirthrate_multi_difficult <- qp4ewc::calculate_stillbirth_rate(ps_input_calving_tibble = tbl_calving,
                                                                       ps_statement_firstlactation = FALSE,
@@ -495,25 +507,32 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                       plogger = lgr)
   # Check if stillbirthrate_multi_difficult is zero. If it is the case, set a default value
   if(stillbirthrate_multi_difficult == 0){
-    stillbirthrate_multi_difficult <- unlist(strsplit(tbl_input_statement_calving[3,4]$input_value, split = " "))[2]
+    stillbirthrate_multi_difficult <- unlist(strsplit(tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_stillborn_diff,l_constants_calving_beefOnbeef$idx_col_input_value]$input_value,
+                                                      split = " "))[l_constants_calving_beefOnbeef$second_element_vector]
   }
   value2update_stillbirthrate_difficult <- paste0(c(stillbirthrate_prim_difficult, rep(stillbirthrate_multi_difficult,9)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[3,1]),
-                                      ps_statement2search = tbl_input_statement_calving[3,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_stillborn_diff,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_stillborn_diff,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = value2update_stillbirthrate_difficult,
                                       pb_log,
                                       plogger = lgr)
 
 
   ### # Update calving score parameter inputs
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[4,1]),
-                                      ps_statement2search = tbl_input_statement_calving[4,2],
-                                      ps_value2update = 4,
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_class_calving,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_class_calving,l_constants_calving_beefOnbeef$idx_col_input],
+                                      ps_value2update = l_constants_calving_beefOnbeef$n_class_calving,
                                       pb_log,
                                       plogger = lgr)
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[5,1]),
-                                      ps_statement2search = tbl_input_statement_calving[5,2],
-                                      ps_value2update = 3,
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_class_dystocia,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_class_dystocia,l_constants_calving_beefOnbeef$idx_col_input],
+                                      ps_value2update = l_constants_calving_beefOnbeef$class_dystocia,
                                       pb_log,
                                       plogger = lgr)
 
@@ -522,120 +541,132 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
   calvingscore_prop_prim_F_2 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
                                                                           ps_breed = ps_sirebreed,
-                                                                          ps_sex = "F",
-                                                                          ps_calvingscore = 2,
+                                                                          ps_sex = l_constants_calving_beefOnbeef$sex_female,
+                                                                          ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore2,
                                                                           pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_prim_F_3 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
                                                                           ps_breed = ps_sirebreed,
-                                                                          ps_sex = "F",
-                                                                          ps_calvingscore = 3,
+                                                                          ps_sex = l_constants_calving_beefOnbeef$sex_female,
+                                                                          ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore3,
                                                                           pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_prim_F_4 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
                                                                           ps_breed = ps_sirebreed,
-                                                                          ps_sex = "F",
-                                                                          ps_calvingscore = 4,
+                                                                          ps_sex = l_constants_calving_beefOnbeef$sex_female,
+                                                                          ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore4,
                                                                           pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_multi_F_2 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
                                                                            ps_breed = ps_sirebreed,
-                                                                           ps_sex = "F",
-                                                                           ps_calvingscore = 2,
+                                                                           ps_sex = l_constants_calving_beefOnbeef$sex_female,
+                                                                           ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore2,
                                                                            pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_multi_F_3 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
                                                                            ps_breed = ps_sirebreed,
-                                                                           ps_sex = "F",
-                                                                           ps_calvingscore = 3,
+                                                                           ps_sex = l_constants_calving_beefOnbeef$sex_female,
+                                                                           ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore3,
                                                                            pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_multi_F_4 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
                                                                            ps_breed = ps_sirebreed,
-                                                                           ps_sex = "F",
-                                                                           ps_calvingscore = 4,
+                                                                           ps_sex = l_constants_calving_beefOnbeef$sex_female,
+                                                                           ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore4,
                                                                            pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_prim_M_2 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
                                                                           ps_breed = ps_sirebreed,
-                                                                          ps_sex = "M",
-                                                                          ps_calvingscore = 2,
+                                                                          ps_sex = l_constants_calving_beefOnbeef$sex_male,
+                                                                          ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore2,
                                                                           pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_prim_M_3 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
                                                                           ps_breed = ps_sirebreed,
-                                                                          ps_sex = "M",
-                                                                          ps_calvingscore = 3,
+                                                                          ps_sex = l_constants_calving_beefOnbeef$sex_male,
+                                                                          ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore3,
                                                                           pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_prim_M_4 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
                                                                           ps_breed = ps_sirebreed,
-                                                                          ps_sex = "M",
-                                                                          ps_calvingscore = 4,
+                                                                          ps_sex = l_constants_calving_beefOnbeef$sex_male,
+                                                                          ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore4,
                                                                           pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_multi_M_2 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
                                                                            ps_breed = ps_sirebreed,
-                                                                           ps_sex = "M",
-                                                                           ps_calvingscore = 2,
+                                                                           ps_sex = l_constants_calving_beefOnbeef$sex_male,
+                                                                           ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore2,
                                                                            pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_multi_M_3 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
                                                                            ps_breed = ps_sirebreed,
-                                                                           ps_sex = "M",
-                                                                           ps_calvingscore = 3,
+                                                                           ps_sex = l_constants_calving_beefOnbeef$sex_male,
+                                                                           ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore3,
                                                                            pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_multi_M_4 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
                                                                            ps_breed = ps_sirebreed,
-                                                                           ps_sex = "M",
-                                                                           ps_calvingscore = 4,
+                                                                           ps_sex = l_constants_calving_beefOnbeef$sex_male,
+                                                                           ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore4,
                                                                            pb_log,
                                                                            plogger = lgr)
   value2update_calvingscoreprop_prim_F_2 <- paste0(c(calvingscore_prop_prim_F_2, rep(calvingscore_prop_multi_F_2,9)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[6,1]),
-                                      ps_statement2search = tbl_input_statement_calving[6,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calvingscore2_female,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calvingscore2_female,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = value2update_calvingscoreprop_prim_F_2,
                                       pb_log,
                                       plogger = lgr)
   value2update_calvingscoreprop_prim_F_3 <- paste0(c(calvingscore_prop_prim_F_3, rep(calvingscore_prop_multi_F_3,9)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[7,1]),
-                                      ps_statement2search = tbl_input_statement_calving[7,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calvingscore3_female,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calvingscore3_female,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = value2update_calvingscoreprop_prim_F_3,
                                       pb_log,
                                       plogger = lgr)
   value2update_calvingscoreprop_prim_F_4 <- paste0(c(calvingscore_prop_prim_F_4, rep(calvingscore_prop_multi_F_4,9)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[8,1]),
-                                      ps_statement2search = tbl_input_statement_calving[8,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calvingscore3_female,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calvingscore3_female,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = value2update_calvingscoreprop_prim_F_4,
                                       pb_log,
                                       plogger = lgr)
   value2update_calvingscoreprop_prim_M_2 <- paste0(c(calvingscore_prop_prim_M_2, rep(calvingscore_prop_multi_M_2,9)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[9,1]),
-                                      ps_statement2search = tbl_input_statement_calving[9,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calvingscore2_male,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calvingscore2_male,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = value2update_calvingscoreprop_prim_M_2,
                                       pb_log,
                                       plogger = lgr)
   value2update_calvingscoreprop_prim_M_3 <- paste0(c(calvingscore_prop_prim_M_3, rep(calvingscore_prop_multi_M_3,9)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[10,1]),
-                                      ps_statement2search = tbl_input_statement_calving[10,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calvingscore3_male,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calvingscore3_male,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = value2update_calvingscoreprop_prim_M_3,
                                       pb_log,
                                       plogger = lgr)
   value2update_calvingscoreprop_prim_M_4 <- paste0(c(calvingscore_prop_prim_M_4, rep(calvingscore_prop_multi_M_4,9)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[11,1]),
-                                      ps_statement2search = tbl_input_statement_calving[11,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calvingscore4_male,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calvingscore4_male,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = value2update_calvingscoreprop_prim_M_4,
                                       pb_log,
                                       plogger = lgr)
@@ -649,7 +680,8 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                               plogger = lgr)
   # Check if calvingdied24h_prop_prim_easy is zero. If it is the case, set a default value
   if(calvingdied24h_prop_prim_easy == 0){
-    calvingdied24h_prop_prim_easy <- unlist(strsplit(tbl_input_statement_calving[13,4]$input_value, split = " "))[1]
+    calvingdied24h_prop_prim_easy <- unlist(strsplit(tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfdied48h_easy,l_constants_calving_beefOnbeef$idx_col_input_value]$input_value,
+                                                     split = " "))[l_constants_calving_beefOnbeef$first_element_vector]
   }
   calvingdied24h_prop_multi_easy <- qp4ewc::calculate_calvesdied24h_proportion(ps_input_calving_tibble = tbl_calving,
                                                                                ps_statement_firstlactation = FALSE,
@@ -658,11 +690,14 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                plogger = lgr)
   # Check if calvingdied24h_prop_multi_easy is zero. If it is the case, set a default value
   if(calvingdied24h_prop_multi_easy == 0){
-    calvingdied24h_prop_multi_easy <- unlist(strsplit(tbl_input_statement_calving[13,4]$input_value, split = " "))[2]
+    calvingdied24h_prop_multi_easy <- unlist(strsplit(tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfdied48h_easy,l_constants_calving_beefOnbeef$idx_col_input_value]$input_value,
+                                                      split = " "))[l_constants_calving_beefOnbeef$second_element_vector]
   }
   value2update_calvingdied24hprop_easy <- paste0(c(calvingdied24h_prop_prim_easy, rep(calvingdied24h_prop_multi_easy,9)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[13,1]),
-                                      ps_statement2search = tbl_input_statement_calving[13,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfdied48h_easy,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfdied48h_easy,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = value2update_calvingdied24hprop_easy,
                                       pb_log,
                                       plogger = lgr)
@@ -673,7 +708,8 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                    plogger = lgr)
   # Check if calvingdied24h_prop_prim_difficult is zero. If it is the case, set a default value
   if(calvingdied24h_prop_prim_difficult == 0){
-    calvingdied24h_prop_prim_difficult <- unlist(strsplit(tbl_input_statement_calving[12,4]$input_value, split = " "))[1]
+    calvingdied24h_prop_prim_difficult <- unlist(strsplit(tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfdied48h_dystocia,l_constants_calving_beefOnbeef$idx_col_input_value]$input_value,
+                                                          split = " "))[l_constants_calving_beefOnbeef$first_element_vector]
   }
   calvingdied24h_prop_multi_difficult <- qp4ewc::calculate_calvesdied24h_proportion(ps_input_calving_tibble = tbl_calving,
                                                                                     ps_statement_firstlactation = FALSE,
@@ -682,11 +718,14 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                     plogger = lgr)
   # Check if calvingdied24h_prop_multi_difficult is zero. If it is the case, set a default value
   if(calvingdied24h_prop_multi_difficult == 0){
-    calvingdied24h_prop_multi_difficult <- unlist(strsplit(tbl_input_statement_calving[12,4]$input_value, split = " "))[2]
+    calvingdied24h_prop_multi_difficult <- unlist(strsplit(tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfdied48h_dystocia,l_constants_calving_beefOnbeef$idx_col_input_value]$input_value,
+                                                           split = " "))[l_constants_calving_beefOnbeef$second_element_vector]
   }
   value2update_calvingdied24hprop_difficult <- paste0(c(calvingdied24h_prop_prim_difficult, rep(calvingdied24h_prop_multi_difficult,9)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[12,1]),
-                                      ps_statement2search = tbl_input_statement_calving[12,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfdied48h_dystocia,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfdied48h_dystocia,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = value2update_calvingdied24hprop_difficult,
                                       pb_log,
                                       plogger = lgr)
@@ -696,8 +735,10 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
   calf_loss <- qp4ewc::calculate_calvesdiedafter24h_proportion(ps_input_calving_tibble = tbl_calving,
                                                                pb_log,
                                                                plogger = lgr)
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[14,1]),
-                                      ps_statement2search = tbl_input_statement_calving[14,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfloss,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfloss,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = calf_loss,
                                       pb_log,
                                       plogger = lgr)
@@ -705,16 +746,20 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
 
   # Update proportion of cows artificially inseminated in first oestrus
   dystocia_AI <- paste0(c(rep(1,10)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[15,1]),
-                                      ps_statement2search = tbl_input_statement_calving[15,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_AI_dystocia,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_AI_dystocia,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = dystocia_AI,
                                       pb_log,
                                       plogger = lgr)
 
 
   easy_AI <- paste0(c(rep(1,10)),collapse = " ")
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_calving[16,1]),
-                                      ps_statement2search = tbl_input_statement_calving[16,2],
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_AI_nodystocia,l_constants_calving_beefOnbeef$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_AI_nodystocia,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = easy_AI,
                                       pb_log,
                                       plogger = lgr)
