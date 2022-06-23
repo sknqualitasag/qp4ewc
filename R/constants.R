@@ -12,13 +12,42 @@
 #' @description
 #' Return a list with specific constants that are used.
 #'
-#' @export get_constants
-get_constants <- function(){
+#' @export get_constants_progeny_beefOnbeef
+get_constants_progeny_beefOnbeef <- function(){
   # return list of default constants
-  return(list(vec_dressing_female = 0.56,
+  return(list(idx_col_input_file = 1,
+              idx_col_input = 2,
+              idx_col_input_value = 4,
+              idx_row_bw_female = 1,
+              idx_row_bw_male = 2,
+              idx_row_lw_heifer_slaughter = 3,
+              idx_row_lw_bull_slaughter = 4,
+              idx_row_dg_heifer = 5,
+              idx_row_dg_bull = 6,
+              idx_row_age_1weighing = 7,
+              idx_row_1weighing_female = 8,
+              idx_row_1weighing_male = 9,
+              idx_row_age_2weighing = 10,
+              idx_row_age_3weighing = 11,
+              idx_row_2weighing_female = 12,
+              idx_row_2weighing_male = 13,
+              idx_row_3weighing_female = 14,
+              idx_row_3weighing_male = 15,
+              idx_row_cowwt_2calving = 16,
+              idx_row_cowwt_3calving = 17,
+              idx_row_bullwt_mature = 18,
+              idx_row_cowwt_1calving = 19,
+              idx_row_wtcow_2calving = 20,
+              sex_female = "F",
+              sex_male = "M",
+              extrapol_300d = 300,
+              extrapol_302d = 302,
+              extrapol_304d = 304,
+              extrapol_400d = 400,
+              vec_dressing_female = 0.56,
               vec_dressing_male = 0.58,
-              vec_Natura_Beef = 2,
-              vec_SwissPrimBeef = 3))
+              Natura_Beef = 2,
+              SwissPrimBeef = 3))
 }
 
 
