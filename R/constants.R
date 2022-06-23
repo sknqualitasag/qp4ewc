@@ -7,6 +7,20 @@
 ### # ##################################################################### ###
 
 
+#' @title Get constants
+#'
+#' @description
+#' Return a list with specific calving constants in beef-on-beef production systems
+#' that are used.
+#'
+#' @export get_constants
+get_constants <- function(){
+  # return list of default constants
+  return(list(beefOndairy = 4))
+}
+
+
+
 #' @title Get constants for ewbc input in beef-on-beef production systems
 #'
 #' @description

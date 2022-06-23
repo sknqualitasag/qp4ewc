@@ -66,9 +66,13 @@ create_directory_scenario <- function(ps_sirebreed,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
   ### # Copy the default parameter-input-files from the template directory to the scenario directory
   ### # ECOWEIGHT for beef cattle: EWBC
-  if(ps_prodsystew != "4"){
+  if(ps_prodsystew != l_constants$beefOndairy){
     list_of_files <- list.files(system.file("templates","ewbc", package = "qp4ewc"), full.names = TRUE)
     file.copy(list_of_files,s_scenario)
     if(pb_log){
