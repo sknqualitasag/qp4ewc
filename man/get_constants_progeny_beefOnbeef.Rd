@@ -2,7 +2,7 @@
 % Please edit documentation in R/constants.R
 \name{get_constants_progeny_beefOnbeef}
 \alias{get_constants_progeny_beefOnbeef}
-\title{Get constants}
+\title{Get constants for progeny in beef-on-beef production systems}
 \usage{
 get_constants_progeny_beefOnbeef()
 }
