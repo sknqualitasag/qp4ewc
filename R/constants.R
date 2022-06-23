@@ -16,7 +16,16 @@
 #' @export get_constants
 get_constants <- function(){
   # return list of default constants
-  return(list(beefOndairy = 4))
+  return(list(beefOndairy = 4,
+              lactnumb1 = 1,
+              abort_value = 1,
+              calf_score_nohelp = 1,
+              calf_score_slighthelp = 2,
+              calf_score_difficult = 3,
+              calf_score_cesarean = 4,
+              stillbirth_value = 4,
+              stillbirth_within24h = 2,
+              stillbirth_over24h = 3))
 }
 
 

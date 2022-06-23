@@ -51,9 +51,13 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
   ### # Different calculation depending on ps_statement_firstlactation
   if(ps_statement_firstlactation){
-    tbl_abort <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == 1) %>%
+    tbl_abort <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == l_constants$lactnumb1) %>%
                                dplyr::select(Abort) %>%
                                 na.omit() %>%
                                dplyr::group_by(Abort) %>%
@@ -66,7 +70,7 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
     }
 
   }else{
-    tbl_abort <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
+    tbl_abort <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > l_constants$lactnumb1) %>%
                                dplyr::select(Abort) %>%
                                na.omit() %>%
                                dplyr::group_by(Abort) %>%
@@ -83,14 +87,14 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
   ### # The value in case of an abort in the data is 1
   ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
   ### # Check if data for abort are available to calculate abortion rate
-  if(nrow(tbl_abort %>% dplyr::filter(Abort == 1)) != 0){
+  if(nrow(tbl_abort %>% dplyr::filter(Abort == l_constants$abort_value)) != 0){
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_abortion_rate',
                       paste0('Abort information are available in the dataset so that abortion rate can be calculated'))
     }
 
     ### # Add frequence according to abort in a vector
-    abort_freq <- tbl_abort %>% dplyr::filter(Abort == 1) %>% dplyr::pull(n)
+    abort_freq <- tbl_abort %>% dplyr::filter(Abort == l_constants$abort_value) %>% dplyr::pull(n)
     sum_abort_freq <- sum(tbl_abort$n)
 
 
@@ -152,18 +156,22 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
   ### # Different calculation depending on ps_statement_easycalving
   if(ps_statement_easycalving){
     ### # The calving score of 1 = without help or 2 = slight help are considered as easy calving
     ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
-    tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == 1 | Geburtsverlauf == 2)
+    tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == l_constants$calf_score_nohelp | Geburtsverlauf == l_constants$calf_score_slighthelp)
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
                       paste0('A Tibble for easy calving has been created for the calculation of stillbirth rate '))
     }
   }else{
     ### # The calving score of 3 = difficult or 4 = cesarean are considered as difficult calving
-    tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == 3 | Geburtsverlauf == 4)
+    tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == l_constants$calf_score_difficult | Geburtsverlauf == l_constants$calf_score_cesarean)
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
                       paste0('A Tibble for difficult calving has been created for the calculation of stillbirth rate '))
@@ -172,7 +180,7 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
 
   ### # Different calculation depending on ps_statement_firstlactation
   if(ps_statement_firstlactation){
-    tbl_stillbirth <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == 1) %>%
+    tbl_stillbirth <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == l_constants$lactnumb1) %>%
                                     dplyr::select(Code_TotOLebend) %>%
                                     na.omit() %>%
                                     dplyr::group_by(Code_TotOLebend) %>%
@@ -185,7 +193,7 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
     }
 
   }else{
-    tbl_stillbirth <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
+    tbl_stillbirth <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > l_constants$lactnumb1) %>%
                                     dplyr::select(Code_TotOLebend) %>%
                                     na.omit() %>%
                                     dplyr::group_by(Code_TotOLebend) %>%
@@ -202,7 +210,7 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
   ### # The value in case of a stillbirth in the data is 4
   ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
   ### # Check if data for stillbirth are available to calculate stillbirth rate
-  if(nrow(tbl_stillbirth %>% dplyr::filter(Code_TotOLebend == 4)) != 0){
+  if(nrow(tbl_stillbirth %>% dplyr::filter(Code_TotOLebend == l_constants$stillbirth_value)) != 0){
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_stillbirth_rate',
                       paste0('Stillbirth information are available in the dataset so that stillbirth rate can be calculated'))
@@ -210,7 +218,7 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
 
 
     ### # Add frequence according to stillbirth in a vector
-    stillbirth_freq <- tbl_stillbirth %>% dplyr::filter(Code_TotOLebend == 4) %>% dplyr::pull(n)
+    stillbirth_freq <- tbl_stillbirth %>% dplyr::filter(Code_TotOLebend == l_constants$stillbirth_value) %>% dplyr::pull(n)
     sum_stillbirth_freq <- sum(tbl_stillbirth$n)
 
 
@@ -288,10 +296,13 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
 
   ### # Different calculation depending on ps_statement_firstlactation
   if(ps_statement_firstlactation){
-    tbl_calvingprop <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == 1) %>%
+    tbl_calvingprop <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == l_constants$lactnumb1) %>%
                                      dplyr::select(Geburtsverlauf) %>%
                                      na.omit() %>%
                                      dplyr::na_if(0) %>%
@@ -304,7 +315,7 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
                       paste0('A Tibble for primiparous has been created for the calculation of calving score proportion '))
     }
   }else{
-    tbl_calvingprop <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
+    tbl_calvingprop <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > l_constants$lactnumb1) %>%
                                      dplyr::select(Geburtsverlauf) %>%
                                      na.omit() %>%
                                      dplyr::na_if(0) %>%
@@ -396,18 +407,22 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
   ### # Different calculation depending on ps_statement_easycalving
   if(ps_statement_easycalving){
     ### # The calving score of 1 = without help or 2 = slight help are considered as easy calving
     ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
-    tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == 1 | Geburtsverlauf == 2)
+    tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == l_constants$calf_score_nohelp | Geburtsverlauf == l_constants$calf_score_slighthelp)
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
                       paste0('A Tibble for easy calving has been created for the calculation of proportion of calves died 24h'))
     }
   }else{
     ### # The calving score of 3 = difficult or 4 = cesarean are considered as difficult calving
-    tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == 3 | Geburtsverlauf == 4)
+    tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Geburtsverlauf == l_constants$calf_score_difficult | Geburtsverlauf == l_constants$calf_score_cesarean)
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
                       paste0('A Tibble for difficult calving has been created for the calculation of proportion of calves died 24h'))
@@ -417,7 +432,7 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
 
   ### # Different calculation depending on ps_statement_firstlactation
   if(ps_statement_firstlactation){
-    tbl_calvesdied24h <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == 1) %>%
+    tbl_calvesdied24h <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter == l_constants$lactnumb1) %>%
                                        dplyr::select(Code_TotOLebend) %>%
                                        dplyr::na_if(0) %>%
                                        dplyr::group_by(Code_TotOLebend) %>%
@@ -430,7 +445,7 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
     }
 
   }else{
-    tbl_calvesdied24h <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > 1) %>%
+    tbl_calvesdied24h <- tbl_input %>% dplyr::filter(Laktationsnummer_Mutter > l_constants$lactnumb1) %>%
                                        dplyr::select(Code_TotOLebend) %>%
                                        dplyr::na_if(0) %>%
                                        dplyr::group_by(Code_TotOLebend) %>%
@@ -447,7 +462,7 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
   ### # The value in case of a stillbirth within 24 hours is 2
   ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
   ### # Check if data for stillbirth within 24 hours are available to calculate the proportion
-  if(nrow(tbl_calvesdied24h %>% dplyr::filter(Code_TotOLebend == 2)) != 0){
+  if(nrow(tbl_calvesdied24h %>% dplyr::filter(Code_TotOLebend == l_constants$stillbirth_within24h)) != 0){
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_calvesdied24h_proportion',
                       paste0('Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated'))
@@ -455,7 +470,7 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
 
 
     ### # Add frequence in a vector
-    calvdied24h_freq <- tbl_calvesdied24h %>% dplyr::filter(Code_TotOLebend == 2) %>% dplyr::pull(n)
+    calvdied24h_freq <- tbl_calvesdied24h %>% dplyr::filter(Code_TotOLebend == l_constants$stillbirth_within24h) %>% dplyr::pull(n)
     sum_calvdied24h_freq <- sum(tbl_calvesdied24h$n)
 
 
@@ -524,11 +539,14 @@ calculate_calvesdiedafter24h_proportion <- function(ps_input_calving_tibble,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
 
   ### # The value in case of a stillbirth over 24 hours is 3
   ### # According to the documentation for calving data under https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/1915289939/ZWS+Export+Geburtsablauf+GA
   ### # Check if data for stillbirth over 24 hours are available to calculate the proportion
-  if(nrow(tbl_calvesdiedafter24h %>% dplyr::filter(Code_TotOLebend == 3)) != 0){
+  if(nrow(tbl_calvesdiedafter24h %>% dplyr::filter(Code_TotOLebend == l_constants$stillbirth_over24h)) != 0){
     if(pb_log){
       qp4ewc_log_info(lgr, 'calculate_calvesdiedafter24h_proportion',
                       paste0('Stillbirth over 24h information are available in the dataset so that proportion of calves died after 24h can be calculated'))
@@ -536,7 +554,7 @@ calculate_calvesdiedafter24h_proportion <- function(ps_input_calving_tibble,
 
 
     ### # Add frequence in a vector
-    calvdiedafter24h_freq <- tbl_calvesdiedafter24h %>% dplyr::filter(Code_TotOLebend == 3) %>% dplyr::pull(n)
+    calvdiedafter24h_freq <- tbl_calvesdiedafter24h %>% dplyr::filter(Code_TotOLebend == l_constants$stillbirth_over24h) %>% dplyr::pull(n)
     sum_calvdiedafter24h_freq <- sum(tbl_calvesdiedafter24h$n)
 
 
