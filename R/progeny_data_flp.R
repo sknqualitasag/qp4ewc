@@ -168,7 +168,7 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
 
   if(ps_sex == l_constants$sex_female){
     # dressing percentage to convert carcass weight to live weight at slaughter come from Proviande Wochenpreise für Rindvieh (RG, Fleischigkeit C)
-    livewt_atslaughter <- round(as.numeric((carcasswt/l_constants$l_constants$dressingpercentage_female),4))
+    livewt_atslaughter <- round(as.numeric((carcasswt/l_constants$dressingpercentage_female),4))
   }else{
     # dressing percentage to convert carcass weight to live weight at slaughter come from Proviande Wochenpreise für Rindvieh (MT, Fleischigkeit C)
     livewt_atslaughter <- round(as.numeric((carcasswt/l_constants$dressingpercentage_male),4))

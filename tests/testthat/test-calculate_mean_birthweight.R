@@ -18,7 +18,7 @@ test_that("testing function calculate_mean_birthweight()", {
   female_bw_expected <- 36.3333
   female_bw <- calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                           ps_sex = "F",
-                                          ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                          ps_marketing_channel = l_constants$value_NaturaBeef,
                                           pb_log = b_log)
   expect_equal(female_bw, female_bw_expected)
 
@@ -26,7 +26,7 @@ test_that("testing function calculate_mean_birthweight()", {
   male_bw_expected <- 37
   male_bw <- calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                         ps_sex = "M",
-                                        ps_marketing_channel = l_constants$vec_SwissPrimBeef,
+                                        ps_marketing_channel = l_constants$value_SwissPrimBeef,
                                         pb_log = b_log)
   expect_equal(male_bw, male_bw_expected)
 

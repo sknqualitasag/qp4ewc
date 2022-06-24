@@ -18,7 +18,7 @@ test_that("testing function calculate_mean_slaughterage()", {
   slaughterage_f_expected <- 322.6667
   slaughterage_f <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
                                                 ps_sex = "F",
-                                                ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                                ps_marketing_channel = l_constants$value_NaturaBeef,
                                                 pb_log = b_log)
   expect_equal(slaughterage_f, slaughterage_f_expected)
 

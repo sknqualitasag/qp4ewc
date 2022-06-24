@@ -96,7 +96,7 @@ Only the differences between the marketing channel will be highlighted. Otherwis
 # mean birth weight for female in Natura-Beef
 female_bw <- calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                        ps_sex = "F",
-                                       ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                       ps_marketing_channel = l_constants$value_NaturaBeef,
                                        pb_log = b_log)
 female_bw
 ```
@@ -114,7 +114,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 # mean birth weight for male in Natura-Beef
 male_bw <- calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                       ps_sex = "M",
-                                      ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                      ps_marketing_channel = l_constants$value_NaturaBeef,
                                       pb_log = b_log)
 male_bw
 ```
@@ -133,7 +133,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 # mean live weight at slaughter for female in Natura-Beef
 livewt_slaughter_f <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                                   ps_sex = "F",
-                                                                  ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                                                  ps_marketing_channel = l_constants$value_NaturaBeef,
                                                                   pb_log = b_log)
 livewt_slaughter_f
 ```
@@ -151,7 +151,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 # mean live weight at slaughter for male in Natura-Beef
 livewt_slaughter_m <- calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                           ps_sex = "M",
-                                                          ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                                          ps_marketing_channel = l_constants$value_NaturaBeef,
                                                           pb_log = b_log)
 # Update ECOWEIGHT input-file with the calculated abortion rates in tbl_input_statement_flp[4,]
 update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp[4,1]),
@@ -166,7 +166,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 # mean weaning weight for female in Natura-Beef
 weaningwt_f <- calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                             ps_sex = "F",
-                                            ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                            ps_marketing_channel = l_constants$value_NaturaBeef,
                                             pb_log = b_log)
 weaningwt_f
 ```
@@ -175,7 +175,7 @@ weaningwt_f
 # mean weaning weight for male in Natura-Beef
 weaningwt_m <- calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                             ps_sex = "M",
-                                            ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                            ps_marketing_channel = l_constants$value_NaturaBeef,
                                             pb_log = b_log)
 weaningwt_m
 ```
@@ -186,7 +186,7 @@ weaningwt_m
 # mean weaning age for female in Natura-Beef
 weaningage_f <- calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
                                          ps_sex = "F",
-                                         ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                         ps_marketing_channel = l_constants$value_NaturaBeef,
                                          pb_log = b_log)
 weaningage_f
 ```
@@ -195,7 +195,7 @@ weaningage_f
 # mean weaning age for male in Natura-Beef
 weaningage_m <- calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
                                           ps_sex = "M",
-                                          ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                          ps_marketing_channel = l_constants$value_NaturaBeef,
                                           pb_log = b_log)
 weaningage_m
 ```
@@ -214,7 +214,7 @@ tbl_input_statement_flp[7,2]
 # mean slaughter ag for female in Natura-Beef
 slaughterage_f <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
                                               ps_sex = "F",
-                                              ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                              ps_marketing_channel = l_constants$value_NaturaBeef,
                                               pb_log = b_log)
 slaughterage_f
 ```
@@ -223,7 +223,7 @@ slaughterage_f
 # mean slaughter ag for male in Natura-Beef
 slaughterage_m <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
                                               ps_sex = "M",
-                                              ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                              ps_marketing_channel = l_constants$value_NaturaBeef,
                                               pb_log = b_log)
 slaughterage_m
 ```

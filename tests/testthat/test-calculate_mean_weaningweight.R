@@ -18,7 +18,7 @@ test_that("testing function calculate_mean_weaningweight()", {
   weaningwt_f_expected <- 213
   weaningwt_f <- calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                               ps_sex = "F",
-                                              ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                              ps_marketing_channel = l_constants$value_NaturaBeef,
                                               pb_log = b_log)
   expect_equal(weaningwt_f, weaningwt_f_expected)
 
@@ -27,7 +27,7 @@ test_that("testing function calculate_mean_weaningweight()", {
   weaningwt_m_expected <- NaN
   weaningwt_m <- calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                               ps_sex = "M",
-                                              ps_marketing_channel = l_constants$vec_SwissPrimBeef,
+                                              ps_marketing_channel = l_constants$value_SwissPrimBeef,
                                               pb_log = b_log)
   expect_equal(weaningwt_m, weaningwt_m_expected)
 

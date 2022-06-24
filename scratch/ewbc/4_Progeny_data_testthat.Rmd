@@ -80,7 +80,7 @@ l_constants
 # mean birth weight for female in Natura-Beef
 female_bw <- calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                        ps_sex = "F",
-                                       ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                       ps_marketing_channel = l_constants$value_NaturaBeef,
                                        pb_log = b_log)
 female_bw
 ```
@@ -88,7 +88,7 @@ female_bw
 ```{r, warning=FALSE, message=FALSE}
 male_bw <- calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                       ps_sex = "M",
-                                      ps_marketing_channel = l_constants$vec_SwissPrimBeef,
+                                      ps_marketing_channel = l_constants$value_SwissPrimBeef,
                                       pb_log = b_log)
 
 ```
@@ -99,7 +99,7 @@ male_bw <- calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
 # mean live weight at slaughter for female in Natura-Beef
 livewt_slaughter_f <- calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                           ps_sex = "F",
-                                                          ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                                          ps_marketing_channel = l_constants$value_NaturaBeef,
                                                           pb_log = b_log)
 livewt_slaughter_f
 ```
@@ -108,7 +108,7 @@ livewt_slaughter_f
 # mean live weight at slaughter for male in Natura-Beef
 livewt_slaughter_m <- calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                           ps_sex = "M",
-                                                          ps_marketing_channel = l_constants$vec_SwissPrimBeef,
+                                                          ps_marketing_channel = l_constants$value_SwissPrimBeef,
                                                           pb_log = b_log)
 ```
 
@@ -118,7 +118,7 @@ livewt_slaughter_m <- calculate_mean_liveweight_slaughter(ps_input_flp_tibble = 
 # mean weaning weight for female in Natura-Beef
 weaningwt_f <- calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                             ps_sex = "F",
-                                            ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                            ps_marketing_channel = l_constants$value_NaturaBeef,
                                             pb_log = b_log)
 weaningwt_f
 ```
@@ -127,7 +127,7 @@ weaningwt_f
 # mean weaning weight for male in Natura-Beef
 weaningwt_m <- calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                             ps_sex = "M",
-                                            ps_marketing_channel = l_constants$vec_SwissPrimBeef,
+                                            ps_marketing_channel = l_constants$value_SwissPrimBeef,
                                             pb_log = b_log)
 weaningwt_m
 ```
@@ -137,7 +137,7 @@ weaningwt_m
 ```{r}
 weaningage_f <- calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
                                           ps_sex = "F",
-                                          ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                          ps_marketing_channel = l_constants$value_NaturaBeef,
                                           pb_log = b_log)
 
 ```
@@ -148,7 +148,7 @@ weaningage_f <- calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
 # mean slaughter ag for female in Natura-Beef
 slaughterage_f <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
                                               ps_sex = "F",
-                                              ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                              ps_marketing_channel = l_constants$value_NaturaBeef,
                                               pb_log = b_log)
 slaughterage_f
 ```

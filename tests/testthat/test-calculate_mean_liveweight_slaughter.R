@@ -18,7 +18,7 @@ test_that("testing function calculate_mean_liveweight_slaughter()", {
   livewt_slaughter_f_expected <- 398
   livewt_slaughter_f <- calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                             ps_sex = "F",
-                                                            ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                                            ps_marketing_channel = l_constants$value_NaturaBeef,
                                                             pb_log = b_log)
   expect_equal(livewt_slaughter_f, livewt_slaughter_f_expected)
 
@@ -26,7 +26,7 @@ test_that("testing function calculate_mean_liveweight_slaughter()", {
   livewt_slaughter_m_expected <- 505
   livewt_slaughter_m <- calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                             ps_sex = "M",
-                                                            ps_marketing_channel = l_constants$vec_SwissPrimBeef,
+                                                            ps_marketing_channel = l_constants$value_SwissPrimBeef,
                                                             pb_log = b_log)
   expect_equal(livewt_slaughter_m, livewt_slaughter_m_expected)
 

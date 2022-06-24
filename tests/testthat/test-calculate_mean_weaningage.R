@@ -17,7 +17,7 @@ test_that("testing function calculate_mean_weaningage()", {
   weaningage_f_expected <- 170
   weaningage_f <- calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
                                             ps_sex = "F",
-                                            ps_marketing_channel = l_constants$vec_Natura_Beef,
+                                            ps_marketing_channel = l_constants$value_NaturaBeef,
                                             pb_log = b_log)
   expect_equal(weaningage_f, weaningage_f_expected)
 
