@@ -18,6 +18,9 @@ get_constants <- function(){
   # return list of default constants
   return(list(beefOndairy = 4,
               lactnumb1 = 1,
+              lactnumb2 = 2,
+              lactnumb3 = 3,
+              lactnumb4 = 4,
               abort_value = 1,
               calf_score_nohelp = 1,
               calf_score_slighthelp = 2,
@@ -25,7 +28,18 @@ get_constants <- function(){
               calf_score_cesarean = 4,
               stillbirth_value = 4,
               stillbirth_within24h = 2,
-              stillbirth_over24h = 3))
+              stillbirth_over24h = 3,
+              sex_female = "F",
+              sex_male = "M",
+              slaughtercategory_RG = 5,
+              slaughtercategory_OB = 2,
+              slaughtercategory_MT = 3,
+              slaughtercategory_VK = 7,
+              slaughtercategory_MA = 4,
+              age_atslaughter_oldercow = 1460,
+              age_atslaughter_olderbull = 1460,
+              dressingpercentage_female = 0.56,
+              dressingpercentage_male = 0.58))
 }
 
 
@@ -142,8 +156,6 @@ get_constants_progeny_beefOnbeef <- function(){
               extrapol_302d = 302,
               extrapol_304d = 304,
               extrapol_400d = 400,
-              vec_dressing_female = 0.56,
-              vec_dressing_male = 0.58,
               Natura_Beef = 2,
               SwissPrimBeef = 3))
 }

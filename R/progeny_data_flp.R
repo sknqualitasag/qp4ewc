@@ -46,11 +46,15 @@ calculate_mean_birthweight <- function(ps_input_flp_tibble,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
   ### # Different tibble depending on ps_sex and ps_marketing_channel
   ### # Slaughtercategory for female to consider is RG == 5
-  if(ps_sex == "F"){
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "F") %>%
-                                         dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
+  if(ps_sex == l_constants$sex_female){
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
+                                         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
                                          dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
                                          dplyr::select(`Geburtsgewicht Nako`,`ageAtSlaughterInDays`) %>%
                                          na.omit() %>%
@@ -61,8 +65,8 @@ calculate_mean_birthweight <- function(ps_input_flp_tibble,
     }
   }else{
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
-                                         dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
+                                         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
                                          dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
                                          dplyr::select(`Geburtsgewicht Nako`,`ageAtSlaughterInDays`) %>%
                                          na.omit() %>%
@@ -126,11 +130,15 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
   ### # Different tibble depending on ps_sex and ps_marketing_channel
   ### # Slaughtercategory for female to consider is RG == 5
-  if(ps_sex == "F"){
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "F") %>%
-                                         dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
+  if(ps_sex == l_constants$sex_female){
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
+                                         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
                                          dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
                                          dplyr::select(`Schlachtgewicht Nako`,ageAtSlaughterInDays) %>%
                                          na.omit() %>%
@@ -141,8 +149,8 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
     }
   }else{
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
-                                         dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
+                                         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
                                          dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
                                          dplyr::select(`Schlachtgewicht Nako`,ageAtSlaughterInDays) %>%
                                          na.omit() %>%
@@ -158,17 +166,12 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
   carcasswt <- round(as.numeric(dplyr::summarise(tbl_input, mean_carcasswt = mean(`Schlachtgewicht Nako`))),4)
 
 
-  ### # Get the constants
-  l_constants <- get_constants()
-
-
-  ### # Calculate the mean live weight at slaughter
-  if(ps_sex == "F"){
+  if(ps_sex == l_constants$sex_female){
     # dressing percentage to convert carcass weight to live weight at slaughter come from Proviande Wochenpreise für Rindvieh (RG, Fleischigkeit C)
-    livewt_atslaughter <- round(as.numeric((carcasswt/l_constants$vec_dressing_female),4))
+    livewt_atslaughter <- round(as.numeric((carcasswt/l_constants$l_constants$dressingpercentage_female),4))
   }else{
     # dressing percentage to convert carcass weight to live weight at slaughter come from Proviande Wochenpreise für Rindvieh (MT, Fleischigkeit C)
-    livewt_atslaughter <- round(as.numeric((carcasswt/l_constants$vec_dressing_male),4))
+    livewt_atslaughter <- round(as.numeric((carcasswt/l_constants$dressingpercentage_male),4))
   }
 
 
@@ -223,11 +226,15 @@ calculate_mean_weaningweight <- function(ps_input_flp_tibble,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
   ### # Different tibble depending on ps_sex and ps_marketing_channel
   ### # Slaughtercategory for female to consider is RG == 5
-  if(ps_sex == "F"){
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "F") %>%
-                                         dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
+  if(ps_sex == l_constants$sex_female){
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
+                                         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
                                          dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
                                          dplyr::select(`Absetzgewicht effektiv`) %>%
                                          na.omit() %>%
@@ -238,8 +245,8 @@ calculate_mean_weaningweight <- function(ps_input_flp_tibble,
     }
   }else{
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
-                                         dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
+                                         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
                                          dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
                                          dplyr::select(`Absetzgewicht effektiv`) %>%
                                          na.omit() %>%
@@ -306,11 +313,15 @@ calculate_mean_weaningage <- function(ps_input_flp_tibble,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
   ### # Different tibble depending on ps_sex and ps_marketing_channel
   ### # Slaughtercategory for female to consider is RG == 5
-  if(ps_sex == "F"){
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "F") %>%
-      dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
+  if(ps_sex == l_constants$sex_female){
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
+      dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
       dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
       dplyr::select(ageAtWeaningInDays) %>%
       na.omit() %>%
@@ -321,8 +332,8 @@ calculate_mean_weaningage <- function(ps_input_flp_tibble,
     }
   }else{
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
-      dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
+      dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
       dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
       dplyr::select(ageAtWeaningInDays) %>%
       na.omit() %>%
@@ -389,11 +400,15 @@ calculate_mean_slaughterage <- function(ps_input_flp_tibble,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
   ### # Different tibble depending on ps_sex and ps_marketing_channel
   ### # Slaughtercategory for female to consider is RG == 5
-  if(ps_sex == "F"){
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "F") %>%
-      dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
+  if(ps_sex == l_constants$sex_female){
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
+      dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
       dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
       dplyr::select(`Geburtsgewicht Nako`,ageAtSlaughterInDays) %>%
       na.omit() %>%
@@ -405,8 +420,8 @@ calculate_mean_slaughterage <- function(ps_input_flp_tibble,
     }
   }else{
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
-      dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
+      dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
       dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
       dplyr::select(`Geburtsgewicht Nako`,ageAtSlaughterInDays) %>%
       na.omit() %>%
@@ -615,28 +630,32 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
   ### # Tibble depending on ps_second_calvingweight
   ### # Calculate cow weight after first calving (this mean below 2nd lactation number)
   if(ps_first_calvingweight){
     ### # Slaughtercategory for cow to consider is VK == 7
     tbl_input <- ps_input_flp_tibble %>%
-                 dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
-                 dplyr::filter(`Laktationsnummer Ammen-Mutter` < 2) %>%
+                 dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_VK) %>%
+                 dplyr::filter(`Laktationsnummer Ammen-Mutter` < l_constants$lactnumb2) %>%
                  dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)  %>%
                  tidyr::drop_na()
   ### # Calculate cow weight after second calving (this mean below 4th lactation number)
   }else if(ps_second_calvingweight){
     tbl_input <- ps_input_flp_tibble %>%
-                 dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
-                 dplyr::filter(`Laktationsnummer Ammen-Mutter` < 4) %>%
+                 dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_VK) %>%
+                 dplyr::filter(`Laktationsnummer Ammen-Mutter` < l_constants$lactnumb4) %>%
                  dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)  %>%
                  tidyr::drop_na()
   }else{
     ### # Calculate mature cow weight
     tbl_input <- ps_input_flp_tibble %>%
-                 dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
-                 dplyr::filter(`Laktationsnummer Ammen-Mutter` > 3) %>%
-                 dplyr::filter(ageAtSlaughterInDays > 1460) %>%
+                 dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_VK) %>%
+                 dplyr::filter(`Laktationsnummer Ammen-Mutter` > l_constants$lactnumb3) %>%
+                 dplyr::filter(ageAtSlaughterInDays > l_constants$age_atslaughter_oldercow) %>%
                  dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)  %>%
                  tidyr::drop_na()
   }
@@ -646,13 +665,9 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
    cowwt <- round(as.numeric(dplyr::summarise(tbl_input, mean_cowwt = mean(`Schlachtgewicht Nako`))),4)
 
 
-   ### # Get the constants
-   l_constants <- get_constants()
-
-
    ### # Calculate the mean cow live weight at slaughter
    # dressing percentage to convert carcass weight to cow live weight at slaughter come from Proviande Wochenpreise für Rindvieh (VK, Fleischigkeit C)
-   cowlivewt_atslaughter <- round(as.numeric((cowwt/l_constants$vec_dressing_female),4))
+   cowlivewt_atslaughter <- round(as.numeric((cowwt/l_constants$dressingpercentage_female),4))
 
 
    if(pb_log){
@@ -699,11 +714,15 @@ calculate_bull_liveweight <- function(ps_input_flp_tibble,
   }
 
 
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
   ### # Calculate bull mature weight
   ### # Slaughtercategory for older bull to consider is MA == 4
   tbl_input <- ps_input_flp_tibble %>%
-               dplyr::filter(`Schlacht-/Masttierkategorie` == 4) %>%
-               dplyr::filter(ageAtSlaughterInDays > 1460) %>%
+               dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MA) %>%
+               dplyr::filter(ageAtSlaughterInDays > l_constants$age_atslaughter_olderbull) %>%
                dplyr::select(`Schlachtgewicht Nako`) %>%
                tidyr::drop_na()
 
@@ -718,7 +737,7 @@ calculate_bull_liveweight <- function(ps_input_flp_tibble,
 
   ### # Calculate the mean bull live weight at slaughter
   # dressing percentage to convert carcass weight to bull live weight at slaughter come from Proviande Wochenpreise für Rindvieh (MA, Fleischigkeit C)
-  bulllivewt_atslaughter <- round(as.numeric((bullwt/l_constants$vec_dressing_male),4))
+  bulllivewt_atslaughter <- round(as.numeric((bullwt/l_constants$dressingpercentage_male),4))
 
 
   if(pb_log){
