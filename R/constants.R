@@ -39,7 +39,11 @@ get_constants <- function(){
               age_atslaughter_oldercow = 1460,
               age_atslaughter_olderbull = 1460,
               dressingpercentage_female = 0.56,
-              dressingpercentage_male = 0.58))
+              dressingpercentage_male = 0.58,
+              wording_NaturaBeef = "Natura-Beef",
+              value_NaturaBeef = 2,
+              wording_SwissPrimBeef = "SwissPrimBeef",
+              value_SwissPrimBeef = 3))
 }
 
 

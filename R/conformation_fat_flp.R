@@ -48,12 +48,17 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
                            ' * ps_flag_cow: ',ps_flag_cow))
   }
 
+
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
   ### # Setting the ps_marketing_channel in world to the numeric variable s_marketing_channel
   if(!is.null(ps_marketing_channel)){
-    if(ps_marketing_channel == "Natura-Beef"){
-      s_marketing_channel <- 2
-    }else if(ps_marketing_channel == "SwissPrimBeef"){
-      s_marketing_channel <- 3
+    if(ps_marketing_channel == l_constants$wording_NaturaBeef){
+      s_marketing_channel <- l_constants$value_NaturaBeef
+    }else if(ps_marketing_channel == l_constants$wording_SwissPrimBeef){
+      s_marketing_channel <- l_constants$value_SwissPrimBeef
     }else{
       s_marketing_channel <- NULL
     }
@@ -64,11 +69,11 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
 
 
   ### # Different tibble depending on ps_sex, ps_marketing_channel
-  if(ps_sex == "F"){
+  if(ps_sex == l_constants$sex_female){
     if(ps_flag_cow){
       ### # Slaughtercategory for female to consider is VK == 7
-      tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "F") %>%
-                   dplyr::filter(`Schlacht-/Masttierkategorie` == 7) %>%
+      tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
+                   dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_VK) %>%
                    dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
                    na.omit()
       if(pb_log){
@@ -77,8 +82,8 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
       }
     }else{
       ### # Slaughtercategory for female to consider is RG == 5
-      tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "F") %>%
-                   dplyr::filter(`Schlacht-/Masttierkategorie` == 5) %>%
+      tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
+                   dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
                    dplyr::filter(Markenprogramm == s_marketing_channel) %>%
                    dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
                    na.omit()
@@ -89,8 +94,8 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
     }
   }else{
     ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == "M") %>%
-                 dplyr::filter(`Schlacht-/Masttierkategorie` == 2 | `Schlacht-/Masttierkategorie` == 3) %>%
+    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
+                 dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
                  dplyr::filter(Markenprogramm == s_marketing_channel) %>%
                  dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
                  na.omit()
