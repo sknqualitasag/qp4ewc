@@ -20,7 +20,7 @@ library(qp4ewc)
 
 # Aim
 
-In this vignette, you will get more information about the construction of the main-function `pre_process_ewbc_input()`. The task of this function is to pre-process the input-parameter-files of ECOWEIGHT for beef cattle (EWBC).
+In this vignette, you will get more information about the construction of the main-function `pre_process_ew_input()`. The task of this function is to pre-process the input-parameter-files of ECOWEIGHT for beef cattle (EWBC).
 
 # Parameters
 
@@ -71,7 +71,7 @@ b_log <- TRUE
 
 At the beginning of the function depending of the setting for `pb_log` and `plogger`, a log-file will be created.
 
-# Major steps of pre_process_ewbc_input() are
+# Major steps of pre_process_ew_input() are
 
  1) function `create_directory_scenario()` : create directory per scenario with input-parameter-file for ECOWEIGHT. Details in the vignette Explain the function create_directory_scenario().
  
@@ -81,14 +81,14 @@ At the beginning of the function depending of the setting for `pb_log` and `plog
  
  3) function `pre_process_ew_input_calving()` : Pre-processing the calving data for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_calving().
  
- 4) function `pre_process_ewbc_input_progeny_data_flp()` : Pre-processing the progeny data flp for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_progeny_data_flp(). 
+ 4) function `pre_process_ewbc_input_progeny_data_flp()` : Pre-processing the progeny data flp for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ewbc_input_progeny_data_flp(). 
  
  5) function `pre_process_ew_input_carcass_data_flp()` : Pre-processing the carcass conformation, fat, prices based on flp-data for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_carcass_data_flp().
 
-# Run pre_process_ewbc_input() in RStudio
+# Run pre_process_ew_input() in RStudio
 
 ```{r, warning=FALSE, message=FALSE}
-pre_process_ewbc_input(ps_sirebreed = s_sirebreed,
+pre_process_ew_input(ps_sirebreed = s_sirebreed,
                        ps_prodsystew = s_prodsystew,
                        ps_marketchannel = s_marketingchannel,
                        ps_path_directory2create = s_path_directory2create,
@@ -112,4 +112,4 @@ pre_process_ewbc_input(ps_sirebreed = s_sirebreed,
 # Post-processing steps
 
 At this stage the post-processing steps done during the internship is in post_processing.R implemented.
-However this function needs to be reviewed as soon as new results are produced with pre_process_ewbc_input().
+However this function needs to be reviewed as soon as new results are produced with pre_process_ew_input().

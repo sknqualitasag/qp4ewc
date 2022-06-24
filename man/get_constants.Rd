@@ -7,6 +7,5 @@
 get_constants()
 }
 \description{
-Return a list with specific calving constants in beef-on-beef production systems
-that are used.
+Return a list with constants that are used.
 }
