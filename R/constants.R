@@ -10,8 +10,7 @@
 #' @title Get constants
 #'
 #' @description
-#' Return a list with specific calving constants in beef-on-beef production systems
-#' that are used.
+#' Return a list with constants that are used.
 #'
 #' @export get_constants
 get_constants <- function(){
@@ -51,7 +50,7 @@ get_constants <- function(){
 #' @title Get constants for ewbc input in beef-on-beef production systems
 #'
 #' @description
-#' Return a list with specific calving constants in beef-on-beef production systems
+#' Return a list with constants in beef-on-beef production systems
 #' that are used.
 #'
 #' @export get_constants_ewbc_input_beefOnbeef
@@ -80,6 +79,25 @@ get_constants_ewbc_input_beefOnbeef <- function(){
               matingtype_AI = 1,
               matingtype_NM = 2))
 }
+
+
+#' @title Get constants for ew input in beef-on-dairy production systems
+#'
+#' @description
+#' Return a list with constants in beef-on-dairy production systems
+#' that are used.
+#'
+#' @export get_constants_ew_input_beefOndairy
+get_constants_ew_input_beefOndairy <- function(){
+  # return list of default constants
+  return(list(idx_col_input_file = 1,
+              idx_col_input = 2,
+              idx_col_input_value = 4,
+              file_par = "PARAD.TXT",
+              prodsyst = "Production System",
+              prodsyst4 = 4))
+}
+
 
 
 

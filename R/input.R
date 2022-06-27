@@ -187,6 +187,7 @@ age_in_days <- function(pdate_birth,
 #' @param ps_input_file_flp path to file with input coming from beef recording for the input-parameter-file for ECOWEIGHT
 #' @param ps_start_flp_date setting the start of the beef recording date to filter in the flp-data
 #' @param ps_end_flp_date setting the end of the beef recording date to filter in the flp-data
+#' @param ps_sirebreed sire breed
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -348,6 +349,81 @@ read_price_conf_fat <- function(ps_input_file_price,
 
   ### # Return matrix
   return(mat_price)
+
+
+}
+
+
+#' @title Read file with pedigree input
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will read a pedigree file.
+#'
+#' @param ps_input_file_ped path to pedigree file
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return tibble with the pedigree content
+#'
+#' @export read_file_input_ped
+read_file_input_ped <-  function(ps_input_file_ped,
+                                 pb_log = FALSE,
+                                 plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'read_file_input_ped.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'read_file_input_ped',
+                    paste0('Starting function with parameters:\n * ps_input_file_ped: ', ps_input_file_ped))
+  }
+
+
+  ### # Check if file exist otherwise stop running the function
+  if(!file.exists(ps_input_file_ped)){
+    stop("read_file_input_ped: file ",ps_input_file_ped," does not exist, please check the path !")
+  }else{
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'read_file_input_ped',paste0('File exists:\n * ps_input_file_ped',ps_input_file_ped))
+    }
+  }
+
+
+  ### # Read the input flp file
+  tbl_ped <- readr::read_delim(file = ps_input_file_ped, delim = " ")
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'read_file_input_ped',paste0('Read file: \n * ps_input_file_ped: ',ps_input_file_ped,"\n",
+                                                      ' * in a tibble'))
+  }
+
+
+  ### # Check if some columns-header are available in the input ped file
+  vec_flpHeader_name <- names(tbl_ped)
+  vec_requested_flpHeader_name <- c("animBreed","sireBreed","damBreed","sireofdamBreed","damofdamBreed")
+  if(all(vec_requested_flpHeader_name %in% vec_flpHeader_name)){
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'read_file_input_ped',paste0('All requested column-names in ped input file exist'))
+    }
+  }else{
+    stop("read_file_input_ped: Not all requested column-names in ped input file exist, please check the file !")
+  }
+
+
+  ### # Change columns-header so that it is the same as in read_file_input_calving
+  colnames(tbl_ped)[which(names(tbl_ped) == "animBreed")] <- "Nachkomme_RasseCode"
+  colnames(tbl_ped)[which(names(tbl_ped) == "sireBreed")] <- "Vater_RasseCode"
+  colnames(tbl_ped)[which(names(tbl_ped) == "damBreed")] <- "Mutter_RasseCode"
+
+
+  ### # Return tibble
+  return(tbl_ped)
 
 
 }

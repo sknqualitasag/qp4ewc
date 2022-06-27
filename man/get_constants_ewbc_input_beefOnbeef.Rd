@@ -7,6 +7,6 @@
 get_constants_ewbc_input_beefOnbeef()
 }
 \description{
-Return a list with specific calving constants in beef-on-beef production systems
+Return a list with constants in beef-on-beef production systems
 that are used.
 }
