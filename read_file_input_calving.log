@@ -1,0 +1,11 @@
+INFO  [2022-06-27 14:20:29] read_file_input_calving -- Starting function with parameters:
+ * ps_input_file_calving: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+ * ps_start_calving_date: 20150101
+ * ps_end_calving_date: 20220504
+INFO  [2022-06-27 14:20:29] read_file_input_calving -- File exists:
+ * ps_input_file_calving/Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+INFO  [2022-06-27 14:20:29] read_file_input_calving -- Read file: 
+ * ps_input_file_calving: /Users/skn/muku_Ecoweigth/2022/prog/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+ * in a tibble
+INFO  [2022-06-27 14:20:29] read_file_input_calving -- All requested column-names in calving input file exist
+INFO  [2022-06-27 14:20:29] read_file_input_calving -- Considered data from input calving file from: 20150101 to 20220504

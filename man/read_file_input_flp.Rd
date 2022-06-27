@@ -20,6 +20,8 @@ read_file_input_flp(
 
 \item{ps_end_flp_date}{setting the end of the beef recording date to filter in the flp-data}
 
+\item{ps_sirebreed}{sire breed}
+
 \item{pb_log}{indicator whether logs should be produced}
 
 \item{plogger}{logger object}

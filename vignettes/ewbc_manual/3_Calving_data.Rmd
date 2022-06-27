@@ -173,25 +173,28 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 # Calving score proportion for primiparous, a specific sire breed, female, calving score 2
 calvingscore_prop_prim_F_2 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                 ps_statement_firstlactation = TRUE,
-                                                                ps_breed = s_sirebreed,
                                                                 ps_sex = "F",
                                                                 ps_calvingscore = 2,
+                                                                ps_sirebreed = s_sirebreed,
+                                                                ps_dambreed = s_dambreed,
                                                                 pb_log = b_log)
 calvingscore_prop_prim_F_2
 # Calving score proportion for primiparous, a specific sire breed, female, calving score 3
 calvingscore_prop_prim_F_3 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                 ps_statement_firstlactation = TRUE,
-                                                                ps_breed = s_sirebreed,
                                                                 ps_sex = "F",
                                                                 ps_calvingscore = 3,
+                                                                ps_sirebreed = s_sirebreed,
+                                                                ps_dambreed = s_dambreed,
                                                                 pb_log = b_log)
 calvingscore_prop_prim_F_3
 # Calving score proportion for primiparous, a specific sire breed, female, calving score 4
 calvingscore_prop_prim_F_4 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                 ps_statement_firstlactation = TRUE,
-                                                                ps_breed = s_sirebreed,
                                                                 ps_sex = "F",
                                                                 ps_calvingscore = 4,
+                                                                ps_sirebreed = s_sirebreed,
+                                                                ps_dambreed = s_dambreed,
                                                                 pb_log = b_log)
 calvingscore_prop_prim_F_4
 ```
@@ -200,25 +203,28 @@ calvingscore_prop_prim_F_4
 # Calving score proportion for multiparous, a specific sire breed, female, calving score 2
 calvingscore_prop_multi_F_2 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                  ps_statement_firstlactation = FALSE,
-                                                                 ps_breed = s_sirebreed,
                                                                  ps_sex = "F",
                                                                  ps_calvingscore = 2,
+                                                                 ps_sirebreed = s_sirebreed,
+                                                                 ps_dambreed = s_dambreed,
                                                                  pb_log = b_log)
 calvingscore_prop_multi_F_2
 # Calving score proportion for multiparous, a specific sire breed, female, calving score 3
 calvingscore_prop_multi_F_3 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                  ps_statement_firstlactation = FALSE,
-                                                                 ps_breed = s_sirebreed,
                                                                  ps_sex = "F",
                                                                  ps_calvingscore = 3,
+                                                                 ps_sirebreed = s_sirebreed,
+                                                                 ps_dambreed = s_dambreed,
                                                                  pb_log = b_log)
 calvingscore_prop_multi_F_3
 # Calving score proportion for multiparous, a specific sire breed, female, calving score 4
 calvingscore_prop_multi_F_4 <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                  ps_statement_firstlactation = FALSE,
-                                                                 ps_breed = s_sirebreed,
                                                                  ps_sex = "F",
                                                                  ps_calvingscore = 4,
+                                                                 ps_sirebreed = s_sirebreed,
+                                                                 ps_dambreed = s_dambreed,
                                                                  pb_log = b_log)
 calvingscore_prop_multi_F_4
 ```
