@@ -29,12 +29,14 @@ The parameters needed are:
 ```{r}
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
 s_sirebreed <- "LM"
+# Dam breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental for beef-on-beef, or HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
+s_dambreed <- "HO"
 # Production system according to ECOWEIGHT: 1,2,3,4 corresponding to purebreeding, crossbreeding, terminal crossing, dairy
-s_prodsystew <- "2"
-# Marketing channel can be: Natura-Beef, SwissPrimBeef
-s_marketingchannel <- "Natura-Beef"
+s_prodsystew <- "4"
+# Marketing channel can be: Natura-Beef, SwissPrimBeef, ConventionalBeef, ConventionalVeal
+s_marketingchannel <- "ConventionalBeef"
 # Path to define from the working directory
-s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc")
+s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
@@ -43,6 +45,7 @@ b_log <- TRUE
 
 ```{r}
 create_directory_scenario(ps_sirebreed = s_sirebreed,
+                          ps_dambreed = s_dambreed,
                           ps_prodsystew = s_prodsystew,
                           ps_marketchannel = s_marketingchannel,
                           ps_path_directory2create = s_path_directory2create,

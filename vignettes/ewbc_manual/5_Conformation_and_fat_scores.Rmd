@@ -29,9 +29,11 @@ The parameters needed are:
 ```{r, echo = TRUE}
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
 s_sirebreed <- "LM"
+# Dam breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental for beef-on-beef, or HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
+s_dambreed <- "HO"
 # Production system according to ECOWEIGHT: 1,2,3,4 corresponding to purebreeding, crossbreeding, terminal crossing, dairy
 s_prodsystew <- "2"
-# Marketing channel can be: Natura-Beef, SwissPrimBeef
+# Marketing channel can be: Natura-Beef, SwissPrimBeef, ConventionalBeef, ConventionalVeal
 s_marketingchannel <- "Natura-Beef"
 # Path to define from the working directory
 s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc")
@@ -85,12 +87,12 @@ tbl_flp
 
 ```{r}
 # Number of classes for fleshiness
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[11,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[11,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[11,2],
                                       ps_value2update = tbl_input_statement_flp_carcass[11,4],
                                       pb_log = b_log)
 # Number of classes for fat covering
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[12,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[12,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[12,2],
                                       ps_value2update = tbl_input_statement_flp_carcass[12,4],
                                       pb_log = b_log)
@@ -117,7 +119,7 @@ freq_mat_cow
 ```{r}
 # For carcass conformation C (use of default value for ps_line4statement2update)
 # Update ECOWEIGHT input-file with the calculated abortion rates in tbl_input_statement_flp_carcass[1,]
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[1,2],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[1,],4)),collapse = " "),
                                       pb_log = b_log)
@@ -126,7 +128,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```{r, warning=FALSE, message=FALSE}
 # For carcass conformation H
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[1,2],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[2,],4)),collapse = " "),
                                       ps_line4statement2update = 2,
@@ -136,7 +138,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```{r, warning=FALSE, message=FALSE}
 # For carcass conformation T+
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[1,2],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[3,],4)),collapse = " "),
                                       ps_line4statement2update = 3,
@@ -145,7 +147,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```{r, warning=FALSE, message=FALSE}
 # For carcass conformation T
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[1,2],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[4,],4)),collapse = " "),
                                       ps_line4statement2update = 4,
@@ -154,7 +156,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```{r, warning=FALSE, message=FALSE}
 # For carcass conformation T-
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[1,2],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[5,],4)),collapse = " "),
                                       ps_line4statement2update = 5,
@@ -163,7 +165,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```{r, warning=FALSE, message=FALSE}
 # For carcass conformation A
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[1,2],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[6,],4)),collapse = " "),
                                       ps_line4statement2update = 6,
@@ -172,7 +174,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```{r, warning=FALSE, message=FALSE}
 # For carcass conformation X
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[1,2],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[7,],4)),collapse = " "),
                                       ps_line4statement2update = 7,
@@ -182,7 +184,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```{r, warning=FALSE, message=FALSE}
 # For carcass conformation XX
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[1,2],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[8,],4)),collapse = " "),
                                       ps_line4statement2update = 8,
@@ -191,7 +193,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```{r, warning=FALSE, message=FALSE}
 # For carcass conformation XXX
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[1,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[1,2],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[9,],4)),collapse = " "),
                                       ps_line4statement2update = 9,
@@ -234,7 +236,7 @@ The prices of Proviande (Wochenpreise für Rindvieh, Woche 8 vom Jahr 2021) are 
 
 ```{r}
 # base price for cow
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[4,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[4,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[4,2],
                                       ps_value2update = tbl_input_statement_flp_carcass[4,4],
                                       pb_log = b_log)
@@ -242,7 +244,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 ```
 ```{r}
 # average price bull
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[5,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[5,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[5,2],
                                       ps_value2update = tbl_input_statement_flp_carcass[5,4],
                                       pb_log = b_log)
@@ -251,7 +253,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```{r}
 # basis price bull
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[6,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[6,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[6,2],
                                       ps_value2update = tbl_input_statement_flp_carcass[6,4],
                                       pb_log = b_log)
@@ -260,7 +262,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```{r}
 # basis price heifer
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[7,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[7,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[7,2],
                                       ps_value2update = tbl_input_statement_flp_carcass[7,4],
                                       pb_log = b_log)
@@ -280,7 +282,7 @@ Now, the price coefficient for cow will be updated.
 
 ```{r}
 # For carcass conformation C
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[8,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[8,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[8,2],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[1,],4)),collapse = " "),
                                       pb_log = b_log)
@@ -288,7 +290,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```{r}
 # For carcass conformation H
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[8,1]),
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp_carcass[8,1]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[8,2],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[2,],4)),collapse = " "),
                                       ps_line4statement2update = 2,

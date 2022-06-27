@@ -16,6 +16,7 @@
 #' to run ECOWEIGHT.
 #'
 #' @param ps_sirebreed sire breed
+#' @param ps_dambreed dam breed
 #' @param ps_prodsystew production system build up as option in ECOWEIGHT
 #' @param ps_marketchannel market channel
 #' @param ps_path_directory2create path of the directory that will be created
@@ -24,6 +25,7 @@
 #'
 #' @export create_directory_scenario
 create_directory_scenario <- function(ps_sirebreed,
+                                      ps_dambreed,
                                       ps_prodsystew,
                                       ps_marketchannel,
                                       ps_path_directory2create,
@@ -40,6 +42,7 @@ create_directory_scenario <- function(ps_sirebreed,
     }
     qp4ewc_log_info(lgr, 'create_directory_scenario',
                     paste0('Starting function with parameters:\n * ps_sirebreed: ', ps_sirebreed, '\n',
+                           ' * ps_dambreed: ', ps_dambreed, '\n',
                            ' * ps_prodsystew: ', ps_prodsystew, '\n',
                            ' * ps_marketchannel: ', ps_marketchannel, '\n',
                            ' * ps_path_directory2create: ', ps_path_directory2create))
@@ -47,7 +50,7 @@ create_directory_scenario <- function(ps_sirebreed,
 
 
   ### # Build a name for each scenario
-  s_scenario <- file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel))
+  s_scenario <- file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed, "_",ps_prodsystew,"_",ps_marketchannel))
   if(pb_log){
     qp4ewc_log_info(lgr, 'create_directory_scenario',
                     paste0('Define the name of the scenario:\n * s_scenario: ', s_scenario))
@@ -81,4 +84,15 @@ create_directory_scenario <- function(ps_sirebreed,
     }
   }
 
+  if(ps_prodsystew == l_constants$beefOndairy){
+    list_of_files <- list.files(system.file("templates", "ewdc", package = "qp4ewc"), full.names = TRUE)
+    file.copy(list_of_files,s_scenario)
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'create_directory_scenario',
+                      paste0('Copy the default input-parameter-files in the scenario directory based on the templates for ewdc','\n'))
+    }
+
+  }
 }
+
+

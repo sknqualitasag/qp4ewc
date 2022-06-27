@@ -6,6 +6,7 @@
 \usage{
 pre_process_ewbc_input(
   ps_sirebreed,
+  ps_dambreed,
   ps_prodsystew,
   ps_marketchannel,
   ps_path_directory2create,
@@ -29,6 +30,8 @@ pre_process_ewbc_input(
 }
 \arguments{
 \item{ps_sirebreed}{sire breed}
+
+\item{ps_dambreed}{dam breed}
 
 \item{ps_prodsystew}{production system build up as option in ECOWEIGHT}
 

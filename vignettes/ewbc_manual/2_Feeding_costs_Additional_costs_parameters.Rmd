@@ -29,14 +29,16 @@ The parameters needed are:
 ```{r, echo = TRUE}
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
 s_sirebreed <- "LM"
+# Dam breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental for beef-on-beef, or HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
+s_dambreed <- "HO"
 # Production system according to ECOWEIGHT: 1,2,3,4 corresponding to purebreeding, crossbreeding, terminal crossing, dairy
-s_prodsystew <- "2"
-# Marketing channel can be: Natura-Beef, SwissPrimBeef
-s_marketingchannel <- "Natura-Beef"
+s_prodsystew <- "4"
+# Marketing channel can be: Natura-Beef, SwissPrimBeef, ConventionalBeef, ConventionalVeal
+s_marketingchannel <- "ConventionalBeef"
 # Path to define from the working directory
-s_path_directory2create <-  file.path(here::here(),"inst","extdata","ewbc")
+s_path_directory2create <-  file.path(here::here(),"inst","extdata","ewdc")
 # Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
-s_input_file_literature <- file.path(here::here(),"inst","extdata","ewbc","input_literature.txt")
+s_input_file_literature <- file.path(here::here(),"inst","extdata","ewdc","input_literature.txt")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
@@ -57,7 +59,7 @@ Update all the input of ecoweight where the literature inputs are coming from th
 
 ```{r, warning=FALSE, message=FALSE}
   for(l in 1:nrow(tbl_input_literature)){
-      update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_literature[l,1]),
+      update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_literature[l,1]),
                                         ps_statement2search = tbl_input_literature[l,2],
                                         ps_value2update = tbl_input_literature[l,4],
                                         pb_log = b_log)

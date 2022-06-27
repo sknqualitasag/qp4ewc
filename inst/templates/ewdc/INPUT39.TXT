@@ -1,0 +1,19 @@
+/* Input parameters for program EWDC (Production System 4).
+   This file contains input parameters for the calculation of cost due to
+   milking (when calculated EV for milking speed).
+   Be careful when changing input parameters. Please notice that 
+     the description of the given parameter or vector is posted under 
+     the number(s).
+   MU: monetary unit */
+2.52
+"Average milking speed (mspeed)"
+"kg/min"
+56.25
+"Costs for milking labour (costml)"
+"MU/hour"
+16.90
+"Costs for electrical power for milking (costme)"
+"MU/hour"
+0.502
+"Costs for wear (depreciation) on the milking equipment (costmw)"
+"MU/hour"

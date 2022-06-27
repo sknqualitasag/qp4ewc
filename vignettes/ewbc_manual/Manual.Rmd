@@ -29,22 +29,24 @@ The parameters needed are:
 ```{r}
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
 s_sirebreed <- "LM"
+# Dam breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental for beef-on-beef, or HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
+s_dambreed <- "HO"
 # Production system according to ECOWEIGHT: 1,2,3,4 corresponding to purebreeding, crossbreeding, terminal crossing, dairy
-s_prodsystew <- "2"
-# Marketing channel can be: Natura-Beef, SwissPrimBeef
-s_marketingchannel <- "Natura-Beef"
+s_prodsystew <- "4"
+# Marketing channel can be: Natura-Beef, SwissPrimBeef, ConventionalBeef, CovnentionalVeal
+s_marketingchannel <- "ConventionalBeef"
 # Path to define from the working directory
-s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc")
+s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc")
 # Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
-s_input_file_literature <- file.path(here::here(),"inst","extdata","ewbc","input_literature.txt")
+s_input_file_literature <- file.path(here::here(),"inst","extdata","ewdc","input_literature.txt")
 # Path to input from the parameter specific for the scenario. Based on this example an other file can be created with different input-value.
-s_input_file_par <- file.path(here::here(),"inst","extdata","ewbc","input_par_statement.txt")
+s_input_file_par <- file.path(here::here(),"inst","extdata","ewdc","input_par_statement.txt")
 # Path to specific input for ProdSyst1 for tested bulls
 s_input_file_testedbulls <- file.path(here::here(),"inst","extdata","ewbc","input_testedbulls.txt")
 # Path to specific input for ProdSyst3 for replacement progeny heifers
 s_input_file_purchasedreplacementheifers  <- file.path(here::here(),"inst","extdata","ewbc","input_purchasedreplacementheifers.txt")
 # Path to input from the calving. Based on this example an other file can be created with different input-values.
-s_input_file_calving_statement <- file.path(here::here(),"inst","extdata","ewbc","input_calving_statement.txt")
+s_input_file_calving_statement <- file.path(here::here(),"inst","extdata","ewdc","input_calving_statement.txt")
 # Path to calving data file
 s_input_file_calving <- file.path(here::here(),"inst","extdata","ewbc","test","test_zws_muku_gal.csv")
 # Date YYYYMMDD used as start date to filter data for calving or carcass
@@ -52,17 +54,17 @@ s_start_date <- 20160101
 # Date YYYYMMDD used as end date to filter data for calving or carcass
 s_end_date <- 20211231
 # Path to input from the progeny flp data. Based on this example an other file can be created with different input-values.
-s_input_file_progeny_flp_statement <- file.path(here::here(),"inst","extdata","ewbc","input_flp_statement.txt")
+s_input_file_progeny_flp_statement <- file.path(here::here(),"inst","extdata","ewdc","input_flp_statement.txt")
 # Path to flp data file
 s_input_file_flp <- file.path(here::here(),"inst","extdata","ewbc","test","test_zws_muku_flp.csv")
 # Path to input statement for carcass and price
-s_input_file_flp_carcass_matrix_statement <- file.path(here::here(),"inst","extdata","ewbc","input_flp_carcass_matrix_statement.txt")
+s_input_file_flp_carcass_matrix_statement <- file.path(here::here(),"inst","extdata","ewdc","input_flp_carcass_matrix_statement.txt")
 # Path to input with cow price. Based on this example an other file can be created with different input-values.
-s_input_file_price_cow <- file.path(here::here(),"inst","extdata","ewbc","cow_price.txt")
+s_input_file_price_cow <- file.path(here::here(),"inst","extdata","ewdc","cow_price.txt")
 # Path to input with bull price. Based on this example an other file can be created with different input-values.
-s_input_file_price_bull <- file.path(here::here(),"inst","extdata","ewbc","bull_price.txt")
+s_input_file_price_bull <- file.path(here::here(),"inst","extdata","ewdc","bull_price.txt")
 # Path to input with heifer price. Based on this example an other file can be created with different input-values.
-s_input_file_price_heifer <- file.path(here::here(),"inst","extdata","ewbc","heifer_price.txt")
+s_input_file_price_heifer <- file.path(here::here(),"inst","extdata","ewdc","heifer_price.txt")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
@@ -87,8 +89,9 @@ At the beginning of the function depending of the setting for `pb_log` and `plog
 
 # Run pre_process_ewbc_input() in RStudio
 
-```{r, warning=FALSE, message=FALSE}
+```{r message=FALSE, warning=FALSE}
 pre_process_ewbc_input(ps_sirebreed = s_sirebreed,
+                       ps_dambreed = s_dambreed,
                        ps_prodsystew = s_prodsystew,
                        ps_marketchannel = s_marketingchannel,
                        ps_path_directory2create = s_path_directory2create,

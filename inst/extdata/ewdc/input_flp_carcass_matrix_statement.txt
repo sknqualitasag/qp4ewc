@@ -1,0 +1,19 @@
+input_file;input;input_unit;input_value
+INPUT24.TXT;"Matrix Pb_p - proportions of bull carcasses in commercial classes for fleshiness and fat covering";"%";
+INPUT24.TXT;"Matrix Ph_p - proportions of heifer carcasses in commercial classes for fleshiness and fat covering";"%";
+INPUT24.TXT;"Matrix Pcs_p - proportions of castrate carcasses in commercial classes for fleshiness and fat covering";"%";
+INPUT24.TXT;"Matrix Pc_p - proportions of cow carcasses in commercial classes for fleshiness and fat covering";"%"
+INPUT24.TXT;"Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)";" ";
+INPUT24.TXT;"Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class (the value 1 is inserted for the base class)";" ";
+INPUT24.TXT;"Matrix Prcs - coefficients of carcass prices in commercial classes for fleshiness and fat covering for castrates relative to the base class (the value 1 is inserted for the base class)";" ";
+INPUT24.TXT;"Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)";" ";
+INPUT25.TXT;"Matrix Pb_c - proportions of bull carcasses in commercial classes for fleshiness and fat covering";"%";
+INPUT25.TXT;"Matrix Ph_c - proportions of heifer carcasses in commercial classes for fleshiness and fat covering";"%";
+INPUT25.TXT;"Matrix Pcs_c - proportions of castrate carcasses in commercial classes for fleshiness and fat covering";"%";
+INPUT11.TXT;"Price per kg carcass of cows in the base class for carcass grading";"MU/kg";
+INPUT11.TXT;"Ratio of price per kg carcass of cows involuntarily culled to the price per kg carcass of cows voluntarily culled";" ";
+INPUT23.TXT;"Price per kg carcass of heifers in the base class for carcass grading";"MU/kg";
+INPUT23.TXT;"Price per kg carcass of bulls in the base class for carcass grading";MU/kg;
+INPUT23;"Price per kg carcass of castrates in the base class for carcass grading";"MU/kg";
+INPUT23;"Number of commercial classes for fleshiness";" ";
+INPUT23;"Number of commercial classes for fat covering";" ";
