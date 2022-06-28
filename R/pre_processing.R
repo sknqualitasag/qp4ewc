@@ -1916,6 +1916,64 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                         plogger = lgr)
 
 
+    # Update statement-progeny-flp-input from the data by calculating mean live weight at slaughter
+    livewt_slaughter_f_purebeef <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_beef,
+                                                                               ps_sex = l_constants_progeny_beefOndairy$sex_female,
+                                                                               ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
+                                                                               ps_prodsystew,
+                                                                               pb_log,
+                                                                               plogger = lgr)
+    livewt_slaughter_m_purebeef <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_beef,
+                                                                               ps_sex = l_constants_progeny_beefOndairy$sex_male,
+                                                                               ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
+                                                                               ps_prodsystew,
+                                                                               pb_log,
+                                                                               plogger = lgr)
+    livewt_slaughter_f_puredairy <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_dairy,
+                                                                               ps_sex = l_constants_progeny_beefOndairy$sex_female,
+                                                                               ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
+                                                                               ps_prodsystew,
+                                                                               pb_log,
+                                                                               plogger = lgr)
+    livewt_slaughter_m_puredairy <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_dairy,
+                                                                               ps_sex = l_constants_progeny_beefOndairy$sex_male,
+                                                                               ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
+                                                                               ps_prodsystew,
+                                                                               pb_log,
+                                                                               plogger = lgr)
+
+
+    # Update statement-progeny-flp-input from the data by calculating mean slaughter age
+    slaughterage_f_purebeef <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_beef,
+                                                                   ps_sex = l_constants_progeny_beefOndairy$sex_female,
+                                                                   ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
+                                                                   ps_prodsystew,
+                                                                   pb_log,
+                                                                   plogger = lgr)
+    slaughterage_m_purebeef <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_beef,
+                                                                   ps_sex = l_constants_progeny_beefOndairy$sex_male,
+                                                                   ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
+                                                                   ps_prodsystew,
+                                                                   pb_log,
+                                                                   plogger = lgr)
+    slaughterage_f_puredairy <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_dairy,
+                                                                   ps_sex = l_constants_progeny_beefOndairy$sex_female,
+                                                                   ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
+                                                                   ps_prodsystew,
+                                                                   pb_log,
+                                                                   plogger = lgr)
+    slaughterage_m_puredairy <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_dairy,
+                                                                   ps_sex = l_constants_progeny_beefOndairy$sex_male,
+                                                                   ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
+                                                                   ps_prodsystew,
+                                                                   pb_log,
+                                                                   plogger = lgr)
+
+
+
+
+
+
   }
   # ****************************************************************************
   ## ---- Conventional-Veal ----
@@ -1947,6 +2005,61 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                         ps_prodsystew,
                                                         pb_log,
                                                         plogger = lgr)
+
+
+    # Update statement-progeny-flp-input from the data by calculating mean live weight at slaughter
+    livewt_slaughter_f_purebeef <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_beef,
+                                                                               ps_sex = l_constants_progeny_beefOndairy$sex_female,
+                                                                               ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
+                                                                               ps_prodsystew,
+                                                                               pb_log,
+                                                                               plogger = lgr)
+    livewt_slaughter_m_purebeef <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_beef,
+                                                                               ps_sex = l_constants_progeny_beefOndairy$sex_male,
+                                                                               ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
+                                                                               ps_prodsystew,
+                                                                               pb_log,
+                                                                               plogger = lgr)
+    livewt_slaughter_f_puredairy <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_dairy,
+                                                                                ps_sex = l_constants_progeny_beefOndairy$sex_female,
+                                                                                ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
+                                                                                ps_prodsystew,
+                                                                                pb_log,
+                                                                                plogger = lgr)
+    livewt_slaughter_m_puredairy <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_dairy,
+                                                                                ps_sex = l_constants_progeny_beefOndairy$sex_male,
+                                                                                ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
+                                                                                ps_prodsystew,
+                                                                                pb_log,
+                                                                                plogger = lgr)
+
+
+    # Update statement-progeny-flp-input from the data by calculating mean slaughter age
+    slaughterage_f_purebeef <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_beef,
+                                                                   ps_sex = l_constants_progeny_beefOndairy$sex_female,
+                                                                   ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
+                                                                   ps_prodsystew,
+                                                                   pb_log,
+                                                                   plogger = lgr)
+    slaughterage_m_purebeef <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_beef,
+                                                                   ps_sex = l_constants_progeny_beefOndairy$sex_male,
+                                                                   ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
+                                                                   ps_prodsystew,
+                                                                   pb_log,
+                                                                   plogger = lgr)
+    slaughterage_f_puredairy <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_dairy,
+                                                                    ps_sex = l_constants_progeny_beefOndairy$sex_female,
+                                                                    ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
+                                                                    ps_prodsystew,
+                                                                    pb_log,
+                                                                    plogger = lgr)
+    slaughterage_m_puredairy <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_dairy,
+                                                                    ps_sex = l_constants_progeny_beefOndairy$sex_male,
+                                                                    ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
+                                                                    ps_prodsystew,
+                                                                    pb_log,
+                                                                    plogger = lgr)
+
 
 
   }
