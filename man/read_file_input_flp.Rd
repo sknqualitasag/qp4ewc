@@ -8,7 +8,6 @@ read_file_input_flp(
   ps_input_file_flp,
   ps_start_flp_date,
   ps_end_flp_date,
-  ps_sirebreed,
   pb_log = FALSE,
   plogger = NULL
 )
@@ -19,8 +18,6 @@ read_file_input_flp(
 \item{ps_start_flp_date}{setting the start of the beef recording date to filter in the flp-data}
 
 \item{ps_end_flp_date}{setting the end of the beef recording date to filter in the flp-data}
-
-\item{ps_sirebreed}{sire breed}
 
 \item{pb_log}{indicator whether logs should be produced}
 

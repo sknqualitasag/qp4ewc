@@ -32,7 +32,8 @@
 #' @param ps_input_file_flp_carcass_matrix_statement path to file with statement based on carcass frequency and price for the input-parameter-file for ECOWEIGHT
 #' @param ps_input_file_price_cow path to file with price for cows
 #' @param ps_input_file_price_bull path to file with price for bulls
-#' @param ps_input_file_price_heifer path tho file with price for heifers
+#' @param ps_input_file_price_heifer path to file with price for heifers
+#' @param ps_input_file_ped path to pedigree file
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -56,6 +57,7 @@ pre_process_ew_input <- function(ps_sirebreed,
                                  ps_input_file_price_cow,
                                  ps_input_file_price_bull,
                                  ps_input_file_price_heifer,
+                                 ps_input_file_ped,
                                  pb_log,
                                  plogger = NULL){
 
@@ -352,17 +354,34 @@ pre_process_ew_input <- function(ps_sirebreed,
  ## ---- Progreny data about weighing and slaughter ----
  # ****************************************************************************
  ### # Major step 4 ### #
- qp4ewc::pre_process_ewbc_input_progeny_data_flp(ps_sirebreed,
-                                                 ps_dambreed,
-                                                 ps_prodsystew,
-                                                 ps_marketchannel,
-                                                 ps_path_directory2create,
-                                                 ps_input_file_progeny_flp_statement,
-                                                 ps_input_file_flp,
-                                                 ps_start_flp_date = ps_start_date,
-                                                 ps_end_flp_date = ps_end_date,
-                                                 pb_log,
-                                                 plogger = lgr)
+ ### # production system beef-on-beef
+ if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
+   qp4ewc::pre_process_ewbc_input_progeny_data_flp(ps_sirebreed,
+                                                   ps_dambreed,
+                                                   ps_prodsystew,
+                                                   ps_marketchannel,
+                                                   ps_path_directory2create,
+                                                   ps_input_file_progeny_flp_statement,
+                                                   ps_input_file_flp,
+                                                   ps_start_flp_date = ps_start_date,
+                                                   ps_end_flp_date = ps_end_date,
+                                                   pb_log,
+                                                   plogger = lgr)
+ }else{
+   ### # production system beef-on-dairy
+   qp4ewc::pre_process_ewdc_input_progeny_data_flp(ps_sirebreed,
+                                                   ps_dambreed,
+                                                   ps_prodsystew,
+                                                   ps_marketchannel,
+                                                   ps_path_directory2create,
+                                                   ps_input_file_progeny_flp_statement,
+                                                   ps_input_file_flp,
+                                                   ps_start_flp_date = ps_start_date,
+                                                   ps_end_flp_date = ps_end_date,
+                                                   ps_input_file_ped,
+                                                   pb_log,
+                                                   plogger = lgr)
+ }
 
 
   if(pb_log){
@@ -820,7 +839,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
 }
 
 
-#' @title Pre-processing the progeny data flp for input-parameter-file of ECOWEIGHT
+#' @title Pre-processing the progeny data flp for beef-on-beef input-parameter-file of ECOWEIGHT
 #'
 #' @description
 #' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
@@ -842,15 +861,15 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
 #' @export pre_process_ewbc_input_progeny_data_flp
 pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                                     ps_dambreed,
-                                                  ps_prodsystew,
-                                                  ps_marketchannel,
-                                                  ps_path_directory2create,
-                                                  ps_input_file_progeny_flp_statement,
-                                                  ps_input_file_flp,
-                                                  ps_start_flp_date,
-                                                  ps_end_flp_date,
-                                                  pb_log,
-                                                  plogger = NULL){
+                                                    ps_prodsystew,
+                                                    ps_marketchannel,
+                                                    ps_path_directory2create,
+                                                    ps_input_file_progeny_flp_statement,
+                                                    ps_input_file_flp,
+                                                    ps_start_flp_date,
+                                                    ps_end_flp_date,
+                                                    pb_log,
+                                                    plogger = NULL){
 
   ### # Setting the log-file
   if(pb_log){
@@ -883,7 +902,6 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
   tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp,
                                          ps_start_flp_date,
                                          ps_end_flp_date,
-                                         ps_sirebreed,
                                          pb_log,
                                          plogger = lgr)
 
@@ -901,6 +919,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     female_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                                     ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                     ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
+                                                    ps_prodsystew,
                                                     pb_log,
                                                     plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -914,6 +933,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     male_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                                   ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                   ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
+                                                  ps_prodsystew,
                                                   pb_log,
                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -929,6 +949,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     livewt_slaughter_f <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
+                                                                      ps_prodsystew,
                                                                       pb_log,
                                                                       plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -942,6 +963,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     livewt_slaughter_m <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
+                                                                      ps_prodsystew,
                                                                       pb_log,
                                                                       plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -957,31 +979,37 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     weaningwt_f <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                                         ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                         ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
+                                                        ps_prodsystew,
                                                         pb_log,
                                                         plogger = lgr)
     weaningwt_m <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                                         ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                         ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
+                                                        ps_prodsystew,
                                                         pb_log,
                                                         plogger = lgr)
     weaningage_f <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
+                                                      ps_prodsystew,
                                                       pb_log,
                                                       plogger = lgr)
     weaningage_m <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
+                                                      ps_prodsystew,
                                                       pb_log,
                                                       plogger = lgr)
     slaughterage_f <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
                                                           ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                           ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
+                                                          ps_prodsystew,
                                                           pb_log,
                                                           plogger = lgr)
     slaughterage_m <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
                                                           ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                           ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
+                                                          ps_prodsystew,
                                                           pb_log,
                                                           plogger = lgr)
 
@@ -1134,6 +1162,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     female_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                                     ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                     ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
+                                                    ps_prodsystew,
                                                     pb_log,
                                                     plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1147,6 +1176,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     male_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                                   ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                   ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
+                                                  ps_prodsystew,
                                                   pb_log,
                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1162,6 +1192,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     weaningwt_f <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                                         ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                         ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
+                                                        ps_prodsystew,
                                                         pb_log,
                                                         plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1174,6 +1205,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     weaningwt_m <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_flp,
                                                         ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                         ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
+                                                        ps_prodsystew,
                                                         pb_log,
                                                         plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1189,11 +1221,13 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     weaningage_f <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
+                                                      ps_prodsystew,
                                                       pb_log,
                                                       plogger = lgr)
     weaningage_m <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_flp,
                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
+                                                      ps_prodsystew,
                                                       pb_log,
                                                       plogger = lgr)
     weaningage_average <- round(as.numeric(weaningage_f+weaningage_m)/2,4)
@@ -1210,6 +1244,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     livewt_slaughter_f <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
+                                                                      ps_prodsystew,
                                                                       pb_log,
                                                                       plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1223,6 +1258,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     livewt_slaughter_m <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_flp,
                                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
+                                                                      ps_prodsystew,
                                                                       pb_log,
                                                                       plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1238,11 +1274,13 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     slaughterage_f <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
                                                           ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                           ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
+                                                          ps_prodsystew,
                                                           pb_log,
                                                           plogger = lgr)
     slaughterage_m <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_flp,
                                                           ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                           ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
+                                                          ps_prodsystew,
                                                           pb_log,
                                                           plogger = lgr)
 
@@ -1416,6 +1454,165 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                       ps_value2update = first_calving_wt,
                                       pb_log,
                                       plogger = lgr)
+
+
+}
+
+
+#' @title Pre-processing the progeny data flp for beef-on-dairy input-parameter-file of ECOWEIGHT
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function processed different functions
+#' to prepare the input parameter files based on progeny flp data.
+#'
+#' @param ps_sirebreed sire breed
+#' @param ps_dambreed dam breed
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
+#' @param ps_marketchannel market channel
+#' @param ps_path_directory2create path of the directory that will be created
+#' @param ps_input_file_progeny_flp_statement path to file with statement based on calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file_flp path to file with input coming from calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_start_flp_date setting the start of the slaughter date to filter in the slaughter data
+#' @param ps_end_flp_date setting the end of the slaughter date to filter in the slaughter data
+#' @param ps_input_file_ped path to file with pedigree input
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @export pre_process_ewdc_input_progeny_data_flp
+pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
+                                                    ps_dambreed,
+                                                    ps_prodsystew,
+                                                    ps_marketchannel,
+                                                    ps_path_directory2create,
+                                                    ps_input_file_progeny_flp_statement,
+                                                    ps_input_file_flp,
+                                                    ps_start_flp_date,
+                                                    ps_end_flp_date,
+                                                    ps_input_file_ped,
+                                                    pb_log,
+                                                    plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'pre_process_ewdc_input_progeny_data_flp.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'pre_process_ewdc_input_progeny_data_flp',
+                    paste0('Starting function with parameters:\n * ps_sirebreed: ', ps_sirebreed, '\n',
+                           ' * ps_dambreed: ', ps_dambreed, '\n',
+                           ' * ps_prodsystew: ', ps_prodsystew, '\n',
+                           ' * ps_marketchannel: ', ps_marketchannel, '\n',
+                           ' * ps_path_directory2create: ', ps_path_directory2create, '\n',
+                           ' * ps_input_file_progeny_flp_statement: ',ps_input_file_progeny_flp_statement, '\n',
+                           ' * ps_input_file_flp: ', ps_input_file_flp, '\n',
+                           ' * ps_start_flp_date: ',ps_start_flp_date,'\n',
+                           ' * ps_end_flp_date: ',ps_end_flp_date,'\n',
+                           ' * ps_input_file_ped: ',ps_input_file_ped))
+  }
+
+
+  ### # Get the constants
+  l_constants_progeny_beefOndairy <- get_constants_progeny_beefOndairy()
+
+
+  ### # Read file with statement based on progeny data flp for input-parameter-file of ECOWEIGHT
+  tbl_input_statement_flp <- qp4ewc::read_file_input(ps_input_file_progeny_flp_statement,
+                                                     pb_log,
+                                                     plogger = lgr)
+
+
+  ### # Read file with progeny-flp data
+  tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp,
+                                         ps_start_flp_date,
+                                         ps_end_flp_date,
+                                         pb_log,
+                                         plogger = lgr)
+
+
+  ### # Read pedigree file
+  tbl_ped <- read_file_input_ped(ps_input_file_ped,
+                                 pb_log,
+                                 plogger = lgr)
+
+
+  ### # Merge progeny-flp data and pedigree files
+  tbl_merged_data <- tbl_flp %>% dplyr::inner_join(tbl_ped, by = c("NakoTVD" = "TVDid"))
+  ### # Create different tibble if purebred or crossbred
+  tbl_purebred_beef <- tbl_merged_data %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>% dplyr::filter(Mutter_RasseCode == ps_sirebreed)
+  tbl_purebred_dairy <- tbl_merged_data %>% dplyr::filter(Vater_RasseCode == ps_dambreed) %>% dplyr::filter(Mutter_RasseCode == ps_dambreed)
+  tbl_crossbred <- tbl_merged_data %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>% dplyr::filter(Mutter_RasseCode == ps_dambreed)
+
+
+  # ****************************************************************************
+  ## ---- Conventional-Beef ----
+  # ****************************************************************************
+  if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_beef){
+
+    # Update statement-progeny-flp-input from the data by calculating mean birth weight
+    female_bw_puredairy <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_purebred_dairy,
+                                                              ps_sex = l_constants_progeny_beefOndairy$sex_female,
+                                                              ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
+                                                              ps_prodsystew,
+                                                              pb_log,
+                                                              plogger = lgr)
+    female_bw_cross <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_crossbred,
+                                                          ps_sex = l_constants_progeny_beefOndairy$sex_female,
+                                                          ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
+                                                          ps_prodsystew,
+                                                          pb_log,
+                                                          plogger = lgr)
+    male_bw_puredairy <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_purebred_dairy,
+                                                            ps_sex = l_constants_progeny_beefOndairy$sex_male,
+                                                            ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
+                                                            ps_prodsystew,
+                                                            pb_log,
+                                                            plogger = lgr)
+    male_bw_cross <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_crossbred,
+                                                        ps_sex = l_constants_progeny_beefOndairy$sex_male,
+                                                        ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
+                                                        ps_prodsystew,
+                                                        pb_log,
+                                                        plogger = lgr)
+
+
+  }
+  # ****************************************************************************
+  ## ---- Conventional-Veal ----
+  # ****************************************************************************
+  if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_calf){
+
+    # Update statement-progeny-flp-input from the data by calculating mean birth weight
+    female_bw_puredairy <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_purebred_dairy,
+                                                              ps_sex = l_constants_progeny_beefOndairy$sex_female,
+                                                              ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
+                                                              ps_prodsystew,
+                                                              pb_log,
+                                                              plogger = lgr)
+    female_bw_cross <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_crossbred,
+                                                          ps_sex = l_constants_progeny_beefOndairy$sex_female,
+                                                          ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
+                                                          ps_prodsystew,
+                                                          pb_log,
+                                                          plogger = lgr)
+    male_bw_puredairy <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_purebred_dairy,
+                                                            ps_sex = l_constants_progeny_beefOndairy$sex_male,
+                                                            ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
+                                                            ps_prodsystew,
+                                                            pb_log,
+                                                            plogger = lgr)
+    male_bw_cross <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_crossbred,
+                                                        ps_sex = l_constants_progeny_beefOndairy$sex_male,
+                                                        ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
+                                                        ps_prodsystew,
+                                                        pb_log,
+                                                        plogger = lgr)
+
+
+  }
 
 
 }

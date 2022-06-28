@@ -99,6 +99,7 @@ Only the differences between the marketing channel will be highlighted. Otherwis
 female_bw <- calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                        ps_sex = "F",
                                        ps_marketing_channel = l_constants$value_NaturaBeef,
+                                       ps_prodsystew = s_prodsystew,
                                        pb_log = b_log)
 female_bw
 ```
@@ -117,6 +118,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 male_bw <- calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
                                       ps_sex = "M",
                                       ps_marketing_channel = l_constants$value_NaturaBeef,
+                                      ps_prodsystew = s_prodsystew,
                                       pb_log = b_log)
 male_bw
 ```

@@ -8,6 +8,7 @@ calculate_mean_liveweight_slaughter(
   ps_input_flp_tibble,
   ps_sex,
   ps_marketing_channel,
+  ps_prodsystew,
   pb_log = FALSE,
   plogger = NULL
 )
@@ -18,6 +19,8 @@ calculate_mean_liveweight_slaughter(
 \item{ps_sex}{statement of sex ("F" for female and "M" for male)}
 
 \item{ps_marketing_channel}{statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3)}
+
+\item{ps_prodsystew}{production system build up as option in ECOWEIGHT}
 
 \item{pb_log}{indicator whether logs should be produced}
 

@@ -35,6 +35,7 @@ get_constants <- function(){
               slaughtercategory_MT = 3,
               slaughtercategory_VK = 7,
               slaughtercategory_MA = 4,
+              slaughtercategory_KV = 1,
               age_atslaughter_oldercow = 1460,
               age_atslaughter_olderbull = 1460,
               dressingpercentage_female = 0.56,
@@ -42,7 +43,10 @@ get_constants <- function(){
               wording_NaturaBeef = "Natura-Beef",
               value_NaturaBeef = 2,
               wording_SwissPrimBeef = "SwissPrimBeef",
-              value_SwissPrimBeef = 3))
+              value_SwissPrimBeef = 3,
+              prodsyst4 = 4,
+              wording_conv_fat_beef = "ConventionalBeef",
+              wording_conv_fat_calf = "ConventionalVeal"))
 }
 
 
@@ -180,6 +184,27 @@ get_constants_progeny_beefOnbeef <- function(){
               extrapol_400d = 400,
               Natura_Beef = 2,
               SwissPrimBeef = 3))
+}
+
+
+#' @title Get constants for progeny in beef-on-dairy production systems
+#'
+#' @description
+#' Return a list with specific constants that are used.
+#'
+#' @export get_constants_progeny_beefOndairy
+get_constants_progeny_beefOndairy <- function(){
+  # return list of default constants
+  return(list(idx_col_input_file = 1,
+              idx_col_input = 2,
+              idx_col_input_value = 4,
+              sex_female = "F",
+              sex_male = "M",
+              conv_fattening_beef = "ConventionalBeef",
+              conv_fattening_calf = "ConventionalVeal",
+              purebred_dairy = "PurebredDairy",
+              purebred_beef = "PurebredBeef",
+              crossbred = "Crossbred"))
 }
 
 

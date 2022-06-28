@@ -187,7 +187,6 @@ age_in_days <- function(pdate_birth,
 #' @param ps_input_file_flp path to file with input coming from beef recording for the input-parameter-file for ECOWEIGHT
 #' @param ps_start_flp_date setting the start of the beef recording date to filter in the flp-data
 #' @param ps_end_flp_date setting the end of the beef recording date to filter in the flp-data
-#' @param ps_sirebreed sire breed
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -199,7 +198,6 @@ age_in_days <- function(pdate_birth,
 read_file_input_flp <-  function(ps_input_file_flp,
                                  ps_start_flp_date,
                                  ps_end_flp_date,
-                                 ps_sirebreed,
                                  pb_log = FALSE,
                                  plogger = NULL){
 
@@ -214,8 +212,7 @@ read_file_input_flp <-  function(ps_input_file_flp,
     qp4ewc_log_info(lgr, 'read_file_input_flp',
                     paste0('Starting function with parameters:\n * ps_input_file_flp: ', ps_input_file_flp,'\n',
                            ' * ps_start_flp_date: ',ps_start_flp_date,'\n',
-                           ' * ps_end_flp_date: ',ps_end_flp_date,'\n',
-                           ' * ps_sirebreed: ',ps_sirebreed))
+                           ' * ps_end_flp_date: ',ps_end_flp_date))
   }
 
 
@@ -256,11 +253,6 @@ read_file_input_flp <-  function(ps_input_file_flp,
   tbl_input <- tbl_input %>% dplyr::filter(Schlachtdatum >= ps_start_flp_date) %>% dplyr::filter(Schlachtdatum <= ps_end_flp_date)
   if(pb_log){
     qp4ewc_log_info(lgr, 'read_file_input_flp',paste0('Considered data from input flp file from: ',ps_start_flp_date, ' to ', ps_end_flp_date))
-  }
-  ### # Consider specific breed in the data
-  tbl_input <- tbl_input %>% dplyr::filter(`Nako RaceRode` == ps_sirebreed)
-  if(pb_log){
-    qp4ewc_log_info(lgr, 'read_file_input_flp',paste0('Considered data from input flp file from the breed: ',ps_sirebreed))
   }
   ### # Calculate age at slaughter in days
   tbl_input$ageAtSlaughterInDays <- age_in_days(pdate_birth = as.Date(as.character(as.numeric(tbl_input$`Geburtsdatum Nako`)), format = "%Y%m%d", origin="1970-01-01"),
