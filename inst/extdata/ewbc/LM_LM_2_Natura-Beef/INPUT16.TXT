@@ -1,0 +1,55 @@
+/* Input parameters for program EWBC (Production Systems 1 to 3) and both
+   options 1 and 2 for fattening.
+   For changing input data, change the number(s) in the matrices.
+   Be careful when changing input parameters. Please notice that
+     the description of the given matrix is posted under the matrix.
+   The rows represent the commercial classes for fleshiness, the columns the
+     classes for fat covering. The numbers of rows and columns of all matrices
+     must be in accordance with the appropriate parameters in INPUT08.TXT.
+   The matrix of coefficients of carcass prices shows the ratio of the price per
+   kg carcass in the given class to the price in the class which is used as the
+   reference class (base class). See Manual for more explanations. */
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+"Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%."
+"%"
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+50 0 0 0 0
+0 0 0 0 0
+"Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%."
+"%"
+0.5918 0.6408 0.6653 0.6408 0.5918
+0.6286 0.6776 0.702 0.6776 0.6286
+0.6612 0.7102 0.7347 0.7102 0.6612
+0.6857 0.7347 0.7592 0.7347 0.6857
+0.7184 0.7673 0.7918 0.7673 0.7184
+0.7347 0.9143 0.9388 0.9224 0.7347
+0.751 0.9306 0.9551 0.9388 0.751
+0.7673 0.9469 0.9714 0.9551 0.7673
+0.7837 0.9755 1 0.9837 0.7837
+"Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)"
+" "
+0.6335 0.6649 0.6754 0.644 0.6021
+0.6806 0.712 0.7225 0.6911 0.6492
+0.7277 0.7592 0.7696 0.7382 0.6963
+0.7958 0.8272 0.8377 0.8063 0.7644
+0.8743 0.8953 0.8953 0.8639 0.822
+0.911 0.9319 0.9319 0.9005 0.8586
+0.9319 0.9529 0.9529 0.9215 0.8796
+0.9529 0.9738 0.9738 0.9424 0.9005
+0.9791 1 1 0.9686 0.9267
+"Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)"
+" "                                    

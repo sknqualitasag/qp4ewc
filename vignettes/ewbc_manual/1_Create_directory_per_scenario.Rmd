@@ -28,7 +28,7 @@ The parameters needed are:
 
 ```{r}
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
-s_sirebreed <- "LM"
+s_sirebreed <- "AN"
 # Dam breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental for beef-on-beef, or HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
 s_dambreed <- "HO"
 # Production system according to ECOWEIGHT: 1,2,3,4 corresponding to purebreeding, crossbreeding, terminal crossing, dairy

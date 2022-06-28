@@ -99,10 +99,13 @@ get_constants_ew_input_beefOndairy <- function(){
               idx_col_input_value = 4,
               file_par = "PARAD.TXT",
               prodsyst = "Production System",
-              prodsyst4 = 4))
+              prodsyst4 = 4,
+              maturitytype_purebred = "Maturity type of pure-bred progeny",
+              maturitytype_crossbred = "Maturity type of cross-bred progeny",
+              maturitytype_early = 1,
+              maturitytype_medium = 2,
+              maturitytype_late = 3))
 }
-
-
 
 
 #' @title Get constants for calving in beef-on-beef production systems
@@ -144,6 +147,47 @@ get_constants_calving_beefOnbeef <- function(){
               calvingscore4 = 4))
 }
 
+#' @title Get constants for calving in beef-on-dairy production systems
+#'
+#' @description
+#' Return a list with specific calving constants in beef-on-beef production systems
+#' that are used.
+#'
+#' @export get_constants_calving_beefOndairy
+get_constants_calving_beefOndairy <- function(){
+  # return list of default constants
+  return(list(idx_col_input_file = 1,
+              idx_col_input = 2,
+              idx_col_input_value = 4,
+              idx_row_abortrate = 1,
+              idx_row_stillborn_easy = 2,
+              idx_row_stillborn_diff = 3,
+              idx_row_class_calving = 18,
+              idx_row_class_dystocia = 19,
+              idx_row_calvingscore2_female = 12,
+              idx_row_calvingscore3_female = 14,
+              idx_row_calvingscore4_female = 16,
+              idx_row_calvingscore2_male = 13,
+              idx_row_calvingscore3_male = 15,
+              idx_row_calvingscore4_male = 17,
+              idx_row_calvingscore2_female_pure = 6,
+              idx_row_calvingscore3_female_pure = 8,
+              idx_row_calvingscore4_female_pure = 10,
+              idx_row_calvingscore2_male_pure = 7,
+              idx_row_calvingscore3_male_pure = 9,
+              idx_row_calvingscore4_male_pure = 11,
+              idx_row_calfdied48h_dystocia = 4,
+              idx_row_calfdied48h_easy = 5,
+              first_element_vector = 1,
+              second_element_vector = 2,
+              n_class_calving = 4,
+              class_dystocia = 3,
+              sex_female = "F",
+              sex_male = "M",
+              calvingscore2 = 2,
+              calvingscore3 = 3,
+              calvingscore4 = 4))
+}
 
 #' @title Get constants for progeny in beef-on-beef production systems
 #'

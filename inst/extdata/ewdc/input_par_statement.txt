@@ -2,12 +2,10 @@ input_file;input;input_unit;input_value
 PARAD.TXT;"Crossbreeding in the system";" ";1
 PARAD.TXT;"Housing technology in fattening";" ";2
 PARAD.TXT;"Housing technology in cow herds";" ";2
-PARAD.TXT;"Maturity type of pure-bred progeny";" ";1
-PARAD.TXT;"Maturity type of cross-bred progeny";" ";3
-PARAD.TXT;"Utilization of pure-bred female calves which are not needed for replacement";" ";1
-PARAD.TXT;"Utilization of cross-bred female calves which are not needed for replacement";" ";1
+PARAD.TXT;"Utilization of pure-bred female calves which are not needed for replacement";" ";2
+PARAD.TXT;"Utilization of cross-bred female calves which are not needed for replacement";" ";2
 PARAD.TXT;"Pure-bred castrates in fattening";" ";0
-PARAD.TXT;"Cross-bred castrates in fattening";" ";1
+PARAD.TXT;"Cross-bred castrates in fattening";" ";0
 PARAD.TXT;"Way of calculating feed cost";" ";1
 PARAD.TXT;"Option for calculating economic weights";" ";1
 PARAD.TXT;"Selection group for which gene flow is calculated";" ";3

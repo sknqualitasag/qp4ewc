@@ -1,0 +1,93 @@
+/* This file is necessary for program EWBC if genetic standard deviations 
+   of the traits are known and are not differentiated between direct and
+   maternal components.
+   It contains input parameters (genetic standard deviations) for calculating 
+   the standardized marginal economic values of traits. Keep attention that 
+   the genetic standard deviations are given in the correct units.
+   The genetic standard deviations must be for the breed the economic values
+   are calculated for.
+   The appropriate input is skipped if the trait is not considered in the
+   calculation.  
+   All input data are arranged in the following way 
+        each parameter takes three parts,
+        the parameter value or vector of values are given in the first row(s), 
+        the string expression in the second part describes the parameter and
+        the last string in the third part contains the units of the parameter.
+        If there is no unit given, [SPACE] is written enclosed into quotation
+        marks. */
+3  
+"Genetic standard deviation for calving performance score"
+"0.01 score"
+0.11 
+"Genetic standard deviation for losses of calves at calving"
+"%"
+0.99 
+"Genetic standard deviation for losses of calves from 48 hour after
+calving till weaning"
+"%"
+20.5
+"Genetic standard deviation for mature weight of cows"
+"kg" 
+1.5 	
+"Genetic standard deviation for birth weight"
+"kg" 
+85  
+"Genetic standard deviation for average daily
+gain of calves from birth to 1st weighing"
+"g/d"
+80    
+"Genetic standard deviation for average daily
+gain of calves from 1st to 2nd weighing"
+"g/d"
+145 
+"Genetic standard deviation for average daily
+gain of calves from 2nd to 3rd weighing"
+"g/d"
+300   
+"Genetic standard deviation for daily gain in fattening"
+"g/d"
+1.1        
+"Genetic standard deviation for dressing percentage"
+"%"
+2.0           
+"Genetic standard deviation for cow losses"
+"%"
+1.2
+"Genetic standard deviation for conception rate of heifers"
+"%"
+1.8
+"Genetic standard deviation for conception rate of cows"
+"%"
+2.5
+"Genetic standard deviation for mean class of fleshiness"
+"0.01 class"
+1.2
+"Genetic standard deviation for mean class of fat covering"
+"0.01 class"
+7.2
+"Genetic standard deviation for weight gain of calves 
+from birth to 1st weighing"
+"kg"
+10.2 
+"Genetic standard deviation for weight gain of calves from 
+1st to 2nd weighing"
+"kg"
+21.5 
+"Genetic standard deviation for weight gain of calves from 
+2nd to 3rd weighing"
+"kg"
+0.76
+"Genetic standard deviation for lifetime of cows"
+"years"
+0.13
+"Genetic standard deviation for dry matter intake of heifers"
+"kg/d"
+0.30
+"Genetic standard deviation for dry matter intake in intensive fattening"
+"kg/d"
+0.27
+"Genetic standard deviation for dry matter intake in extensive fattening"
+"kg/d"
+0.23
+"Genetic standard deviation for dry matter intake of adult animals"
+"kg/d"
