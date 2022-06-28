@@ -208,19 +208,19 @@ pre_process_ew_input <- function(ps_sirebreed,
   ### # 1 = Early = AN
   if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
 
-  if(ps_sirebreed == "AN"){
-    maturitytype_status <- l_constants_ewbc_input_beefOnbeef$maturitytype_early
-  ### # 2 = Medium = AU, OB
-  }else if(ps_sirebreed == "AU" || ps_sirebreed == "OB"){
-    maturitytype_status <- l_constants_ewbc_input_beefOnbeef$maturitytype_medium
-  ### # 3 = Late = CH, LM, SI
-  }else if(ps_sirebreed == "CH" || ps_sirebreed == "LM" || ps_sirebreed == "SI"){
-    maturitytype_status <- l_constants_ewbc_input_beefOnbeef$maturitytype_late
-  }else{
-    qp4ewc_log_info(lgr, 'pre_process_ew_input',
-                    paste0('Sire breed is not AN, AU, CH, LM, SI, OB for EW, please check!'))
+    if(ps_sirebreed == "AN"){
+      maturitytype_status <- l_constants_ewbc_input_beefOnbeef$maturitytype_early
+    ### # 2 = Medium = AU, OB
+    }else if(ps_sirebreed == "AU" || ps_sirebreed == "OB"){
+      maturitytype_status <- l_constants_ewbc_input_beefOnbeef$maturitytype_medium
+    ### # 3 = Late = CH, LM, SI
+    }else if(ps_sirebreed == "CH" || ps_sirebreed == "LM" || ps_sirebreed == "SI"){
+      maturitytype_status <- l_constants_ewbc_input_beefOnbeef$maturitytype_late
+    }else{
+      qp4ewc_log_info(lgr, 'pre_process_ew_input',
+                      paste0('Sire breed is not AN, AU, CH, LM, SI, OB for EW, please check!'))
+    }
   }
-
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
                                         ps_statement2search = l_constants_ewbc_input_beefOnbeef$maturitytype,
                                       ps_value2update = maturitytype_status,
@@ -688,86 +688,98 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
   ### # Update calving score proportions
   calvingscore_prop_prim_F_2 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
-                                                                          ps_breed = ps_sirebreed,
                                                                           ps_sex = l_constants_calving_beefOnbeef$sex_female,
                                                                           ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore2,
+                                                                          ps_sirebreed,
+                                                                          ps_dambreed,
                                                                           pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_prim_F_3 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
-                                                                          ps_breed = ps_sirebreed,
                                                                           ps_sex = l_constants_calving_beefOnbeef$sex_female,
                                                                           ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore3,
+                                                                          ps_sirebreed,
+                                                                          ps_dambreed,
                                                                           pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_prim_F_4 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
-                                                                          ps_breed = ps_sirebreed,
                                                                           ps_sex = l_constants_calving_beefOnbeef$sex_female,
                                                                           ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore4,
+                                                                          ps_sirebreed,
+                                                                          ps_dambreed,
                                                                           pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_multi_F_2 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
-                                                                           ps_breed = ps_sirebreed,
                                                                            ps_sex = l_constants_calving_beefOnbeef$sex_female,
                                                                            ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore2,
+                                                                           ps_sirebreed,
+                                                                           ps_dambreed,
                                                                            pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_multi_F_3 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
-                                                                           ps_breed = ps_sirebreed,
                                                                            ps_sex = l_constants_calving_beefOnbeef$sex_female,
                                                                            ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore3,
+                                                                           ps_sirebreed,
+                                                                           ps_dambreed,
                                                                            pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_multi_F_4 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
-                                                                           ps_breed = ps_sirebreed,
                                                                            ps_sex = l_constants_calving_beefOnbeef$sex_female,
                                                                            ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore4,
+                                                                           ps_sirebreed,
+                                                                           ps_dambreed,
                                                                            pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_prim_M_2 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
-                                                                          ps_breed = ps_sirebreed,
                                                                           ps_sex = l_constants_calving_beefOnbeef$sex_male,
                                                                           ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore2,
+                                                                          ps_sirebreed,
+                                                                          ps_dambreed,
                                                                           pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_prim_M_3 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
-                                                                          ps_breed = ps_sirebreed,
                                                                           ps_sex = l_constants_calving_beefOnbeef$sex_male,
                                                                           ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore3,
+                                                                          ps_sirebreed,
+                                                                          ps_dambreed,
                                                                           pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_prim_M_4 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
-                                                                          ps_breed = ps_sirebreed,
                                                                           ps_sex = l_constants_calving_beefOnbeef$sex_male,
                                                                           ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore4,
+                                                                          ps_sirebreed,
+                                                                          ps_dambreed,
                                                                           pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_multi_M_2 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
-                                                                           ps_breed = ps_sirebreed,
                                                                            ps_sex = l_constants_calving_beefOnbeef$sex_male,
                                                                            ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore2,
+                                                                           ps_sirebreed,
+                                                                           ps_dambreed,
                                                                            pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_multi_M_3 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
-                                                                           ps_breed = ps_sirebreed,
                                                                            ps_sex = l_constants_calving_beefOnbeef$sex_male,
                                                                            ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore3,
+                                                                           ps_sirebreed,
+                                                                           ps_dambreed,
                                                                            pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_multi_M_4 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
-                                                                           ps_breed = ps_sirebreed,
                                                                            ps_sex = l_constants_calving_beefOnbeef$sex_male,
                                                                            ps_calvingscore = l_constants_calving_beefOnbeef$calvingscore4,
+                                                                           ps_sirebreed,
+                                                                           ps_dambreed,
                                                                            pb_log,
                                                                            plogger = lgr)
   value2update_calvingscoreprop_prim_F_2 <- paste0(c(calvingscore_prop_prim_F_2, rep(calvingscore_prop_multi_F_2,9)),collapse = " ")

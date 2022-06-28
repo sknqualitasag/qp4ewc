@@ -7,9 +7,10 @@
 calculate_calvingscore_proportion(
   ps_input_calving_tibble,
   ps_statement_firstlactation = TRUE,
-  ps_breed,
   ps_sex,
   ps_calvingscore,
+  ps_sirebreed,
+  ps_dambreed,
   pb_log = FALSE,
   plogger = NULL
 )
@@ -19,11 +20,13 @@ calculate_calvingscore_proportion(
 
 \item{ps_statement_firstlactation}{statement if in first lactation status (TRUE or FALSE)}
 
-\item{ps_breed}{set the breed (AN, AU, CH, LM, SI, OB)}
-
 \item{ps_sex}{set the sex (F, M)}
 
 \item{ps_calvingscore}{set the calving score for which the proportion should be calculated (2,3,4)}
+
+\item{ps_sirebreed}{set the breed (AN, AU, CH, LM, SI, OB)}
+
+\item{ps_dambreed}{set the breed (AN, AU, CH, LM, SI, OB, HO, BS)}
 
 \item{pb_log}{indicator whether logs should be produced}
 

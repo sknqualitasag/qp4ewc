@@ -251,9 +251,10 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
 #'
 #' @param ps_input_calving_tibble input calving tibble coming from read_file_input_calving in this package
 #' @param ps_statement_firstlactation statement if in first lactation status (TRUE or FALSE)
-#' @param ps_breed set the breed (AN, AU, CH, LM, SI, OB)
 #' @param ps_sex set the sex (F, M)
 #' @param ps_calvingscore set the calving score for which the proportion should be calculated (2,3,4)
+#' @param ps_sirebreed set the breed (AN, AU, CH, LM, SI, OB)
+#' @param ps_dambreed set the breed (AN, AU, CH, LM, SI, OB, HO, BS)
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -264,9 +265,10 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
 #' @export calculate_calvingscore_proportion
 calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
                                               ps_statement_firstlactation = TRUE,
-                                              ps_breed,
                                               ps_sex,
                                               ps_calvingscore,
+                                              ps_sirebreed,
+                                              ps_dambreed,
                                               pb_log = FALSE,
                                               plogger = NULL){
 
@@ -281,14 +283,16 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
     qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
                     paste0('Starting function with parameters:\n * ps_input_calving_tibble \n',
                            ' * ps_statement_firstlactation: ', ps_statement_firstlactation,'\n',
-                           ' * ps_breed: ',ps_breed,'\n',
+                           ' * ps_sirebreed: ',ps_sirebreed,'\n',
+                           ' * ps_dambreed: ',ps_dambreed,'\n',
                            ' * ps_sex: ',ps_sex,'\n',
                            ' * ps_calvingscore: ',ps_calvingscore))
   }
 
 
-  ### # Filter criteria depending on ps_breed and ps_sex
-  tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Nachkomme_RasseCode == ps_breed) %>%
+  ### # Filter criteria depending on ps_sirebreed and ps_sex
+  tbl_input <- ps_input_calving_tibble %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>%
+                                           dplyr::filter(Mutter_RasseCode == ps_dambreed) %>%
                                            dplyr::filter(Geschlecht == ps_sex)
   if(pb_log){
     qp4ewc_log_info(lgr, 'calculate_calvingscore_proportion',
