@@ -1,0 +1,128 @@
+/* This file is necessary for program EWDC (Production System 4).
+   It includes input parameters describing reproductive cycles (lactations)
+   of the dairy cow herd. In each reproductive cycle, cows can be mated to 
+   dairy bulls or to beef bulls. Losses of cows, culling, conception rate
+   and abortion are assumed to be the same in both groups of cows, 
+   but differences are possible for dystocia occurrence. Therefore four groups
+   of cows are differentiated according to calving performance: 
+   cows with easy calving and cows with dystocia in both mating types. 
+   The input parameters for losses of cows and calves, for conception rate etc.
+   can differ between the groups with and without dystocia occurrence.
+   
+   Two groups of calf losses at calving are differentiated here: stillborn
+   calves (12th and 13rd vectors) and calves died till 48 hours after birth 
+   (14th and 15th vectors). If only one summary statistics exists for calf
+   losses at birth which includes all calves died till a certain time after
+   birth, insert these data in the vectors for stillborn calves and fill only 
+   zeros in the vectors for calves died to 48 hours after birth.
+
+   Some of the probabilities of calving score at the end of the input file may
+   be of no concern. For example, if the number of classes for calving 
+   performance (specified in INPUT11.TXT) is 4, all values for calving scores 5 
+   and 6 are ignored. If there is no crossbreeding in the system, the calving 
+   scores for cross-bred animals are not read. Do not omit rows with unnecessary 
+   information in the input file. 
+   The program will skip the inputs which are not needed. 
+
+   All input data are arranged in the following way:
+	each parameter takes three rows,
+	in the first row stands the vector of its values for reproduction
+	cycles 1 to LL or 1 to LL-1, 
+	the string expression in the second row describes the parameter and
+	the last string in the third row contains the units of the parameter.
+	If there is no unit given, enter [SPACE] enclosed into quotation
+	marks. 
+   MU: monetary unit */
+0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.01 
+"Vector of cow losses within reproductive cycles 1 to LL as proportion of cows entered the reproduction cycle"
+" " 
+0.06 0.05 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04
+"Vector of cows culled within reproductive cycles 1 to LL for health problems other than dystocia as proportion of cows entered the reproduction cycle. Cows culled for failure to conceive must not be included."
+" " 
+0.05 0.1 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 
+"Vector of cows culled within reproductive cycles 1 to LL for low milk production as proportion of cows entered the reproduction cycle"
+" "                       
+0.0044 0.0018 0.0018 0.0018 0.0018 0.0018 0.0018 0.0018 0.0018 0.0018
+"Vector of probabilities of abortion for cows conceived in reproductive cycles 1 to LL"
+" "  
+0.0136 0.0104 0.0104 0.0104 0.0104 0.0104 0.0104 0.0104 0.0104 0.0104
+"Vector of still born calves after dystocia as proportion of cows having dystocia in reproductive cycles 1 to LL"
+" "    
+0.001 8e-04 8e-04 8e-04 8e-04 8e-04 8e-04 8e-04 8e-04 8e-04
+"Vector of still born calves after easy calving as proportion of cows having easy calving in reproductive cycles 1 to LL"
+" " 
+0.3081 0.2276 0.2276 0.2276 0.2276 0.2276 0.2276 0.2276 0.2276 0.2276
+"Vector of calves died to 48 hours from calves born alive after dystocia in reproductive cycles 1 to LL"
+" "
+0.0412 0.0203 0.0203 0.0203 0.0203 0.0203 0.0203 0.0203 0.0203 0.0203
+"Vector of calves died to 48 hours from calves born alive after easy calving in reproductive cycles 1 to LL"
+" "
+0.05  0.20  0.30  0.20  0.20  0.10  0.10  0.10  0.10
+"Vector of females mated with beef bulls as proportion of females mated in reproductive cycles 1 to LL-1"
+" "
+0.3  0.5  0.6
+"Vector of conception rate after ith insemination for cows not having dystocia (i=1 to inmax where inmax is the maximal number of inseminations for cows - see INPUT11.TXT)"
+" "
+0.6  0.5  0.4
+"Vector of conception rate after ith insemination for heifers (i=1 to inmaxh where inmaxh is the maximal number of inseminations for heifers - see INPUT11.TXT)"
+" "
+0.4792 0.395 0.395 0.395 0.395 0.395 0.395 0.395 0.395 0.395
+"Probability of calving score 2 when a pure-bred dairy female calf is born in reproductive cycles 1 to LL"
+" "
+0.5153 0.443 0.443 0.443 0.443 0.443 0.443 0.443 0.443 0.443
+"Probability of calving score 2 when a pure-bred dairy male calf is born in reproductive cycles 1 to LL"
+" "
+0.0462 0.0224 0.0224 0.0224 0.0224 0.0224 0.0224 0.0224 0.0224 0.0224
+"Probability of calving score 3 when a pure-bred dairy female calf is born in reproductive cycles 1 to LL"
+" "
+0.0907 0.0421 0.0421 0.0421 0.0421 0.0421 0.0421 0.0421 0.0421 0.0421
+"Probability of calving score 3 when a pure-bred dairy male calf is born in reproductive cycles 1 to LL"
+" "
+9e-04 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001
+"Probability of calving score 4 when a pure-bred dairy female calf is born in reproductive cycles 1 to LL"
+" "
+0.0024 0.0012 0.0012 0.0012 0.0012 0.0012 0.0012 0.0012 0.0012 0.0012
+"Probability of calving score 4 when a pure-bred dairy male calf is born in reproductive cycles 1 to LL"
+" "
+0.001 0.0004 0.0004 0.0004 0.0004 0.0004 0.0004 0.0004 0.0004 0.0004
+"Probability of calving score 5 when a pure-bred dairy female calf is born in reproductive cycles 1 to LL"
+" "
+0.0015 0.0006 0.0006 0.0006 0.0006 0.0006 0.0006 0.0006 0.0006 0.0006
+"Probability of calving score 5 when a pure-bred dairy male calf is born in reproductive cycles 1 to LL"
+" "
+0.001 0.0004 0.0004 0.0004 0.0004 0.0004 0.0004 0.0004 0.0004 0.0004
+"Probability of calving score 6 when a pure-bred dairy female calf is born in reproductive cycles 1 to LL"
+" "
+0.0015 0.0006 0.0006 0.0006 0.0006 0.0006 0.0006 0.0006 0.0006 0.0006
+"Probability of calving score 6 when a pure-bred dairy male calf is born in reproductive cycles 1 to LL"
+" "
+0.4013 0.2991 0.2991 0.2991 0.2991 0.2991 0.2991 0.2991 0.2991 0.2991
+"Probability of calving score 2 when a cross-bred (beef x dairy) female calf is born in reproductive cycles 1 to LL"
+" "
+0.4436 0.3352 0.3352 0.3352 0.3352 0.3352 0.3352 0.3352 0.3352 0.3352
+"Probability of calving score 2 when a cross-bred (beef x dairy) male calf is born in reproductive cycles 1 to LL"
+" "
+0.0502 0.0308 0.0308 0.0308 0.0308 0.0308 0.0308 0.0308 0.0308 0.0308
+"Probability of calving score 3 when a cross-bred (beef x dairy) female calf is born in reproductive cycles 1 to LL"
+" "
+0.0931 0.0539 0.0539 0.0539 0.0539 0.0539 0.0539 0.0539 0.0539 0.0539
+"Probability of calving score 3 when a cross-bred (beef x dairy) male calf is born in reproductive cycles 1 to LL"
+" "
+0.0011 4e-04 4e-04 4e-04 4e-04 4e-04 4e-04 4e-04 4e-04 4e-04
+"Probability of calving score 4 when a cross-bred (beef x dairy) female calf is born in reproductive cycles 1 to LL"
+" "
+0.0039 0.0017 0.0017 0.0017 0.0017 0.0017 0.0017 0.0017 0.0017 0.0017
+"Probability of calving score 4 when a cross-bred (beef x dairy) male calf is born in reproductive cycles 1 to LL"
+" "
+0.002 0.0011 0.0011 0.0011 0.0011 0.0011 0.0011 0.0011 0.0011 0.0011
+"Probability of calving score 5 when a cross-bred (beef x dairy) female calf is born in reproductive cycles 1 to LL"
+" "
+0.003 0.0017 0.0017 0.0017 0.0017 0.0017 0.0017 0.0017 0.0017 0.0017
+"Probability of calving score 5 when a cross-bred (beef x dairy) male calf is born in reproductive cycles 1 to LL"
+" "
+0.002 0.0011 0.0011 0.0011 0.0011 0.0011 0.0011 0.0011 0.0011 0.0011
+"Probability of calving score 6 when a cross-bred (beef x dairy) female calf is born in reproductive cycles 1 to LL"
+" "
+0.003 0.0017 0.0017 0.0017 0.0017 0.0017 0.0017 0.0017 0.0017 0.0017
+"Probability of calving score 6 when a cross-bred (beef x dairy) male calf is born in reproductive cycles 1 to LL"
+" "                 

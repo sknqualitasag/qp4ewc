@@ -1,0 +1,36 @@
+/* Input parameters for program EWDC (Production System 4)
+   and cross-bred (beef x dairy) progeny.
+   For changing input data, change the number(s) in the matrices.
+   Be careful when changing input parameters. Please notice that 
+     the description of the given matrix is posted under the matrix.
+   The rows represent the commercial classes for fleshiness, the columns the 
+     classes for fat covering. 
+   The matrices of coefficients of carcass prices show the ratio of the price 
+     per kg carcass in the given class to the price in the class which is used
+0.7045 0.7591 0.7864 0.7591 0.7045
+0.7455 0.8 0.8273 0.8 0.7455
+0.7818 0.8364 0.8636 0.8364 0.7818
+0.8091 0.8636 0.8909 0.8636 0.8091
+0.8455 0.9 0.9273 0.9 0.8455
+0.8636 0.9182 0.9455 0.9182 0.8636
+0.8818 0.9364 0.9636 0.9364 0.8818
+0.9 0.9545 0.9818 0.9545 0.9
+0.6318 0.65 0.65 0.6227 0.5591
+0.6727 0.6909 0.6909 0.6636 0.6
+0.7136 0.7318 0.7318 0.7045 0.6409
+0.7727 0.7909 0.7909 0.7636 0.7
+0.8455 0.9 0.9273 0.9 0.8455
+0.8636 0.9182 0.9455 0.9182 0.8636
+0.8818 0.9364 0.9636 0.9364 0.8818
+0.9 0.9545 0.9818 0.9545 0.9
+0.9182 0.9727 1 0.9727 0.9182
+"Matrix Ph_c - proportions of heifer carcasses in commercial classes for fleshiness and fat covering"
+"%"
+0	0	0	0	0
+0	4.6	2.6	0.8	0
+0	17	9.6	3.0	0
+0	16	8.2	3	0
+0	15.4	9.6	3.8	0
+NA
+"Matrix Pcs_c - proportions of castrate carcasses in commercial classes for fleshiness and fat covering"
+"%"                   

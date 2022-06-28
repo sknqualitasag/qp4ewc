@@ -1,0 +1,36 @@
+/* Input parameters for program EWDC (Production System 4)
+   and cross-bred (beef x dairy) progeny.
+   For changing input data, change the number(s) in the matrices.
+   Be careful when changing input parameters. Please notice that 
+     the description of the given matrix is posted under the matrix.
+   The rows represent the commercial classes for fleshiness, the columns the 
+     classes for fat covering. 
+   The matrices of coefficients of carcass prices show the ratio of the price 
+     per kg carcass in the given class to the price in the class which is used
+     as the reference class (base class). See Manual for more explanations.
+   The price of the base class is an input parameter in the input files 
+     INPUT11.TXT and INPUT23.TXT. */
+0	0	0	0	0
+0	4.6	2.6	0.8	0
+0	17	9.6	3.0	0
+0	16	8.2	3	0
+0	15.4	9.6	3.8	0
+0	4.0	2.0	0	0
+"Matrix Pb_c - proportions of bull carcasses in commercial classes for fleshiness and fat covering"
+"%"
+0	0	0	0	0
+0	0	0	0	0
+0.1	0.6	0.5	0.5	0.3
+0.6	6.4	4.6	5.0	3.4
+2.1	22.4	16.1	17.5	11.9
+0.2	2.6	1.8	2.0	1.4
+"Matrix Ph_c - proportions of heifer carcasses in commercial classes for fleshiness and fat covering"
+"%"
+0	0	0	0	0
+0	4.6	2.6	0.8	0
+0	17	9.6	3.0	0
+0	16	8.2	3	0
+0	15.4	9.6	3.8	0
+0	4.0	2.0	0	0
+"Matrix Pcs_c - proportions of castrate carcasses in commercial classes for fleshiness and fat covering"
+"%"

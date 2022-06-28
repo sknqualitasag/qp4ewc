@@ -1,0 +1,96 @@
+/* This file is necessary for program EWBC for Production System 3 only. 
+   It includes input parameters referring to the costs from purchase to calving 
+   for replacement females that are purchased at certain age, weight and day
+   of pregnancy (day of pregnancy may be zero).
+   If there is only one feeding season defined for the whole year in 
+   INPUT01.TXT, insert only values for feeding season with code 1. 
+   The values for feeding season with code 2 will not be read.   
+   All input data are arranged in the following way:
+	each parameter takes three rows,
+	in the first row stands its value, 
+	the string expression in the second row describes the parameter and
+	the last string in the third row contains the units of the parameter.
+	If there is no unit given, enter [SPACE] enclosed into quotation
+	marks. 
+   MU: monetary unit */
+630
+"Age of female for replacement at purchase"
+"days"
+500
+"Weight of female for replacement at purchase"
+"kg"
+0
+"Days of pregnancy of purchased females for replacement"
+"days"
+60
+"Number of days from the average date of mating heifers to the date of culling barren heifers"
+"days"
+730
+"Age of cows at first calving"
+"days"
+512
+"Weight of cows after 1st calving"
+"kg"
+656
+"Weight of cows after 2nd calving"
+"kg"
+7
+"Amount of straw per replacement heifer per day during feeding season with code 1"
+"kg/day"
+0
+"Amount of straw per replacement heifer per day during feeding season with code 2"
+"kg/day"
+9
+"Amount of dung per replacement heifer per day during feeding season with code 1"
+"kg/day"
+0
+"Amount of dung per replacement heifer per day during feeding season with code 2"
+"kg/day"
+0.12
+"Amount of minerals per replacement heifer and day"
+"kg"
+35
+"Amount of water per replacement heifer and day"
+"l/day"
+0.38
+"Dry matter per kg feed ration with code 1 for replacement heifers"
+"kg/kg"
+0.20
+"Dry matter per kg feed ration with code 2 for replacement heifer"
+"kg/kg"
+0.0   
+"Average residual daily dry matter intake of feed ration of code 1 for replacement heifers"
+"kg/day"
+0.0 
+"Average residual daily dry matter intake of feed ration of code 2 for replacement heifers"
+"kg/day"
+5.91
+"Net energy content per kg dry matter of feed ration of code 1 for replacement heifers"
+"MJ NE/kg dry matter"
+6.15
+"Net energy content per kg dry matter of feed ration of code 2 for replacement heifers"
+"MJ NE/kg dry matter"
+83.81
+"Protein content per kg dry matter of feed ration of code 1 for replacement heifers"
+"g PDI/kg"
+95.1
+"Protein content per kg dry matter of feed ration of code 2 for replacement heifers"
+"g PDI/kg"
+0.0256
+"Price per kg fresh matter of feed ration of code 1 for replacement heifers"
+"MU/kg"
+0.01
+"Price per kg fresh matter of feed ration of code 2 for replacement heifers"
+"MU/kg"
+2
+"Price per kg live weight of replacement heifers at purchase"
+"MU/animal"
+0.4
+"Fixed cost from purchase to calving per replacement heifer and day"
+"MU/day"
+12
+"Cost for veterinary treatment per replacement heifer from purchase to calving"
+"MU/animal"
+1
+"Heifers inseminated in 1st oestrus within the mating period as proportion of heifers available for breeding (Only needed if days of pregnancy of purchased heifers is zero and articial insemination is used.)"
+" "  

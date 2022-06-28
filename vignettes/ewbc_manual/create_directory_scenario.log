@@ -1,0 +1,24 @@
+INFO  [2022-06-28 11:59:02] create_directory_scenario -- Starting function with parameters:
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_prodsystew: 4
+ * ps_marketchannel: ConventionalBeef
+ * ps_path_directory2create: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc
+INFO  [2022-06-28 11:59:02] create_directory_scenario -- Define the name of the scenario:
+ * s_scenario: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/AN_HO_4_ConventionalBeef
+INFO  [2022-06-28 11:59:02] create_directory_scenario -- Create a directory for scenario:
+ * s_scenario: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/AN_HO_4_ConventionalBeef
+INFO  [2022-06-28 11:59:02] create_directory_scenario -- Copy the default input-parameter-files in the scenario directory based on the templates for ewdc
+
+INFO  [2022-06-28 14:56:29] create_directory_scenario -- Starting function with parameters:
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_prodsystew: 4
+ * ps_marketchannel: ConventionalBeef
+ * ps_path_directory2create: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc
+INFO  [2022-06-28 14:56:29] create_directory_scenario -- Define the name of the scenario:
+ * s_scenario: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/AN_HO_4_ConventionalBeef
+INFO  [2022-06-28 14:56:29] create_directory_scenario -- Create a directory for scenario:
+ * s_scenario: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/AN_HO_4_ConventionalBeef
+INFO  [2022-06-28 14:56:29] create_directory_scenario -- Copy the default input-parameter-files in the scenario directory based on the templates for ewdc
+

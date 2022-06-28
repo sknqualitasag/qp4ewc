@@ -1,0 +1,1118 @@
+INFO  [2022-06-28 11:26:36] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: LM
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 11:26:36] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 11:26:36] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 11:26:36] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: LM
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 11:26:36] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 11:26:36] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 11:26:37] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: LM
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 11:26:37] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 11:26:37] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 11:26:37] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: LM
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 11:26:37] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 11:26:37] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 11:26:37] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: LM
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 11:26:37] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 11:26:37] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 11:26:37] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: LM
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 11:26:37] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 11:26:37] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:09:29] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 13:09:30] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:09:30] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:09:30] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 13:09:30] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4013
+INFO  [2022-06-28 13:09:37] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 13:09:38] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:09:38] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:09:38] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 13:09:38] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4013
+INFO  [2022-06-28 13:09:38] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 13:09:39] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:09:39] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:09:39] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 13:09:39] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0502
+INFO  [2022-06-28 13:09:39] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 13:09:40] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:09:40] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:09:40] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 13:09:40] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0011
+INFO  [2022-06-28 13:10:47] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 13:10:48] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:10:48] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:10:48] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 13:10:48] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4013
+INFO  [2022-06-28 13:10:48] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 13:10:49] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:10:49] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:10:49] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 13:10:49] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0502
+INFO  [2022-06-28 13:10:49] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 13:10:50] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:10:50] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:10:50] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 13:10:50] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0011
+INFO  [2022-06-28 13:10:57] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 13:10:58] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:10:58] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:10:58] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 13:10:58] calculate_stillbirth_rate -- calving score 2 proportion is : 0.2991
+INFO  [2022-06-28 13:10:58] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 13:10:59] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:10:59] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:10:59] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 13:10:59] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0308
+INFO  [2022-06-28 13:11:06] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 13:11:07] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:11:07] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:11:07] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 13:11:07] calculate_stillbirth_rate -- calving score 2 proportion is : 0.2991
+INFO  [2022-06-28 13:11:07] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 13:11:08] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:11:08] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:11:08] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 13:11:08] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0308
+INFO  [2022-06-28 13:11:08] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 13:11:09] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:11:09] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 13:11:09] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 13:11:09] calculate_stillbirth_rate -- calving score 4 proportion is : 4e-04
+INFO  [2022-06-28 14:40:50] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:40:51] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:40:51] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:40:51] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:40:51] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4013
+INFO  [2022-06-28 14:40:52] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:40:52] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:40:52] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:40:52] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:40:52] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0502
+INFO  [2022-06-28 14:40:52] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:40:53] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:40:53] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:40:53] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:40:53] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0011
+INFO  [2022-06-28 14:40:57] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:40:58] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:40:58] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:40:58] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:40:58] calculate_stillbirth_rate -- calving score 2 proportion is : 0.2991
+INFO  [2022-06-28 14:40:58] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:40:58] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:40:59] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:40:59] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:40:59] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0308
+INFO  [2022-06-28 14:40:59] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:41:00] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:41:00] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:41:00] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:41:00] calculate_stillbirth_rate -- calving score 4 proportion is : 4e-04
+INFO  [2022-06-28 14:42:25] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:42:26] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:42:26] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:42:26] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:42:26] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4436
+INFO  [2022-06-28 14:42:34] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:42:35] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:42:35] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:42:35] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:42:35] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4436
+INFO  [2022-06-28 14:42:35] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:42:36] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:42:36] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:42:36] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:42:36] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0931
+INFO  [2022-06-28 14:42:36] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:42:37] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:42:37] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:42:37] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:42:37] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0039
+INFO  [2022-06-28 14:44:01] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:44:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:44:02] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:44:02] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:44:02] calculate_stillbirth_rate -- calving score 2 proportion is : 0.3352
+INFO  [2022-06-28 14:44:02] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:44:03] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:44:03] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:44:03] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:44:03] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0539
+INFO  [2022-06-28 14:44:03] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:44:04] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:44:04] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:44:04] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:44:04] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0017
+INFO  [2022-06-28 14:47:12] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:47:13] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:13] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:13] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:47:13] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4792
+INFO  [2022-06-28 14:47:13] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:47:14] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:15] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:15] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:47:15] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0462
+INFO  [2022-06-28 14:47:15] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:47:16] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:16] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:16] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:47:16] calculate_stillbirth_rate -- calving score 4 proportion is : 9e-04
+INFO  [2022-06-28 14:47:16] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:47:18] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:18] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:18] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:47:18] calculate_stillbirth_rate -- calving score 2 proportion is : 0.395
+INFO  [2022-06-28 14:47:18] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:47:19] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:20] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:20] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:47:20] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0224
+INFO  [2022-06-28 14:47:20] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:47:21] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:22] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:22] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:47:22] calculate_stillbirth_rate -- calving score 4 proportion is : 0.001
+INFO  [2022-06-28 14:47:22] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:47:23] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:23] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:23] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:47:23] calculate_stillbirth_rate -- calving score 2 proportion is : 0.5153
+INFO  [2022-06-28 14:47:23] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:47:24] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:25] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:25] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:47:25] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0907
+INFO  [2022-06-28 14:47:25] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:47:26] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:26] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:26] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:47:26] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0024
+INFO  [2022-06-28 14:47:26] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:47:27] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:28] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:28] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:47:28] calculate_stillbirth_rate -- calving score 2 proportion is : 0.443
+INFO  [2022-06-28 14:47:28] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:47:29] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:29] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:47:29] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:47:29] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0421
+INFO  [2022-06-28 14:49:18] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:49:19] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:20] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:20] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:20] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4792
+INFO  [2022-06-28 14:49:20] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:49:21] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:22] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:22] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:22] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0462
+INFO  [2022-06-28 14:49:22] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:49:23] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:23] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:23] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:23] calculate_stillbirth_rate -- calving score 4 proportion is : 9e-04
+INFO  [2022-06-28 14:49:23] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:49:24] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:25] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:25] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:25] calculate_stillbirth_rate -- calving score 2 proportion is : 0.395
+INFO  [2022-06-28 14:49:25] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:49:26] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:27] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:27] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:27] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0224
+INFO  [2022-06-28 14:49:27] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:49:28] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:28] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:28] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:28] calculate_stillbirth_rate -- calving score 4 proportion is : 0.001
+INFO  [2022-06-28 14:49:28] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:49:30] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:30] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:30] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:30] calculate_stillbirth_rate -- calving score 2 proportion is : 0.5153
+INFO  [2022-06-28 14:49:30] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:49:31] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:32] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:49:33] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:34] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:34] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:34] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4792
+INFO  [2022-06-28 14:49:34] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:49:35] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:35] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:35] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:35] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0462
+INFO  [2022-06-28 14:49:35] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:49:36] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:37] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:37] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:37] calculate_stillbirth_rate -- calving score 4 proportion is : 9e-04
+INFO  [2022-06-28 14:49:37] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:49:38] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:39] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:39] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:39] calculate_stillbirth_rate -- calving score 2 proportion is : 0.395
+INFO  [2022-06-28 14:49:39] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:49:40] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:40] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:40] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:40] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0224
+INFO  [2022-06-28 14:49:40] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:49:42] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:42] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:42] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:42] calculate_stillbirth_rate -- calving score 4 proportion is : 0.001
+INFO  [2022-06-28 14:49:42] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:49:43] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:43] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:43] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:43] calculate_stillbirth_rate -- calving score 2 proportion is : 0.5153
+INFO  [2022-06-28 14:49:43] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:49:45] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:45] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:45] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:45] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0907
+INFO  [2022-06-28 14:49:45] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:49:46] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:47] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:47] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:47] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0024
+INFO  [2022-06-28 14:49:47] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:49:48] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:48] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:48] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:48] calculate_stillbirth_rate -- calving score 2 proportion is : 0.443
+INFO  [2022-06-28 14:49:48] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:49:50] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:50] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:49:50] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:49:50] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0421
+INFO  [2022-06-28 14:50:14] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:50:16] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:16] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:16] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:50:16] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4792
+INFO  [2022-06-28 14:50:16] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:50:17] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:18] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:18] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:50:18] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0462
+INFO  [2022-06-28 14:50:18] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:50:19] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:19] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:19] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:50:19] calculate_stillbirth_rate -- calving score 4 proportion is : 9e-04
+INFO  [2022-06-28 14:50:19] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:50:20] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:21] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:21] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:50:21] calculate_stillbirth_rate -- calving score 2 proportion is : 0.395
+INFO  [2022-06-28 14:50:21] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:50:22] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:22] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:22] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:50:22] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0224
+INFO  [2022-06-28 14:50:22] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:50:24] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:24] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:24] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:50:24] calculate_stillbirth_rate -- calving score 4 proportion is : 0.001
+INFO  [2022-06-28 14:50:24] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:50:25] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:26] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:26] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:50:26] calculate_stillbirth_rate -- calving score 2 proportion is : 0.5153
+INFO  [2022-06-28 14:50:26] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:50:27] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:27] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:27] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:50:27] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0907
+INFO  [2022-06-28 14:50:27] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:50:28] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:29] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:29] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:50:29] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0024
+INFO  [2022-06-28 14:50:29] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:50:30] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:30] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:30] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:50:30] calculate_stillbirth_rate -- calving score 2 proportion is : 0.443
+INFO  [2022-06-28 14:50:30] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:50:32] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:32] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:32] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:50:32] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0421
+INFO  [2022-06-28 14:50:32] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:50:33] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:34] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:50:34] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:50:34] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0012
+INFO  [2022-06-28 14:55:01] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:55:01] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:55:01] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:55:01] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:55:01] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4013
+INFO  [2022-06-28 14:55:01] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:55:02] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:55:05] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:55:05] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:55:05] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0502
+INFO  [2022-06-28 14:55:05] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:55:06] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:55:06] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:55:06] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:55:06] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0011
+INFO  [2022-06-28 14:55:06] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:55:07] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:55:07] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:55:07] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:55:07] calculate_stillbirth_rate -- calving score 2 proportion is : 0.2991
+INFO  [2022-06-28 14:55:07] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:55:08] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:55:08] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:55:08] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:55:08] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0308
+INFO  [2022-06-28 14:55:08] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:55:09] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:55:09] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:55:09] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:55:09] calculate_stillbirth_rate -- calving score 4 proportion is : 4e-04
+INFO  [2022-06-28 14:57:06] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:57:07] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:07] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:07] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:07] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4013
+INFO  [2022-06-28 14:57:07] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:57:10] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:10] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:10] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:10] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0502
+INFO  [2022-06-28 14:57:10] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:57:11] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:11] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:11] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:11] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0011
+INFO  [2022-06-28 14:57:11] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:57:12] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:12] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:12] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:12] calculate_stillbirth_rate -- calving score 2 proportion is : 0.2991
+INFO  [2022-06-28 14:57:12] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:57:13] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:13] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:13] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:13] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0308
+INFO  [2022-06-28 14:57:13] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:57:14] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:14] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:14] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:14] calculate_stillbirth_rate -- calving score 4 proportion is : 4e-04
+INFO  [2022-06-28 14:57:14] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:57:15] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:15] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:15] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:15] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4436
+INFO  [2022-06-28 14:57:16] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:57:17] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:17] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:17] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:17] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0931
+INFO  [2022-06-28 14:57:17] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:57:18] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:18] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:18] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:18] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0039
+INFO  [2022-06-28 14:57:18] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:57:19] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:19] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:19] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:19] calculate_stillbirth_rate -- calving score 2 proportion is : 0.3352
+INFO  [2022-06-28 14:57:20] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:57:21] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:21] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:21] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:21] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0539
+INFO  [2022-06-28 14:57:21] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: AN
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:57:22] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:22] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:22] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:22] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0017
+INFO  [2022-06-28 14:57:23] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:57:26] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:26] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:26] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:26] calculate_stillbirth_rate -- calving score 2 proportion is : 0.4792
+INFO  [2022-06-28 14:57:26] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:57:27] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:28] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:28] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:28] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0462
+INFO  [2022-06-28 14:57:28] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:57:29] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:29] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:29] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:29] calculate_stillbirth_rate -- calving score 4 proportion is : 9e-04
+INFO  [2022-06-28 14:57:29] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:57:31] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:31] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:31] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:31] calculate_stillbirth_rate -- calving score 2 proportion is : 0.395
+INFO  [2022-06-28 14:57:31] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:57:32] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:33] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:33] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:33] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0224
+INFO  [2022-06-28 14:57:33] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: F
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:57:34] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:34] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:34] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:34] calculate_stillbirth_rate -- calving score 4 proportion is : 0.001
+INFO  [2022-06-28 14:57:34] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:57:36] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:36] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:36] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:36] calculate_stillbirth_rate -- calving score 2 proportion is : 0.5153
+INFO  [2022-06-28 14:57:36] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:57:37] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:37] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:37] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:37] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0907
+INFO  [2022-06-28 14:57:37] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:57:38] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:39] calculate_calvingscore_proportion -- A Tibble for primiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:39] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:39] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0024
+INFO  [2022-06-28 14:57:39] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 2
+INFO  [2022-06-28 14:57:40] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:40] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:40] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:40] calculate_stillbirth_rate -- calving score 2 proportion is : 0.443
+INFO  [2022-06-28 14:57:40] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 3
+INFO  [2022-06-28 14:57:42] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:42] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:42] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:42] calculate_stillbirth_rate -- calving score 3 proportion is : 0.0421
+INFO  [2022-06-28 14:57:42] calculate_calvingscore_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_sirebreed: HO
+ * ps_dambreed: HO
+ * ps_sex: M
+ * ps_calvingscore: 4
+INFO  [2022-06-28 14:57:43] calculate_calvingscore_proportion -- A Tibble depending on the breed and sex has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:43] calculate_calvingscore_proportion -- A Tibble for multiparous has been created for the calculation of calving score proportion 
+INFO  [2022-06-28 14:57:43] calculate_calvingscore_proportion -- Calving score information are available in the dataset so that calving score proportion can be calculated
+INFO  [2022-06-28 14:57:43] calculate_stillbirth_rate -- calving score 4 proportion is : 0.0012

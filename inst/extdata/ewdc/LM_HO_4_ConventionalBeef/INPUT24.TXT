@@ -1,0 +1,85 @@
+/* Input parameters for program EWDC (Production System 4).
+   In its first part, this input file contains matrices describing the
+     distribution of the pure-bred dairy progeny over the individual
+     commercial classes for fleshiness and fat covering. In the second part,
+     the file contains the matrices of coefficients of carcass prices 
+     which are valid both for pure-bred and cross-bred animals. 
+   For changing input data, change the number(s) in the matrices.
+   Be careful when changing input parameters. Please notice that 
+     the description of the given matrix is posted under the matrix.
+   The rows represent the commercial classes for fleshiness, the columns the 
+     classes for fat covering. The numbers of rows and columns of all matrices 
+     must be in accordance with the appropriate parameters in INPUT23.TXT.
+   The matrices of coefficients of carcass prices show the ratio of the price 
+     per kg carcass in the given class to the price in the class which is used
+     as the reference class (base class). See Manual for more explanations.
+   The price of the base class is an input parameter in the input files 
+     INPUT11.TXT and INPUT23.TXT.
+   Inputs referring to castrates are skipped when reading data if there are 
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+50 0 0 0 0
+0 0 0 0 0
+"Matrix Pb_p - proportions of bull carcasses in commercial classes for fleshiness and fat covering"
+"%"
+0	0	0	0	0
+0	0	0	0	0
+0	0	0	0.3	0.2
+0	1.2	2.6	2.2	0.2
+0.2	16.0	35.0	20.2	4.6
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+"Matrix Pcs_p - proportions of castrate carcasses in commercial classes for fleshiness and fat covering"
+"%"
+0	0	0	0	0
+0	0	0	0	0
+0	0	0	0	0
+0	3.6	3.4	0.4	0
+0.3	20.5	19.7	8.9	2.2
+NA
+"Matrix Pc_p - proportions of cow carcasses in commercial classes for fleshiness and fat covering"
+"%"
+1	0.985	0.97	0.94	0.875
+0.96	0.945	0.925	0.89	0.82
+0.925	0.91	0.89	0.86	0.79
+0.875	0.86	0.84	0.805	0.73
+0.775	0.785	0.795	0.76	0.685
+NA
+"Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)"
+" "
+1	0.985	0.97	0.925	0.845
+0.97	0.96	0.935	0.885	0.805
+0.93	0.915	0.885	0.83	0.74
+0.88	0.865	0.835	0.78	0.69
+0.77	0.775	0.785	0.735	0.645
+NA
+"Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class (the value 1 is inserted for the base class)" 
+" "
+1	0.985	0.97	0.94	0.875
+0.96	0.945	0.925	0.89	0.82
+0.925	0.91	0.89	0.86	0.79
+0.875	0.86	0.84	0.805	0.73
+0.775	0.785	0.795	0.76	0.685
+0.678 0.6976 0.6976 0.6683 0.6
+0.722 0.7415 0.7415 0.7122 0.6439
+0.7659 0.7854 0.7854 0.7561 0.6878
+0.8293 0.8488 0.8488 0.8195 0.7512
+0.8829 0.9024 0.9024 0.8732 0.8049
+0.9171 0.9366 0.9366 0.9073 0.839
+0.9366 0.9561 0.9561 0.9268 0.8585
+0.9561 0.9756 0.9756 0.9463 0.878
+0.9805 1 1 0.9707 0.9024
+"Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)" 
+" "                                        

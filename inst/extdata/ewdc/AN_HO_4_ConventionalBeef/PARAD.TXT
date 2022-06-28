@@ -1,0 +1,158 @@
+"******
+Comment:
+    Example data 2012
+******"
+1
+"Crossbreeding in the system
+  (0 No crossbreeding used
+   1 Crossbreeding used)"
+2
+"Housing technology in fattening
+  (1 Bind technology
+   2 Free technology)"
+2
+"Housing technology in cow herds
+  (1 Bind technology
+   2 Free technology
+   3 Pasture)"
+1
+"Maturity type of pure-bred progeny
+ (1 Early
+  2 Medium
+  3 Late)"
+2
+"Maturity type of cross-bred progeny
+ (1 Early
+  2 Medium
+  3 Late)"
+2
+"Utilization of pure-bred female calves which are not needed for replacement
+  (1 Selling of surplus reared female calves outside the systems (export)
+   2 Fattening of surplus reared female calves
+   3 Selling of surplus breeding heifers before mating
+   4 Selling of surplus pregnant breeding heifers)"
+2
+"Utilization of cross-bred female calves which are not needed for replacement
+   (1 Selling of reared calves outside the system (export)
+    2 Fattening of reared calves
+    3 Selling (transferring) of (non-mated) cross-bred heifers to cow-calf
+      production system 3.
+      *** Important! ***
+      When choosing this option you must first run program EWBC with
+      Production System 3 to generate the files FROM1_3.TXT and T.TXT.
+    4 Combination of fattening and export of cross-bred female calves)"
+0
+"Pure-bred castrates in fattening
+   (0 No pure-bred castrates
+    1 There are pure-bred castrates which are fattened
+    Warning: This value may be changed by the program when it is in
+    contradiction with input parameters in INPUT15.TXT.)"
+0
+"Cross-bred castrates in fattening
+   (0 No cross-bred castrates
+    1 There are cross-bred castrates which are fattened
+    Warning: This value may be changed by the program when it is in
+    contradiction with input parameters in INPUT15.TXT.)"
+1
+"Way of calculating feed cost
+  (1 on the base of energy and protein content in feed rations
+   2 only on the base of energy content in feed)"
+2
+"Option for calculating economic weights
+  (0 Economic weights are calculated only for traits expressed in pure-bred dairy
+     progeny (when no terminal crossing is used)
+   1 Economic weights are calculated only for traits expressed in cross-bred progeny
+     (when only economic weights for beef cattle are of interest)
+   2 Economic weight are calculated for traits both expressed in pure-bred and
+     cross-bred progeny (when economic weights for dairy cattle are of interest
+     and terminal crossing in dairy herds is used)"
+1
+"Selection group for which gene flow is calculated
+  (1 Dairy sires
+   2 Dairy dams
+   3 Beef sires)"
+0
+"Data for mastitis incidence
+  (0 are not available
+   1 are available)"
+1
+"Quota for milk market
+  (1 Free market for milk and milk component (fat and protein)
+   2 Quota system for milk yield only
+   3 Quota system for milk yield and fat content)"
+1
+"Option for the calculation of the milk price
+  (1 The milk price does not depend neither on the somatic
+     cell count nor on other factors (protein content,
+     fat content, rennet coagulation time, curd firmness).
+   2 The milk price depends only on somatic cell count.
+   3 The milk price does not depend on SCC, but depends on one
+     to four of the following factors: protein content,
+     fat content, rennet coagulation time and curd firmness.
+   4 The milk price depends on both somatic cell count
+     (SCC) and on one to four of the following factors:
+     protein content, fat content, rennet coagulation time
+     and curd firmness. The base prices for quality classes
+     according to SCC are set first and then these prices
+     are corrected for the further factors.
+   5 The milk price depends on both somatic cell count
+     (SCC) and on one to four of the following factors:
+     protein content, fat content, rennet coagulation time
+     and curd firmness. The base price for milk (milk carrier
+     or milk with given fat and/or protein content and/or milk
+     coagulation properties) is determined first.
+     Then this price is corrected for the real values of at
+     least one of the following four factors: protein content,
+     fat content, rennet coagulation time and curd firmness.
+     At the last step, a further correction of the price for
+     milk quality classes based on SCC is carried out.)"
+0
+"Data for curd firmness
+  (0 are not available or not of interest
+   1 are of interest and are available )"
+0
+"Data for rennet coagulation time
+  (0 are not available or not of interest
+   1 are of interest and are available )"
+10
+"Number of reproductive cycles (should be in the range from 4
+  to 15). When changing the number of lactations take care to change all other
+  input parameters in the appropriate way, especially in INPUT07.TXT,
+  INPUT27.TXT and INPUT29.TXT."
+2
+"Genetic standard deviation of the traits
+  (1: are not known or are not intended to be used for the calculation of
+      relative economic weights
+   2: are known for the direct and maternal components of the traits and
+      given in INPUT32.TXT
+   3: are not differentiated between direct and maternal components and
+      given in INPUT33.TXT). This option makes only sense if there is
+      no connection between the dairy and the beef system
+      (Production System 3)."
+0
+"Data for claw disease incidence
+  (0 are not available or not of interest
+   1 are of interest and are available )"
+0
+"Data for milking speed
+  (0 are not available or not of interest
+   1 are of interest and are available in INPUT39.TXT, variable speedm)"
+0
+"Calculation of economic value for residual dry matter intake of calves in
+  rearing
+  (0: no
+   1: yes)."
+0
+"Calculation of economic value for residual dry matter intake of heifers in
+   rearing
+  (0: no
+   1: yes)."
+0
+"Calculation of economic value for residual dry matter intake of animals in
+   fattening
+  (0: no
+   1: yes)."
+0
+"Calculation of economic value for residual dry matter intake of cows
+  (0: no
+   1: yes)."

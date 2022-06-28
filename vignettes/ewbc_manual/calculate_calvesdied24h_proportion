@@ -1,0 +1,64 @@
+INFO  [2022-06-28 14:52:30] calculate_calvesdied24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_statement_easycalving: TRUE
+INFO  [2022-06-28 14:52:31] calculate_calvesdied24h_proportion -- A Tibble for easy calving has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:52:34] calculate_calvesdied24h_proportion -- A Tibble for primiparous has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:52:34] calculate_calvesdied24h_proportion -- Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated
+INFO  [2022-06-28 14:52:34] calculate_calvesdied24h_proportion -- calves died in 24h proportion is : 0.0412
+INFO  [2022-06-28 14:52:34] calculate_calvesdied24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_statement_easycalving: TRUE
+INFO  [2022-06-28 14:52:34] calculate_calvesdied24h_proportion -- A Tibble for easy calving has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:52:38] calculate_calvesdied24h_proportion -- A Tibble for multiparous has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:52:38] calculate_calvesdied24h_proportion -- Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated
+INFO  [2022-06-28 14:52:38] calculate_calvesdied24h_proportion -- calves died in 24h proportion is : 0.0203
+INFO  [2022-06-28 14:53:04] calculate_calvesdied24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_statement_easycalving: FALSE
+INFO  [2022-06-28 14:53:04] calculate_calvesdied24h_proportion -- A Tibble for difficult calving has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:53:04] calculate_calvesdied24h_proportion -- A Tibble for primiparous has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:53:04] calculate_calvesdied24h_proportion -- Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated
+INFO  [2022-06-28 14:53:04] calculate_calvesdied24h_proportion -- calves died in 24h proportion is : 0.3081
+INFO  [2022-06-28 14:53:04] calculate_calvesdied24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_statement_easycalving: FALSE
+INFO  [2022-06-28 14:53:05] calculate_calvesdied24h_proportion -- A Tibble for difficult calving has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:53:05] calculate_calvesdied24h_proportion -- A Tibble for multiparous has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:53:05] calculate_calvesdied24h_proportion -- Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated
+INFO  [2022-06-28 14:53:05] calculate_calvesdied24h_proportion -- calves died in 24h proportion is : 0.2276
+INFO  [2022-06-28 14:57:45] calculate_calvesdied24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_statement_easycalving: TRUE
+INFO  [2022-06-28 14:57:47] calculate_calvesdied24h_proportion -- A Tibble for easy calving has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:57:49] calculate_calvesdied24h_proportion -- A Tibble for primiparous has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:57:49] calculate_calvesdied24h_proportion -- Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated
+INFO  [2022-06-28 14:57:49] calculate_calvesdied24h_proportion -- calves died in 24h proportion is : 0.0412
+INFO  [2022-06-28 14:57:49] calculate_calvesdied24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_statement_easycalving: TRUE
+INFO  [2022-06-28 14:57:50] calculate_calvesdied24h_proportion -- A Tibble for easy calving has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:57:53] calculate_calvesdied24h_proportion -- A Tibble for multiparous has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:57:53] calculate_calvesdied24h_proportion -- Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated
+INFO  [2022-06-28 14:57:53] calculate_calvesdied24h_proportion -- calves died in 24h proportion is : 0.0203
+INFO  [2022-06-28 14:57:53] calculate_calvesdied24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: TRUE
+ * ps_statement_easycalving: FALSE
+INFO  [2022-06-28 14:57:53] calculate_calvesdied24h_proportion -- A Tibble for difficult calving has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:57:54] calculate_calvesdied24h_proportion -- A Tibble for primiparous has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:57:54] calculate_calvesdied24h_proportion -- Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated
+INFO  [2022-06-28 14:57:54] calculate_calvesdied24h_proportion -- calves died in 24h proportion is : 0.3081
+INFO  [2022-06-28 14:57:54] calculate_calvesdied24h_proportion -- Starting function with parameters:
+ * ps_input_calving_tibble 
+ * ps_statement_firstlactation: FALSE
+ * ps_statement_easycalving: FALSE
+INFO  [2022-06-28 14:57:54] calculate_calvesdied24h_proportion -- A Tibble for difficult calving has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:57:54] calculate_calvesdied24h_proportion -- A Tibble for multiparous has been created for the calculation of proportion of calves died 24h
+INFO  [2022-06-28 14:57:54] calculate_calvesdied24h_proportion -- Stillbirth within 24h information are available in the dataset so that proportion of calves died 24h can be calculated
+INFO  [2022-06-28 14:57:54] calculate_calvesdied24h_proportion -- calves died in 24h proportion is : 0.2276

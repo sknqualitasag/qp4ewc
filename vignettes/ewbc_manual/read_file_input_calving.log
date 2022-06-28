@@ -1,0 +1,55 @@
+INFO  [2022-06-28 11:26:36] read_file_input_calving -- Starting function with parameters:
+ * ps_input_file_calving: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+ * ps_start_calving_date: 20160101
+ * ps_end_calving_date: 20211231
+INFO  [2022-06-28 11:26:36] read_file_input_calving -- File exists:
+ * ps_input_file_calving/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+INFO  [2022-06-28 11:26:36] read_file_input_calving -- Read file: 
+ * ps_input_file_calving: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+ * in a tibble
+INFO  [2022-06-28 11:26:36] read_file_input_calving -- All requested column-names in calving input file exist
+INFO  [2022-06-28 11:26:36] read_file_input_calving -- Considered data from input calving file from: 20160101 to 20211231
+INFO  [2022-06-28 11:45:58] read_file_input_calving -- Starting function with parameters:
+ * ps_input_file_calving: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+ * ps_start_calving_date: 20160101
+ * ps_end_calving_date: 20211231
+INFO  [2022-06-28 11:45:58] read_file_input_calving -- File exists:
+ * ps_input_file_calving/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+INFO  [2022-06-28 11:45:58] read_file_input_calving -- Read file: 
+ * ps_input_file_calving: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/test/test_zws_muku_gal.csv
+ * in a tibble
+INFO  [2022-06-28 11:45:58] read_file_input_calving -- All requested column-names in calving input file exist
+INFO  [2022-06-28 11:45:58] read_file_input_calving -- Considered data from input calving file from: 20160101 to 20211231
+INFO  [2022-06-28 11:54:36] read_file_input_calving -- Starting function with parameters:
+ * ps_input_file_calving: /qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/zws_muku_gal.csv
+ * ps_start_calving_date: 20160101
+ * ps_end_calving_date: 20211231
+INFO  [2022-06-28 11:54:36] read_file_input_calving -- File exists:
+ * ps_input_file_calving/qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/zws_muku_gal.csv
+INFO  [2022-06-28 11:54:39] read_file_input_calving -- Read file: 
+ * ps_input_file_calving: /qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/zws_muku_gal.csv
+ * in a tibble
+INFO  [2022-06-28 11:54:39] read_file_input_calving -- All requested column-names in calving input file exist
+INFO  [2022-06-28 11:54:42] read_file_input_calving -- Considered data from input calving file from: 20160101 to 20211231
+INFO  [2022-06-28 14:54:36] read_file_input_calving -- Starting function with parameters:
+ * ps_input_file_calving: /qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/zws_muku_gal.csv
+ * ps_start_calving_date: 20160101
+ * ps_end_calving_date: 20211231
+INFO  [2022-06-28 14:54:36] read_file_input_calving -- File exists:
+ * ps_input_file_calving/qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/zws_muku_gal.csv
+INFO  [2022-06-28 14:54:39] read_file_input_calving -- Read file: 
+ * ps_input_file_calving: /qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/zws_muku_gal.csv
+ * in a tibble
+INFO  [2022-06-28 14:54:39] read_file_input_calving -- All requested column-names in calving input file exist
+INFO  [2022-06-28 14:54:42] read_file_input_calving -- Considered data from input calving file from: 20160101 to 20211231
+INFO  [2022-06-28 14:56:41] read_file_input_calving -- Starting function with parameters:
+ * ps_input_file_calving: /qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/zws_muku_gal.csv
+ * ps_start_calving_date: 20160101
+ * ps_end_calving_date: 20211231
+INFO  [2022-06-28 14:56:41] read_file_input_calving -- File exists:
+ * ps_input_file_calving/qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/zws_muku_gal.csv
+INFO  [2022-06-28 14:56:45] read_file_input_calving -- Read file: 
+ * ps_input_file_calving: /qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/zws_muku_gal.csv
+ * in a tibble
+INFO  [2022-06-28 14:56:45] read_file_input_calving -- All requested column-names in calving input file exist
+INFO  [2022-06-28 14:56:47] read_file_input_calving -- Considered data from input calving file from: 20160101 to 20211231

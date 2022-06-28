@@ -1,0 +1,40 @@
+INFO  [2022-06-28 11:26:35] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+INFO  [2022-06-28 11:26:35] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+INFO  [2022-06-28 11:26:36] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+ * in a tibble
+
+INFO  [2022-06-28 11:45:58] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+INFO  [2022-06-28 11:45:58] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+INFO  [2022-06-28 11:45:58] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+ * in a tibble
+
+INFO  [2022-06-28 11:54:33] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+INFO  [2022-06-28 11:54:33] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+INFO  [2022-06-28 11:54:34] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+ * in a tibble
+
+INFO  [2022-06-28 14:54:35] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+INFO  [2022-06-28 14:54:35] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+INFO  [2022-06-28 14:54:36] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+ * in a tibble
+
+INFO  [2022-06-28 14:56:41] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+INFO  [2022-06-28 14:56:41] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+INFO  [2022-06-28 14:56:41] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewdc/input_calving_statement.txt
+ * in a tibble
+

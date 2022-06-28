@@ -1,0 +1,95 @@
+/* This file is necessary for program EWBC (Production Systems 1 to 3), 
+   the last parameter only for production system 1. It includes input
+   parameters describing the reproductive cycle in pasture systems through
+   time. All dates are given in the format 'year [SPACE] month [SPACE]
+   day'. The number of the year must be relative, the earliest dates must
+   always be in year 0, the next year is year 1 etc. The number of feeding 
+   seasons (i.e feed rations which depend on seasons) during a year 
+   can be 1 (that means for example that animals are pastured whole the year) 
+   or 2 (different feed rations are defined for summer and winter or wet 
+   and dry) season, which are coded as 1 and 2). Though only two seasonal
+   feeding rations are allowed, the number of changes of feeding seasons may 
+   be considerably higher than the number of feeding seasons because the
+   same feeding season may repeat during the year.
+
+   The input data are arranged in the following way:
+     each parameter takes three rows, 
+     
+     in the first row stands its value which is given in the format 
+     'month [SPACE] day' for dates (the program will convert date 
+     values into the number of days since January 1st of year 0), 
+     
+     the string expression in the second row describes the parameter and
+     
+     the last string in the third row contains the units of the parameter.
+     
+   For changing input data, change the number(s) in the first row.
+   The description of the parameter will be printed in all outputs as
+     written in this file. You can make use of this and translate
+     the description to your language.*/
+   
+2
+"Number of different feeding seasons during the year (e.g. summer and
+winter feeding periods, dry and wet feeding periods). Insert 1 if there 
+is only pasture during the whole year"
+" "
+1
+"Code of the feeding season on January 1st. Insert 1 if there 
+is only pasture during the whole year"
+" "
+2
+"Number of changes betweem feeding seasons during the year (set zero if animals
+are pastured during the whole year and only one feeding season is defined in 
+the first input)"
+" "
+/* The following two inputs (Start date of a new feeding season and code of
+the new feeding season) are replicated as many times as is the number of
+changes of the feeding seasons during the year given in the preceding input.
+These inputs are not read if there is only one feeding season during the year.
+All dates must be in year 0. */
+0 4 25
+"Start date of a new feeding season (e.g. start of pasture in temperate climate)"
+"year month day"
+2
+"Code of the new feeding season"
+" "
+0 12 06
+"Start date of a new feeding season (e.g. end of pasture in temperate climate)"
+"year month day"
+1
+"Code of the new feeding season"
+" "
+/* End of replicated inputs */ 
+2
+"Code for housing technology in feeding seasons with code 1 (for cows, heifers and
+animals in extensive fattening): insert 1 for bind technology, 2 for free technology and 3 for pasture"
+" "
+3
+"Code for housing technology in feeding seasons with code 2 (for cows, heifers and
+animals in extensive fattening): insert 1 for bind technology, 2 for free technology and 3 for pasture"
+" "
+/* Start with year 1 in the following inputs */
+1 4 7
+"Date of starting the mating period"
+"year month day"
+1 4 28
+"Date of ending the first part of the mating period (with AI) covering the first possibility of a female to conceive"
+"year month day"
+1 4 29
+"Date of starting the second part of the mating period"
+"year month day"
+1  5  20
+"Date of ending the second part the mating period covering the second possibility of females to conceive"
+"year month day"
+1  5  21
+"Date of starting the third part of the mating period"
+"year month day" 
+1  6 11
+"Date of ending the third part of the mating period (end of the mating period) covering the third possibility of females to conceive"
+"year month day"    
+1  11 30
+"Date of weaning calves"
+"year month day"
+1  12 1
+"Starting date for the test of bulls (only needed for production system 1)"
+"year month day"             
