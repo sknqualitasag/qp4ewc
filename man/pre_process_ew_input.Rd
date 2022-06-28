@@ -51,15 +51,15 @@ pre_process_ew_input(
 
 \item{ps_input_file_calving}{path to file with input coming from calving for the input-parameter-file for ECOWEIGHT}
 
-\item{ps_start_date}{setting the start of the calving date to filter in the calving data}
+\item{ps_start_date}{setting the start of the date to filter in the data}
 
-\item{ps_end_date}{setting the end of the calving date to filter in the calving data}
+\item{ps_end_date}{setting the end of the date to filter in the data}
 
-\item{ps_input_file_progeny_flp_statement}{path to file with statement based on calving for the input-parameter-file for ECOWEIGHT}
+\item{ps_input_file_progeny_flp_statement}{path to file with statement based on carcass for the input-parameter-file for ECOWEIGHT}
 
-\item{ps_input_file_flp}{path to file with input coming from calving for the input-parameter-file for ECOWEIGHT}
+\item{ps_input_file_flp}{path to file with input coming from carcass for the input-parameter-file for ECOWEIGHT}
 
-\item{ps_input_file_flp_carcass_matrix_statement}{path to file with statement based on calving for the input-parameter-file for ECOWEIGHT}
+\item{ps_input_file_flp_carcass_matrix_statement}{path to file with statement based on carcass frequency and price for the input-parameter-file for ECOWEIGHT}
 
 \item{ps_input_file_price_cow}{path to file with price for cows}
 
