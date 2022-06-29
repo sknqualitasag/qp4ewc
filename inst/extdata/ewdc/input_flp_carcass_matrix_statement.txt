@@ -11,7 +11,6 @@ INPUT25.TXT;"Matrix Pb_c - proportions of bull carcasses in commercial classes f
 INPUT25.TXT;"Matrix Ph_c - proportions of heifer carcasses in commercial classes for fleshiness and fat covering";"%";
 INPUT25.TXT;"Matrix Pcs_c - proportions of castrate carcasses in commercial classes for fleshiness and fat covering";"%";
 INPUT11.TXT;"Price per kg carcass of cows in the base class for carcass grading";"MU/kg";
-INPUT11.TXT;"Ratio of price per kg carcass of cows involuntarily culled to the price per kg carcass of cows voluntarily culled";" ";
 INPUT23.TXT;"Price per kg carcass of heifers in the base class for carcass grading";"MU/kg";
 INPUT23.TXT;"Price per kg carcass of bulls in the base class for carcass grading";MU/kg;
 INPUT23;"Price per kg carcass of castrates in the base class for carcass grading";"MU/kg";
