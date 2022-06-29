@@ -226,6 +226,35 @@ get_constants_progeny_beefOnbeef <- function(){
               SwissPrimBeef = 3))
 }
 
+#' @title Get constants for progeny in beef-on-dairy production systems
+#'
+#' @description
+#' Return a list with specific constants that are used.
+#'
+#' @export get_constants_progeny_beefOndairy
+get_constants_progeny_beefOndairy <- function(){
+  # return list of default constants
+  return(list(idx_col_input_file = 1,
+              idx_col_input = 2,
+              idx_col_input_value = 4,
+              sex_female = "F",
+              sex_male = "M",
+              conv_fattening_beef = "ConventionalBeef",
+              conv_fattening_calf = "ConventionalVeal",
+              purebred_dairy = "PurebredDairy",
+              purebred_beef = "PurebredBeef",
+              crossbred = "Crossbred",
+              idx_row_bw_female = 4,
+              idx_row_bw_male = 5,
+              idx_row_lw_heifer_slaughter_beef = 21,
+              idx_row_lw_bull_slaughter_beef = 20,
+              idx_row_lw_heifer_slaughter_dairy = 23,
+              idx_row_lw_bull_slaughter_dairy = 24,
+              idx_row_cowwt_dairy_3calving = 1,
+              idx_row_cowwt_beef_3calving = 2
+              ))
+}
+
 
 #' @title Get constants for carcass in beef-on-beef production systems
 #'
@@ -263,5 +292,38 @@ get_constants_carcass_beefOnbeef <- function(){
               line9 = 9))
 }
 
-
+#' @title Get constants for carcass in beef-on-beef production systems
+#'
+#' @description
+#' Return a list with specific constants that are used.
+#'
+#' @export get_constants_carcass_beefOndairy
+get_constants_carcass_beefOndairy <- function(){
+  # return list of default constants
+  return(list(idx_col_input_file = 1,
+              idx_col_input = 2,
+              idx_col_input_value = 4,
+              idx_row_cow_freq_class = 4,
+              idx_row_bull_freq_class = 1,
+              idx_row_heifer_freq_class = 2,
+              idx_row_cow_price = 12,
+              idx_row_bull_price = 14,
+              idx_row_heifer_price = 13,
+              idx_row_cow_coef = 8,
+              idx_row_bull_coef = 5,
+              idx_row_heifer_coef = 6,
+              idx_row_class_fleshiness = 16,
+              idx_row_class_fat = 17,
+              sex_female = "F",
+              sex_male = "M",
+              line1 = 1,
+              line2 = 2,
+              line3 = 3,
+              line4 = 4,
+              line5 = 5,
+              line6 = 6,
+              line7 = 7,
+              line8 = 8,
+              line9 = 9))
+}
 

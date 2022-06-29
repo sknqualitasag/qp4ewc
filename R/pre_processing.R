@@ -234,9 +234,9 @@ pre_process_ew_input <- function(ps_sirebreed,
 
       if(ps_dambreed == "HO"){
         maturitytype_status_purebred <- l_constants_ew_input_beefOndairy$maturitytype_early
-        if(ps_sirebreed == "AN" || ps_sirebreed == "OB") {
+        if(ps_sirebreed == "AN") {
           maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_early
-        } else if (ps_sirebreed == "LM" || ps_sirebreed == "SI") {
+        } else if (ps_sirebreed == "LM" || ps_sirebreed == "SI" || ps_sirebreed == "OB") {
           maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_medium
         }
       }
@@ -1830,7 +1830,6 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
   tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp,
                                          ps_start_flp_date,
                                          ps_end_flp_date,
-                                         ps_sirebreed,
                                          pb_log,
                                          plogger = lgr)
 
@@ -1840,11 +1839,27 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
 
 
   ### # Number of classes for fleshiness
+  if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4) {
+    idx_row_class_fleshiness <- l_constants_carcass_beefOnbeef$idx_row_class_fleshiness
+    idx_col_input_file <- l_constants_carcass_beefOnbeef$idx_col_input_file
+    idx_col_input <- l_constants_carcass_beefOnbeef$idx_col_input
+    idx_col_input_value <- l_constants_carcass_beefOnbeef$idx_col_input_value
+    idx_row_class_fat <- l_constants_carcass_beefOnbeef$idx_row_class_fat
+  }
+  if(ps_prodsystew == l_constants_ew_input_beefOndairy$prodsyst4) {
+    idx_row_class_fleshiness <- l_constants_carcass_beefOndairy$idx_row_class_fleshiness
+    idx_col_input_file <- l_constants_carcass_beefOndairy$idx_col_input_file
+    idx_col_input <- l_constants_carcass_beefOndairy$idx_col_input
+    idx_col_input_value <- l_constants_carcass_beefOndairy$idx_col_input_value
+    idx_row_class_fat <- l_constants_carcass_beefOndairy$idx_row_class_fat
+  }
+
+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_class_fleshiness,l_constants_carcass_beefOnbeef$idx_col_input_file]),
-                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_class_fleshiness,l_constants_carcass_beefOnbeef$idx_col_input],
-                                      ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_class_fleshiness,l_constants_carcass_beefOnbeef$idx_col_input_value]$input_value,
+                                                                                        tbl_input_statement_flp_carcass[idx_row_class_fleshiness,idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[idx_row_class_fleshiness,idx_col_input],
+                                      ps_value2update = tbl_input_statement_flp_carcass[idx_row_class_fleshiness,idx_col_input_value]$input_value,
                                       pb_log,
                                       plogger = lgr)
 
@@ -1852,9 +1867,9 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
   ### # Number of classes for fat covering
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_class_fat,l_constants_carcass_beefOnbeef$idx_col_input_file]),
-                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_class_fat,l_constants_carcass_beefOnbeef$idx_col_input],
-                                      ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_class_fat,l_constants_carcass_beefOnbeef$idx_col_input_value]$input_value,
+                                                                                        tbl_input_statement_flp_carcass[idx_row_class_fat,idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[idx_row_class_fat,idx_col_input],
+                                      ps_value2update = tbl_input_statement_flp_carcass[idx_row_class_fat,idx_col_input_value]$input_value,
                                       pb_log,
                                       plogger = lgr)
 
