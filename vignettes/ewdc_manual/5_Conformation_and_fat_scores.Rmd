@@ -29,28 +29,28 @@ The parameters needed are:
 ```{r, echo = TRUE}
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
 s_sirebreed <- "LM"
-# Dam breed can be for beef-on-beef: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental 
-s_dambreed <- "LM"
-# Production system according to ECOWEIGHT for beef-on-beef: 1,2,3 corresponding to purebreeding, crossbreeding, terminal crossing
-s_prodsystew <- "2"
-# Marketing channel can be: Natura-Beef, SwissPrimBeef
-s_marketingchannel <- "Natura-Beef"
+# Dam breed can be for beef-on-dairy: HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
+s_dambreed <- "HO"
+# Production system according to ECOWEIGHT: 4 corresponding to dairy
+s_prodsystew <- "4"
+# Marketing channel can be: ConventionalBeef, ConventionalVeal
+s_marketingchannel <- "ConventionalBeef"
 # Path to define from the working directory
-s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc")
+s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc")
 # Path to input statement for carcass and price
-s_input_file_flp_carcass_matrix_statement <- file.path(here::here(),"inst","extdata","ewbc","input_flp_carcass_matrix_statement.txt")
-# Path to flp data file
-s_input_file_flp <- file.path(here::here(),"inst","extdata","ewbc","test","test_zws_muku_flp.csv")
+s_input_file_flp_carcass_matrix_statement <- file.path(here::here(),"inst","extdata","ewdc","input_flp_carcass_matrix_statement.txt")
+# Path to flp data file #### !!!! Making specific test file for beef-on-dairy
+s_input_file_flp <- file.path(here::here(),"inst","extdata","ewdc","test","test_zws_muku_flp.csv")
 # Date YYYYMMDD used as start date to filter data for calving or carcass
 s_start_flp_date <- 20160101
 # Date YYYYMMDD used as end date to filter data for calving or carcass
 s_end_flp_date <- 20211231
 # Path to input with cow price. Based on this example an other file can be created with different input-values.
-s_input_file_price_cow <- file.path(here::here(),"inst","extdata","ewbc","cow_price.txt")
+s_input_file_price_cow <- file.path(here::here(),"inst","extdata","ewdc","cow_price.txt")
 # Path to input with bull price. Based on this example an other file can be created with different input-values.
-s_input_file_price_bull <- file.path(here::here(),"inst","extdata","ewbc","bull_price.txt")
+s_input_file_price_bull <- file.path(here::here(),"inst","extdata","ewdc","bull_price.txt")
 # Path to input with heifer price. Based on this example an other file can be created with different input-values.
-s_input_file_price_heifer <- file.path(here::here(),"inst","extdata","ewbc","heifer_price.txt")
+s_input_file_price_heifer <- file.path(here::here(),"inst","extdata","ewdc","heifer_price.txt")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
@@ -72,7 +72,7 @@ tbl_input_statement_flp_carcass[,2]
 
 # flp data
 
-In the flp-data-file are the carcass data readed. With the `s_start_flp_date` and `s_end_flp_date` , the time frame of the flp-data to consider is set. The progeny is filtered according to `s_sirebreed` .
+In the flp-data-file are the carcass data readed. With the `s_start_flp_date` and `s_end_flp_date` , the time frame of the flp-data to consider is set.
 
 ```{r, warning=FALSE, message=FALSE}
 tbl_flp <- read_file_input_flp(ps_input_file_flp = s_input_file_flp,

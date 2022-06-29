@@ -28,15 +28,15 @@ The parameters needed are:
 
 ```{r}
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
-s_sirebreed <- "LM"
-# Dam breed can be for beef-on-beef: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental 
-s_dambreed <- "LM"
-# Production system according to ECOWEIGHT for beef-on-beef: 1,2,3 corresponding to purebreeding, crossbreeding, terminal crossing
-s_prodsystew <- "2"
-# Marketing channel can be: Natura-Beef, SwissPrimBeef
-s_marketingchannel <- "Natura-Beef"
+s_sirebreed <- "AN"
+# Dam breed can be for beef-on-dairy: HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
+s_dambreed <- "HO"
+# Production system according to ECOWEIGHT for beef-on-dairy: 4 corresponding to dairy
+s_prodsystew <- "4"
+# Marketing channel can be: ConventionalBeef, ConventionalVeal
+s_marketingchannel <- "ConventionalBeef"
 # Path to define from the working directory
-s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc")
+s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
@@ -52,4 +52,4 @@ create_directory_scenario(ps_sirebreed = s_sirebreed,
                           pb_log = b_log)
 ```
 
-By running the function `create_directory_scenario()` with these parameters is a directory build up such as each scenario corresponds to a directory. In this directory are templates of EWBC (so based on beef cattle) copied. With the function `update_input_parameter_file()` of this package can the template with values updated.
+By running the function `create_directory_scenario()` with these parameters is a directory build up such as each scenario corresponds to a directory. In this directory are templates of EWDC (so based on dairy cattle) copied. With the function `update_input_parameter_file()` of this package can the template with values in this created directory updated.

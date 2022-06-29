@@ -29,16 +29,16 @@ The parameters needed are:
 ```{r, echo = TRUE}
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
 s_sirebreed <- "LM"
-# Dam breed can be for beef-on-beef: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental 
-s_dambreed <- "LM"
-# Production system according to ECOWEIGHT: 1,2,3,4 corresponding to purebreeding, crossbreeding, terminal crossing, dairy
-s_prodsystew <- "2"
-# Marketing channel can be: Natura-Beef, SwissPrimBeef
-s_marketingchannel <- "Natura-Beef"
+# Dam breed can be for beef-on-dairy: HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
+s_dambreed <- "HO"
+# Production system according to ECOWEIGHT for beef-on-dairy: 4 corresponding to dairy
+s_prodsystew <- "4"
+# Marketing channel can be: ConventionalBeef, ConventionalVeal
+s_marketingchannel <- "ConventionalBeef"
 # Path to define from the working directory
-s_path_directory2create <-  file.path(here::here(),"inst","extdata","ewbc")
+s_path_directory2create <-  file.path(here::here(),"inst","extdata","ewdc")
 # Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
-s_input_file_literature <- file.path(here::here(),"inst","extdata","ewbc","input_literature.txt")
+s_input_file_literature <- file.path(here::here(),"inst","extdata","ewdc","input_literature.txt")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
@@ -55,7 +55,7 @@ tbl_input_literature <- read_file_input(ps_input_file = s_input_file_literature,
 tbl_input_literature[,2]
 ```
 
-Update all the input of ecoweight where the literature inputs are coming from the above file.
+Update all the input of ECOWEIGHT where the literature inputs are coming from the above file.
 
 ```{r, warning=FALSE, message=FALSE}
   for(l in 1:nrow(tbl_input_literature)){

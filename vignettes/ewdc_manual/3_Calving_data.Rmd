@@ -29,18 +29,18 @@ The parameters needed are:
 ```{r, echo = TRUE}
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
 s_sirebreed <- "AN"
-# Dam breed can be for beef-on-beef: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental 
-s_dambreed <- "LM"
-# Production system according to ECOWEIGHT for beef-on-beef: 1,2,3 corresponding to purebreeding, crossbreeding, terminal crossing
-s_prodsystew <- "2"
-# Marketing channel can be: Natura-Beef, SwissPrimBeef
-s_marketingchannel <- "Natura-Beef"
+# Dam breed can be for beef-on-dairy: HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
+s_dambreed <- "HO"
+# Production system according to ECOWEIGHT: 4 corresponding to dairy
+s_prodsystew <- "4"
+# Marketing channel can be: ConventionalBeef, ConventionalVeal
+s_marketingchannel <- "ConventionalBeef"
 # Path to define from the working directory
-s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc")
+s_path_directory2create <-  file.path(here::here(),"inst","extdata","ewdc")
 # Path to input from the calving. Based on this example an other file can be created with different input-values.
-s_input_file_calving_statement <- file.path(here::here(),"inst","extdata","ewbc","input_calving_statement.txt")
-# Path to calving data file
-s_input_file_calving <- file.path(here::here(),"inst","extdata","ewbc","test","test_zws_muku_gal.csv")
+s_input_file_calving_statement <- file.path(here::here(),"inst","extdata","ewdc","input_calving_statement.txt")
+# Path to calving data file #### !!!! Making specific test file for beef-on-dairy
+s_input_file_calving <- file.path(here::here(),"inst","extdata","ewdc","test","test_zws_muku_gal.csv")
 # Date YYYYMMDD used as start date to filter data for calving
 s_start_calving_date <- 20160101
 # Date YYYYMMDD used as end date to filter data for calving
@@ -73,7 +73,7 @@ tbl_calving <- read_file_input_calving(ps_input_file_calving = s_input_file_calv
 # Get constants for calving and inputs 
 
 ```{r}
-l_constants_calving_beefOnbeef <- get_constants_calving_beefOnbeef()
+l_constants_calving_beefOndairy <- get_constants_calving_beefOndairy()
 ```
 
 Most of the calculation are done for primiparous (first lactation) as well as multiparous (more than first lactation).
@@ -93,14 +93,15 @@ abortrate_multi <- calculate_abortion_rate(ps_input_calving_tibble = tbl_calving
 abortrate_multi
 ```
 
+
 ```{r}
-# set constants based on production system 
-idx_row_abortrate <- l_constants_calving_beefOnbeef$idx_row_abortrate
-first_element_vector <- l_constants_calving_beefOnbeef$first_element_vector
-idx_col_input_value <- l_constants_calving_beefOnbeef$idx_col_input_value
-idx_col_input <- l_constants_calving_beefOnbeef$idx_col_input
-idx_col_input_file <- l_constants_calving_beefOnbeef$idx_col_input_file
-second_element_vector <- l_constants_calving_beefOnbeef$second_element_vector
+# set constants based on production system 4
+idx_row_abortrate <- l_constants_calving_beefOndairy$idx_row_abortrate
+first_element_vector <- l_constants_calving_beefOndairy$first_element_vector
+idx_col_input_value <- l_constants_calving_beefOndairy$idx_col_input_value
+idx_col_input <- l_constants_calving_beefOndairy$idx_col_input
+idx_col_input_file <- l_constants_calving_beefOndairy$idx_col_input_file
+second_element_vector <- l_constants_calving_beefOndairy$second_element_vector
 ```
 
 ```{r}
@@ -153,15 +154,16 @@ stillbirthrate_multi_difficult <- calculate_stillbirth_rate(ps_input_calving_tib
 stillbirthrate_multi_difficult
 ```
 
+
 ```{r}
 # set constants based on production system 
-idx_row_stillborn_easy <- l_constants_calving_beefOnbeef$idx_row_stillborn_easy
-idx_col_input_value <- l_constants_calving_beefOnbeef$idx_col_input_value
-first_element_vector <- l_constants_calving_beefOnbeef$first_element_vector
-second_element_vector <- l_constants_calving_beefOnbeef$second_element_vector
-idx_col_input_file <- l_constants_calving_beefOnbeef$idx_col_input_file
-idx_col_input <- l_constants_calving_beefOnbeef$idx_col_input
-idx_row_stillborn_diff <- l_constants_calving_beefOnbeef$idx_row_stillborn_diff
+idx_row_stillborn_easy <- l_constants_calving_beefOndairy$idx_row_stillborn_easy
+idx_col_input_value <- l_constants_calving_beefOndairy$idx_col_input_value
+first_element_vector <- l_constants_calving_beefOndairy$first_element_vector
+second_element_vector <- l_constants_calving_beefOndairy$second_element_vector
+idx_col_input_file <- l_constants_calving_beefOndairy$idx_col_input_file
+idx_col_input <- l_constants_calving_beefOndairy$idx_col_input
+idx_row_stillborn_diff <- l_constants_calving_beefOndairy$idx_row_stillborn_diff
 ```
 
 
@@ -210,11 +212,11 @@ if(stillbirthrate_prim_difficult == 0){
 
 ```{r}
 # set constants based on production system 
-idx_row_class_calving <- l_constants_calving_beefOnbeef$idx_row_class_calving
-idx_col_input_file <- l_constants_calving_beefOnbeef$idx_col_input_file
-idx_col_input <- l_constants_calving_beefOnbeef$idx_col_input
-n_class_calving <- l_constants_calving_beefOnbeef$n_class_calving
-idx_row_class_dystocia <- l_constants_calving_beefOnbeef$idx_row_class_dystocia
+idx_row_class_calving <- l_constants_calving_beefOndairy$idx_row_class_calving
+idx_col_input_file <- l_constants_calving_beefOndairy$idx_col_input_file
+idx_col_input <- l_constants_calving_beefOndairy$idx_col_input
+n_class_calving <- l_constants_calving_beefOndairy$n_class_calving
+idx_row_class_dystocia <- l_constants_calving_beefOndairy$idx_row_class_dystocia
 class_dystocia <- l_constants_calving_beefOndairy$class_dystocia
 ```
 
@@ -239,19 +241,19 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```{r}
 # set constants based on production system 
-sex_female <- l_constants_calving_beefOnbeef$sex_female
-sex_male <- l_constants_calving_beefOnbeef$sex_male
-calvingscore2 <- l_constants_calving_beefOnbeef$calvingscore2
-calvingscore3 <- l_constants_calving_beefOnbeef$calvingscore3
-calvingscore4 <- l_constants_calving_beefOnbeef$calvingscore4
-idx_row_calvingscore2_female <- l_constants_calving_beefOnbeef$idx_row_calvingscore2_female
-idx_row_calvingscore3_female <- l_constants_calving_beefOnbeef$idx_row_calvingscore3_female
-idx_row_calvingscore4_female <- l_constants_calving_beefOnbeef$idx_row_calvingscore4_female
-idx_row_calvingscore2_male <- l_constants_calving_beefOnbeef$idx_row_calvingscore2_male
-idx_row_calvingscore3_male <- l_constants_calving_beefOnbeef$idx_row_calvingscore3_male
-idx_row_calvingscore4_male <- l_constants_calving_beefOnbeef$idx_row_calvingscore4_male
-idx_col_input_file <- l_constants_calving_beefOnbeef$idx_col_input_file
-idx_col_input <- l_constants_calving_beefOnbeef$idx_col_input
+sex_female <- l_constants_calving_beefOndairy$sex_female
+sex_male <- l_constants_calving_beefOndairy$sex_male
+calvingscore2 <- l_constants_calving_beefOndairy$calvingscore2
+calvingscore3 <- l_constants_calving_beefOndairy$calvingscore3
+calvingscore4 <- l_constants_calving_beefOndairy$calvingscore4
+idx_row_calvingscore2_female <- l_constants_calving_beefOndairy$idx_row_calvingscore2_female
+idx_row_calvingscore3_female <- l_constants_calving_beefOndairy$idx_row_calvingscore3_female
+idx_row_calvingscore4_female <- l_constants_calving_beefOndairy$idx_row_calvingscore4_female
+idx_row_calvingscore2_male <- l_constants_calving_beefOndairy$idx_row_calvingscore2_male
+idx_row_calvingscore3_male <- l_constants_calving_beefOndairy$idx_row_calvingscore3_male
+idx_row_calvingscore4_male <- l_constants_calving_beefOndairy$idx_row_calvingscore4_male
+idx_col_input_file <- l_constants_calving_beefOndairy$idx_col_input_file
+idx_col_input <- l_constants_calving_beefOndairy$idx_col_input
 ```
 
 
@@ -314,7 +316,6 @@ calvingscore_prop_multi_F_4 <- calculate_calvingscore_proportion(ps_input_calvin
                                                                            pb_log = b_log)
 calvingscore_prop_multi_F_4
 ```
-
 ```{r}
 # Build a vector with 10 lactations for calving score 2 proportion for females
 value2update_calvingscoreprop_prim_F_2 <- paste0(c(calvingscore_prop_prim_F_2, rep(calvingscore_prop_multi_F_2,9)),collapse = " ")
@@ -436,17 +437,164 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
                                       pb_log = b_log)
 ```
 
-# Calculate proportion of calves died into 24 hours
+## Beef-on-dairy requires the same calculations but also for purbred dairy animals 
 
 ```{r}
+sex_female <- l_constants_calving_beefOndairy$sex_female
+sex_male <- l_constants_calving_beefOndairy$sex_male
+calvingscore2 <- l_constants_calving_beefOndairy$calvingscore2
+calvingscore3 <- l_constants_calving_beefOndairy$calvingscore3
+calvingscore4 <- l_constants_calving_beefOndairy$calvingscore4
+idx_row_calvingscore2_female_pure <- l_constants_calving_beefOndairy$idx_row_calvingscore2_female_pure
+idx_row_calvingscore3_female_pure <- l_constants_calving_beefOndairy$idx_row_calvingscore3_female_pure
+idx_row_calvingscore4_female_pure <- l_constants_calving_beefOndairy$idx_row_calvingscore4_female_pure
+idx_row_calvingscore2_male_pure <- l_constants_calving_beefOndairy$idx_row_calvingscore2_male_pure
+idx_row_calvingscore3_male_pure <- l_constants_calving_beefOndairy$idx_row_calvingscore3_male_pure
+idx_row_calvingscore4_male_pure <- l_constants_calving_beefOndairy$idx_row_calvingscore4_male_pure
+idx_col_input_file <- l_constants_calving_beefOndairy$idx_col_input_file
+idx_col_input <- l_constants_calving_beefOndairy$idx_col_input
+
+calvingscore_prop_prim_F_2_pure <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                        ps_statement_firstlactation = TRUE,
+                                                                        ps_sex = sex_female,
+                                                                        ps_calvingscore = calvingscore2,
+                                                                        ps_sirebreed = s_dambreed,
+                                                                        s_dambreed,
+                                                                        pb_log = b_log)
+calvingscore_prop_prim_F_3_pure <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                        ps_statement_firstlactation = TRUE,
+                                                                        ps_sex = sex_female,
+                                                                        ps_calvingscore = calvingscore3,
+                                                                        ps_sirebreed = s_dambreed,
+                                                                        s_dambreed,
+                                                                        pb_log = b_log)
+calvingscore_prop_prim_F_4_pure <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                        ps_statement_firstlactation = TRUE,
+                                                                        ps_sex = sex_female,
+                                                                        ps_calvingscore = calvingscore4,
+                                                                        ps_sirebreed = s_dambreed,
+                                                                        s_dambreed,
+                                                                        pb_log = b_log)
+calvingscore_prop_multi_F_2_pure <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                         ps_statement_firstlactation = FALSE,
+                                                                         ps_sex = sex_female,
+                                                                         ps_calvingscore = calvingscore2,
+                                                                         ps_sirebreed = s_dambreed,
+                                                                         s_dambreed,
+                                                                         pb_log = b_log)
+calvingscore_prop_multi_F_3_pure <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                         ps_statement_firstlactation = FALSE,
+                                                                         ps_sex = sex_female,
+                                                                         ps_calvingscore = calvingscore3,
+                                                                         ps_sirebreed = s_dambreed,
+                                                                         s_dambreed,
+                                                                         pb_log = b_log)
+calvingscore_prop_multi_F_4_pure <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                         ps_statement_firstlactation = FALSE,
+                                                                         ps_sex = sex_female,
+                                                                         ps_calvingscore = calvingscore4,
+                                                                         ps_sirebreed = s_dambreed,
+                                                                         s_dambreed,
+                                                                         pb_log = b_log)
+calvingscore_prop_prim_M_2_pure <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                        ps_statement_firstlactation = TRUE,
+                                                                        ps_sex = sex_male,
+                                                                        ps_calvingscore = calvingscore2,
+                                                                        ps_sirebreed = s_dambreed,
+                                                                        s_dambreed,
+                                                                        pb_log = b_log)
+calvingscore_prop_prim_M_3_pure <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                        ps_statement_firstlactation = TRUE,
+                                                                        ps_sex = sex_male,
+                                                                        ps_calvingscore = calvingscore3,
+                                                                        ps_sirebreed = s_dambreed,
+                                                                        s_dambreed,
+                                                                        pb_log = b_log)
+calvingscore_prop_prim_M_4_pure <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                        ps_statement_firstlactation = TRUE,
+                                                                        ps_sex = sex_male,
+                                                                        ps_calvingscore = calvingscore4,
+                                                                        ps_sirebreed = s_dambreed,
+                                                                        s_dambreed,
+                                                                        pb_log = b_log)
+calvingscore_prop_multi_M_2_pure <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                         ps_statement_firstlactation = FALSE,
+                                                                         ps_sex = sex_male,
+                                                                         ps_calvingscore = calvingscore2,
+                                                                         ps_sirebreed = s_dambreed,
+                                                                         s_dambreed,
+                                                                         pb_log = b_log)
+calvingscore_prop_multi_M_3_pure <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                         ps_statement_firstlactation = FALSE,
+                                                                         ps_sex = sex_male,
+                                                                         ps_calvingscore = calvingscore3,
+                                                                         ps_sirebreed = s_dambreed,
+                                                                         s_dambreed,
+                                                                         pb_log = b_log)
+calvingscore_prop_multi_M_4_pure <- calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
+                                                                         ps_statement_firstlactation = FALSE,
+                                                                         ps_sex = sex_male,
+                                                                         ps_calvingscore = calvingscore4,
+                                                                         ps_sirebreed = s_dambreed,
+                                                                         s_dambreed,
+                                                                         pb_log = b_log)
+
+value2update_calvingscoreprop_prim_F_2_pure <- paste0(c(calvingscore_prop_prim_F_2_pure, rep(calvingscore_prop_multi_F_2_pure,9)),collapse = " ")
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,
+                                                                                      paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),
+                                                                                      tbl_input_statement_calving[idx_row_calvingscore2_female_pure,idx_col_input_file]),
+                                    ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore2_female_pure,idx_col_input],
+                                    ps_value2update = value2update_calvingscoreprop_prim_F_2_pure,
+                                    pb_log = b_log)
+value2update_calvingscoreprop_prim_F_3_pure <- paste0(c(calvingscore_prop_prim_F_3_pure, rep(calvingscore_prop_multi_F_3_pure,9)),collapse = " ")
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,
+                                                                                      paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),
+                                                                                      tbl_input_statement_calving[idx_row_calvingscore3_female_pure,idx_col_input_file]),
+                                    ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore3_female_pure,idx_col_input],
+                                    ps_value2update = value2update_calvingscoreprop_prim_F_3_pure,
+                                    pb_log = b_log)
+value2update_calvingscoreprop_prim_F_4_pure <- paste0(c(calvingscore_prop_prim_F_4_pure, rep(calvingscore_prop_multi_F_4_pure,9)),collapse = " ")
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,
+                                                                                      paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),
+                                                                                      tbl_input_statement_calving[idx_row_calvingscore4_female_pure,idx_col_input_file]),
+                                    ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore4_female_pure,idx_col_input],
+                                    ps_value2update = value2update_calvingscoreprop_prim_F_4_pure,
+                                    pb_log = b_log)
+value2update_calvingscoreprop_prim_M_2_pure <- paste0(c(calvingscore_prop_prim_M_2_pure, rep(calvingscore_prop_multi_M_2_pure,9)),collapse = " ")
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,
+                                                                                      paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),
+                                                                                      tbl_input_statement_calving[idx_row_calvingscore2_male_pure,idx_col_input_file]),
+                                    ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore2_male_pure,idx_col_input],
+                                    ps_value2update = value2update_calvingscoreprop_prim_M_2_pure,
+                                    pb_log = b_log)
+value2update_calvingscoreprop_prim_M_3_pure <- paste0(c(calvingscore_prop_prim_M_3_pure, rep(calvingscore_prop_multi_M_3_pure,9)),collapse = " ")
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,
+                                                                                      paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),
+                                                                                      tbl_input_statement_calving[idx_row_calvingscore3_male_pure,idx_col_input_file]),
+                                    ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore3_male_pure,idx_col_input],
+                                    ps_value2update = value2update_calvingscoreprop_prim_M_3_pure,
+                                    pb_log = b_log)
+value2update_calvingscoreprop_prim_M_4_pure <- paste0(c(calvingscore_prop_prim_M_4_pure, rep(calvingscore_prop_multi_M_4_pure,9)),collapse = " ")
+update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,
+                                                                                      paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),
+                                                                                      tbl_input_statement_calving[idx_row_calvingscore4_male_pure,idx_col_input_file]),
+                                    ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore4_male_pure,idx_col_input],
+                                    ps_value2update = value2update_calvingscoreprop_prim_M_4_pure,
+                                    pb_log = b_log)
+```
+
+
+
+# Calculate proportion of calves died into 24 hours
+```{r}
 # set constants based on production system 
-idx_row_calfdied48h_easy <- l_constants_calving_beefOnbeef$idx_row_calfdied48h_easy
-idx_col_input_value <- l_constants_calving_beefOnbeef$idx_col_input_value
-first_element_vector <- l_constants_calving_beefOnbeef$first_element_vector
-second_element_vector <- l_constants_calving_beefOnbeef$second_element_vector
-idx_col_input_file <- l_constants_calving_beefOnbeef$idx_col_input_file
-idx_col_input <- l_constants_calving_beefOnbeef$idx_col_input
-idx_row_calfdied48h_dystocia <- l_constants_calving_beefOnbeef$idx_row_calfdied48h_dystocia
+idx_row_calfdied48h_easy <- l_constants_calving_beefOndairy$idx_row_calfdied48h_easy
+idx_col_input_value <- l_constants_calving_beefOndairy$idx_col_input_value
+first_element_vector <- l_constants_calving_beefOndairy$first_element_vector
+second_element_vector <- l_constants_calving_beefOndairy$second_element_vector
+idx_col_input_file <- l_constants_calving_beefOndairy$idx_col_input_file
+idx_col_input <- l_constants_calving_beefOndairy$idx_col_input
+idx_row_calfdied48h_dystocia <- l_constants_calving_beefOndairy$idx_row_calfdied48h_dystocia
 ```
 
 
@@ -532,43 +680,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 
 ```
 
-# Losses of calves from 48 hours after calving
+# Losses of calves from 48 hours after calving is only required for beef-on-beef
 
-```{r}
-calf_loss <- calculate_calvesdiedafter24h_proportion(ps_input_calving_tibble = tbl_calving,
-                                                     pb_log = b_log)
-```
-
-```{r}
-# Update ECOWEIGHT input-file with tbl_input_statement_calving[14,]
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,
-                                                                                        paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),
-                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfloss,l_constants_calving_beefOnbeef$idx_col_input_file]),
-                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfloss,l_constants_calving_beefOnbeef$idx_col_input],
-                                      ps_value2update = calf_loss,
-                                      pb_log = b_log)
-```
-
-# Defining proportion of cows artificially inseminated in first oestrus
-```{r}
-# Build a vector with 10 lactations of proportion of cows with dystocia that were artificially inseminated for first oestrus (1 = all cows initially inseminated with AI)
-dystocia_AI <- paste0(c(rep(1,10)),collapse = " ")
-# Update ECOWEIGHT input-file with tbl_input_statement_calving[15,]
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,
-                                                                                        paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketchannel),
-                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_AI_dystocia,l_constants_calving_beefOnbeef$idx_col_input_file]),
-                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_AI_dystocia,l_constants_calving_beefOnbeef$idx_col_input],
-                                      ps_value2update = dystocia_AI,
-                                      pb_log = b_log)
-
-# Build a vector with 10 lactations of proportion of cows without dystocia that were artificially inseminated for first oestrus (1 = all cows initially inseminated with AI)
-easy_AI <- paste0(c(rep(1,10)),collapse = " ")
-# Update ECOWEIGHT input-file with tbl_input_statement_calving[16,]
-update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,
-                                                                                        paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketchannel),
-                                                                                        tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_AI_nodystocia,l_constants_calving_beefOnbeef$idx_col_input_file]),
-                                      ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_AI_nodystocia,l_constants_calving_beefOnbeef$idx_col_input],
-                                      ps_value2update = easy_AI,
-                                      pb_log = b_log)
-```
+# Defining proportion of cows artificially inseminated in first oestrus is only required for beef-on-beef
 
