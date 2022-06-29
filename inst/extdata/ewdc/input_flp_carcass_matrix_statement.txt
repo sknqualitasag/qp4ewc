@@ -13,6 +13,6 @@ INPUT25.TXT;"Matrix Pcs_c - proportions of castrate carcasses in commercial clas
 INPUT11.TXT;"Price per kg carcass of cows in the base class for carcass grading";"MU/kg";
 INPUT23.TXT;"Price per kg carcass of heifers in the base class for carcass grading";"MU/kg";
 INPUT23.TXT;"Price per kg carcass of bulls in the base class for carcass grading";MU/kg;
-INPUT23;"Price per kg carcass of castrates in the base class for carcass grading";"MU/kg";
-INPUT23;"Number of commercial classes for fleshiness";" ";
-INPUT23;"Number of commercial classes for fat covering";" ";
+INPUT23.TXT;"Price per kg carcass of castrates in the base class for carcass grading";"MU/kg";
+INPUT23.TXT;"Number of commercial classes for fleshiness";" ";
+INPUT23.TXT;"Number of commercial classes for fat covering";" ";

@@ -7,7 +7,7 @@
 build_freq_conf_fat(
   ps_input_flp_tibble,
   ps_sex,
-  ps_marketing_channel = NULL,
+  ps_marketing_channel,
   ps_flag_cow,
   pb_log = FALSE,
   plogger = NULL

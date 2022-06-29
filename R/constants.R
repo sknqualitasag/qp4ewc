@@ -260,27 +260,6 @@ get_constants_progeny_beefOndairy <- function(){
 }
 
 
-#' @title Get constants for progeny in beef-on-dairy production systems
-#'
-#' @description
-#' Return a list with specific constants that are used.
-#'
-#' @export get_constants_progeny_beefOndairy
-get_constants_progeny_beefOndairy <- function(){
-  # return list of default constants
-  return(list(idx_col_input_file = 1,
-              idx_col_input = 2,
-              idx_col_input_value = 4,
-              sex_female = "F",
-              sex_male = "M",
-              conv_fattening_beef = "ConventionalBeef",
-              conv_fattening_calf = "ConventionalVeal",
-              purebred_dairy = "PurebredDairy",
-              purebred_beef = "PurebredBeef",
-              crossbred = "Crossbred"))
-}
-
-
 #' @title Get constants for carcass in beef-on-beef production systems
 #'
 #' @description
