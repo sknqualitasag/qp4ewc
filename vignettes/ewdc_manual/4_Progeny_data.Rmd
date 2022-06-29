@@ -190,19 +190,3 @@ slaughterage_m_puredairy <- calculate_mean_slaughterage(ps_input_flp_tibble = tb
                                                         pb_log = b_log)
 ```
 
-# Calculating cow weight after second calving
-
-```{r}
-second_calving_wt <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_progeny_data_flp,
-                                              ps_second_calvingweight = TRUE,
-                                              pb_log = b_log)
-```
-
-# Calculate mature cow weight
-
-```{r}
-mature_weight_cow <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_progeny_data_flp,
-                                              ps_second_calvingweight = FALSE,
-                                              pb_log = b_log)
-```
-

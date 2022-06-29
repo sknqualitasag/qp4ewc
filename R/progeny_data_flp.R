@@ -674,6 +674,7 @@ calculate_extrapolated_weaningweight <- function(pv_mean_weaningage,
 #' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
 #' @param ps_first_calvingweight flag to calculate first calving weight (TRUE or FALSE)
 #' @param ps_second_calvingweight flag to calculate second calving weight (TRUE or FALSE)
+#' @param ps_dambreed dam breed
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -685,6 +686,7 @@ calculate_extrapolated_weaningweight <- function(pv_mean_weaningage,
 calculate_cow_liveweight <- function(ps_input_flp_tibble,
                                      ps_first_calvingweight,
                                      ps_second_calvingweight,
+                                     ps_dambreed,
                                      pb_log = FALSE,
                                      plogger = NULL){
 
@@ -708,27 +710,29 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
 
 
   ### # Tibble depending on ps_second_calvingweight
-  ### # Calculate cow weight after first calving (this mean below 2nd lactation number)
+  ### # Calculate cow weight after first calving
   if(ps_first_calvingweight){
     ### # Slaughtercategory for cow to consider is VK == 7
     tbl_input <- ps_input_flp_tibble %>%
+                 dplyr::filter(NakoTVD == ps_dambreed) %>%
                  dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_VK) %>%
-                 dplyr::filter(`Laktationsnummer Ammen-Mutter` < l_constants$lactnumb2) %>%
+                 dplyr::filter(`Laktationsnummer Ammen-Mutter` == l_constants$lactnumb1) %>%
                  dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)  %>%
                  tidyr::drop_na()
-  ### # Calculate cow weight after second calving (this mean below 4th lactation number)
+  ### # Calculate cow weight after second calving
   }else if(ps_second_calvingweight){
     tbl_input <- ps_input_flp_tibble %>%
+                 dplyr::filter(NakoTVD == ps_dambreed) %>%
                  dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_VK) %>%
-                 dplyr::filter(`Laktationsnummer Ammen-Mutter` < l_constants$lactnumb4) %>%
+                 dplyr::filter(`Laktationsnummer Ammen-Mutter` == l_constants$lactnumb2) %>%
                  dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)  %>%
                  tidyr::drop_na()
   }else{
-    ### # Calculate mature cow weight
+    ### # Calculate mature cow weight (= cow weight after 3rd calving)
     tbl_input <- ps_input_flp_tibble %>%
+                 dplyr::filter(NakoTVD == ps_dambreed) %>%
                  dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_VK) %>%
-                 dplyr::filter(`Laktationsnummer Ammen-Mutter` > l_constants$lactnumb3) %>%
-                 dplyr::filter(ageAtSlaughterInDays > l_constants$age_atslaughter_oldercow) %>%
+                 dplyr::filter(`Laktationsnummer Ammen-Mutter` == l_constants$lactnumb3) %>%
                  dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)  %>%
                  tidyr::drop_na()
   }
@@ -762,6 +766,7 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
 #' need input parameter files. This function will calculate bull live weight.
 #'
 #' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param ps_sirebreed sire breed
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -771,8 +776,9 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
 #'
 #' @export calculate_bull_liveweight
 calculate_bull_liveweight <- function(ps_input_flp_tibble,
-                                     pb_log = FALSE,
-                                     plogger = NULL){
+                                      ps_sirebreed,
+                                      pb_log = FALSE,
+                                      plogger = NULL){
 
   ### # Setting the log-file
   if(pb_log){
@@ -794,6 +800,7 @@ calculate_bull_liveweight <- function(ps_input_flp_tibble,
   ### # Calculate bull mature weight
   ### # Slaughtercategory for older bull to consider is MA == 4
   tbl_input <- ps_input_flp_tibble %>%
+               dplyr::filter(NakoTVD == ps_sirebreed) %>%
                dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MA) %>%
                dplyr::filter(ageAtSlaughterInDays > l_constants$age_atslaughter_olderbull) %>%
                dplyr::select(`Schlachtgewicht Nako`) %>%

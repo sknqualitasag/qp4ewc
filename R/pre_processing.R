@@ -1750,9 +1750,10 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
 
   # Update statement-progeny-flp-input from the data by calculating cow weight after second calving
-  second_calving_wt <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_progeny_data_flp,
+  second_calving_wt <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
                                                         ps_first_calvingweight = FALSE,
                                                         ps_second_calvingweight = TRUE,
+                                                        ps_dambreed,
                                                         pb_log,
                                                         plogger = lgr)
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1772,9 +1773,10 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
 
   # Update statement-progeny-flp-input from the data by calculating mature cow weight
-  mature_weight_cow <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_progeny_data_flp,
+  mature_weight_cow <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
                                                         ps_first_calvingweight = FALSE,
                                                         ps_second_calvingweight = FALSE,
+                                                        ps_dambreed,
                                                         pb_log,
                                                         plogger = lgr)
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1787,7 +1789,8 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
 
   # Update statement-progeny-flp-input from the data by calculating mature bull weight
-  bull_mature_weight <- qp4ewc::calculate_bull_liveweight(ps_input_flp_tibble = tbl_progeny_data_flp,
+  bull_mature_weight <- qp4ewc::calculate_bull_liveweight(ps_input_flp_tibble = tbl_merged_data,
+                                                          ps_sirebreed,
                                                           pb_log,
                                                           plogger = lgr)
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1800,9 +1803,10 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
 
   # Update statement-progeny-flp-input from the data by calculating cow weight after 1st calving
-  first_calving_wt <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_progeny_data_flp,
+  first_calving_wt <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
                                                        ps_first_calvingweight = TRUE,
                                                        ps_second_calvingweight = FALSE,
+                                                       ps_dambreed,
                                                        pb_log,
                                                        plogger = lgr)
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1991,7 +1995,19 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                    plogger = lgr)
 
 
-
+    # Update statement-progeny-flp-input from the data by calculating mature cow weight
+    mature_weight_cow_dairy <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
+                                                                ps_first_calvingweight = FALSE,
+                                                                ps_second_calvingweight = FALSE,
+                                                                ps_dambreed,
+                                                                pb_log,
+                                                                plogger = lgr)
+    mature_weight_cow_beef <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
+                                                                ps_first_calvingweight = FALSE,
+                                                                ps_second_calvingweight = FALSE,
+                                                                ps_dambreed = ps_sirebreed,
+                                                                pb_log,
+                                                                plogger = lgr)
 
 
 
@@ -2082,6 +2098,22 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                     plogger = lgr)
 
 
+    # Update statement-progeny-flp-input from the data by calculating mature cow weight
+    mature_weight_cow_dairy <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
+                                                                ps_first_calvingweight = FALSE,
+                                                                ps_second_calvingweight = FALSE,
+                                                                ps_dambreed,
+                                                                pb_log,
+                                                                plogger = lgr)
+    mature_weight_cow_beef <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
+                                                               ps_first_calvingweight = FALSE,
+                                                               ps_second_calvingweight = FALSE,
+                                                               ps_dambreed = ps_sirebreed,
+                                                               pb_log,
+                                                               plogger = lgr)
+
+
+
 
   }
 
@@ -2167,6 +2199,8 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
 
   ### # Get the constants
   l_constants_carcass_beefOnbeef <- get_constants_carcass_beefOnbeef()
+  l_constants_carcass_beefOndairy <- get_constants_carcass_beefOndairy()
+  l_constants_ew_input_beefOndairy <- get_constants_ew_input_beefOndairy()
 
 
   ### # Number of classes for fleshiness

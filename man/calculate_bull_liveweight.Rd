@@ -4,10 +4,17 @@
 \alias{calculate_bull_liveweight}
 \title{Calculate bull mature live weight}
 \usage{
-calculate_bull_liveweight(ps_input_flp_tibble, pb_log = FALSE, plogger = NULL)
+calculate_bull_liveweight(
+  ps_input_flp_tibble,
+  ps_sirebreed,
+  pb_log = FALSE,
+  plogger = NULL
+)
 }
 \arguments{
 \item{ps_input_flp_tibble}{input flp tibble coming from read_file_input_flp in this package}
+
+\item{ps_sirebreed}{sire breed}
 
 \item{pb_log}{indicator whether logs should be produced}
 
