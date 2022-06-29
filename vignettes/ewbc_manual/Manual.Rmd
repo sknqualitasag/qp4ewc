@@ -59,6 +59,9 @@ s_input_file_price_cow <- system.file("extdata","ewbc","cow_price.txt", package 
 s_input_file_price_bull <- system.file("extdata","ewbc","bull_price.txt", package = "qp4ewc")
 # Path to input with heifer price. Based on this example an other file can be created with different input-values.
 s_input_file_price_heifer <- system.file("extdata","ewbc","heifer_price.txt", package = "qp4ewc")
+# input file for tested bulls
+s_input_file_testedbulls <- system.file("extdata", "ewbc", "input_testedbulls.txt", package = "qp4ewc")
+s_input_file_purchasedreplacementheifers <- system.file("extdata", "ewbc", "input_purchasedreplacementheifers.txt", package = "qp4ewc")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
