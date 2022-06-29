@@ -1,3 +1,7 @@
+# qp4ewc 0.1.3
+
+* Inserted missing variable definitions in Manual.Rmd ==> fixes issue 'Missing variables for input variables in Manual.Rmd #6'
+
 # qp4ewc 0.1.2
 
 * Adapted DESCRITION file
