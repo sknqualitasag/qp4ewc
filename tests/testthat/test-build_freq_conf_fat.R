@@ -17,7 +17,6 @@ test_that("testing function build_freq_conf_fat()", {
   tbl_flp <- read_file_input_flp(ps_input_file_flp = s_input_file_flp,
                                  ps_start_flp_date = s_start_flp_date,
                                  ps_end_flp_date = s_end_flp_date,
-                                 ps_sirebreed = s_sirebreed,
                                  pb_log = b_log)
   freq_mat_cow <- build_freq_conf_fat(ps_input_flp_tibble = tbl_flp,
                                       ps_sex = "F",

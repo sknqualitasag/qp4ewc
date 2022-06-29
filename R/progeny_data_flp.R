@@ -7,6 +7,128 @@
 ### # ##################################################################### ###
 
 
+#' @title Prepare progeny data flp depending on sex, marketing channel and production system
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will prepare progeny data flp depending
+#' on sex, marketing channel and production system.
+#'
+#' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param ps_sex statement of sex ("F" for female and "M" for male)
+#' @param ps_marketing_channel statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3), ConventionalBeef and ConventionalVeal (=="")
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return tibble prepared progeny data flp
+#'
+#' @export prepare_progeny_flp
+prepare_progeny_flp <- function(ps_input_flp_tibble,
+                                ps_sex,
+                                ps_marketing_channel,
+                                ps_prodsystew,
+                                pb_log = FALSE,
+                                plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'prepare_progeny_flp.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'prepare_progeny_flp',
+                    paste0('Starting function with parameters:\n * ps_input_flp_tibble \n',
+                           ' * ps_sex: ', ps_sex,'\n',
+                           ' * ps_marketing_channel: ',ps_marketing_channel,'\n',
+                           ' * ps_prodsystew: ', ps_prodsystew))
+  }
+
+
+  ### # Get the constants
+  l_constants <- get_constants()
+
+
+  ### # Prepare the data depending of the production system
+  ### # Production system beef-on-beef
+  if(ps_prodsystew != l_constants$prodsyst4){
+    ### # Marketing channel Natura-Beef
+    if(ps_marketing_channel == l_constants$value_NaturaBeef){
+      if(ps_sex == l_constants$sex_female){
+        ### # Slaughtercategory for female to consider is RG == 5
+        tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
+                                             dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
+                                             dplyr::filter(Markenprogramm == ps_marketing_channel)
+      }else{
+        ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
+        tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
+                                             dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
+                                             dplyr::filter(Markenprogramm == ps_marketing_channel)
+      }
+    }else if(ps_marketing_channel == l_constants$value_SwissPrimBeef){
+    ### # Marketing channel SwissPrimBeef
+      if(ps_sex == l_constants$sex_female){
+        tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
+                                             dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
+                                             dplyr::filter(Markenprogramm == ps_marketing_channel)
+      }else{
+        tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
+                                             dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
+                                             dplyr::filter(Markenprogramm == ps_marketing_channel)
+      }
+    }else{
+      if(pb_log){
+        qp4ewc_log_info(lgr, 'prepare_progeny_flp',
+                        paste0('Marketing channel for Beef-on-Beef is not Natura-Beef or SwissPrimBeef, please check! '))
+      }
+    }
+  }else{
+    #### # Production system beef-on-dairy
+    ### # Conventional fattening system for veal and beef does not have input (NA) in Markenprogramm
+    ### # Marketing channel ConventionalVeal
+    if(ps_marketing_channel == l_constants$wording_conv_fat_calf){
+      if(ps_sex == l_constants$sex_female){
+        ### # Slaughtercategory for calf is KV == 1
+        tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
+                                             dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_KV) %>%
+                                             dplyr::filter(is.na(Markenprogramm))
+      }else{
+        tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
+                                             dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_KV) %>%
+                                             dplyr::filter(is.na(Markenprogramm))
+      }
+    ### # Marketing channel ConventionalBeef
+    }else if(ps_marketing_channel == l_constants$wording_conv_fat_beef){
+      if(ps_sex == l_constants$sex_female){
+        tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
+                                             dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
+                                             dplyr::filter(is.na(Markenprogramm))
+      }else{
+        tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
+                                            dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
+                                            dplyr::filter(is.na(Markenprogramm))
+      }
+    }else{
+      if(pb_log){
+        qp4ewc_log_info(lgr, 'prepare_progeny_flp',
+                        paste0('Marketing channel for Beef-on-Dairy is not ConventionalVeal or ConventionalBeef, please check! '))
+      }
+    }
+
+  }
+
+
+  return(tbl_input)
+
+
+}
+
+
+
 #' @title Calculate mean birthweight
 #'
 #' @description
@@ -16,7 +138,8 @@
 #'
 #' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
 #' @param ps_sex statement of sex ("F" for female and "M" for male)
-#' @param ps_marketing_channel statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3)
+#' @param ps_marketing_channel statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3), ConventionalBeef and ConventionalVeal (=="")
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -28,6 +151,7 @@
 calculate_mean_birthweight <- function(ps_input_flp_tibble,
                                        ps_sex,
                                        ps_marketing_channel,
+                                       ps_prodsystew,
                                        pb_log = FALSE,
                                        plogger = NULL){
 
@@ -50,31 +174,19 @@ calculate_mean_birthweight <- function(ps_input_flp_tibble,
   l_constants <- get_constants()
 
 
-  ### # Different tibble depending on ps_sex and ps_marketing_channel
-  ### # Slaughtercategory for female to consider is RG == 5
-  if(ps_sex == l_constants$sex_female){
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
-                                         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
-                                         dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
-                                         dplyr::select(`Geburtsgewicht Nako`,`ageAtSlaughterInDays`) %>%
-                                         na.omit() %>%
-                                         tidyr::drop_na()
-    if(pb_log){
-      qp4ewc_log_info(lgr, 'calculate_mean_birthweight',
-                      paste0('A Tibble for female has been created for the calculation of mean birthweight '))
-    }
-  }else{
-    ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
-                                         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
-                                         dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
-                                         dplyr::select(`Geburtsgewicht Nako`,`ageAtSlaughterInDays`) %>%
-                                         na.omit() %>%
-                                         tidyr::drop_na()
-    if(pb_log){
-      qp4ewc_log_info(lgr, 'calculate_mean_birthweight',
-                      paste0('A Tibble for male has been created for the calculation of mean birthweight '))
-    }
+  ### # Different tibble depending on ps_sex, ps_marketing_channel and slaughtercategory
+  tbl_prepare_progeny_flp <- prepare_progeny_flp(ps_input_flp_tibble,
+                                                 ps_sex,
+                                                 ps_marketing_channel,
+                                                 ps_prodsystew,
+                                                 pb_log,
+                                                 plogger = lgr)
+  tbl_input <- tbl_prepare_progeny_flp %>% dplyr::select(`Geburtsgewicht Nako`,`ageAtSlaughterInDays`) %>%
+                                           na.omit() %>%
+                                           tidyr::drop_na()
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_mean_birthweight',
+                    paste0('A Tibble has been created for the calculation of mean birthweight '))
   }
 
 
@@ -101,6 +213,7 @@ calculate_mean_birthweight <- function(ps_input_flp_tibble,
 #' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
 #' @param ps_sex statement of sex ("F" for female and "M" for male)
 #' @param ps_marketing_channel statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3)
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -112,6 +225,7 @@ calculate_mean_birthweight <- function(ps_input_flp_tibble,
 calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
                                                  ps_sex,
                                                  ps_marketing_channel,
+                                                 ps_prodsystew,
                                                  pb_log = FALSE,
                                                  plogger = NULL){
 
@@ -134,31 +248,21 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
   l_constants <- get_constants()
 
 
-  ### # Different tibble depending on ps_sex and ps_marketing_channel
-  ### # Slaughtercategory for female to consider is RG == 5
-  if(ps_sex == l_constants$sex_female){
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
-                                         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
-                                         dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
-                                         dplyr::select(`Schlachtgewicht Nako`,ageAtSlaughterInDays) %>%
-                                         na.omit() %>%
-                                         tidyr::drop_na()
-    if(pb_log){
-      qp4ewc_log_info(lgr, 'calculate_mean_liveweight_slaughter',
-                      paste0('A Tibble for female has been created for the calculation of mean live weight at slaughter '))
-    }
-  }else{
-    ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
-                                         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
-                                         dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
-                                         dplyr::select(`Schlachtgewicht Nako`,ageAtSlaughterInDays) %>%
-                                         na.omit() %>%
-                                         tidyr::drop_na()
-    if(pb_log){
-      qp4ewc_log_info(lgr, 'calculate_mean_liveweight_slaughter',
-                      paste0('A Tibble for male has been created for the calculation of mean live weight at slaughter '))
-    }
+  ### # Different tibble depending on ps_sex, ps_marketing_channel and slaughtercategory
+  tbl_prepare_progeny_flp <- prepare_progeny_flp(ps_input_flp_tibble,
+                                                 ps_sex,
+                                                 ps_marketing_channel,
+                                                 ps_prodsystew,
+                                                 pb_log,
+                                                 plogger = lgr)
+  tbl_input <- tbl_prepare_progeny_flp %>% dplyr::select(`Schlachtgewicht Nako`,ageAtSlaughterInDays) %>%
+               na.omit() %>%
+               tidyr::drop_na()
+
+
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_mean_liveweight_slaughter',
+                    paste0('A Tibble has been created for the calculation of mean live weight at slaughter '))
   }
 
 
@@ -197,6 +301,7 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
 #' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
 #' @param ps_sex statement of sex ("F" for female and "M" for male)
 #' @param ps_marketing_channel statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3)
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -208,6 +313,7 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
 calculate_mean_weaningweight <- function(ps_input_flp_tibble,
                                          ps_sex,
                                          ps_marketing_channel,
+                                         ps_prodsystew,
                                          pb_log = FALSE,
                                          plogger = NULL){
 
@@ -230,31 +336,20 @@ calculate_mean_weaningweight <- function(ps_input_flp_tibble,
   l_constants <- get_constants()
 
 
-  ### # Different tibble depending on ps_sex and ps_marketing_channel
-  ### # Slaughtercategory for female to consider is RG == 5
-  if(ps_sex == l_constants$sex_female){
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
-                                         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
-                                         dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
-                                         dplyr::select(`Absetzgewicht effektiv`) %>%
-                                         na.omit() %>%
-                                         tidyr::drop_na()
-    if(pb_log){
-      qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
-                      paste0('A Tibble for female has been created for the calculation of mean weaning weight '))
-    }
-  }else{
-    ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
-                                         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
-                                         dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
-                                         dplyr::select(`Absetzgewicht effektiv`) %>%
-                                         na.omit() %>%
-                                         tidyr::drop_na()
-    if(pb_log){
-      qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
-                      paste0('A Tibble for male has been created for the calculation of mean weaning weight '))
-    }
+  ### # Different tibble depending on ps_sex, ps_marketing_channel and slaughtercategory
+  tbl_prepare_progeny_flp <- prepare_progeny_flp(ps_input_flp_tibble,
+                                                 ps_sex,
+                                                 ps_marketing_channel,
+                                                 ps_prodsystew,
+                                                 pb_log,
+                                                 plogger = lgr)
+  tbl_input <- tbl_prepare_progeny_flp %>% dplyr::select(`Absetzgewicht effektiv`) %>%
+                                           na.omit() %>%
+                                           tidyr::drop_na()
+
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_mean_weaningweight',
+                    paste0('A Tibble has been created for the calculation of mean weaning weight '))
   }
 
 
@@ -284,6 +379,7 @@ calculate_mean_weaningweight <- function(ps_input_flp_tibble,
 #' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
 #' @param ps_sex statement of sex ("F" for female and "M" for male)
 #' @param ps_marketing_channel statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3)
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -295,6 +391,7 @@ calculate_mean_weaningweight <- function(ps_input_flp_tibble,
 calculate_mean_weaningage <- function(ps_input_flp_tibble,
                                       ps_sex,
                                       ps_marketing_channel,
+                                      ps_prodsystew,
                                       pb_log = FALSE,
                                       plogger = NULL){
 
@@ -317,31 +414,21 @@ calculate_mean_weaningage <- function(ps_input_flp_tibble,
   l_constants <- get_constants()
 
 
-  ### # Different tibble depending on ps_sex and ps_marketing_channel
-  ### # Slaughtercategory for female to consider is RG == 5
-  if(ps_sex == l_constants$sex_female){
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
-      dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
-      dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
-      dplyr::select(ageAtWeaningInDays) %>%
-      na.omit() %>%
-      tidyr::drop_na()
-    if(pb_log){
-      qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
-                      paste0('A Tibble for female has been created for the calculation of mean weaning age '))
-    }
-  }else{
-    ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
-      dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
-      dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
-      dplyr::select(ageAtWeaningInDays) %>%
-      na.omit() %>%
-      tidyr::drop_na()
-    if(pb_log){
-      qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
-                      paste0('A Tibble for male has been created for the calculation of mean weaning age '))
-    }
+  ### # Different tibble depending on ps_sex, ps_marketing_channel and slaughtercategory
+  tbl_prepare_progeny_flp <- prepare_progeny_flp(ps_input_flp_tibble,
+                                                 ps_sex,
+                                                 ps_marketing_channel,
+                                                 ps_prodsystew,
+                                                 pb_log,
+                                                 plogger = lgr)
+
+  tbl_input <- tbl_prepare_progeny_flp %>% dplyr::select(ageAtWeaningInDays) %>%
+                                           na.omit() %>%
+                                           tidyr::drop_na()
+
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_mean_weaningage',
+                    paste0('A Tibble has been created for the calculation of mean weaning age '))
   }
 
 
@@ -371,6 +458,7 @@ calculate_mean_weaningage <- function(ps_input_flp_tibble,
 #' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
 #' @param ps_sex statement of sex ("F" for female and "M" for male)
 #' @param ps_marketing_channel statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3)
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -382,6 +470,7 @@ calculate_mean_weaningage <- function(ps_input_flp_tibble,
 calculate_mean_slaughterage <- function(ps_input_flp_tibble,
                                         ps_sex,
                                         ps_marketing_channel,
+                                        ps_prodsystew,
                                         pb_log = FALSE,
                                         plogger = NULL){
 
@@ -404,34 +493,18 @@ calculate_mean_slaughterage <- function(ps_input_flp_tibble,
   l_constants <- get_constants()
 
 
-  ### # Different tibble depending on ps_sex and ps_marketing_channel
-  ### # Slaughtercategory for female to consider is RG == 5
-  if(ps_sex == l_constants$sex_female){
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
-      dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
-      dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
-      dplyr::select(`Geburtsgewicht Nako`,ageAtSlaughterInDays) %>%
-      na.omit() %>%
-      dplyr::select(ageAtSlaughterInDays) %>%
-      tidyr::drop_na()
-    if(pb_log){
-      qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
-                      paste0('A Tibble for female has been created for the calculation of mean slaughter age '))
-    }
-  }else{
-    ### # Slaughtercategory for male to consider is OB == 2 and MT == 3
-    tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
-      dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
-      dplyr::filter(Markenprogramm == ps_marketing_channel) %>%
-      dplyr::select(`Geburtsgewicht Nako`,ageAtSlaughterInDays) %>%
-      na.omit() %>%
-      dplyr::select(ageAtSlaughterInDays) %>%
-      tidyr::drop_na()
-    if(pb_log){
-      qp4ewc_log_info(lgr, 'calculate_mean_slaughterage',
-                      paste0('A Tibble for male has been created for the calculation of mean slaughter age '))
-    }
-  }
+  ### # Different tibble depending on ps_sex, ps_marketing_channel and slaughtercategory
+  tbl_prepare_progeny_flp <- prepare_progeny_flp(ps_input_flp_tibble,
+                                                 ps_sex,
+                                                 ps_marketing_channel,
+                                                 ps_prodsystew,
+                                                 pb_log,
+                                                 plogger = lgr)
+
+  tbl_input <- tbl_prepare_progeny_flp %>% dplyr::select(`Geburtsgewicht Nako`,ageAtSlaughterInDays) %>%
+                                           na.omit() %>%
+                                           dplyr::select(ageAtSlaughterInDays) %>%
+                                           tidyr::drop_na()
 
 
   ### # Calculate mean slaughter age
