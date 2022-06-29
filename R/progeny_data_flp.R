@@ -21,6 +21,8 @@
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
 #'
 #' @return mean_birthweight vector
 #'
