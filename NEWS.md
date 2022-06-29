@@ -1,3 +1,7 @@
+# qp4ewc 0.1.5
+
+* Added imports of package dependencies into comments of function. This resolves issue 'Package imports in function comments #7'
+
 # qp4ewc 0.1.4
 
 * Make directory creation recursive ==> fixes issue 'Error in file.copy(list_of_files, s_scenario) : more 'from' files than 'to' files #4'
