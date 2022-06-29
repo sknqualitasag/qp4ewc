@@ -58,7 +58,7 @@ create_directory_scenario <- function(ps_sirebreed,
   if(file.exists(s_scenario)){
     stop("The directory ",s_scenario," exists already!")
   }else{
-    dir.create(s_scenario)
+    dir.create(s_scenario, recursive = TRUE)
     if(pb_log){
       qp4ewc_log_info(lgr, 'create_directory_scenario',
                       paste0('Create a directory for scenario:\n * s_scenario: ', s_scenario))
