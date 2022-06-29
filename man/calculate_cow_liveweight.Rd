@@ -8,6 +8,7 @@ calculate_cow_liveweight(
   ps_input_flp_tibble,
   ps_first_calvingweight,
   ps_second_calvingweight,
+  ps_dambreed,
   pb_log = FALSE,
   plogger = NULL
 )
@@ -18,6 +19,8 @@ calculate_cow_liveweight(
 \item{ps_first_calvingweight}{flag to calculate first calving weight (TRUE or FALSE)}
 
 \item{ps_second_calvingweight}{flag to calculate second calving weight (TRUE or FALSE)}
+
+\item{ps_dambreed}{dam breed}
 
 \item{pb_log}{indicator whether logs should be produced}
 

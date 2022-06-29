@@ -426,8 +426,10 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 # Calculating cow weight after second calving
 
 ```{r}
-second_calving_wt <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_progeny_data_flp,
+second_calving_wt <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
+                                              ps_first_calvingweight = FALSE,
                                               ps_second_calvingweight = TRUE,
+                                              ps_dambreed = s_dambreed,
                                               pb_log = b_log)
 ```
 
@@ -441,8 +443,10 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 # Calculate mature cow weight
 
 ```{r}
-mature_weight_cow <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_progeny_data_flp,
+mature_weight_cow <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
+                                              ps_first_calvingweight = FALSE,
                                               ps_second_calvingweight = FALSE,
+                                              ps_dambreed = s_dambreed,
                                               pb_log = b_log)
 ```
 
@@ -456,7 +460,8 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_
 # Calculate mature weight bulls
 
 ```{r}
-bull_mature_weight <- calculate_bull_liveweight(ps_input_flp_tibble = tbl_progeny_data_flp,
+bull_mature_weight <- calculate_bull_liveweight(ps_input_flp_tibble = tbl_merged_data,
+                                                ps_sirebreed = s_sirebreed,
                                                 pb_log = b_log)
 update_input_parameter_file(ps_path2template_input_parameter_file = file.path(s_path_directory2create,paste0(s_sirebreed,"_",s_dambreed,"_",s_prodsystew,"_",s_marketingchannel),tbl_input_statement_flp[18,1]),
                                       ps_statement2search = tbl_input_statement_flp[18,2],

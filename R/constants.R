@@ -36,7 +36,6 @@ get_constants <- function(){
               slaughtercategory_VK = 7,
               slaughtercategory_MA = 4,
               slaughtercategory_KV = 1,
-              age_atslaughter_oldercow = 1460,
               age_atslaughter_olderbull = 1460,
               dressingpercentage_female = 0.56,
               dressingpercentage_male = 0.58,
