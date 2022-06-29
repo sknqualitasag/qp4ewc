@@ -14,6 +14,7 @@ pre_process_ewbc_input_progeny_data_flp(
   ps_input_file_flp,
   ps_start_flp_date,
   ps_end_flp_date,
+  ps_input_file_ped,
   pb_log,
   plogger = NULL
 )
@@ -36,6 +37,8 @@ pre_process_ewbc_input_progeny_data_flp(
 \item{ps_start_flp_date}{setting the start of the slaughter date to filter in the slaughter data}
 
 \item{ps_end_flp_date}{setting the end of the slaughter date to filter in the slaughter data}
+
+\item{ps_input_file_ped}{path to file with pedigree input}
 
 \item{pb_log}{indicator whether logs should be produced}
 
