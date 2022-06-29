@@ -1,3 +1,7 @@
+# qp4ewc 0.1.4
+
+* Make directory creation recursive ==> fixes issue 'Error in file.copy(list_of_files, s_scenario) : more 'from' files than 'to' files #4'
+
 # qp4ewc 0.1.3
 
 * Inserted missing variable definitions in Manual.Rmd ==> fixes issue 'Missing variables for input variables in Manual.Rmd #6'
