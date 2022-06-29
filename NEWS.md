@@ -1,3 +1,7 @@
+# qp4ewc 0.1.6
+
+* Added README file
+
 # qp4ewc 0.1.5
 
 * Added imports of package dependencies into comments of function. This resolves issue 'Package imports in function comments #7'
