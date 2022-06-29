@@ -141,6 +141,15 @@ read_file_input_calving <-  function(ps_input_file_calving,
   }
 
 
+  ### # Set different breed code to the same
+  tbl_input$Nachkomme_RasseCode[tbl_input$Nachkomme_RasseCode == "BV"] <- "BS"
+  tbl_input$Mutter_RasseCode[tbl_input$Mutter_RasseCode == "BV"] <- "BS"
+  tbl_input$Vater_RasseCode[tbl_input$Vater_RasseCode == "BV"] <- "BS"
+  tbl_input$Nachkomme_RasseCode[tbl_input$Nachkomme_RasseCode == "ROB"] <- "OB"
+  tbl_input$Mutter_RasseCode[tbl_input$Mutter_RasseCode == "ROB"] <- "OB"
+  tbl_input$Vater_RasseCode[tbl_input$Vater_RasseCode == "ROB"] <- "OB"
+
+
   ### # Return tibble
   return(tbl_input)
 
@@ -268,6 +277,11 @@ read_file_input_flp <-  function(ps_input_file_flp,
   if(pb_log){
     qp4ewc_log_info(lgr, 'read_file_input_flp',paste0('calculate age at weaning in days'))
   }
+
+
+  ### # Set different breed code to the same
+  tbl_input$`Nako RaceRode`[tbl_input$`Nako RaceRode` == "BV"] <- "BS"
+  tbl_input$`Nako RaceRode`[tbl_input$`Nako RaceRode` == "ROB"] <- "OB"
 
 
   ### # Return tibble
@@ -412,6 +426,15 @@ read_file_input_ped <-  function(ps_input_file_ped,
   colnames(tbl_ped)[which(names(tbl_ped) == "animBreed")] <- "Nachkomme_RasseCode"
   colnames(tbl_ped)[which(names(tbl_ped) == "sireBreed")] <- "Vater_RasseCode"
   colnames(tbl_ped)[which(names(tbl_ped) == "damBreed")] <- "Mutter_RasseCode"
+
+
+  ### # Set different breed code to the same
+  tbl_ped$Nachkomme_RasseCode[tbl_ped$Nachkomme_RasseCode == "BV"] <- "BS"
+  tbl_ped$Mutter_RasseCode[tbl_ped$Mutter_RasseCode == "BV"] <- "BS"
+  tbl_ped$Vater_RasseCode[tbl_ped$Vater_RasseCode == "BV"] <- "BS"
+  tbl_ped$Nachkomme_RasseCode[tbl_ped$Nachkomme_RasseCode == "ROB"] <- "OB"
+  tbl_ped$Mutter_RasseCode[tbl_ped$Mutter_RasseCode == "ROB"] <- "OB"
+  tbl_ped$Vater_RasseCode[tbl_ped$Vater_RasseCode == "ROB"] <- "OB"
 
 
   ### # Return tibble
