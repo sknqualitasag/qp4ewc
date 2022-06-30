@@ -851,11 +851,16 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
   ### # Get the constants
   l_constants_progeny_beefOnbeef <- get_constants_progeny_beefOnbeef()
 
+  ### # Write marketchannel to logfile
+  if (pb_log)
+    qp4ewc_log_info(lgr, 'pre_process_ew_input_progeny_data_flp',
+                    paste0(" * Entering branch for marketchannel", ps_marketchannel, collapse = ""))
 
   # ****************************************************************************
   ## ---- Natura-Beef ----
   # ****************************************************************************
   if(ps_marketchannel == "Natura-Beef"){
+
 
     # Update statement-progeny-flp-input from the data by calculating mean birth weight
     female_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_flp,
@@ -1312,6 +1317,9 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
   }
 
 
+  if (pb_log)
+    qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
+                    " * Enter computations after marketchanel ...")
 
   # Update statement-progeny-flp-input from the data by calculating cow weight after second calving
   second_calving_wt <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_flp,
