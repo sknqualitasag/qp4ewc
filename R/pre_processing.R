@@ -60,7 +60,8 @@ pre_process_ewbc_input <- function(ps_sirebreed,
   ### # Setting the log-file
   if(pb_log){
     if(is.null(plogger)){
-      lgr <- get_qp4ewc_logger(ps_logfile = 'pre_process_ewbc_input.log',
+      lgr <- get_qp4ewc_logger(ps_logfile = paste(format(Sys.time(), "%Y%m%d%H%M%S"),
+                                                  'pre_process_ewbc_input.log', sep = "_"),
                                ps_level = 'INFO')
     }else{
       lgr <- plogger
