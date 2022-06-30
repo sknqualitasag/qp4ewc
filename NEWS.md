@@ -1,3 +1,7 @@
+# qp4ewc 0.1.7
+
+* Replaced all un-named parameters in function calls with named parameters. This solves issue 'Running bash script run_qp4ewc_script.sh produces incorrect results #9'
+
 # qp4ewc 0.1.6
 
 * Added README file
