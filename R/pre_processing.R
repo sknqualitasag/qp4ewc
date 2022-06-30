@@ -854,7 +854,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
   ### # Write marketchannel to logfile
   if (pb_log)
     qp4ewc_log_info(lgr, 'pre_process_ew_input_progeny_data_flp',
-                    paste0(" * Entering branch for marketchannel", ps_marketchannel, collapse = ""))
+                    paste0(" * Entering branch for marketchannel: ", ps_marketchannel, collapse = ""))
 
   # ****************************************************************************
   ## ---- Natura-Beef ----
@@ -1318,7 +1318,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
 
   if (pb_log)
-    qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
+    qp4ewc_log_info(lgr, 'pre_process_ewbc_input_progeny_data_flp',
                     " * Enter computations after marketchanel ...")
 
   # Update statement-progeny-flp-input from the data by calculating cow weight after second calving
@@ -1334,13 +1334,14 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                       ps_value2update = second_calving_wt,
                                       pb_log = pb_log,
                                       plogger = lgr)
-  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
-                                                                                        paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                        tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_wtcow_2calving,l_constants_progeny_beefOnbeef$idx_col_input_file]),
-                                      ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_wtcow_2calving,l_constants_progeny_beefOnbeef$idx_col_input],
-                                      ps_value2update = second_calving_wt,
-                                      pb_log = pb_log,
-                                      plogger = lgr)
+ ### # TODO: The following statement creates an error because the filename is read from row 20 of tbl_input_statement_flp, but tbl_input_statement_flp has only 18 rows
+   # qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+   #                                                                                      paste0(ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+   #                                                                                      tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_wtcow_2calving,l_constants_progeny_beefOnbeef$idx_col_input_file]),
+   #                                    ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_wtcow_2calving,l_constants_progeny_beefOnbeef$idx_col_input],
+   #                                    ps_value2update = second_calving_wt,
+   #                                    pb_log = pb_log,
+   #                                    plogger = lgr)
 
 
   # Update statement-progeny-flp-input from the data by calculating mature cow weight
