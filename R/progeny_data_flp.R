@@ -714,7 +714,7 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
   if(ps_first_calvingweight){
     ### # Slaughtercategory for cow to consider is VK == 7
     tbl_input <- ps_input_flp_tibble %>%
-                 dplyr::filter(NakoTVD == ps_dambreed) %>%
+                 dplyr::filter(`Nako RaceRode` == ps_dambreed) %>%
                  dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_VK) %>%
                  dplyr::filter(`Laktationsnummer Ammen-Mutter` == l_constants$lactnumb1) %>%
                  dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)  %>%
@@ -722,7 +722,7 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
   ### # Calculate cow weight after second calving
   }else if(ps_second_calvingweight){
     tbl_input <- ps_input_flp_tibble %>%
-                 dplyr::filter(NakoTVD == ps_dambreed) %>%
+                 dplyr::filter(`Nako RaceRode` == ps_dambreed) %>%
                  dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_VK) %>%
                  dplyr::filter(`Laktationsnummer Ammen-Mutter` == l_constants$lactnumb2) %>%
                  dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)  %>%
@@ -730,7 +730,7 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
   }else{
     ### # Calculate mature cow weight (= cow weight after 3rd calving)
     tbl_input <- ps_input_flp_tibble %>%
-                 dplyr::filter(NakoTVD == ps_dambreed) %>%
+                 dplyr::filter(`Nako RaceRode` == ps_dambreed) %>%
                  dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_VK) %>%
                  dplyr::filter(`Laktationsnummer Ammen-Mutter` == l_constants$lactnumb3) %>%
                  dplyr::select(`Schlachtgewicht Nako`,`Geburtsdatum Nako`,Schlachtdatum)  %>%
@@ -800,7 +800,7 @@ calculate_bull_liveweight <- function(ps_input_flp_tibble,
   ### # Calculate bull mature weight
   ### # Slaughtercategory for older bull to consider is MA == 4
   tbl_input <- ps_input_flp_tibble %>%
-               dplyr::filter(NakoTVD == ps_sirebreed) %>%
+               dplyr::filter(`Nako RaceRode` == ps_sirebreed) %>%
                dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MA) %>%
                dplyr::filter(ageAtSlaughterInDays > l_constants$age_atslaughter_olderbull) %>%
                dplyr::select(`Schlachtgewicht Nako`) %>%

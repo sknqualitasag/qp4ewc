@@ -48,7 +48,7 @@ s_input_file_purchasedreplacementheifers  <- file.path(here::here(),"inst","extd
 # Path to input from the calving. Based on this example an other file can be created with different input-values.
 s_input_file_calving_statement <- file.path(here::here(),"inst","extdata","ewbc","input_calving_statement.txt")
 # Path to calving data file
-s_input_file_calving <- file.path(here::here(),"inst","extdata","ewbc","test","test_zws_muku_gal.csv")
+s_input_file_calving <- file.path("/qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/zws_muku_gal.csv")
 # Date YYYYMMDD used as start date to filter data for calving or carcass
 s_start_date <- 20160101
 # Date YYYYMMDD used as end date to filter data for calving or carcass

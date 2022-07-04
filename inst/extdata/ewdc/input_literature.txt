@@ -113,3 +113,4 @@ INPUT11.TXT;"Governmental financial support per cow and year (e.g. for culled co
 INPUT11.TXT;"Governmental financial support per cow in performance test and year";"MU/cow and year";
 INPUT11.TXT;"Governmental financial support per exported male calf";"MU/animal";
 INPUT11.TXT;"Governmental financial support per fattened animal";"MU/animal";
+INPUT11.TXT;"Gestation length";"days";

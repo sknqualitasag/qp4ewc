@@ -1418,8 +1418,8 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                          tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_1weighing_male,l_constants_progeny_beefOnbeef$idx_col_input_file]),
-                                        ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_1weighing_male,l_constants_progeny_beefOnbeef$idx_col_input],
+                                                                                          tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_1weighing_female,l_constants_progeny_beefOnbeef$idx_col_input_file]),
+                                        ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_1weighing_female,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weight_300d_f,
                                         pb_log,
                                         plogger = lgr)
