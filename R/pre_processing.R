@@ -33,6 +33,7 @@
 #' @param ps_input_file_price_cow path to file with price for cows
 #' @param ps_input_file_price_bull path to file with price for bulls
 #' @param ps_input_file_price_heifer path to file with price for heifers
+#' @param ps_input_file_price_calf path to file with price for calf
 #' @param ps_input_file_ped path to pedigree file
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
@@ -57,6 +58,7 @@ pre_process_ew_input <- function(ps_sirebreed,
                                  ps_input_file_price_cow,
                                  ps_input_file_price_bull,
                                  ps_input_file_price_heifer,
+                                 ps_input_file_price_calf,
                                  ps_input_file_ped,
                                  pb_log,
                                  plogger = NULL){
@@ -108,261 +110,261 @@ pre_process_ew_input <- function(ps_sirebreed,
   l_constants_ew_input_beefOndairy <- get_constants_ew_input_beefOndairy()
 
 
-  # ****************************************************************************
-  ## ---- Literature ----
-  # ****************************************************************************
-  ### # Major step 2 ### #
-  ### # Read file with input from literature research for input-parameter-file of ECOWEIGHT
-  tbl_input_literature <- qp4ewc::read_file_input(ps_input_file_literature,
-                                                  pb_log,
-                                                  plogger = lgr)
-  ### # Update input-parameter-file coming from literature of ECOWEIGHT
-  if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
-  if(ps_sirebreed == "AN"){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
-                                                                                          paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                          l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
-                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
-                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AN,
-                                        pb_log,
-                                        plogger = lgr)
- }else if(ps_sirebreed == "AU" || ps_sirebreed == "OB" || ps_sirebreed == "CH"){
-   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+ # ****************************************************************************
+ ## ---- Literature ----
+ # ****************************************************************************
+ ### # Major step 2 ### #
+ ### # Read file with input from literature research for input-parameter-file of ECOWEIGHT
+ tbl_input_literature <- qp4ewc::read_file_input(ps_input_file_literature,
+                                                 pb_log,
+                                                 plogger = lgr)
+ ### # Update input-parameter-file coming from literature of ECOWEIGHT
+ if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
+ if(ps_sirebreed == "AN"){
+   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                         l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
-                                       ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AUCHOB,
+                                       ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AN,
                                        pb_log,
                                        plogger = lgr)
- }else if(ps_sirebreed == "LM"){
-   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
-                                       ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
-                                       ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_LM,
-                                       pb_log,
-                                       plogger = lgr)
- }else if(ps_sirebreed == "SI"){
-   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
-                                       ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
-                                       ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_SI,
-                                       pb_log,
-                                       plogger = lgr)
-  }else{
-    qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
-                    paste0('Price for sire breed other than AN, AU, CH, LM, SI, OB are not available for EWBC, please check!'))
-  }
-  }
-
-
-
-
-
-    for(l in 1:nrow(tbl_input_literature)){
-    if(pb_log){
-      qp4ewc_log_info(lgr, 'pre_process_ew_input',
-                      paste0('Updating parameter with input coming from the literature file:\n * line number l: ', l, '\n'))
-    }
-    if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
-      idx_col_input_file <- l_constants_ewbc_input_beefOnbeef$idx_col_input_file
-      idx_col_input <- l_constants_ewbc_input_beefOnbeef$idx_col_input
-      idx_col_input_value <- l_constants_ewbc_input_beefOnbeef$idx_col_input_value
-    }else{
-      idx_col_input_file <- l_constants_ew_input_beefOndairy$idx_col_input_file
-      idx_col_input <- l_constants_ew_input_beefOndairy$idx_col_input
-      idx_col_input_value <- l_constants_ew_input_beefOndairy$idx_col_input_value
-    }
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
-                                                                                          paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                          tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
-                                        ps_statement2search = tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
-                                        ps_value2update = tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
-                                        pb_log,
-                                        plogger = lgr)
-  }
-
-
-  ### # Read file with input to set parameter per scenario for input-parameter-file of ECOWEIGHT
-  tbl_input_par <- qp4ewc::read_file_input(ps_input_file_par,
-                                           pb_log,
-                                           plogger = lgr)
-  ### # Update input-parameter-file coming from parameter of ECOWEIGHT
-  if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
-    ### # ps_prodsystew = 1: Closed purebred beef cow herd with pasture system producing males and females for replacement
-    if(ps_prodsystew == as.character(1)){
-      prodsyst <- l_constants_ewbc_input_beefOnbeef$prodsyst1
-      ### # ps_prodsystew = 2: Closed crossbred cow herd with pasture system producing its own female replacement but buying the breeding bulls
-    }else if(ps_prodsystew == as.character(2)){
-      prodsyst <- l_constants_ewbc_input_beefOnbeef$prodsyst2
-      ### # ps_prodsystew = 3: Open beef x dairy or beef x dual purpose crossbred cow herd with pasture system with purchase of cow and bull replacement
-    }else if(ps_prodsystew == as.character(3)){
-      prodsyst <- l_constants_ewbc_input_beefOnbeef$prodsyst3
-    }else{
-      qp4ewc_log_info(lgr, 'pre_process_ew_input',
-                      paste0('Production System is not 1 or 2 or 3 for EWBC, please use an other function as pre_process_ew_input()!'))
-    }
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
-                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$prodsyst,
-                                        ps_value2update = prodsyst,
-                                        pb_log,
-                                        plogger = lgr)
-
-
-
-
-  ### # Maturity type of progeny depends on ps_sirebreed
-  ### # 1 = Early = AN
-  if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
-
-    if(ps_sirebreed == "AN"){
-      maturitytype_status <- l_constants_ewbc_input_beefOnbeef$maturitytype_early
-    ### # 2 = Medium = AU, OB
-    }else if(ps_sirebreed == "AU" || ps_sirebreed == "OB"){
-      maturitytype_status <- l_constants_ewbc_input_beefOnbeef$maturitytype_medium
-    ### # 3 = Late = CH, LM, SI
-    }else if(ps_sirebreed == "CH" || ps_sirebreed == "LM" || ps_sirebreed == "SI"){
-      maturitytype_status <- l_constants_ewbc_input_beefOnbeef$maturitytype_late
-    }else{
-      qp4ewc_log_info(lgr, 'pre_process_ew_input',
-                      paste0('Sire breed is not AN, AU, CH, LM, SI, OB for EW, please check!'))
-    }
-  }
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
-                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$maturitytype,
-                                      ps_value2update = maturitytype_status,
+}else if(ps_sirebreed == "AU" || ps_sirebreed == "OB" || ps_sirebreed == "CH"){
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                      ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                      ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AUCHOB,
                                       pb_log,
                                       plogger = lgr)
-
-  }
-
-  ### # Maturity type for production system 4 requires inputs for the purebred dairy breed and crossbred beef-on-dairy
-    if(ps_prodsystew == l_constants_ew_input_beefOndairy$prodsyst4){
-
-      if(ps_dambreed == "HO"){
-        maturitytype_status_purebred <- l_constants_ew_input_beefOndairy$maturitytype_early
-        if(ps_sirebreed == "AN") {
-          maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_early
-        } else if (ps_sirebreed == "LM" || ps_sirebreed == "SI" || ps_sirebreed == "OB") {
-          maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_medium
-        }
-      }
-      if(ps_dambreed == "BS"){
-        maturitytype_status_purebred <- l_constants_ew_input_beefOndairy$maturitytype_medium
-        if(ps_sirebreed == "AN") {
-          maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_early
-        } else if (ps_sirebreed == "LM" || ps_sirebreed == "SI" || ps_sirebreed == "OB") {
-          maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_medium
-        }
-      }
+}else if(ps_sirebreed == "LM"){
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                      ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                      ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_LM,
+                                      pb_log,
+                                      plogger = lgr)
+}else if(ps_sirebreed == "SI"){
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                      ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                      ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_SI,
+                                      pb_log,
+                                      plogger = lgr)
+ }else{
+   qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
+                   paste0('Price for sire breed other than AN, AU, CH, LM, SI, OB are not available for EWBC, please check!'))
+ }
+ }
 
 
 
-      qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
-                                          ps_statement2search = l_constants_ew_input_beefOndairy$maturitytype_purebred,
-                                          ps_value2update = maturitytype_status_purebred,
+
+
+   for(l in 1:nrow(tbl_input_literature)){
+   if(pb_log){
+     qp4ewc_log_info(lgr, 'pre_process_ew_input',
+                     paste0('Updating parameter with input coming from the literature file:\n * line number l: ', l, '\n'))
+   }
+   if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
+     idx_col_input_file <- l_constants_ewbc_input_beefOnbeef$idx_col_input_file
+     idx_col_input <- l_constants_ewbc_input_beefOnbeef$idx_col_input
+     idx_col_input_value <- l_constants_ewbc_input_beefOnbeef$idx_col_input_value
+   }else{
+     idx_col_input_file <- l_constants_ew_input_beefOndairy$idx_col_input_file
+     idx_col_input <- l_constants_ew_input_beefOndairy$idx_col_input
+     idx_col_input_value <- l_constants_ew_input_beefOndairy$idx_col_input_value
+   }
+   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                         tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
+                                       ps_statement2search = tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
+                                       ps_value2update = tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
+                                       pb_log,
+                                       plogger = lgr)
+ }
+
+
+ ### # Read file with input to set parameter per scenario for input-parameter-file of ECOWEIGHT
+ tbl_input_par <- qp4ewc::read_file_input(ps_input_file_par,
                                           pb_log,
                                           plogger = lgr)
-
-      qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
-                                          ps_statement2search = l_constants_ew_input_beefOndairy$maturitytype_crossbred,
-                                          ps_value2update = maturitytype_status_crossbred,
-                                          pb_log,
-                                          plogger = lgr)
-    }
-
-
-
-  ### # Mating type for heifers or cows
-  ### # 1 : Artificial insemination is used in the first oestrus within one mating period
-  if(ps_prodsystew == as.character(1) || ps_prodsystew == as.character(2)){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
-                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_heifer,
-                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_AI,
-                                        pb_log,
-                                        plogger = lgr)
-
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
-                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_cow,
-                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_AI,
-                                        pb_log,
-                                        plogger = lgr)
-  ### # 2 : Natural mating is used throughout.
-  }else if(ps_prodsystew == as.character(3)){
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
-                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_heifer,
-                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_NM,
-                                        pb_log,
-                                        plogger = lgr)
-
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
-                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_cow,
-                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_NM,
-                                        pb_log,
-                                        plogger = lgr)
-  }
+ ### # Update input-parameter-file coming from parameter of ECOWEIGHT
+ if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
+   ### # ps_prodsystew = 1: Closed purebred beef cow herd with pasture system producing males and females for replacement
+   if(ps_prodsystew == as.character(1)){
+     prodsyst <- l_constants_ewbc_input_beefOnbeef$prodsyst1
+     ### # ps_prodsystew = 2: Closed crossbred cow herd with pasture system producing its own female replacement but buying the breeding bulls
+   }else if(ps_prodsystew == as.character(2)){
+     prodsyst <- l_constants_ewbc_input_beefOnbeef$prodsyst2
+     ### # ps_prodsystew = 3: Open beef x dairy or beef x dual purpose crossbred cow herd with pasture system with purchase of cow and bull replacement
+   }else if(ps_prodsystew == as.character(3)){
+     prodsyst <- l_constants_ewbc_input_beefOnbeef$prodsyst3
+   }else{
+     qp4ewc_log_info(lgr, 'pre_process_ew_input',
+                     paste0('Production System is not 1 or 2 or 3 for EWBC, please use an other function as pre_process_ew_input()!'))
+   }
+   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                       ps_statement2search = l_constants_ewbc_input_beefOnbeef$prodsyst,
+                                       ps_value2update = prodsyst,
+                                       pb_log,
+                                       plogger = lgr)
 
 
-  for(l in 1:nrow(tbl_input_par)){
-    if(pb_log){
-      qp4ewc_log_info(lgr, 'pre_process_ew_input',
-                      paste0('Updating parameter with input coming from the parameter file:\n * line number l: ', l, '\n'))
-    }
-    if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
-      idx_col_input_file <- l_constants_ewbc_input_beefOnbeef$idx_col_input_file
-      idx_col_input <- l_constants_ewbc_input_beefOnbeef$idx_col_input
-      idx_col_input_value <- l_constants_ewbc_input_beefOnbeef$idx_col_input_value
-    }else{
-      idx_col_input_file <- l_constants_ew_input_beefOndairy$idx_col_input_file
-      idx_col_input <- l_constants_ew_input_beefOndairy$idx_col_input
-      idx_col_input_value <- l_constants_ew_input_beefOndairy$idx_col_input_value
-    }
-    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
-                                                                                          paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                          tbl_input_par[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
-                                        ps_statement2search = tbl_input_par[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
-                                        ps_value2update = tbl_input_par[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
-                                        pb_log,
-                                        plogger = lgr)
-  }
 
 
-  ### # If productionsystem 1 : Read file with input for tested bulls for input-parameter-file of ECOWEIGHT
-  if(ps_prodsystew == as.character(1)){
-    tbl_input_testedbull <- qp4ewc::read_file_input(ps_input_file_testedbulls,
-                                                    pb_log,
-                                                    plogger = lgr)
+ ### # Maturity type of progeny depends on ps_sirebreed
+ ### # 1 = Early = AN
+ if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
 
-    for(l in 1:nrow(tbl_input_testedbull)){
-      if(pb_log){
-        qp4ewc_log_info(lgr, 'pre_process_ew_input',
-                        paste0('Updating parameter with input coming from the parameter file:\n * line number m: ', l, '\n'))
-      }
-      qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
-                                                                                            paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                            tbl_input_testedbull[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
-                                          ps_statement2search = tbl_input_testedbull[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
-                                          ps_value2update = tbl_input_testedbull[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
-                                          pb_log,
-                                          plogger = lgr)
-    }
-  }
+   if(ps_sirebreed == "AN"){
+     maturitytype_status <- l_constants_ewbc_input_beefOnbeef$maturitytype_early
+   ### # 2 = Medium = AU, OB
+   }else if(ps_sirebreed == "AU" || ps_sirebreed == "OB"){
+     maturitytype_status <- l_constants_ewbc_input_beefOnbeef$maturitytype_medium
+   ### # 3 = Late = CH, LM, SI
+   }else if(ps_sirebreed == "CH" || ps_sirebreed == "LM" || ps_sirebreed == "SI"){
+     maturitytype_status <- l_constants_ewbc_input_beefOnbeef$maturitytype_late
+   }else{
+     qp4ewc_log_info(lgr, 'pre_process_ew_input',
+                     paste0('Sire breed is not AN, AU, CH, LM, SI, OB for EW, please check!'))
+   }
+ }
+   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                       ps_statement2search = l_constants_ewbc_input_beefOnbeef$maturitytype,
+                                     ps_value2update = maturitytype_status,
+                                     pb_log,
+                                     plogger = lgr)
+
+ }
+
+ ### # Maturity type for production system 4 requires inputs for the purebred dairy breed and crossbred beef-on-dairy
+   if(ps_prodsystew == l_constants_ew_input_beefOndairy$prodsyst4){
+
+     if(ps_dambreed == "HO"){
+       maturitytype_status_purebred <- l_constants_ew_input_beefOndairy$maturitytype_early
+       if(ps_sirebreed == "AN") {
+         maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_early
+       } else if (ps_sirebreed == "LM" || ps_sirebreed == "SI" || ps_sirebreed == "OB") {
+         maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_medium
+       }
+     }
+     if(ps_dambreed == "BS"){
+       maturitytype_status_purebred <- l_constants_ew_input_beefOndairy$maturitytype_medium
+       if(ps_sirebreed == "AN") {
+         maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_early
+       } else if (ps_sirebreed == "LM" || ps_sirebreed == "SI" || ps_sirebreed == "OB") {
+         maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_medium
+       }
+     }
 
 
-  ### # If productionsystem 3 :Read file with input from purchased replacement heifers for input-parameter-file of ECOWEIGHT
-  if(ps_prodsystew == as.character(3)){
-    tbl_input_purchasedreplacementheifers <- qp4ewc::read_file_input(ps_input_file_purchasedreplacementheifers,
-                                                    pb_log,
-                                                    plogger = lgr)
-    for(l in 1:nrow(tbl_input_purchasedreplacementheifers)){
-      if(pb_log){
-        qp4ewc_log_info(lgr, 'pre_process_ew_input',
-                        paste0('Updating parameter with input coming from the parameter file:\n * line number l: ', l, '\n'))
-      }
-      qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
-                                                                                            paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                            tbl_input_purchasedreplacementheifers[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
-                                          ps_statement2search = tbl_input_purchasedreplacementheifers[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
-                                          ps_value2update = tbl_input_purchasedreplacementheifers[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
-                                          pb_log,
-                                          plogger = lgr)
-    }
-  }
+
+     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
+                                         ps_statement2search = l_constants_ew_input_beefOndairy$maturitytype_purebred,
+                                         ps_value2update = maturitytype_status_purebred,
+                                         pb_log,
+                                         plogger = lgr)
+
+     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
+                                         ps_statement2search = l_constants_ew_input_beefOndairy$maturitytype_crossbred,
+                                         ps_value2update = maturitytype_status_crossbred,
+                                         pb_log,
+                                         plogger = lgr)
+   }
+
+
+
+ ### # Mating type for heifers or cows
+ ### # 1 : Artificial insemination is used in the first oestrus within one mating period
+ if(ps_prodsystew == as.character(1) || ps_prodsystew == as.character(2)){
+   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                       ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_heifer,
+                                       ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_AI,
+                                       pb_log,
+                                       plogger = lgr)
+
+   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                       ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_cow,
+                                       ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_AI,
+                                       pb_log,
+                                       plogger = lgr)
+ ### # 2 : Natural mating is used throughout.
+ }else if(ps_prodsystew == as.character(3)){
+   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                       ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_heifer,
+                                       ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_NM,
+                                       pb_log,
+                                       plogger = lgr)
+
+   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                                       ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_cow,
+                                       ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_NM,
+                                       pb_log,
+                                       plogger = lgr)
+ }
+
+
+ for(l in 1:nrow(tbl_input_par)){
+   if(pb_log){
+     qp4ewc_log_info(lgr, 'pre_process_ew_input',
+                     paste0('Updating parameter with input coming from the parameter file:\n * line number l: ', l, '\n'))
+   }
+   if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
+     idx_col_input_file <- l_constants_ewbc_input_beefOnbeef$idx_col_input_file
+     idx_col_input <- l_constants_ewbc_input_beefOnbeef$idx_col_input
+     idx_col_input_value <- l_constants_ewbc_input_beefOnbeef$idx_col_input_value
+   }else{
+     idx_col_input_file <- l_constants_ew_input_beefOndairy$idx_col_input_file
+     idx_col_input <- l_constants_ew_input_beefOndairy$idx_col_input
+     idx_col_input_value <- l_constants_ew_input_beefOndairy$idx_col_input_value
+   }
+   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                         tbl_input_par[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
+                                       ps_statement2search = tbl_input_par[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
+                                       ps_value2update = tbl_input_par[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
+                                       pb_log,
+                                       plogger = lgr)
+ }
+
+
+ ### # If productionsystem 1 : Read file with input for tested bulls for input-parameter-file of ECOWEIGHT
+ if(ps_prodsystew == as.character(1)){
+   tbl_input_testedbull <- qp4ewc::read_file_input(ps_input_file_testedbulls,
+                                                   pb_log,
+                                                   plogger = lgr)
+
+   for(l in 1:nrow(tbl_input_testedbull)){
+     if(pb_log){
+       qp4ewc_log_info(lgr, 'pre_process_ew_input',
+                       paste0('Updating parameter with input coming from the parameter file:\n * line number m: ', l, '\n'))
+     }
+     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                           tbl_input_testedbull[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
+                                         ps_statement2search = tbl_input_testedbull[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
+                                         ps_value2update = tbl_input_testedbull[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
+                                         pb_log,
+                                         plogger = lgr)
+   }
+ }
+
+
+ ### # If productionsystem 3 :Read file with input from purchased replacement heifers for input-parameter-file of ECOWEIGHT
+ if(ps_prodsystew == as.character(3)){
+   tbl_input_purchasedreplacementheifers <- qp4ewc::read_file_input(ps_input_file_purchasedreplacementheifers,
+                                                   pb_log,
+                                                   plogger = lgr)
+   for(l in 1:nrow(tbl_input_purchasedreplacementheifers)){
+     if(pb_log){
+       qp4ewc_log_info(lgr, 'pre_process_ew_input',
+                       paste0('Updating parameter with input coming from the parameter file:\n * line number l: ', l, '\n'))
+     }
+     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                           tbl_input_purchasedreplacementheifers[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
+                                         ps_statement2search = tbl_input_purchasedreplacementheifers[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
+                                         ps_value2update = tbl_input_purchasedreplacementheifers[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
+                                         pb_log,
+                                         plogger = lgr)
+   }
+ }
 
 
 
@@ -436,13 +438,15 @@ pre_process_ew_input <- function(ps_sirebreed,
  ## ---- Conformation & fat scores and price matrices ----
  # ****************************************************************************
  ### # Major step 5 ### #
- qp4ewc::pre_process_ew_input_carcass_data_flp(ps_sirebreed,
+if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
+ qp4ewc::pre_process_ewbc_input_carcass_data_flp(ps_sirebreed,
                                                ps_dambreed,
                                                ps_prodsystew,
                                                ps_marketchannel,
                                                ps_path_directory2create,
                                                ps_input_file_flp_carcass_matrix_statement,
                                                ps_input_file_flp,
+                                               s_input_file_ped,
                                                ps_start_flp_date = ps_start_date,
                                                ps_end_flp_date = ps_end_date,
                                                ps_input_file_price_cow,
@@ -450,6 +454,26 @@ pre_process_ew_input <- function(ps_sirebreed,
                                                ps_input_file_price_heifer,
                                                pb_log,
                                                plogger = lgr)
+}else{
+  ### # production system beef-on-dairy
+  qp4ewc::pre_process_ewdc_input_carcass_data_flp(ps_sirebreed,
+                                                  ps_dambreed,
+                                                  ps_prodsystew,
+                                                  ps_marketchannel,
+                                                  ps_path_directory2create,
+                                                  ps_input_file_flp_carcass_matrix_statement,
+                                                  ps_input_file_flp,
+                                                  ps_input_file_ped,
+                                                  ps_start_flp_date = ps_start_date,
+                                                  ps_end_flp_date = ps_end_date,
+                                                  ps_input_file_price_cow,
+                                                  ps_input_file_price_bull,
+                                                  ps_input_file_price_heifer,
+                                                  ps_input_file_price_calf,
+                                                  pb_log,
+                                                  plogger = lgr)
+}
+
 
 
   if(pb_log){
@@ -2237,7 +2261,7 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
 }
 
 
-#' @title Pre-processing the carcass conformation, fat, prices based on flp-data for input-parameter-file of ECOWEIGHT
+#' @title Pre-processing the carcass conformation, fat, prices based on flp-data for beef-on-beef input-parameter-file of ECOWEIGHT
 #'
 #' @description
 #' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
@@ -2259,8 +2283,8 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
-#' @export pre_process_ew_input_carcass_data_flp
-pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
+#' @export pre_process_ewbc_input_carcass_data_flp
+pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                   ps_dambreed,
                                                   ps_prodsystew,
                                                   ps_marketchannel,
@@ -2268,6 +2292,7 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
                                                   ps_input_file_flp_carcass_matrix_statement,
                                                   ps_input_file_flp,
                                                   ps_start_flp_date,
+                                                  ps_input_file_ped,
                                                   ps_end_flp_date,
                                                   ps_input_file_price_cow,
                                                   ps_input_file_price_bull,
@@ -2278,20 +2303,21 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
   ### # Setting the log-file
   if(pb_log){
     if(is.null(plogger)){
-      lgr <- get_qp4ewc_logger(ps_logfile = 'pre_process_ew_input_carcass_data_flp.log',
+      lgr <- get_qp4ewc_logger(ps_logfile = 'pre_process_ewbc_input_carcass_data_flp.log',
                                ps_level = 'INFO')
     }else{
       lgr <- plogger
     }
-    qp4ewc_log_info(lgr, 'pre_process_ew_input_carcass_data_flp',
+    qp4ewc_log_info(lgr, 'pre_process_ewbc_input_carcass_data_flp',
                     paste0('Starting function with parameters:\n * ps_sirebreed: ', ps_sirebreed, '\n',
                            ' * ps_dambreed: ', ps_dambreed, '\n',
-                           ' * ps_prodsystew: ', ps_prodsystew, '\n',
+                          ' * ps_prodsystew: ', ps_prodsystew, '\n',
                            ' * ps_marketchannel: ', ps_marketchannel, '\n',
                            ' * ps_path_directory2create: ', ps_path_directory2create, '\n',
                            ' * ps_input_file_flp_carcass_matrix_statement: ',ps_input_file_flp_carcass_matrix_statement, '\n',
                            ' * ps_input_file_flp: ', ps_input_file_flp, '\n',
                            ' * ps_start_flp_date: ',ps_start_flp_date,'\n',
+                           ' * ps_input_file_ped: ',ps_input_file_ped,'\n',
                            ' * ps_end_flp_date: ',ps_end_flp_date,'\n',
                            ' * ps_input_file_price_cow: ',ps_input_file_price_cow,'\n',
                            ' * ps_input_file_price_bull: ',ps_input_file_price_bull,'\n',
@@ -2304,7 +2330,6 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
                                                              pb_log,
                                                              plogger = lgr)
 
-
   ### # Read file with progeny-flp data
   tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp,
                                          ps_start_flp_date,
@@ -2312,6 +2337,15 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
                                          pb_log,
                                          plogger = lgr)
 
+  tbl_ped <- read_file_input_ped(ps_input_file_ped,
+                                 pb_log,
+                                 plogger = lgr)
+
+
+  ### # Merge progeny-flp data and pedigree files
+  tbl_merged_data <- tbl_flp %>% dplyr::inner_join(tbl_ped, by = c("NakoTVD" = "TVDid"))
+  ### # Create different tibble if purebred or crossbred
+  tbl_breed_data <- tbl_merged_data %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>% dplyr::filter(Mutter_RasseCode == ps_dambreed)
 
   ### # Get the constants
   l_constants_carcass_beefOnbeef <- get_constants_carcass_beefOnbeef()
@@ -2320,21 +2354,11 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
   l_constants_ew_input_beefOndairy <- get_constants_ew_input_beefOndairy()
 
   ### # Number of classes for fleshiness
-  if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4) {
     idx_row_class_fleshiness <- l_constants_carcass_beefOnbeef$idx_row_class_fleshiness
     idx_col_input_file <- l_constants_carcass_beefOnbeef$idx_col_input_file
     idx_col_input <- l_constants_carcass_beefOnbeef$idx_col_input
     idx_col_input_value <- l_constants_carcass_beefOnbeef$idx_col_input_value
     idx_row_class_fat <- l_constants_carcass_beefOnbeef$idx_row_class_fat
-  }
-  if(ps_prodsystew == l_constants_ew_input_beefOndairy$prodsyst4) {
-    idx_row_class_fleshiness <- l_constants_carcass_beefOndairy$idx_row_class_fleshiness
-    idx_col_input_file <- l_constants_carcass_beefOndairy$idx_col_input_file
-    idx_col_input <- l_constants_carcass_beefOndairy$idx_col_input
-    idx_col_input_value <- l_constants_carcass_beefOndairy$idx_col_input_value
-    idx_row_class_fat <- l_constants_carcass_beefOndairy$idx_row_class_fat
-  }
-
 
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
@@ -2359,7 +2383,7 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
   # ****************************************************************************
   ## ---- Cows frequencies ----
   # ****************************************************************************
-  freq_mat_cow <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_flp,
+  freq_mat_cow <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_breed_data,
                                               ps_sex = l_constants_carcass_beefOnbeef$sex_female,
                                               ps_marketing_channel = ps_marketchannel,
                                               ps_flag_cow = TRUE,
@@ -2453,7 +2477,7 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
   # ****************************************************************************
   ## ---- Heifers frequencies ----
   # ****************************************************************************
-  freq_mat_heifer <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_flp,
+  freq_mat_heifer <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_breed_data,
                                                  ps_sex = l_constants_carcass_beefOnbeef$sex_female,
                                                  ps_marketing_channel = ps_marketchannel,
                                                  ps_flag_cow = FALSE,
@@ -2529,7 +2553,7 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
   # ****************************************************************************
   ## ---- Bulls frequencies ----
   # ****************************************************************************
-  freq_mat_bull <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_flp,
+  freq_mat_bull <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_breed_data,
                                                ps_sex = l_constants_carcass_beefOnbeef$sex_male,
                                                ps_marketing_channel = ps_marketchannel,
                                                ps_flag_cow = FALSE,
@@ -2860,7 +2884,7 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line2,
                                       pb_log,
                                       plogger = lgr)
-  ### # For carcass conformation T+
+ ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_coef,l_constants_carcass_beefOnbeef$idx_col_input_file]),
@@ -2926,3 +2950,906 @@ pre_process_ew_input_carcass_data_flp <- function(ps_sirebreed,
 
 
 }
+
+#' @title Pre-processing the carcass conformation, fat, prices based on flp-data for beef-on-dairy input-parameter-file of ECOWEIGHT
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function processed different functions
+#' to prepare the input parameter files based on progeny flp data and literature about the price-system.
+#'
+#' @param ps_sirebreed sire breed
+#' @param ps_dambreed dam breed
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
+#' @param ps_marketchannel market channel
+#' @param ps_path_directory2create path of the directory that will be created
+#' @param ps_input_file_flp_carcass_matrix_statement path to file with statement based on calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file_flp path to file with input coming from calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_start_flp_date setting the start of the slaughter date to filter in the slaughter data
+#' @param ps_end_flp_date setting the end of the slaughter date to filter in the slaughter data
+#' @param ps_input_file_price_cow path to file with price for cows
+#' @param ps_input_file_price_bull path to file with price for bulls
+#' @param ps_input_file_price_heifer path tho file with price for heifers
+#' @param ps_input_file_price_calf path tho file with price for heifers
+#' @param ps_input_file_ped input file for pedigree
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @export pre_process_ewdc_input_carcass_data_flp
+pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
+                                                    ps_dambreed,
+                                                    ps_prodsystew,
+                                                    ps_marketchannel,
+                                                    ps_path_directory2create,
+                                                    ps_input_file_flp_carcass_matrix_statement,
+                                                    ps_input_file_flp,
+                                                    ps_input_file_ped,
+                                                    ps_start_flp_date,
+                                                    ps_end_flp_date,
+                                                    ps_input_file_price_cow,
+                                                    ps_input_file_price_bull,
+                                                    ps_input_file_price_heifer,
+                                                    ps_input_file_price_calf,
+                                                    pb_log,
+                                                    plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'pre_process_ewdc_input_carcass_data_flp.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'pre_process_ewdc_input_carcass_data_flp',
+                    paste0('Starting function with parameters:\n * ps_sirebreed: ', ps_sirebreed, '\n',
+                           ' * ps_dambreed: ', ps_dambreed, '\n',
+                           ' * ps_prodsystew: ', ps_prodsystew, '\n',
+                           ' * ps_marketchannel: ', ps_marketchannel, '\n',
+                           ' * ps_path_directory2create: ', ps_path_directory2create, '\n',
+                           ' * ps_input_file_flp_carcass_matrix_statement: ',ps_input_file_flp_carcass_matrix_statement, '\n',
+                           ' * ps_input_file_flp: ', ps_input_file_flp, '\n',
+                           ' * ps_start_flp_date: ',ps_start_flp_date,'\n',
+                           ' * ps_end_flp_date: ',ps_end_flp_date,'\n',
+                           ' * ps_input_file_ped: ',ps_input_file_ped,'\n',
+                           ' * ps_input_file_price_cow: ',ps_input_file_price_cow,'\n',
+                           ' * ps_input_file_price_bull: ',ps_input_file_price_bull,'\n',
+                           ' * ps_input_file_price_calf: ',ps_input_file_price_calf,'\n',
+                           ' * ps_input_file_price_heifer: ',ps_input_file_price_heifer))
+  }
+
+
+  ### # Read file with statement based on carcass data flp for input-parameter-file of ECOWEIGHT
+  tbl_input_statement_flp_carcass <- qp4ewc::read_file_input(ps_input_file_flp_carcass_matrix_statement,
+                                                             pb_log,
+                                                             plogger = lgr)
+
+
+  ### # Read file with progeny-flp data
+  tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp,
+                                         ps_start_flp_date,
+                                         ps_end_flp_date,
+                                         pb_log,
+                                         plogger = lgr)
+
+  tbl_ped <- read_file_input_ped(ps_input_file_ped,
+                                 pb_log,
+                                 plogger = lgr)
+
+
+  ### # Merge progeny-flp data and pedigree files
+  tbl_merged_data <- tbl_flp %>% dplyr::inner_join(tbl_ped, by = c("NakoTVD" = "TVDid"))
+  ### # Create different tibble if purebred or crossbred
+  tbl_purebred_dairy_data <- tbl_merged_data %>% dplyr::filter(Vater_RasseCode == ps_dambreed) %>% dplyr::filter(Mutter_RasseCode == ps_dambreed)
+  tbl_crossbred_data <- tbl_merged_data %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>% dplyr::filter(Mutter_RasseCode == ps_dambreed)
+
+  ### # Get the constants
+  l_constants_carcass_beefOnbeef <- get_constants_carcass_beefOnbeef()
+  l_constants_carcass_beefOndairy <- get_constants_carcass_beefOndairy()
+  l_constants_ewbc_input_beefOnbeef <- get_constants_ewbc_input_beefOnbeef()
+  l_constants_ew_input_beefOndairy <- get_constants_ew_input_beefOndairy()
+  l_constants_progeny_beefOndairy <- get_constants_progeny_beefOndairy()
+
+  ### # Number of classes for fleshiness
+    idx_row_class_fleshiness <- l_constants_carcass_beefOndairy$idx_row_class_fleshiness
+    idx_col_input_file <- l_constants_carcass_beefOndairy$idx_col_input_file
+    idx_col_input <- l_constants_carcass_beefOndairy$idx_col_input
+    idx_col_input_value <- l_constants_carcass_beefOndairy$idx_col_input_value
+    idx_row_class_fat <- l_constants_carcass_beefOndairy$idx_row_class_fat
+
+
+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[idx_row_class_fleshiness,idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[idx_row_class_fleshiness,idx_col_input],
+                                      ps_value2update = tbl_input_statement_flp_carcass[idx_row_class_fleshiness,idx_col_input_value]$input_value_beef,
+                                      pb_log,
+                                      plogger = lgr)
+
+
+  ### # Number of classes for fat covering
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[idx_row_class_fat,idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[idx_row_class_fat,idx_col_input],
+                                      ps_value2update = tbl_input_statement_flp_carcass[idx_row_class_fat,idx_col_input_value]$input_value_beef,
+                                      pb_log,
+                                      plogger = lgr)
+
+
+
+  # ****************************************************************************
+  ## ---- Cows frequencies ----
+  # ****************************************************************************
+  freq_mat_cow <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_purebred_dairy_data,
+                                              ps_sex = l_constants_carcass_beefOndairy$sex_female,
+                                              ps_marketing_channel = ps_marketchannel,
+                                              ps_flag_cow = TRUE,
+                                              pb_log,
+                                              plogger = lgr)
+
+
+  # Update statement_flp_carcass-input from the data
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
+                                      pb_log,
+                                      plogger = lgr)
+
+
+  # ****************************************************************************
+  ## ---- Heifers frequencies purebred dairy ----
+  # ****************************************************************************
+  freq_mat_heifer_purebred <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_purebred_dairy_data,
+                                                 ps_sex = l_constants_carcass_beefOndairy$sex_female,
+                                                 ps_marketing_channel = ps_marketchannel,
+                                                 ps_flag_cow = FALSE,
+                                                 pb_log,
+                                                 plogger = lgr)
+
+
+  # Update statement_flp_carcass-input from the data
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
+                                      pb_log,
+                                      plogger = lgr)
+
+
+  # ****************************************************************************
+  ## ---- Bulls frequencies purebred dairy----
+  # ****************************************************************************
+  freq_mat_bull_purebred <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_purebred_dairy_data,
+                                               ps_sex = l_constants_carcass_beefOndairy$sex_male,
+                                               ps_marketing_channel = ps_marketchannel,
+                                               ps_flag_cow = FALSE,
+                                               pb_log,
+                                               plogger = lgr)
+
+
+  # Update statement_flp_carcass-input from the data
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
+                                      pb_log,
+                                      plogger = lgr)
+
+  # ****************************************************************************
+  ## ---- Heifers frequencies crossbred ----
+  # ****************************************************************************
+  freq_mat_heifer <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_crossbred_data,
+                                                 ps_sex = l_constants_carcass_beefOndairy$sex_female,
+                                                 ps_marketing_channel = ps_marketchannel,
+                                                 ps_flag_cow = FALSE,
+                                                 pb_log,
+                                                 plogger = lgr)
+
+
+  # Update statement_flp_carcass-input from the data
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
+                                      pb_log,
+                                      plogger = lgr)
+
+
+  # ****************************************************************************
+  ## ---- Bulls frequencies crossbred ----
+  # ****************************************************************************
+  freq_mat_bull <- qp4ewc::build_freq_conf_fat(ps_input_flp_tibble = tbl_crossbred_data,
+                                               ps_sex = l_constants_carcass_beefOndairy$sex_male,
+                                               ps_marketing_channel = ps_marketchannel,
+                                               ps_flag_cow = FALSE,
+                                               pb_log,
+                                               plogger = lgr)
+
+
+  # Update statement_flp_carcass-input from the data
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
+                                      pb_log,
+                                      plogger = lgr)
+
+
+
+
+  # ****************************************************************************
+  ## ---- Prices ----
+  # ****************************************************************************
+  # Update statement_flp_carcass-input from the data
+  # base price for cow
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_price,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef,
+                                      pb_log,
+                                      plogger = lgr)
+
+  if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_beef){
+  # basis price bull
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef,
+                                      pb_log,
+                                      plogger = lgr)
+  # basis price heifer
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef,
+                                      pb_log,
+                                      plogger = lgr)
+  }
+  if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_calf){
+    # basis price bull
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                          paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                          tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                        ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input],
+                                        ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_value_calf]$input_value_calf,
+                                        pb_log,
+                                        plogger = lgr)
+   # basis price heifer
+    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                          paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                          tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                        ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input],
+                                        ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_value_calf]$input_value_calf,
+                                        pb_log,
+                                        plogger = lgr)
+  }
+
+
+  # ****************************************************************************
+  ## ---- Price coefficient for cow----
+  # ****************************************************************************
+  mat_coeffprice_cow <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_cow,
+                                                    pb_log,
+                                                    plogger = lgr)
+  # Update price coefficient for cow
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
+                                      pb_log,
+                                      plogger = lgr)
+
+
+  # ****************************************************************************
+  ## ---- Price coefficient for bull----
+  # ****************************************************************************
+  if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_beef){
+  mat_coeffprice_bull <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_bull,
+                                                     pb_log,
+                                                     plogger = lgr)
+  }
+  if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_calf){
+    mat_coeffprice_bull <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_calf,
+                                                       pb_log,
+                                                       plogger = lgr)
+  }
+
+  # Update price coefficient for bull
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
+                                      pb_log,
+                                      plogger = lgr)
+
+
+  # ****************************************************************************
+  ## ---- Price coefficient for heifer----
+  # ****************************************************************************
+
+  if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_beef){
+    mat_coeffprice_heifer <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_heifer,
+                                                         pb_log,
+                                                         plogger = lgr)
+  }
+  if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_calf){
+    mat_coeffprice_heifer <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_calf,
+                                                         pb_log,
+                                                         plogger = lgr)
+  }
+
+  # Update price coefficient for bull
+  ### # For carcass conformation C
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation H
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T+
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation T-
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation A
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation X
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
+                                      pb_log,
+                                      plogger = lgr)
+  ### # For carcass conformation XXX
+  qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                        paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                        tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                      ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
+                                      ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
+                                      ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
+                                      pb_log,
+                                      plogger = lgr)
+
+
+}
+

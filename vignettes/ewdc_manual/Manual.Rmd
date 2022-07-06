@@ -30,7 +30,7 @@ The parameters needed for beef-on-dairy are:
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
 s_sirebreed <- "LM"
 # Dam breed can be for beef-on-dairy: HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
-s_dambreed <- "HO"
+s_dambreed <- "BS"
 # Production system according to ECOWEIGHT for beef-on-dair: 4 corresponding to dairy
 s_prodsystew <- "4"
 # Marketing channel can be: ConventionalBeef, ConventionalVeal corresponding to intensiv fattening system for beef or veal
@@ -38,7 +38,7 @@ s_marketingchannel <- "ConventionalBeef"
 # Path to define from the working directory for beef-on-dairy
 s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc")
 # Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
-s_input_file_literature <- file.path(here::here(),"inst","extdata","ewdc","input_literature.txt")
+s_input_file_literature <- file.path(here::here(),"inst","extdata","ewdc","input_literature_HO_veal.txt")
 # Path to input from the parameter specific for the scenario. Based on this example an other file can be created with different input-value.
 s_input_file_par <- file.path(here::here(),"inst","extdata","ewdc","input_par_statement.txt")
 # Path to specific input for ProdSyst1 for tested bulls (this is only for beef-on-beef needed)
@@ -65,8 +65,10 @@ s_input_file_price_cow <- file.path(here::here(),"inst","extdata","ewdc","cow_pr
 s_input_file_price_bull <- file.path(here::here(),"inst","extdata","ewdc","bull_price.txt")
 # Path to input with heifer price. Based on this example an other file can be created with different input-values.
 s_input_file_price_heifer <- file.path(here::here(),"inst","extdata","ewdc","heifer_price.txt")
+# Path to input with heifer price. Based on this example an other file can be created with different input-values.
+s_input_file_price_calf <- file.path(here::here(),"inst","extdata","ewdc","veal_price.txt")
 # Path to pedigree input file #### !!!! Making specific test file for beef-on-dairy
-s_input_file_ped <- file.path("/qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_data/ped_withBreedCode_damside")
+s_input_file_ped <- file.path("/qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/test_file/ped_withBreedCode_damside")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
@@ -111,6 +113,7 @@ pre_process_ew_input(ps_sirebreed = s_sirebreed,
                      ps_input_file_price_cow = s_input_file_price_cow,
                      ps_input_file_price_bull = s_input_file_price_bull,
                      ps_input_file_price_heifer = s_input_file_price_heifer,
+                     ps_input_file_price_calf = s_input_file_price_calf,
                      ps_input_file_ped = s_input_file_ped,
                      pb_log = b_log)
 ```

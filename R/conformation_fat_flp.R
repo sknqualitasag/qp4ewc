@@ -16,6 +16,8 @@
 #'
 #' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
 #' @param ps_sex statement of sex ("F" for female and "M" for male)
+#' @param ps_sirebreed sire breed
+#' @param ps_dambreed dam breed
 #' @param ps_marketing_channel statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3)
 #' @param ps_flag_cow flag to select for cows or not (TRUE or FALSE)
 #' @param pb_log indicator whether logs should be produced
@@ -29,6 +31,8 @@
 build_freq_conf_fat <- function(ps_input_flp_tibble,
                                 ps_sex,
                                 ps_marketing_channel,
+                                ps_sirebreed,
+                                ps_dambreed,
                                 ps_flag_cow,
                                 pb_log = FALSE,
                                 plogger = NULL){
@@ -44,6 +48,8 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
     qp4ewc_log_info(lgr, 'build_freq_conf_fat',
                     paste0('Starting function with parameters:\n * ps_input_flp_tibble \n',
                            ' * ps_sex: ', ps_sex,'\n',
+                           ' * ps_sirebreed: ', ps_sirebreed,'\n',
+                           ' * ps_dambreed: ', ps_dambreed,'\n',
                            ' * ps_marketing_channel: ',ps_marketing_channel,'\n',
                            ' * ps_flag_cow: ',ps_flag_cow))
   }
@@ -86,6 +92,17 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
           qp4ewc_log_info(lgr, 'build_freq_conf_fat',
                           paste0('A Tibble for female beef-on-beef has been created for build frequencies of conformation and fat'))
         }
+      }else if(ps_marketing_channel == l_constants$wording_conv_fat_calf){
+        ### # Slaughtercategory for female to consider is RG == 5
+        tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
+          dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_KV) %>%
+          dplyr::filter(is.na(Markenprogramm)) %>%
+          dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
+          na.omit()
+        if(pb_log){
+          qp4ewc_log_info(lgr, 'build_freq_conf_fat',
+                          paste0('A Tibble for female beef-on-dairy has been created for build frequencies of conformation and fat'))
+        }
     }else{
       ### # Slaughtercategory for female to consider is RG == 5
       tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
@@ -120,6 +137,17 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
         if(pb_log){
           qp4ewc_log_info(lgr, 'build_freq_conf_fat',
                           paste0('A Tibble for male beef-on-beef has been created for build frequencies of conformation and fat'))
+        }
+      }else if(ps_marketing_channel == l_constants$wording_conv_fat_calf){
+        ### # Slaughtercategory for female to consider is RG == 5
+        tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
+          dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_KV) %>%
+          dplyr::filter(is.na(Markenprogramm)) %>%
+          dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
+          na.omit()
+        if(pb_log){
+          qp4ewc_log_info(lgr, 'build_freq_conf_fat',
+                          paste0('A Tibble for female beef-on-dairy has been created for build frequencies of conformation and fat'))
         }
     }else{
       tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%

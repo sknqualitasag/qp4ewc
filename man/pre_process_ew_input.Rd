@@ -24,6 +24,7 @@ pre_process_ew_input(
   ps_input_file_price_cow,
   ps_input_file_price_bull,
   ps_input_file_price_heifer,
+  ps_input_file_price_calf,
   ps_input_file_ped,
   pb_log,
   plogger = NULL
@@ -67,6 +68,8 @@ pre_process_ew_input(
 \item{ps_input_file_price_bull}{path to file with price for bulls}
 
 \item{ps_input_file_price_heifer}{path to file with price for heifers}
+
+\item{ps_input_file_price_calf}{path to file with price for calf}
 
 \item{ps_input_file_ped}{path to pedigree file}
 

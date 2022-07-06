@@ -28,9 +28,9 @@ The parameters needed are:
 
 ```{r}
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
-s_sirebreed <- "LM"
+s_sirebreed <- "AN"
 # Dam breed can be for beef-on-beef: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental 
-s_dambreed <- "LM"
+s_dambreed <- "AN"
 # Production system according to ECOWEIGHT for beef-on-beef: 1,2,3 corresponding to purebreeding, crossbreeding, terminal crossing
 s_prodsystew <- "2"
 # Marketing channel can be: Natura-Beef, SwissPrimBeef
@@ -66,7 +66,7 @@ s_input_file_price_bull <- file.path(here::here(),"inst","extdata","ewbc","bull_
 # Path to input with heifer price. Based on this example an other file can be created with different input-values.
 s_input_file_price_heifer <- file.path(here::here(),"inst","extdata","ewbc","heifer_price.txt")
 # Path to pedigree input file
-s_input_file_ped <- file.path("/qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_data/ped_withBreedCode_damside")
+s_input_file_ped <- file.path("/qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/test_file/ped_withBreedCode_damside")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
