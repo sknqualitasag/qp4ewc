@@ -8,8 +8,6 @@ build_freq_conf_fat(
   ps_input_flp_tibble,
   ps_sex,
   ps_marketing_channel,
-  ps_sirebreed,
-  ps_dambreed,
   ps_flag_cow,
   pb_log = FALSE,
   plogger = NULL
@@ -21,10 +19,6 @@ build_freq_conf_fat(
 \item{ps_sex}{statement of sex ("F" for female and "M" for male)}
 
 \item{ps_marketing_channel}{statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3)}
-
-\item{ps_sirebreed}{sire breed}
-
-\item{ps_dambreed}{dam breed}
 
 \item{ps_flag_cow}{flag to select for cows or not (TRUE or FALSE)}
 
