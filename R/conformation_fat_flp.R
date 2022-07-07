@@ -16,8 +16,6 @@
 #'
 #' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
 #' @param ps_sex statement of sex ("F" for female and "M" for male)
-#' @param ps_sirebreed sire breed
-#' @param ps_dambreed dam breed
 #' @param ps_marketing_channel statement of marketing-channel for Natura-Beef (==2), SwissPrimBeef(==3)
 #' @param ps_flag_cow flag to select for cows or not (TRUE or FALSE)
 #' @param pb_log indicator whether logs should be produced
@@ -31,8 +29,6 @@
 build_freq_conf_fat <- function(ps_input_flp_tibble,
                                 ps_sex,
                                 ps_marketing_channel,
-                                ps_sirebreed,
-                                ps_dambreed,
                                 ps_flag_cow,
                                 pb_log = FALSE,
                                 plogger = NULL){
@@ -48,8 +44,6 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
     qp4ewc_log_info(lgr, 'build_freq_conf_fat',
                     paste0('Starting function with parameters:\n * ps_input_flp_tibble \n',
                            ' * ps_sex: ', ps_sex,'\n',
-                           ' * ps_sirebreed: ', ps_sirebreed,'\n',
-                           ' * ps_dambreed: ', ps_dambreed,'\n',
                            ' * ps_marketing_channel: ',ps_marketing_channel,'\n',
                            ' * ps_flag_cow: ',ps_flag_cow))
   }

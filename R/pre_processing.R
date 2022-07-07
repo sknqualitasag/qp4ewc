@@ -96,12 +96,12 @@ pre_process_ew_input <- function(ps_sirebreed,
 
   ### # Major step 1 ### #
   ### # Create directory per scenario with input-parameter-file for ECOWEIGHT
-  qp4ewc::create_directory_scenario(ps_sirebreed,
-                                    ps_dambreed,
-                                    ps_prodsystew,
-                                    ps_marketchannel,
-                                    ps_path_directory2create,
-                                    pb_log,
+  qp4ewc::create_directory_scenario(ps_sirebreed = ps_sirebreed,
+                                    ps_dambreed = ps_dambreed,
+                                    ps_prodsystew = ps_prodsystew,
+                                    ps_marketchannel = ps_marketchannel,
+                                    ps_path_directory2create = ps_path_directory2create,
+                                    pb_log = pb_log,
                                     plogger = lgr)
 
 
@@ -115,8 +115,8 @@ pre_process_ew_input <- function(ps_sirebreed,
  # ****************************************************************************
  ### # Major step 2 ### #
  ### # Read file with input from literature research for input-parameter-file of ECOWEIGHT
- tbl_input_literature <- qp4ewc::read_file_input(ps_input_file_literature,
-                                                 pb_log,
+ tbl_input_literature <- qp4ewc::read_file_input(ps_input_file = ps_input_file_literature,
+                                                 pb_log = pb_log,
                                                  plogger = lgr)
  ### # Update input-parameter-file coming from literature of ECOWEIGHT
  if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
@@ -126,25 +126,25 @@ pre_process_ew_input <- function(ps_sirebreed,
                                                                                          l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AN,
-                                       pb_log,
+                                       pb_log = pb_log,
                                        plogger = lgr)
 }else if(ps_sirebreed == "AU" || ps_sirebreed == "OB" || ps_sirebreed == "CH"){
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
                                       ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
                                       ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AUCHOB,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 }else if(ps_sirebreed == "LM"){
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
                                       ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
                                       ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_LM,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 }else if(ps_sirebreed == "SI"){
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
                                       ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
                                       ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_SI,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
  }else{
    qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
@@ -175,14 +175,14 @@ pre_process_ew_input <- function(ps_sirebreed,
                                                                                          tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
                                        ps_statement2search = tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
                                        ps_value2update = tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
-                                       pb_log,
+                                       pb_log = pb_log,
                                        plogger = lgr)
  }
 
 
  ### # Read file with input to set parameter per scenario for input-parameter-file of ECOWEIGHT
- tbl_input_par <- qp4ewc::read_file_input(ps_input_file_par,
-                                          pb_log,
+ tbl_input_par <- qp4ewc::read_file_input(ps_input_file = ps_input_file_par,
+                                          pb_log = pb_log,
                                           plogger = lgr)
  ### # Update input-parameter-file coming from parameter of ECOWEIGHT
  if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
@@ -202,7 +202,7 @@ pre_process_ew_input <- function(ps_sirebreed,
    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$prodsyst,
                                        ps_value2update = prodsyst,
-                                       pb_log,
+                                       pb_log = pb_log,
                                        plogger = lgr)
 
 
@@ -228,7 +228,7 @@ pre_process_ew_input <- function(ps_sirebreed,
    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$maturitytype,
                                      ps_value2update = maturitytype_status,
-                                     pb_log,
+                                     pb_log = pb_log,
                                      plogger = lgr)
 
  }
@@ -258,13 +258,13 @@ pre_process_ew_input <- function(ps_sirebreed,
      qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
                                          ps_statement2search = l_constants_ew_input_beefOndairy$maturitytype_purebred,
                                          ps_value2update = maturitytype_status_purebred,
-                                         pb_log,
+                                         pb_log = pb_log,
                                          plogger = lgr)
 
      qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
                                          ps_statement2search = l_constants_ew_input_beefOndairy$maturitytype_crossbred,
                                          ps_value2update = maturitytype_status_crossbred,
-                                         pb_log,
+                                         pb_log = pb_log,
                                          plogger = lgr)
    }
 
@@ -276,26 +276,26 @@ pre_process_ew_input <- function(ps_sirebreed,
    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_heifer,
                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_AI,
-                                       pb_log,
+                                       pb_log = pb_log,
                                        plogger = lgr)
 
    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_cow,
                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_AI,
-                                       pb_log,
+                                       pb_log = pb_log,
                                        plogger = lgr)
  ### # 2 : Natural mating is used throughout.
  }else if(ps_prodsystew == as.character(3)){
    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_heifer,
                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_NM,
-                                       pb_log,
+                                       pb_log = pb_log,
                                        plogger = lgr)
 
    qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
                                        ps_statement2search = l_constants_ewbc_input_beefOnbeef$matingtype_cow,
                                        ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_NM,
-                                       pb_log,
+                                       pb_log = pb_log,
                                        plogger = lgr)
  }
 
@@ -319,15 +319,15 @@ pre_process_ew_input <- function(ps_sirebreed,
                                                                                          tbl_input_par[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
                                        ps_statement2search = tbl_input_par[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
                                        ps_value2update = tbl_input_par[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
-                                       pb_log,
+                                       pb_log = pb_log,
                                        plogger = lgr)
  }
 
 
  ### # If productionsystem 1 : Read file with input for tested bulls for input-parameter-file of ECOWEIGHT
  if(ps_prodsystew == as.character(1)){
-   tbl_input_testedbull <- qp4ewc::read_file_input(ps_input_file_testedbulls,
-                                                   pb_log,
+   tbl_input_testedbull <- qp4ewc::read_file_input(ps_input_file = ps_input_file_testedbulls,
+                                                   pb_log = pb_log,
                                                    plogger = lgr)
 
    for(l in 1:nrow(tbl_input_testedbull)){
@@ -340,7 +340,7 @@ pre_process_ew_input <- function(ps_sirebreed,
                                                                                            tbl_input_testedbull[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
                                          ps_statement2search = tbl_input_testedbull[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
                                          ps_value2update = tbl_input_testedbull[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
-                                         pb_log,
+                                         pb_log = pb_log,
                                          plogger = lgr)
    }
  }
@@ -348,9 +348,9 @@ pre_process_ew_input <- function(ps_sirebreed,
 
  ### # If productionsystem 3 :Read file with input from purchased replacement heifers for input-parameter-file of ECOWEIGHT
  if(ps_prodsystew == as.character(3)){
-   tbl_input_purchasedreplacementheifers <- qp4ewc::read_file_input(ps_input_file_purchasedreplacementheifers,
-                                                   pb_log,
-                                                   plogger = lgr)
+   tbl_input_purchasedreplacementheifers <- qp4ewc::read_file_input(ps_input_file = ps_input_file_purchasedreplacementheifers,
+                                                                    pb_log = pb_log,
+                                                                    plogger = lgr)
    for(l in 1:nrow(tbl_input_purchasedreplacementheifers)){
      if(pb_log){
        qp4ewc_log_info(lgr, 'pre_process_ew_input',
@@ -361,7 +361,7 @@ pre_process_ew_input <- function(ps_sirebreed,
                                                                                            tbl_input_purchasedreplacementheifers[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
                                          ps_statement2search = tbl_input_purchasedreplacementheifers[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
                                          ps_value2update = tbl_input_purchasedreplacementheifers[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
-                                         pb_log,
+                                         pb_log = pb_log,
                                          plogger = lgr)
    }
  }
@@ -374,16 +374,16 @@ pre_process_ew_input <- function(ps_sirebreed,
   # ****************************************************************************
   ### # Major step 3 ### #
   ### # Pre-processing the calving data for input-parameter-file of ECOWEIGHT
-  qp4ewc::pre_process_ew_input_calving(ps_sirebreed,
-                                       ps_dambreed,
-                                       ps_prodsystew,
-                                       ps_marketchannel,
-                                       ps_path_directory2create,
-                                       ps_input_file_calving_statement,
-                                       ps_input_file_calving,
+  qp4ewc::pre_process_ew_input_calving(ps_sirebreed = ps_sirebreed,
+                                       ps_dambreed = ps_dambreed,
+                                       ps_prodsystew = ps_prodsystew,
+                                       ps_marketchannel = ps_marketchannel,
+                                       ps_path_directory2create = ps_path_directory2create,
+                                       ps_input_file_calving_statement = ps_input_file_calving_statement,
+                                       ps_input_file_calving = ps_input_file_calving,
                                        ps_start_calving_date = ps_start_date,
                                        ps_end_calving_date = ps_end_date,
-                                       pb_log,
+                                       pb_log = pb_log,
                                        plogger = lgr)
 
 
@@ -399,31 +399,31 @@ pre_process_ew_input <- function(ps_sirebreed,
  ### # Major step 4 ### #
  ### # production system beef-on-beef
  if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
-   qp4ewc::pre_process_ewbc_input_progeny_data_flp(ps_sirebreed,
-                                                   ps_dambreed,
-                                                   ps_prodsystew,
-                                                   ps_marketchannel,
-                                                   ps_path_directory2create,
-                                                   ps_input_file_progeny_flp_statement,
-                                                   ps_input_file_flp,
+   qp4ewc::pre_process_ewbc_input_progeny_data_flp(ps_sirebreed = ps_sirebreed,
+                                                   ps_dambreed = ps_dambreed,
+                                                   ps_prodsystew = ps_prodsystew,
+                                                   ps_marketchannel = ps_marketchannel,
+                                                   ps_path_directory2create = ps_path_directory2create,
+                                                   ps_input_file_progeny_flp_statement = ps_input_file_progeny_flp_statement,
+                                                   ps_input_file_flp = ps_input_file_flp,
                                                    ps_start_flp_date = ps_start_date,
                                                    ps_end_flp_date = ps_end_date,
                                                    ps_input_file_ped,
-                                                   pb_log,
+                                                   pb_log = pb_log,
                                                    plogger = lgr)
  }else{
    ### # production system beef-on-dairy
-   qp4ewc::pre_process_ewdc_input_progeny_data_flp(ps_sirebreed,
-                                                   ps_dambreed,
-                                                   ps_prodsystew,
-                                                   ps_marketchannel,
-                                                   ps_path_directory2create,
-                                                   ps_input_file_progeny_flp_statement,
-                                                   ps_input_file_flp,
+   qp4ewc::pre_process_ewdc_input_progeny_data_flp(ps_sirebreed = ps_sirebreed,
+                                                   ps_dambreed = ps_dambreed,
+                                                   ps_prodsystew = ps_prodsystew,
+                                                   ps_marketchannel = ps_marketchannel,
+                                                   ps_path_directory2create = ps_path_directory2create,
+                                                   ps_input_file_progeny_flp_statement = ps_input_file_progeny_flp_statement,
+                                                   ps_input_file_flp = ps_input_file_flp,
                                                    ps_start_flp_date = ps_start_date,
                                                    ps_end_flp_date = ps_end_date,
-                                                   ps_input_file_ped,
-                                                   pb_log,
+                                                   ps_input_file_ped = ps_input_file_ped,
+                                                   pb_log = pb_log,
                                                    plogger = lgr)
  }
 
@@ -439,38 +439,38 @@ pre_process_ew_input <- function(ps_sirebreed,
  # ****************************************************************************
  ### # Major step 5 ### #
 if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
- qp4ewc::pre_process_ewbc_input_carcass_data_flp(ps_sirebreed,
-                                               ps_dambreed,
-                                               ps_prodsystew,
-                                               ps_marketchannel,
-                                               ps_path_directory2create,
-                                               ps_input_file_flp_carcass_matrix_statement,
-                                               ps_input_file_flp,
-                                               s_input_file_ped,
-                                               ps_start_flp_date = ps_start_date,
-                                               ps_end_flp_date = ps_end_date,
-                                               ps_input_file_price_cow,
-                                               ps_input_file_price_bull,
-                                               ps_input_file_price_heifer,
-                                               pb_log,
-                                               plogger = lgr)
+ qp4ewc::pre_process_ewbc_input_carcass_data_flp(ps_sirebreed = ps_sirebreed,
+                                                 ps_dambreed = ps_dambreed,
+                                                 ps_prodsystew = ps_prodsystew,
+                                                 ps_marketchannel = ps_marketchannel,
+                                                 ps_path_directory2create = ps_path_directory2create,
+                                                 ps_input_file_flp_carcass_matrix_statement = ps_input_file_flp_carcass_matrix_statement,
+                                                 ps_input_file_flp = ps_input_file_flp,
+                                                 ps_input_file_ped = ps_input_file_ped,
+                                                 ps_start_flp_date = ps_start_date,
+                                                 ps_end_flp_date = ps_end_date,
+                                                 ps_input_file_price_cow = ps_input_file_price_cow,
+                                                 ps_input_file_price_bull = ps_input_file_price_bull,
+                                                 ps_input_file_price_heifer = ps_input_file_price_heifer,
+                                                 pb_log = pb_log,
+                                                 plogger = lgr)
 }else{
   ### # production system beef-on-dairy
-  qp4ewc::pre_process_ewdc_input_carcass_data_flp(ps_sirebreed,
-                                                  ps_dambreed,
-                                                  ps_prodsystew,
-                                                  ps_marketchannel,
-                                                  ps_path_directory2create,
-                                                  ps_input_file_flp_carcass_matrix_statement,
-                                                  ps_input_file_flp,
-                                                  ps_input_file_ped,
+  qp4ewc::pre_process_ewdc_input_carcass_data_flp(ps_sirebreed = ps_sirebreed,
+                                                  ps_dambreed = ps_dambreed,
+                                                  ps_prodsystew = ps_prodsystew,
+                                                  ps_marketchannel = ps_marketchannel,
+                                                  ps_path_directory2create = ps_path_directory2create,
+                                                  ps_input_file_flp_carcass_matrix_statement = ps_input_file_flp_carcass_matrix_statement,
+                                                  ps_input_file_flp = ps_input_file_flp,
+                                                  ps_input_file_ped = ps_input_file_ped,
                                                   ps_start_flp_date = ps_start_date,
                                                   ps_end_flp_date = ps_end_date,
-                                                  ps_input_file_price_cow,
-                                                  ps_input_file_price_bull,
-                                                  ps_input_file_price_heifer,
-                                                  ps_input_file_price_calf,
-                                                  pb_log,
+                                                  ps_input_file_price_cow = ps_input_file_price_cow,
+                                                  ps_input_file_price_bull = ps_input_file_price_bull,
+                                                  ps_input_file_price_heifer = ps_input_file_price_heifer,
+                                                  ps_input_file_price_calf = ps_input_file_price_calf,
+                                                  pb_log = pb_log,
                                                   plogger = lgr)
 }
 
@@ -539,16 +539,16 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
 
 
   ### # Read file with statement based on calving for input-parameter-file of ECOWEIGHT
-  tbl_input_statement_calving <- qp4ewc::read_file_input(ps_input_file_calving_statement,
-                                                         pb_log,
+  tbl_input_statement_calving <- qp4ewc::read_file_input(ps_input_file = ps_input_file_calving_statement,
+                                                         pb_log = pb_log,
                                                          plogger = lgr)
 
 
   ### # Read file with calving data
-  tbl_calving <- qp4ewc::read_file_input_calving(ps_input_file_calving,
-                                                 ps_start_calving_date,
-                                                 ps_end_calving_date,
-                                                 pb_log,
+  tbl_calving <- qp4ewc::read_file_input_calving(ps_input_file_calving = ps_input_file_calving,
+                                                 ps_start_calving_date = ps_start_calving_date,
+                                                 ps_end_calving_date = ps_end_calving_date,
+                                                 pb_log = pb_log,
                                                  plogger = lgr)
 
   ### # Get the constants for calving
@@ -560,12 +560,12 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
   # Update statement-calving-input from the data by calculating abortion rate
   abortrate_prim <- qp4ewc::calculate_abortion_rate(ps_input_calving_tibble = tbl_calving,
                                                     ps_statement_firstlactation = TRUE,
-                                                    pb_log,
+                                                    pb_log = pb_log,
                                                     plogger = lgr)
 
   abortrate_multi <- qp4ewc::calculate_abortion_rate(ps_input_calving_tibble = tbl_calving,
                                                      ps_statement_firstlactation = FALSE,
-                                                     pb_log,
+                                                     pb_log = pb_log,
                                                      plogger = lgr)
 
   #updates depending on production system
@@ -604,7 +604,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[idx_row_abortrate,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_abortrate,idx_col_input],
                                       ps_value2update = value2update_abortrate,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -613,12 +613,12 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
   stillbirthrate_prim_easy <- qp4ewc::calculate_stillbirth_rate(ps_input_calving_tibble = tbl_calving,
                                                                 ps_statement_firstlactation = TRUE,
                                                                 ps_statement_easycalving = TRUE,
-                                                                pb_log,
+                                                                pb_log = pb_log,
                                                                 plogger = lgr)
   stillbirthrate_multi_easy <- qp4ewc::calculate_stillbirth_rate(ps_input_calving_tibble = tbl_calving,
                                                                  ps_statement_firstlactation = FALSE,
                                                                  ps_statement_easycalving = TRUE,
-                                                                 pb_log,
+                                                                 pb_log = pb_log,
                                                                  plogger = lgr)
 
   #updates depending on production system
@@ -659,20 +659,20 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[idx_row_stillborn_easy,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_stillborn_easy,idx_col_input],
                                       ps_value2update = value2update_stillbirthrate_easy,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 # stillbirth rate difficult calving
   stillbirthrate_prim_difficult <- qp4ewc::calculate_stillbirth_rate(ps_input_calving_tibble = tbl_calving,
                                                                      ps_statement_firstlactation = TRUE,
                                                                      ps_statement_easycalving = FALSE,
-                                                                     pb_log,
+                                                                     pb_log = pb_log,
                                                                      plogger = lgr)
 
   stillbirthrate_multi_difficult <- qp4ewc::calculate_stillbirth_rate(ps_input_calving_tibble = tbl_calving,
                                                                       ps_statement_firstlactation = FALSE,
                                                                       ps_statement_easycalving = FALSE,
-                                                                      pb_log,
+                                                                      pb_log = pb_log,
                                                                       plogger = lgr)
   # Check if stillbirthrate_prim_difficult is zero. If it is the case, set a default value
   if(stillbirthrate_prim_difficult == 0){
@@ -690,7 +690,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[idx_row_stillborn_diff,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_stillborn_diff,idx_col_input],
                                       ps_value2update = value2update_stillbirthrate_difficult,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -718,14 +718,14 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[idx_row_class_calving,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_class_calving,idx_col_input],
                                       ps_value2update = n_class_calving,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                         tbl_input_statement_calving[idx_row_class_dystocia,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_class_dystocia,idx_col_input],
                                       ps_value2update = class_dystocia,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -767,97 +767,97 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                           ps_statement_firstlactation = TRUE,
                                                                           ps_sex = sex_female,
                                                                           ps_calvingscore = calvingscore2,
-                                                                          ps_sirebreed,
-                                                                          ps_dambreed,
-                                                                          pb_log,
+                                                                          ps_sirebreed = ps_sirebreed,
+                                                                          ps_dambreed = ps_dambreed,
+                                                                          pb_log = pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_prim_F_3 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
                                                                           ps_sex = sex_female,
                                                                           ps_calvingscore = calvingscore3,
-                                                                          ps_sirebreed,
-                                                                          ps_dambreed,
-                                                                          pb_log,
+                                                                          ps_sirebreed = ps_sirebreed,
+                                                                          ps_dambreed = ps_dambreed,
+                                                                          pb_log = pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_prim_F_4 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
                                                                           ps_sex = sex_female,
                                                                           ps_calvingscore = calvingscore4,
-                                                                          ps_sirebreed,
-                                                                          ps_dambreed,
-                                                                          pb_log,
+                                                                          ps_sirebreed = ps_sirebreed,
+                                                                          ps_dambreed = ps_dambreed,
+                                                                          pb_log = pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_multi_F_2 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
                                                                            ps_sex = sex_female,
                                                                            ps_calvingscore = calvingscore2,
-                                                                           ps_sirebreed,
-                                                                           ps_dambreed,
-                                                                           pb_log,
+                                                                           ps_sirebreed = ps_sirebreed,
+                                                                           ps_dambreed = ps_dambreed,
+                                                                           pb_log = pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_multi_F_3 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
                                                                            ps_sex = sex_female,
                                                                            ps_calvingscore = calvingscore3,
-                                                                           ps_sirebreed,
-                                                                           ps_dambreed,
-                                                                           pb_log,
+                                                                           ps_sirebreed = ps_sirebreed,
+                                                                           ps_dambreed = ps_dambreed,
+                                                                           pb_log = pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_multi_F_4 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
                                                                            ps_sex = sex_female,
                                                                            ps_calvingscore = calvingscore4,
-                                                                           ps_sirebreed,
-                                                                           ps_dambreed,
-                                                                           pb_log,
+                                                                           ps_sirebreed = ps_sirebreed,
+                                                                           ps_dambreed = ps_dambreed,
+                                                                           pb_log = pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_prim_M_2 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
                                                                           ps_sex = sex_male,
                                                                           ps_calvingscore = calvingscore2,
-                                                                          ps_sirebreed,
-                                                                          ps_dambreed,
-                                                                          pb_log,
+                                                                          ps_sirebreed = ps_sirebreed,
+                                                                          ps_dambreed = ps_dambreed,
+                                                                          pb_log = pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_prim_M_3 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
                                                                           ps_sex = sex_male,
                                                                           ps_calvingscore = calvingscore3,
-                                                                          ps_sirebreed,
-                                                                          ps_dambreed,
-                                                                          pb_log,
+                                                                          ps_sirebreed = ps_sirebreed,
+                                                                          ps_dambreed = ps_dambreed,
+                                                                          pb_log = pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_prim_M_4 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                           ps_statement_firstlactation = TRUE,
                                                                           ps_sex = sex_male,
                                                                           ps_calvingscore = calvingscore4,
-                                                                          ps_sirebreed,
-                                                                          ps_dambreed,
-                                                                          pb_log,
+                                                                          ps_sirebreed = ps_sirebreed,
+                                                                          ps_dambreed = ps_dambreed,
+                                                                          pb_log = pb_log,
                                                                           plogger = lgr)
   calvingscore_prop_multi_M_2 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
                                                                            ps_sex = sex_male,
                                                                            ps_calvingscore = calvingscore2,
-                                                                           ps_sirebreed,
-                                                                           ps_dambreed,
-                                                                           pb_log,
+                                                                           ps_sirebreed = ps_sirebreed,
+                                                                           ps_dambreed = ps_dambreed,
+                                                                           pb_log = pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_multi_M_3 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
                                                                            ps_sex = sex_male,
                                                                            ps_calvingscore = calvingscore3,
-                                                                           ps_sirebreed,
-                                                                           ps_dambreed,
-                                                                           pb_log,
+                                                                           ps_sirebreed = ps_sirebreed,
+                                                                           ps_dambreed = ps_dambreed,
+                                                                           pb_log = pb_log,
                                                                            plogger = lgr)
   calvingscore_prop_multi_M_4 <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                            ps_statement_firstlactation = FALSE,
                                                                            ps_sex = sex_male,
                                                                            ps_calvingscore = calvingscore4,
-                                                                           ps_sirebreed,
-                                                                           ps_dambreed,
-                                                                           pb_log,
+                                                                           ps_sirebreed = ps_sirebreed,
+                                                                           ps_dambreed = ps_dambreed,
+                                                                           pb_log = pb_log,
                                                                            plogger = lgr)
 
   value2update_calvingscoreprop_prim_F_2 <- paste0(c(calvingscore_prop_prim_F_2, rep(calvingscore_prop_multi_F_2,9)),collapse = " ")
@@ -866,7 +866,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[idx_row_calvingscore2_female,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore2_female,idx_col_input],
                                       ps_value2update = value2update_calvingscoreprop_prim_F_2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   value2update_calvingscoreprop_prim_F_3 <- paste0(c(calvingscore_prop_prim_F_3, rep(calvingscore_prop_multi_F_3,9)),collapse = " ")
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -874,7 +874,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[idx_row_calvingscore3_female,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore3_female,idx_col_input],
                                       ps_value2update = value2update_calvingscoreprop_prim_F_3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   value2update_calvingscoreprop_prim_F_4 <- paste0(c(calvingscore_prop_prim_F_4, rep(calvingscore_prop_multi_F_4,9)),collapse = " ")
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -882,7 +882,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[idx_row_calvingscore4_female,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore4_female,idx_col_input],
                                       ps_value2update = value2update_calvingscoreprop_prim_F_4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   value2update_calvingscoreprop_prim_M_2 <- paste0(c(calvingscore_prop_prim_M_2, rep(calvingscore_prop_multi_M_2,9)),collapse = " ")
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -890,7 +890,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[idx_row_calvingscore2_male,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore2_male,idx_col_input],
                                       ps_value2update = value2update_calvingscoreprop_prim_M_2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   value2update_calvingscoreprop_prim_M_3 <- paste0(c(calvingscore_prop_prim_M_3, rep(calvingscore_prop_multi_M_3,9)),collapse = " ")
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -898,7 +898,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[idx_row_calvingscore3_male,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore3_male,idx_col_input],
                                       ps_value2update = value2update_calvingscoreprop_prim_M_3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   value2update_calvingscoreprop_prim_M_4 <- paste0(c(calvingscore_prop_prim_M_4, rep(calvingscore_prop_multi_M_4,9)),collapse = " ")
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -906,7 +906,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[idx_row_calvingscore4_male,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore4_male,idx_col_input],
                                       ps_value2update = value2update_calvingscoreprop_prim_M_4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -932,96 +932,96 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                             ps_sex = sex_female,
                                                                             ps_calvingscore = calvingscore2,
                                                                             ps_sirebreed = ps_dambreed,
-                                                                            ps_dambreed,
-                                                                            pb_log,
+                                                                            ps_dambreed = ps_dambreed,
+                                                                            pb_log = pb_log,
                                                                             plogger = lgr)
     calvingscore_prop_prim_F_3_pure <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                             ps_statement_firstlactation = TRUE,
                                                                             ps_sex = sex_female,
                                                                             ps_calvingscore = calvingscore3,
                                                                             ps_sirebreed = ps_dambreed,
-                                                                            ps_dambreed,
-                                                                            pb_log,
+                                                                            ps_dambreed = ps_dambreed,
+                                                                            pb_log = pb_log,
                                                                             plogger = lgr)
     calvingscore_prop_prim_F_4_pure <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                             ps_statement_firstlactation = TRUE,
                                                                             ps_sex = sex_female,
                                                                             ps_calvingscore = calvingscore4,
                                                                             ps_sirebreed = ps_dambreed,
-                                                                            ps_dambreed,
-                                                                            pb_log,
+                                                                            ps_dambreed = ps_dambreed,
+                                                                            pb_log = pb_log,
                                                                             plogger = lgr)
     calvingscore_prop_multi_F_2_pure <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                              ps_statement_firstlactation = FALSE,
                                                                              ps_sex = sex_female,
                                                                              ps_calvingscore = calvingscore2,
                                                                              ps_sirebreed = ps_dambreed,
-                                                                             ps_dambreed,
-                                                                             pb_log,
+                                                                             ps_dambreed = ps_dambreed,
+                                                                             pb_log = pb_log,
                                                                              plogger = lgr)
     calvingscore_prop_multi_F_3_pure <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                              ps_statement_firstlactation = FALSE,
                                                                              ps_sex = sex_female,
                                                                              ps_calvingscore = calvingscore3,
                                                                              ps_sirebreed = ps_dambreed,
-                                                                             ps_dambreed,
-                                                                             pb_log,
+                                                                             ps_dambreed = ps_dambreed,
+                                                                             pb_log = pb_log,
                                                                              plogger = lgr)
     calvingscore_prop_multi_F_4_pure <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                              ps_statement_firstlactation = FALSE,
                                                                              ps_sex = sex_female,
                                                                              ps_calvingscore = calvingscore4,
                                                                              ps_sirebreed = ps_dambreed,
-                                                                             ps_dambreed,
-                                                                             pb_log,
+                                                                             ps_dambreed = ps_dambreed,
+                                                                             pb_log = pb_log,
                                                                              plogger = lgr)
     calvingscore_prop_prim_M_2_pure <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                             ps_statement_firstlactation = TRUE,
                                                                             ps_sex = sex_male,
                                                                             ps_calvingscore = calvingscore2,
                                                                             ps_sirebreed = ps_dambreed,
-                                                                            ps_dambreed,
-                                                                            pb_log,
+                                                                            ps_dambreed = ps_dambreed,
+                                                                            pb_log = pb_log,
                                                                             plogger = lgr)
     calvingscore_prop_prim_M_3_pure <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                             ps_statement_firstlactation = TRUE,
                                                                             ps_sex = sex_male,
                                                                             ps_calvingscore = calvingscore3,
                                                                             ps_sirebreed = ps_dambreed,
-                                                                            ps_dambreed,
-                                                                            pb_log,
+                                                                            ps_dambreed = ps_dambreed,
+                                                                            pb_log = pb_log,
                                                                             plogger = lgr)
     calvingscore_prop_prim_M_4_pure <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                             ps_statement_firstlactation = TRUE,
                                                                             ps_sex = sex_male,
                                                                             ps_calvingscore = calvingscore4,
                                                                             ps_sirebreed = ps_dambreed,
-                                                                            ps_dambreed,
-                                                                            pb_log,
+                                                                            ps_dambreed = ps_dambreed,
+                                                                            pb_log = pb_log,
                                                                             plogger = lgr)
     calvingscore_prop_multi_M_2_pure <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                              ps_statement_firstlactation = FALSE,
                                                                              ps_sex = sex_male,
                                                                              ps_calvingscore = calvingscore2,
                                                                              ps_sirebreed = ps_dambreed,
-                                                                             ps_dambreed,
-                                                                             pb_log,
+                                                                             ps_dambreed = ps_dambreed,
+                                                                             pb_log = pb_log,
                                                                              plogger = lgr)
     calvingscore_prop_multi_M_3_pure <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                              ps_statement_firstlactation = FALSE,
                                                                              ps_sex = sex_male,
                                                                              ps_calvingscore = calvingscore3,
                                                                              ps_sirebreed = ps_dambreed,
-                                                                             ps_dambreed,
-                                                                             pb_log,
+                                                                             ps_dambreed = ps_dambreed,
+                                                                             pb_log = pb_log,
                                                                              plogger = lgr)
     calvingscore_prop_multi_M_4_pure <- qp4ewc::calculate_calvingscore_proportion(ps_input_calving_tibble = tbl_calving,
                                                                              ps_statement_firstlactation = FALSE,
                                                                              ps_sex = sex_male,
                                                                              ps_calvingscore = calvingscore4,
                                                                              ps_sirebreed = ps_dambreed,
-                                                                             ps_dambreed,
-                                                                             pb_log,
+                                                                             ps_dambreed = ps_dambreed,
+                                                                             pb_log = pb_log,
                                                                              plogger = lgr)
 
     value2update_calvingscoreprop_prim_F_2_pure <- paste0(c(calvingscore_prop_prim_F_2_pure, rep(calvingscore_prop_multi_F_2_pure,9)),collapse = " ")
@@ -1030,7 +1030,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                           tbl_input_statement_calving[idx_row_calvingscore2_female_pure,idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore2_female_pure,idx_col_input],
                                         ps_value2update = value2update_calvingscoreprop_prim_F_2_pure,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     value2update_calvingscoreprop_prim_F_3_pure <- paste0(c(calvingscore_prop_prim_F_3_pure, rep(calvingscore_prop_multi_F_3_pure,9)),collapse = " ")
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1038,7 +1038,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                           tbl_input_statement_calving[idx_row_calvingscore3_female_pure,idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore3_female_pure,idx_col_input],
                                         ps_value2update = value2update_calvingscoreprop_prim_F_3_pure,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     value2update_calvingscoreprop_prim_F_4_pure <- paste0(c(calvingscore_prop_prim_F_4_pure, rep(calvingscore_prop_multi_F_4_pure,9)),collapse = " ")
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1046,7 +1046,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                           tbl_input_statement_calving[idx_row_calvingscore4_female_pure,idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore4_female_pure,idx_col_input],
                                         ps_value2update = value2update_calvingscoreprop_prim_F_4_pure,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     value2update_calvingscoreprop_prim_M_2_pure <- paste0(c(calvingscore_prop_prim_M_2_pure, rep(calvingscore_prop_multi_M_2_pure,9)),collapse = " ")
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1054,7 +1054,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                           tbl_input_statement_calving[idx_row_calvingscore2_male_pure,idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore2_male_pure,idx_col_input],
                                         ps_value2update = value2update_calvingscoreprop_prim_M_2_pure,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     value2update_calvingscoreprop_prim_M_3_pure <- paste0(c(calvingscore_prop_prim_M_3_pure, rep(calvingscore_prop_multi_M_3_pure,9)),collapse = " ")
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1062,7 +1062,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                           tbl_input_statement_calving[idx_row_calvingscore3_male_pure,idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore3_male_pure,idx_col_input],
                                         ps_value2update = value2update_calvingscoreprop_prim_M_3_pure,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     value2update_calvingscoreprop_prim_M_4_pure <- paste0(c(calvingscore_prop_prim_M_4_pure, rep(calvingscore_prop_multi_M_4_pure,9)),collapse = " ")
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1070,7 +1070,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                           tbl_input_statement_calving[idx_row_calvingscore4_male_pure,idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_calving[idx_row_calvingscore4_male_pure,idx_col_input],
                                         ps_value2update = value2update_calvingscoreprop_prim_M_4_pure,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
   }
@@ -1102,13 +1102,13 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
   calvingdied24h_prop_prim_easy <- qp4ewc::calculate_calvesdied24h_proportion(ps_input_calving_tibble = tbl_calving,
                                                                               ps_statement_firstlactation = TRUE,
                                                                               ps_statement_easycalving = TRUE,
-                                                                              pb_log,
+                                                                              pb_log = pb_log,
                                                                               plogger = lgr)
 
   calvingdied24h_prop_multi_easy <- qp4ewc::calculate_calvesdied24h_proportion(ps_input_calving_tibble = tbl_calving,
                                                                                ps_statement_firstlactation = FALSE,
                                                                                ps_statement_easycalving = TRUE,
-                                                                               pb_log,
+                                                                               pb_log = pb_log,
                                                                                plogger = lgr)
 
   # Check if calvingdied24h_prop_prim_easy is zero. If it is the case, set a default value
@@ -1128,17 +1128,17 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[idx_row_calfdied48h_easy,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_calfdied48h_easy,idx_col_input],
                                       ps_value2update = value2update_calvingdied24hprop_easy,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   calvingdied24h_prop_prim_difficult <- qp4ewc::calculate_calvesdied24h_proportion(ps_input_calving_tibble = tbl_calving,
                                                                                    ps_statement_firstlactation = TRUE,
                                                                                    ps_statement_easycalving = FALSE,
-                                                                                   pb_log,
+                                                                                   pb_log = pb_log,
                                                                                    plogger = lgr)
   calvingdied24h_prop_multi_difficult <- qp4ewc::calculate_calvesdied24h_proportion(ps_input_calving_tibble = tbl_calving,
                                                                                     ps_statement_firstlactation = FALSE,
                                                                                     ps_statement_easycalving = FALSE,
-                                                                                    pb_log,
+                                                                                    pb_log = pb_log,
                                                                                     plogger = lgr)
   # Check if calvingdied24h_prop_prim_difficult is zero. If it is the case, set a default value
   if(calvingdied24h_prop_prim_difficult == 0){
@@ -1157,7 +1157,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[idx_row_calfdied48h_dystocia,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[idx_row_calfdied48h_dystocia,idx_col_input],
                                       ps_value2update = value2update_calvingdied24hprop_difficult,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -1165,14 +1165,14 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
   # Only required for beef-on-beef
   if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
   calf_loss <- qp4ewc::calculate_calvesdiedafter24h_proportion(ps_input_calving_tibble = tbl_calving,
-                                                               pb_log,
+                                                               pb_log = pb_log,
                                                                plogger = lgr)
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                         tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfloss,l_constants_calving_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_calfloss,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = calf_loss,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -1183,7 +1183,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_AI_dystocia,l_constants_calving_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_AI_dystocia,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = dystocia_AI,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -1193,7 +1193,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
                                                                                         tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_AI_nodystocia,l_constants_calving_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_calving[l_constants_calving_beefOnbeef$idx_row_AI_nodystocia,l_constants_calving_beefOnbeef$idx_col_input],
                                       ps_value2update = easy_AI,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -1258,8 +1258,8 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
 
   ### # Read file with statement based on progeny data flp for input-parameter-file of ECOWEIGHT
-  tbl_input_statement_flp <- qp4ewc::read_file_input(ps_input_file_progeny_flp_statement,
-                                                     pb_log,
+  tbl_input_statement_flp <- qp4ewc::read_file_input(ps_input_file = ps_input_file_progeny_flp_statement,
+                                                     pb_log = pb_log,
                                                      plogger = lgr)
 
 
@@ -1267,7 +1267,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
   tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp,
                                          ps_start_flp_date,
                                          ps_end_flp_date,
-                                         pb_log,
+                                         pb_log = pb_log,
                                          plogger = lgr)
 
 
@@ -1277,7 +1277,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
   ### # Read pedigree file
   tbl_ped <- read_file_input_ped(ps_input_file_ped,
-                                 pb_log,
+                                 pb_log = pb_log,
                                  plogger = lgr)
 
 
@@ -1301,29 +1301,29 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     female_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                     ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                     ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
-                                                    ps_prodsystew,
-                                                    pb_log,
+                                                    ps_prodsystew = ps_prodsystew,
+                                                    pb_log = pb_log,
                                                     plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_bw_female,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_bw_female,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = female_bw,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
     male_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                   ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                   ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
-                                                  ps_prodsystew,
-                                                  pb_log,
+                                                  ps_prodsystew = ps_prodsystew,
+                                                  pb_log = pb_log,
                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_bw_male,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_bw_male,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = male_bw,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -1331,29 +1331,29 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     livewt_slaughter_f <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
-                                                                      ps_prodsystew,
-                                                                      pb_log,
+                                                                      ps_prodsystew = ps_prodsystew,
+                                                                      pb_log = pb_log,
                                                                       plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_lw_heifer_slaughter,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_lw_heifer_slaughter,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = livewt_slaughter_f,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
     livewt_slaughter_m <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
-                                                                      ps_prodsystew,
-                                                                      pb_log,
+                                                                      ps_prodsystew = ps_prodsystew,
+                                                                      pb_log = pb_log,
                                                                       plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_lw_bull_slaughter,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_lw_bull_slaughter,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = livewt_slaughter_m,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -1361,38 +1361,38 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     weaningwt_f <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                         ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                         ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
-                                                        ps_prodsystew,
-                                                        pb_log,
+                                                        ps_prodsystew = ps_prodsystew,
+                                                        pb_log = pb_log,
                                                         plogger = lgr)
     weaningwt_m <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                         ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                         ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
-                                                        ps_prodsystew,
-                                                        pb_log,
+                                                        ps_prodsystew = ps_prodsystew,
+                                                        pb_log = pb_log,
                                                         plogger = lgr)
     weaningage_f <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
-                                                      ps_prodsystew,
-                                                      pb_log,
+                                                      ps_prodsystew = ps_prodsystew,
+                                                      pb_log = pb_log,
                                                       plogger = lgr)
     weaningage_m <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
-                                                      ps_prodsystew,
-                                                      pb_log,
+                                                      ps_prodsystew = ps_prodsystew,
+                                                      pb_log = pb_log,
                                                       plogger = lgr)
     slaughterage_f <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                           ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                           ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
-                                                          ps_prodsystew,
-                                                          pb_log,
+                                                          ps_prodsystew = ps_prodsystew,
+                                                          pb_log = pb_log,
                                                           plogger = lgr)
     slaughterage_m <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                           ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                           ps_marketing_channel = l_constants_progeny_beefOnbeef$Natura_Beef,
-                                                          ps_prodsystew,
-                                                          pb_log,
+                                                          ps_prodsystew = ps_prodsystew,
+                                                          pb_log = pb_log,
                                                           plogger = lgr)
 
 
@@ -1401,27 +1401,27 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                                pv_mean_weaningage = weaningage_f,
                                                pv_mean_livewt_atslaughter = livewt_slaughter_f,
                                                pv_mean_weaningwt = weaningwt_f,
-                                               pb_log,
+                                               pb_log = pb_log,
                                                plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_dg_heifer,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_dg_heifer,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = dailygain_f,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     dailygain_m <- qp4ewc::calculate_dailygain(pv_mean_slaughterage = slaughterage_m,
                                                pv_mean_weaningage = weaningage_m,
                                                pv_mean_livewt_atslaughter = livewt_slaughter_m,
                                                pv_mean_weaningwt = weaningwt_m,
-                                               pb_log,
+                                               pb_log = pb_log,
                                                plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_dg_bull,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_dg_bull,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = dailygain_m,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -1432,33 +1432,33 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_age_1weighing,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_age_1weighing,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = l_constants_progeny_beefOnbeef$extrapol_300d,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     weight_300d_f <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_f,
                                                                   pv_daily_gain = dailygain_f,
                                                                   pv_mean_weaningwt = weaningwt_f,
                                                                   pv_t_days = l_constants_progeny_beefOnbeef$extrapol_300d,
-                                                                  pb_log,
+                                                                  pb_log = pb_log,
                                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_1weighing_female,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_1weighing_female,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weight_300d_f,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     weight_300d_m <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_m,
                                                                   pv_daily_gain = dailygain_m,
                                                                   pv_mean_weaningwt = weaningwt_m,
                                                                   pv_t_days = l_constants_progeny_beefOnbeef$extrapol_300d,
-                                                                  pb_log,
+                                                                  pb_log = pb_log,
                                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_1weighing_male,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_1weighing_male,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weight_300d_m,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -1468,7 +1468,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_age_2weighing,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_age_2weighing,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = l_constants_progeny_beefOnbeef$extrapol_302d,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     # extrapolated to 304 days
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1476,61 +1476,61 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_age_3weighing,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_age_3weighing,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = l_constants_progeny_beefOnbeef$extrapol_304d,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     # weaning weight at 302 days
     weight_302d_f <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_f,
                                                                   pv_daily_gain = dailygain_f,
                                                                   pv_mean_weaningwt = weaningwt_f,
                                                                   pv_t_days = l_constants_progeny_beefOnbeef$extrapol_302d,
-                                                                  pb_log,
+                                                                  pb_log = pb_log,
                                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_2weighing_female,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_2weighing_female,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weight_302d_f,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     weight_302d_m <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_m,
                                                                   pv_daily_gain = dailygain_m,
                                                                   pv_mean_weaningwt = weaningwt_m,
                                                                   pv_t_days = l_constants_progeny_beefOnbeef$extrapol_302d,
-                                                                  pb_log,
+                                                                  pb_log = pb_log,
                                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_2weighing_male,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_2weighing_male,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weight_302d_m,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     # weaning weight at 304 days
     weight_304d_f <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_f,
                                                                   pv_daily_gain = dailygain_f,
                                                                   pv_mean_weaningwt = weaningwt_f,
                                                                   pv_t_days = l_constants_progeny_beefOnbeef$extrapol_304d,
-                                                                  pb_log,
+                                                                  pb_log = pb_log,
                                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_3weighing_female,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_3weighing_female,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weight_304d_f,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     weight_304d_m <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_m,
                                                                   pv_daily_gain = dailygain_m,
                                                                   pv_mean_weaningwt = weaningwt_m,
                                                                   pv_t_days = l_constants_progeny_beefOnbeef$extrapol_304d,
-                                                                  pb_log,
+                                                                  pb_log = pb_log,
                                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_3weighing_male,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_3weighing_male,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weight_304d_m,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
   }
 
@@ -1544,29 +1544,29 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     female_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                     ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                     ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
-                                                    ps_prodsystew,
-                                                    pb_log,
+                                                    ps_prodsystew = ps_prodsystew,
+                                                    pb_log = pb_log,
                                                     plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_bw_female,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_bw_female,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = female_bw,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
     male_bw <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                   ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                   ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
-                                                  ps_prodsystew,
-                                                  pb_log,
+                                                  ps_prodsystew = ps_prodsystew,
+                                                  pb_log = pb_log,
                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_bw_male,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_bw_male,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = male_bw,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -1574,28 +1574,28 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     weaningwt_f <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                         ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                         ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
-                                                        ps_prodsystew,
-                                                        pb_log,
+                                                        ps_prodsystew = ps_prodsystew,
+                                                        pb_log = pb_log,
                                                         plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_1weighing_female,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_1weighing_female,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weaningwt_f,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     weaningwt_m <- qp4ewc::calculate_mean_weaningweight(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                         ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                         ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
-                                                        ps_prodsystew,
-                                                        pb_log,
+                                                        ps_prodsystew = ps_prodsystew,
+                                                        pb_log = pb_log,
                                                         plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_1weighing_male,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_1weighing_male,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weaningwt_m,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -1603,14 +1603,14 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     weaningage_f <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
-                                                      ps_prodsystew,
-                                                      pb_log,
+                                                      ps_prodsystew = ps_prodsystew,
+                                                      pb_log = pb_log,
                                                       plogger = lgr)
     weaningage_m <- qp4ewc::calculate_mean_weaningage(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
-                                                      ps_prodsystew,
-                                                      pb_log,
+                                                      ps_prodsystew = ps_prodsystew,
+                                                      pb_log = pb_log,
                                                       plogger = lgr)
     weaningage_average <- round(as.numeric(weaningage_f+weaningage_m)/2,4)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1618,7 +1618,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_age_1weighing,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_age_1weighing,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weaningage_average,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -1626,29 +1626,29 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     livewt_slaughter_f <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
-                                                                      ps_prodsystew,
-                                                                      pb_log,
+                                                                      ps_prodsystew = ps_prodsystew,
+                                                                      pb_log = pb_log,
                                                                       plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_lw_heifer_slaughter,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_lw_heifer_slaughter,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = livewt_slaughter_f,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
     livewt_slaughter_m <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                                       ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                                       ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
-                                                                      ps_prodsystew,
-                                                                      pb_log,
+                                                                      ps_prodsystew = ps_prodsystew,
+                                                                      pb_log = pb_log,
                                                                       plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_lw_bull_slaughter,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_lw_bull_slaughter,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = livewt_slaughter_m,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -1656,14 +1656,14 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
     slaughterage_f <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                           ps_sex = l_constants_progeny_beefOnbeef$sex_female,
                                                           ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
-                                                          ps_prodsystew,
-                                                          pb_log,
+                                                          ps_prodsystew = ps_prodsystew,
+                                                          pb_log = pb_log,
                                                           plogger = lgr)
     slaughterage_m <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_progeny_data_flp,
                                                           ps_sex = l_constants_progeny_beefOnbeef$sex_male,
                                                           ps_marketing_channel = l_constants_progeny_beefOnbeef$SwissPrimBeef,
-                                                          ps_prodsystew,
-                                                          pb_log,
+                                                          ps_prodsystew = ps_prodsystew,
+                                                          pb_log = pb_log,
                                                           plogger = lgr)
 
 
@@ -1672,27 +1672,27 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                                pv_mean_weaningage = weaningage_f,
                                                pv_mean_livewt_atslaughter = livewt_slaughter_f,
                                                pv_mean_weaningwt = weaningwt_f,
-                                               pb_log,
+                                               pb_log = pb_log,
                                                plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_dg_heifer,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_dg_heifer,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = dailygain_f,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     dailygain_m <- qp4ewc::calculate_dailygain(pv_mean_slaughterage = slaughterage_m,
                                                pv_mean_weaningage = weaningage_m,
                                                pv_mean_livewt_atslaughter = livewt_slaughter_m,
                                                pv_mean_weaningwt = weaningwt_m,
-                                               pb_log,
+                                               pb_log = pb_log,
                                                plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_dg_bull,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_dg_bull,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = dailygain_m,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -1703,7 +1703,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_age_2weighing,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_age_2weighing,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = l_constants_progeny_beefOnbeef$extrapol_300d,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     # extrapolated to 400 days
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -1711,34 +1711,34 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_age_3weighing,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_age_3weighing,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = l_constants_progeny_beefOnbeef$extrapol_400d,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     # weaning weight at 300 days
     weight_300d_f <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_f,
                                                                   pv_daily_gain = dailygain_f,
                                                                   pv_mean_weaningwt = weaningwt_f,
                                                                   pv_t_days = l_constants_progeny_beefOnbeef$extrapol_300d,
-                                                                  pb_log,
+                                                                  pb_log = pb_log,
                                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_2weighing_female,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_2weighing_female,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weight_300d_f,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     weight_300d_m <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_m,
                                                                   pv_daily_gain = dailygain_m,
                                                                   pv_mean_weaningwt = weaningwt_m,
                                                                   pv_t_days = l_constants_progeny_beefOnbeef$extrapol_300d,
-                                                                  pb_log,
+                                                                  pb_log = pb_log,
                                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_2weighing_male,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_2weighing_male,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weight_300d_m,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -1747,27 +1747,27 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                   pv_daily_gain = dailygain_f,
                                                                   pv_mean_weaningwt = weaningwt_f,
                                                                   pv_t_days = l_constants_progeny_beefOnbeef$extrapol_400d,
-                                                                  pb_log,
+                                                                  pb_log = pb_log,
                                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_3weighing_female,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_3weighing_female,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weight_400d_f,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
     weight_400d_m <- qp4ewc::calculate_extrapolated_weaningweight(pv_mean_weaningage = weaningage_m,
                                                                   pv_daily_gain = dailygain_m,
                                                                   pv_mean_weaningwt = weaningwt_m,
                                                                   pv_t_days = l_constants_progeny_beefOnbeef$extrapol_400d,
-                                                                  pb_log,
+                                                                  pb_log = pb_log,
                                                                   plogger = lgr)
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_3weighing_male,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_3weighing_male,l_constants_progeny_beefOnbeef$idx_col_input],
                                         ps_value2update = weight_400d_m,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
   }
 
@@ -1777,22 +1777,22 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
   second_calving_wt <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
                                                         ps_first_calvingweight = FALSE,
                                                         ps_second_calvingweight = TRUE,
-                                                        ps_dambreed,
-                                                        pb_log,
+                                                        ps_dambreed = ps_dambreed,
+                                                        pb_log = pb_log,
                                                         plogger = lgr)
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                         tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_cowwt_2calving,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_cowwt_2calving,l_constants_progeny_beefOnbeef$idx_col_input],
                                       ps_value2update = second_calving_wt,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                         tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_wtcow_2calving,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_wtcow_2calving,l_constants_progeny_beefOnbeef$idx_col_input],
                                       ps_value2update = second_calving_wt,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -1800,29 +1800,29 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
   mature_weight_cow <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
                                                         ps_first_calvingweight = FALSE,
                                                         ps_second_calvingweight = FALSE,
-                                                        ps_dambreed,
-                                                        pb_log,
+                                                        ps_dambreed = ps_dambreed,
+                                                        pb_log = pb_log,
                                                         plogger = lgr)
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                         tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_cowwt_3calving,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_cowwt_3calving,l_constants_progeny_beefOnbeef$idx_col_input],
                                       ps_value2update = mature_weight_cow,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
   # Update statement-progeny-flp-input from the data by calculating mature bull weight
   bull_mature_weight <- qp4ewc::calculate_bull_liveweight(ps_input_flp_tibble = tbl_merged_data,
-                                                          ps_sirebreed,
-                                                          pb_log,
+                                                          ps_sirebreed = ps_sirebreed,
+                                                          pb_log = pb_log,
                                                           plogger = lgr)
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                         tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_bullwt_mature,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_bullwt_mature,l_constants_progeny_beefOnbeef$idx_col_input],
                                       ps_value2update = bull_mature_weight,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -1830,15 +1830,15 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
   first_calving_wt <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
                                                        ps_first_calvingweight = TRUE,
                                                        ps_second_calvingweight = FALSE,
-                                                       ps_dambreed,
-                                                       pb_log,
+                                                       ps_dambreed = ps_dambreed,
+                                                       pb_log = pb_log,
                                                        plogger = lgr)
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                         tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_cowwt_1calving,l_constants_progeny_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOnbeef$idx_row_cowwt_1calving,l_constants_progeny_beefOnbeef$idx_col_input],
                                       ps_value2update = first_calving_wt,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -1906,22 +1906,22 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
 
 
   ### # Read file with statement based on progeny data flp for input-parameter-file of ECOWEIGHT
-  tbl_input_statement_flp <- qp4ewc::read_file_input(ps_input_file_progeny_flp_statement,
-                                                     pb_log,
+  tbl_input_statement_flp <- qp4ewc::read_file_input(ps_input_file = ps_input_file_progeny_flp_statement,
+                                                     pb_log = pb_log,
                                                      plogger = lgr)
 
 
   ### # Read file with progeny-flp data
-  tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp,
-                                         ps_start_flp_date,
-                                         ps_end_flp_date,
-                                         pb_log,
+  tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp = ps_input_file_flp,
+                                         ps_start_flp_date = ps_start_flp_date,
+                                         ps_end_flp_date = ps_end_flp_date,
+                                         pb_log = pb_log,
                                          plogger = lgr)
 
 
   ### # Read pedigree file
-  tbl_ped <- read_file_input_ped(ps_input_file_ped,
-                                 pb_log,
+  tbl_ped <- read_file_input_ped(ps_input_file_ped = ps_input_file_ped,
+                                 pb_log = pb_log,
                                  plogger = lgr)
 
 
@@ -1943,15 +1943,15 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
     female_bw_puredairy <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_purebred_dairy,
                                                               ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                               ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                              ps_prodsystew,
-                                                              pb_log,
+                                                              ps_prodsystew = ps_prodsystew,
+                                                              pb_log = pb_log,
                                                               plogger = lgr)
 
     female_bw_cross <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_crossbred,
                                                           ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                           ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                          ps_prodsystew,
-                                                          pb_log,
+                                                          ps_prodsystew = ps_prodsystew,
+                                                          pb_log = pb_log,
                                                           plogger = lgr)
     ### update parameter for female birth weight (1st value purebred calves, 2nd value crossbred calves)
     value2update_bw_female <- paste0(c(female_bw_puredairy, female_bw_cross),collapse = " ")
@@ -1960,21 +1960,21 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_bw_female,l_constants_progeny_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_bw_female,l_constants_progeny_beefOndairy$idx_col_input],
                                         ps_value2update = value2update_bw_female,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
     ## males
     male_bw_puredairy <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_purebred_dairy,
                                                             ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                             ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                            ps_prodsystew,
-                                                            pb_log,
+                                                            ps_prodsystew = ps_prodsystew,
+                                                            pb_log = pb_log,
                                                             plogger = lgr)
     male_bw_cross <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_crossbred,
                                                         ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                         ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                        ps_prodsystew,
-                                                        pb_log,
+                                                        ps_prodsystew = ps_prodsystew,
+                                                        pb_log = pb_log,
                                                         plogger = lgr)
 
     ### update parameter for male birth weight (1st value purebred calves, 2nd value crossbred calves)
@@ -1984,7 +1984,7 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_bw_male,l_constants_progeny_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_bw_male,l_constants_progeny_beefOndairy$idx_col_input],
                                         ps_value2update = value2update_bw_male,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -1992,8 +1992,8 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
     livewt_slaughter_f_purebeef <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_beef,
                                                                                ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                                                ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                                               ps_prodsystew,
-                                                                               pb_log,
+                                                                               ps_prodsystew = ps_prodsystew,
+                                                                               pb_log = pb_log,
                                                                                plogger = lgr)
 
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2001,14 +2001,14 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_heifer_slaughter_beef,l_constants_progeny_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_heifer_slaughter_beef,l_constants_progeny_beefOndairy$idx_col_input],
                                         ps_value2update = livewt_slaughter_f_purebeef,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
     livewt_slaughter_m_purebeef <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_beef,
                                                                                ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                                                ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                                               ps_prodsystew,
-                                                                               pb_log,
+                                                                               ps_prodsystew = ps_prodsystew,
+                                                                               pb_log = pb_log,
                                                                                plogger = lgr)
 
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2016,14 +2016,14 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_bull_slaughter_beef,l_constants_progeny_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_bull_slaughter_beef,l_constants_progeny_beefOndairy$idx_col_input],
                                         ps_value2update = livewt_slaughter_m_purebeef,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
     livewt_slaughter_f_puredairy <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_dairy,
                                                                                ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                                                ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                                               ps_prodsystew,
-                                                                               pb_log,
+                                                                               ps_prodsystew = ps_prodsystew,
+                                                                               pb_log = pb_log,
                                                                                plogger = lgr)
 
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2031,14 +2031,14 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_heifer_slaughter_dairy,l_constants_progeny_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_heifer_slaughter_dairy,l_constants_progeny_beefOndairy$idx_col_input],
                                         ps_value2update = livewt_slaughter_f_puredairy,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
     livewt_slaughter_m_puredairy <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_dairy,
                                                                                ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                                                ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                                               ps_prodsystew,
-                                                                               pb_log,
+                                                                               ps_prodsystew = ps_prodsystew,
+                                                                               pb_log = pb_log,
                                                                                plogger = lgr)
 
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2046,7 +2046,7 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_bull_slaughter_dairy,l_constants_progeny_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_bull_slaughter_dairy,l_constants_progeny_beefOndairy$idx_col_input],
                                         ps_value2update = livewt_slaughter_m_puredairy,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -2054,26 +2054,26 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
     slaughterage_f_purebeef <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_beef,
                                                                    ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                                    ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                                   ps_prodsystew,
-                                                                   pb_log,
+                                                                   ps_prodsystew = ps_prodsystew,
+                                                                   pb_log = pb_log,
                                                                    plogger = lgr)
     slaughterage_m_purebeef <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_beef,
                                                                    ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                                    ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                                   ps_prodsystew,
-                                                                   pb_log,
+                                                                   ps_prodsystew = ps_prodsystew,
+                                                                   pb_log = pb_log,
                                                                    plogger = lgr)
     slaughterage_f_puredairy <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_dairy,
                                                                    ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                                    ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                                   ps_prodsystew,
-                                                                   pb_log,
+                                                                   ps_prodsystew = ps_prodsystew,
+                                                                   pb_log = pb_log,
                                                                    plogger = lgr)
     slaughterage_m_puredairy <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_dairy,
                                                                    ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                                    ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                                   ps_prodsystew,
-                                                                   pb_log,
+                                                                   ps_prodsystew = ps_prodsystew,
+                                                                   pb_log = pb_log,
                                                                    plogger = lgr)
 
 
@@ -2081,14 +2081,14 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
     mature_weight_cow_dairy <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
                                                                 ps_first_calvingweight = FALSE,
                                                                 ps_second_calvingweight = FALSE,
-                                                                ps_dambreed,
-                                                                pb_log,
+                                                                ps_dambreed = ps_dambreed,
+                                                                pb_log = pb_log,
                                                                 plogger = lgr)
     mature_weight_cow_beef <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
                                                                 ps_first_calvingweight = FALSE,
                                                                 ps_second_calvingweight = FALSE,
                                                                 ps_dambreed = ps_sirebreed,
-                                                                pb_log,
+                                                                pb_log = pb_log,
                                                                 plogger = lgr)
 
 
@@ -2105,14 +2105,14 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
     female_bw_puredairy <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_purebred_dairy,
                                                               ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                               ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                              ps_prodsystew,
-                                                              pb_log,
+                                                              ps_prodsystew = ps_prodsystew,
+                                                              pb_log = pb_log,
                                                               plogger = lgr)
     female_bw_cross <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_crossbred,
                                                           ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                           ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                          ps_prodsystew,
-                                                          pb_log,
+                                                          ps_prodsystew = ps_prodsystew,
+                                                          pb_log = pb_log,
                                                           plogger = lgr)
 
     ### update parameter for female birth weight (1st value purebred calves, 2nd value crossbred calves)
@@ -2122,21 +2122,21 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_bw_female,l_constants_progeny_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_bw_female,l_constants_progeny_beefOndairy$idx_col_input],
                                         ps_value2update = value2update_bw_female,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
     male_bw_puredairy <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_purebred_dairy,
                                                             ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                             ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                            ps_prodsystew,
-                                                            pb_log,
+                                                            ps_prodsystew = ps_prodsystew,
+                                                            pb_log = pb_log,
                                                             plogger = lgr)
     male_bw_cross <- qp4ewc::calculate_mean_birthweight(ps_input_flp_tibble = tbl_crossbred,
                                                         ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                         ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                        ps_prodsystew,
-                                                        pb_log,
+                                                        ps_prodsystew = ps_prodsystew,
+                                                        pb_log = pb_log,
                                                         plogger = lgr)
 
     value2update_bw_male <- paste0(c(male_bw_puredairy, male_bw_cross),collapse = " ")
@@ -2145,7 +2145,7 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_bw_male,l_constants_progeny_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_bw_male,l_constants_progeny_beefOndairy$idx_col_input],
                                         ps_value2update = value2update_bw_male,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -2153,8 +2153,8 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
     livewt_slaughter_f_purebeef <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_beef,
                                                                                ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                                                ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                                               ps_prodsystew,
-                                                                               pb_log,
+                                                                               ps_prodsystew = ps_prodsystew,
+                                                                               pb_log = pb_log,
                                                                                plogger = lgr)
 
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2162,14 +2162,14 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_heifer_slaughter_beef,l_constants_progeny_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_heifer_slaughter_beef,l_constants_progeny_beefOndairy$idx_col_input],
                                         ps_value2update = livewt_slaughter_f_purebeef,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
     livewt_slaughter_m_purebeef <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_beef,
                                                                                ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                                                ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                                               ps_prodsystew,
-                                                                               pb_log,
+                                                                               ps_prodsystew = ps_prodsystew,
+                                                                               pb_log = pb_log,
                                                                                plogger = lgr)
 
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2177,14 +2177,14 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_bull_slaughter_beef,l_constants_progeny_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_bull_slaughter_beef,l_constants_progeny_beefOndairy$idx_col_input],
                                         ps_value2update = livewt_slaughter_m_purebeef,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
     livewt_slaughter_f_puredairy <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_dairy,
                                                                                 ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                                                 ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                                                ps_prodsystew,
-                                                                                pb_log,
+                                                                                ps_prodsystew = ps_prodsystew,
+                                                                                pb_log = pb_log,
                                                                                 plogger = lgr)
 
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2192,14 +2192,14 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_heifer_slaughter_dairy,l_constants_progeny_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_heifer_slaughter_dairy,l_constants_progeny_beefOndairy$idx_col_input],
                                         ps_value2update = livewt_slaughter_f_puredairy,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
     livewt_slaughter_m_puredairy <- qp4ewc::calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_purebred_dairy,
                                                                                 ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                                                 ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                                                ps_prodsystew,
-                                                                                pb_log,
+                                                                                ps_prodsystew = ps_prodsystew,
+                                                                                pb_log = pb_log,
                                                                                 plogger = lgr)
 
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2207,7 +2207,7 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_bull_slaughter_dairy,l_constants_progeny_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_lw_bull_slaughter_dairy,l_constants_progeny_beefOndairy$idx_col_input],
                                         ps_value2update = livewt_slaughter_m_puredairy,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
 
 
@@ -2215,26 +2215,26 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
     slaughterage_f_purebeef <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_beef,
                                                                    ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                                    ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                                   ps_prodsystew,
-                                                                   pb_log,
+                                                                   ps_prodsystew = ps_prodsystew,
+                                                                   pb_log = pb_log,
                                                                    plogger = lgr)
     slaughterage_m_purebeef <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_beef,
                                                                    ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                                    ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                                   ps_prodsystew,
-                                                                   pb_log,
+                                                                   ps_prodsystew = ps_prodsystew,
+                                                                   pb_log = pb_log,
                                                                    plogger = lgr)
     slaughterage_f_puredairy <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_dairy,
                                                                     ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                                     ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                                    ps_prodsystew,
-                                                                    pb_log,
+                                                                    ps_prodsystew = ps_prodsystew,
+                                                                    pb_log = pb_log,
                                                                     plogger = lgr)
     slaughterage_m_puredairy <- qp4ewc::calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_dairy,
                                                                     ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                                     ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                                    ps_prodsystew,
-                                                                    pb_log,
+                                                                    ps_prodsystew = ps_prodsystew,
+                                                                    pb_log = pb_log,
                                                                     plogger = lgr)
 
 
@@ -2242,14 +2242,14 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
     mature_weight_cow_dairy <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
                                                                 ps_first_calvingweight = FALSE,
                                                                 ps_second_calvingweight = FALSE,
-                                                                ps_dambreed,
-                                                                pb_log,
+                                                                ps_dambreed = ps_dambreed,
+                                                                pb_log = pb_log,
                                                                 plogger = lgr)
     mature_weight_cow_beef <- qp4ewc::calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
                                                                ps_first_calvingweight = FALSE,
                                                                ps_second_calvingweight = FALSE,
                                                                ps_dambreed = ps_sirebreed,
-                                                               pb_log,
+                                                               pb_log = pb_log,
                                                                plogger = lgr)
 
 
@@ -2326,19 +2326,19 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
 
 
   ### # Read file with statement based on carcass data flp for input-parameter-file of ECOWEIGHT
-  tbl_input_statement_flp_carcass <- qp4ewc::read_file_input(ps_input_file_flp_carcass_matrix_statement,
-                                                             pb_log,
+  tbl_input_statement_flp_carcass <- qp4ewc::read_file_input(ps_input_file = ps_input_file_flp_carcass_matrix_statement,
+                                                             pb_log = pb_log,
                                                              plogger = lgr)
 
   ### # Read file with progeny-flp data
-  tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp,
-                                         ps_start_flp_date,
-                                         ps_end_flp_date,
-                                         pb_log,
+  tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp = ps_input_file_flp,
+                                         ps_start_flp_date = ps_start_flp_date,
+                                         ps_end_flp_date = ps_end_flp_date,
+                                         pb_log = pb_log,
                                          plogger = lgr)
 
-  tbl_ped <- read_file_input_ped(ps_input_file_ped,
-                                 pb_log,
+  tbl_ped <- read_file_input_ped(ps_input_file_ped = ps_input_file_ped,
+                                 pb_log = pb_log,
                                  plogger = lgr)
 
 
@@ -2365,7 +2365,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[idx_row_class_fleshiness,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[idx_row_class_fleshiness,idx_col_input],
                                       ps_value2update = tbl_input_statement_flp_carcass[idx_row_class_fleshiness,idx_col_input_value]$input_value,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -2375,7 +2375,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[idx_row_class_fat,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[idx_row_class_fat,idx_col_input],
                                       ps_value2update = tbl_input_statement_flp_carcass[idx_row_class_fat,idx_col_input_value]$input_value,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -2387,7 +2387,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                               ps_sex = l_constants_carcass_beefOnbeef$sex_female,
                                               ps_marketing_channel = ps_marketchannel,
                                               ps_flag_cow = TRUE,
-                                              pb_log,
+                                              pb_log = pb_log,
                                               plogger = lgr)
 
 
@@ -2398,7 +2398,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_freq_class,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOnbeef$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2407,7 +2407,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOnbeef$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2416,7 +2416,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOnbeef$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2425,7 +2425,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOnbeef$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2434,7 +2434,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOnbeef$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2443,7 +2443,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOnbeef$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2452,7 +2452,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOnbeef$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2461,7 +2461,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOnbeef$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2470,7 +2470,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOnbeef$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -2481,7 +2481,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                  ps_sex = l_constants_carcass_beefOnbeef$sex_female,
                                                  ps_marketing_channel = ps_marketchannel,
                                                  ps_flag_cow = FALSE,
-                                                 pb_log,
+                                                 pb_log = pb_log,
                                                  plogger = lgr)
 
 
@@ -2490,63 +2490,63 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOnbeef$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOnbeef$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOnbeef$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOnbeef$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOnbeef$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOnbeef$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOnbeef$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOnbeef$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOnbeef$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -2557,7 +2557,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                ps_sex = l_constants_carcass_beefOnbeef$sex_male,
                                                ps_marketing_channel = ps_marketchannel,
                                                ps_flag_cow = FALSE,
-                                               pb_log,
+                                               pb_log = pb_log,
                                                plogger = lgr)
 
 
@@ -2568,7 +2568,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_freq_class,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOnbeef$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2577,7 +2577,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOnbeef$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2586,7 +2586,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOnbeef$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2595,7 +2595,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOnbeef$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2604,7 +2604,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOnbeef$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2613,7 +2613,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOnbeef$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2622,7 +2622,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOnbeef$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2631,7 +2631,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOnbeef$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2640,7 +2640,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_freq_class,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOnbeef$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -2654,7 +2654,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_price,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_price,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_price,l_constants_carcass_beefOnbeef$idx_col_input_value]$input_value,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   # average price bull
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2662,7 +2662,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_avprice,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_avprice,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_avprice,l_constants_carcass_beefOnbeef$idx_col_input_value]$input_value,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   # basis price bull
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2670,7 +2670,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_price,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_price,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_price,l_constants_carcass_beefOnbeef$idx_col_input_value]$input_value,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   # basis price heifer
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2678,7 +2678,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_price,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_price,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_price,l_constants_carcass_beefOnbeef$idx_col_input_value]$input_value,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -2686,7 +2686,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
   ## ---- Price coefficient for cow----
   # ****************************************************************************
   mat_coeffprice_cow <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_cow,
-                                                    pb_log,
+                                                    pb_log = pb_log,
                                                     plogger = lgr)
   # Update price coefficient for cow
   ### # For carcass conformation C
@@ -2695,7 +2695,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_coef,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOnbeef$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2704,7 +2704,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOnbeef$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2713,7 +2713,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOnbeef$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2722,7 +2722,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOnbeef$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2731,7 +2731,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOnbeef$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2740,7 +2740,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOnbeef$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2749,7 +2749,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOnbeef$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2758,7 +2758,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOnbeef$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2767,7 +2767,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_cow_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOnbeef$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -2775,7 +2775,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
   ## ---- Price coefficient for bull----
   # ****************************************************************************
   mat_coeffprice_bull <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_bull,
-                                                    pb_log,
+                                                    pb_log = pb_log,
                                                     plogger = lgr)
   # Update price coefficient for bull
   ### # For carcass conformation C
@@ -2784,7 +2784,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_coef,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOnbeef$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2793,7 +2793,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOnbeef$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2802,7 +2802,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOnbeef$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2811,7 +2811,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOnbeef$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2820,7 +2820,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOnbeef$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2829,7 +2829,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOnbeef$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2838,7 +2838,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOnbeef$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2847,7 +2847,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOnbeef$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2856,7 +2856,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOnbeef$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -2864,7 +2864,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
   ## ---- Price coefficient for heifer----
   # ****************************************************************************
   mat_coeffprice_heifer <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_heifer,
-                                                     pb_log,
+                                                     pb_log = pb_log,
                                                      plogger = lgr)
   # Update price coefficient for bull
   ### # For carcass conformation C
@@ -2873,7 +2873,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_coef,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOnbeef$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2882,7 +2882,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOnbeef$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
  ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2891,7 +2891,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOnbeef$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2900,7 +2900,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOnbeef$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2909,7 +2909,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOnbeef$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2918,7 +2918,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOnbeef$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2927,7 +2927,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOnbeef$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2936,7 +2936,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOnbeef$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -2945,7 +2945,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_coef,l_constants_carcass_beefOnbeef$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOnbeef$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOnbeef$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -3020,20 +3020,20 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
 
 
   ### # Read file with statement based on carcass data flp for input-parameter-file of ECOWEIGHT
-  tbl_input_statement_flp_carcass <- qp4ewc::read_file_input(ps_input_file_flp_carcass_matrix_statement,
-                                                             pb_log,
+  tbl_input_statement_flp_carcass <- qp4ewc::read_file_input(ps_input_file = ps_input_file_flp_carcass_matrix_statement,
+                                                             pb_log = pb_log,
                                                              plogger = lgr)
 
 
   ### # Read file with progeny-flp data
-  tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp,
-                                         ps_start_flp_date,
-                                         ps_end_flp_date,
-                                         pb_log,
+  tbl_flp <- qp4ewc::read_file_input_flp(ps_input_file_flp = ps_input_file_flp,
+                                         ps_start_flp_date = ps_start_flp_date,
+                                         ps_end_flp_date = ps_end_flp_date,
+                                         pb_log = pb_log,
                                          plogger = lgr)
 
   tbl_ped <- read_file_input_ped(ps_input_file_ped,
-                                 pb_log,
+                                 pb_log = pb_log,
                                  plogger = lgr)
 
 
@@ -3064,7 +3064,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[idx_row_class_fleshiness,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[idx_row_class_fleshiness,idx_col_input],
                                       ps_value2update = tbl_input_statement_flp_carcass[idx_row_class_fleshiness,idx_col_input_value]$input_value_beef,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -3074,7 +3074,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[idx_row_class_fat,idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[idx_row_class_fat,idx_col_input],
                                       ps_value2update = tbl_input_statement_flp_carcass[idx_row_class_fat,idx_col_input_value]$input_value_beef,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -3086,7 +3086,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                               ps_sex = l_constants_carcass_beefOndairy$sex_female,
                                               ps_marketing_channel = ps_marketchannel,
                                               ps_flag_cow = TRUE,
-                                              pb_log,
+                                              pb_log = pb_log,
                                               plogger = lgr)
 
 
@@ -3097,7 +3097,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3106,7 +3106,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3115,7 +3115,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3124,7 +3124,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3133,7 +3133,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3142,7 +3142,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3151,7 +3151,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3160,7 +3160,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3169,7 +3169,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_cow[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -3180,7 +3180,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                  ps_sex = l_constants_carcass_beefOndairy$sex_female,
                                                  ps_marketing_channel = ps_marketchannel,
                                                  ps_flag_cow = FALSE,
-                                                 pb_log,
+                                                 pb_log = pb_log,
                                                  plogger = lgr)
 
 
@@ -3189,63 +3189,63 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer_purebred[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -3256,7 +3256,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                ps_sex = l_constants_carcass_beefOndairy$sex_male,
                                                ps_marketing_channel = ps_marketchannel,
                                                ps_flag_cow = FALSE,
-                                               pb_log,
+                                               pb_log = pb_log,
                                                plogger = lgr)
 
 
@@ -3267,7 +3267,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3276,7 +3276,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3285,7 +3285,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3294,7 +3294,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3303,7 +3303,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3312,7 +3312,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3321,7 +3321,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3330,7 +3330,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3339,7 +3339,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class_purebred,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull_purebred[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
   # ****************************************************************************
@@ -3349,7 +3349,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                  ps_sex = l_constants_carcass_beefOndairy$sex_female,
                                                  ps_marketing_channel = ps_marketchannel,
                                                  ps_flag_cow = FALSE,
-                                                 pb_log,
+                                                 pb_log = pb_log,
                                                  plogger = lgr)
 
 
@@ -3360,63 +3360,63 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_heifer[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -3427,7 +3427,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                ps_sex = l_constants_carcass_beefOndairy$sex_male,
                                                ps_marketing_channel = ps_marketchannel,
                                                ps_flag_cow = FALSE,
-                                               pb_log,
+                                               pb_log = pb_log,
                                                plogger = lgr)
 
 
@@ -3438,7 +3438,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3447,7 +3447,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3456,7 +3456,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3465,7 +3465,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3474,7 +3474,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3483,7 +3483,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3492,7 +3492,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3501,7 +3501,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3510,7 +3510,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_freq_class,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(freq_mat_bull[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -3526,7 +3526,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_price,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
   if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_beef){
@@ -3536,7 +3536,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   # basis price heifer
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3544,7 +3544,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   }
   if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_calf){
@@ -3554,7 +3554,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input],
                                         ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_value_calf]$input_value_calf,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
    # basis price heifer
     qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3562,7 +3562,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                           tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                         ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input],
                                         ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_value_calf]$input_value_calf,
-                                        pb_log,
+                                        pb_log = pb_log,
                                         plogger = lgr)
   }
 
@@ -3571,7 +3571,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
   ## ---- Price coefficient for cow----
   # ****************************************************************************
   mat_coeffprice_cow <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_cow,
-                                                    pb_log,
+                                                    pb_log = pb_log,
                                                     plogger = lgr)
   # Update price coefficient for cow
   ### # For carcass conformation C
@@ -3580,7 +3580,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3589,7 +3589,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3598,7 +3598,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3607,7 +3607,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3616,7 +3616,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3625,7 +3625,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3634,7 +3634,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3643,7 +3643,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3652,7 +3652,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_cow_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_cow[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -3661,12 +3661,12 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
   # ****************************************************************************
   if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_beef){
   mat_coeffprice_bull <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_bull,
-                                                     pb_log,
+                                                     pb_log = pb_log,
                                                      plogger = lgr)
   }
   if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_calf){
     mat_coeffprice_bull <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_calf,
-                                                       pb_log,
+                                                       pb_log = pb_log,
                                                        plogger = lgr)
   }
 
@@ -3677,7 +3677,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3686,7 +3686,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3695,7 +3695,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3704,7 +3704,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3713,7 +3713,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3722,7 +3722,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3731,7 +3731,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3740,7 +3740,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3749,7 +3749,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_bull[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
@@ -3759,12 +3759,12 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
 
   if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_beef){
     mat_coeffprice_heifer <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_heifer,
-                                                         pb_log,
+                                                         pb_log = pb_log,
                                                          plogger = lgr)
   }
   if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_calf){
     mat_coeffprice_heifer <- qp4ewc::read_price_conf_fat(ps_input_file_price = ps_input_file_price_calf,
-                                                         pb_log,
+                                                         pb_log = pb_log,
                                                          plogger = lgr)
   }
 
@@ -3775,7 +3775,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                                                                         tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input_file]),
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line1,],4)),collapse = " "),
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation H
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3784,7 +3784,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line2,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line2,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T+
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3793,7 +3793,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line3,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line3,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3802,7 +3802,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line4,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line4,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation T-
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3811,7 +3811,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line5,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line5,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation A
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3820,7 +3820,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line6,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line6,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation X
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3829,7 +3829,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line7,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line7,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3838,7 +3838,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line8,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line8,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
   ### # For carcass conformation XXX
   qp4ewc::update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
@@ -3847,7 +3847,7 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                       ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_coef,l_constants_carcass_beefOndairy$idx_col_input],
                                       ps_value2update = paste0(as.character(round(mat_coeffprice_heifer[l_constants_carcass_beefOndairy$line9,],4)),collapse = " "),
                                       ps_line4statement2update = l_constants_carcass_beefOndairy$line9,
-                                      pb_log,
+                                      pb_log = pb_log,
                                       plogger = lgr)
 
 
