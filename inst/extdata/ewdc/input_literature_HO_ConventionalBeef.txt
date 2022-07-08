@@ -78,3 +78,9 @@ INPUT11.TXT;"Governmental financial support per cow in performance test and year
 INPUT11.TXT;"Governmental financial support per exported male calf";"MU/animal";280
 INPUT11.TXT;"Governmental financial support per fattened animal";"MU/animal";280
 INPUT11.TXT;"Gestation length";"days";279
+INPUT07.TXT;"Vector of conception rate after ith insemination for cows not having dystocia (i=1 to inmax where inmax is the maximal number of inseminations for cows - see INPUT11.TXT)";" ";0.43 0.33 0.40 0.26 0.14
+INPUT07.TXT;"Vector of conception rate after ith insemination for heifers (i=1 to inmaxh where inmaxh is the maximal number of inseminations for heifers - see INPUT11.TXT)";" ";0.57 0.54 0.40 0.20 0.07
+INPUT11.TXT;"Maximal number of inseminations per cow after calving";" ";5
+INPUT11.TXT;"Maximal number of inseminations per heifer";" ";5
+INPUT11.TXT;"Dairy heifers mated with beef bulls as proportion of all mated dairy heifers (this parameter is given ohnly if there is crossbreeding in the system)";" ";0.34
+INPUT07.TXT;"Vector of females mated with beef bulls as proportion of females mated in reproductive cycles 1 to LL-1";" ";0.33 0.38 0.40 0.40 0.42 0.42 0.43 0.44 0.42 0.37
