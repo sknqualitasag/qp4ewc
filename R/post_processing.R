@@ -20,6 +20,10 @@
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
+#' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tibble
+#'
 #' @export post_process_ewbc_output
 post_process_ewbc_output <- function(ps_path_2outputfile,
                                      ps_output_statement,
@@ -43,9 +47,9 @@ post_process_ewbc_output <- function(ps_path_2outputfile,
 
 
   ### # Read file with output statement to search in ECOWEIGHT output
-  tbl_output_statement <- qp4ewc::read_file_input(ps_output_statement,
-                                                  pb_log,
-                                                  plogger = lgr)
+  tbl_output_statement <- read_file_input(ps_output_statement,
+                                          pb_log,
+                                          plogger = lgr)
 
 
   tbl_search <- read_file_input(ps_input_file = ps_output_search_pattern,
@@ -310,6 +314,9 @@ post_process_ewbc_output <- function(ps_path_2outputfile,
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
+#' @import ggplot2
+#' @import forcats
+#'
 #' @export plot_piechart_ewbc
 plot_piechart_ewbc <- function(ps_path_2genSD,
                               ptbl_aggregate_results,
@@ -339,9 +346,9 @@ plot_piechart_ewbc <- function(ps_path_2genSD,
 
 
   ### # Read file with genetic standard deviation
-  tbl_gen_SD <- qp4ewc::read_file_input(ps_path_2genSD,
-                                        pb_log,
-                                        plogger = lgr)
+  tbl_gen_SD <- read_file_input(ps_path_2genSD,
+                                pb_log,
+                                plogger = lgr)
 
 
   ### # Transform to the economic weight to the same unit as CHE-EBV

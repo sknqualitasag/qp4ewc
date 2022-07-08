@@ -12,6 +12,8 @@
 #' @param ps_logfile name of the logfile
 #' @param ps_level logger level
 #'
+#' @import log4r
+#'
 #' @return qp4ewc_logger
 #' @export get_qp4ewc_logger
 get_qp4ewc_logger <- function(ps_logfile = 'qp4ewc.log', ps_level = 'FATAL'){
@@ -24,6 +26,8 @@ get_qp4ewc_logger <- function(ps_logfile = 'qp4ewc.log', ps_level = 'FATAL'){
 #'
 #' @param plogger log4r logger object
 #' @param ps_msg logging message
+#'
+#' @import log4r
 #'
 #' @export qp4ewc_log_info
 #'
