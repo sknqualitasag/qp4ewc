@@ -1,10 +1,10 @@
 /* This file is necessary for program EWDC (Production System 4).
-   It includes input parameters describing the dairy cow herd. 
+   It includes input parameters describing the dairy cow herd.
    The input parameters are arranged in the following way:
-        parameters for reproduction, growth, mortality, feeding, prices and costs. 
+        parameters for reproduction, growth, mortality, feeding, prices and costs.
    All input data are arranged in the following way:
 	each parameter takes three rows,
-	in the first row stands its value, 
+	in the first row stands its value,
 	the string expression in the second row describes the parameter and
 	the last string in the third row contains the units of the parameter.
 	If there is no unit given, enter [SPACE] enclosed into quotation
@@ -94,7 +94,7 @@ daily actual and predicted dry matter intake)"
 " "
 1.0
 "Adjustment factor for breed energy requirement for maintenance - lactating cows"
-" " 
+" "
 1.2
 "Adjustment factor for energy requirement for maintenance according to technology - pasture"
 " "
@@ -106,7 +106,7 @@ daily actual and predicted dry matter intake)"
 " "
 130
 "Amount of water per cow and day"
-"l/day"     
+"l/day"
 3
 "Amount of straw per cow and day"
 "kg/day"
@@ -216,7 +216,7 @@ insemination"
 0
 "Governmental financial support per fattened animal"
 "MU/animal"
-0.8
+0
 "Proportion of cows performance tested"
 " "
 0
