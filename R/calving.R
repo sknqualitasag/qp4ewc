@@ -20,7 +20,8 @@
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
-#'
+#' @import dplyr
+#' @import tidyr
 #' @return abortion_rate vector
 #'
 #' @export calculate_abortion_rate
@@ -131,6 +132,8 @@ calculate_abortion_rate <- function(ps_input_calving_tibble,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
 #'
 #' @return stillbirth_rate vector
 #'
@@ -259,6 +262,8 @@ calculate_stillbirth_rate <- function(ps_input_calving_tibble,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
 #'
 #' @return calving score proportion vector
 #'
@@ -386,6 +391,8 @@ calculate_calvingscore_proportion <- function(ps_input_calving_tibble,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
 #'
 #' @return calves died to 24 hours proportion vector
 #'
@@ -509,6 +516,8 @@ calculate_calvesdied24h_proportion <- function(ps_input_calving_tibble,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
 #'
 #' @return calves died after 24 hours proportion vector
 #'

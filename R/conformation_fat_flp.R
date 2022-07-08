@@ -22,6 +22,7 @@
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
 #'
 #' @return result_matrix matrix with frequencies for carcass conformation and fat
 #'

@@ -22,6 +22,7 @@
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
 #'
 #' @return tibble prepared progeny data flp
 #'
@@ -144,6 +145,8 @@ prepare_progeny_flp <- function(ps_input_flp_tibble,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
 #'
 #' @return mean_birthweight vector
 #'
@@ -218,6 +221,8 @@ calculate_mean_birthweight <- function(ps_input_flp_tibble,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
 #'
 #' @return livewt_atslaughter vector
 #'
@@ -306,6 +311,8 @@ calculate_mean_liveweight_slaughter <- function(ps_input_flp_tibble,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
 #'
 #' @return weaningwt vector
 #'
@@ -384,6 +391,8 @@ calculate_mean_weaningweight <- function(ps_input_flp_tibble,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
 #'
 #' @return weaningage vector
 #'
@@ -463,6 +472,8 @@ calculate_mean_weaningage <- function(ps_input_flp_tibble,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
 #'
 #' @return slaughterage vector
 #'
@@ -679,6 +690,8 @@ calculate_extrapolated_weaningweight <- function(pv_mean_weaningage,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
 #'
 #' @return cow_liveweight vector
 #'
@@ -771,6 +784,8 @@ calculate_cow_liveweight <- function(ps_input_flp_tibble,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
 #'
 #' @return bull_liveweight vector
 #'

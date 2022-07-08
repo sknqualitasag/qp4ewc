@@ -17,6 +17,8 @@
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
+#' @import readr
+#'
 #' @return tibble with the content of the file
 #'
 #' @export read_file_input
@@ -77,6 +79,8 @@ read_file_input <-  function(ps_input_file,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import readr
 #'
 #' @return tibble with the content of the calving file
 #'
@@ -170,6 +174,8 @@ read_file_input_calving <-  function(ps_input_file_calving,
 #' @param pdate_today todays date
 #' @param pb_floor should age in days be rounded down
 #'
+#' @import lubridate
+#'
 #' @return age in days
 #'
 #' @export age_in_days
@@ -200,6 +206,8 @@ age_in_days <- function(pdate_birth,
 #' @param plogger logger object
 #'
 #' @importFrom dplyr %>%
+#' @import dplyr
+#' @import readr
 #'
 #' @return tibble with the content of the beef recording file
 #'
@@ -301,7 +309,7 @@ read_file_input_flp <-  function(ps_input_file_flp,
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
-#' @importFrom dplyr %>%
+#' @import readr
 #'
 #' @return result_price_matrix matrix with prices for carcass conformation and fat
 #'
@@ -370,7 +378,7 @@ read_price_conf_fat <- function(ps_input_file_price,
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
-#' @importFrom dplyr %>%
+#' @import readr
 #'
 #' @return tibble with the pedigree content
 #'
