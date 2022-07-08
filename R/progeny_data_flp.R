@@ -110,7 +110,7 @@ prepare_progeny_flp <- function(ps_input_flp_tibble,
                                              dplyr::filter(is.na(Markenprogramm))
       }else{
         tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
-                                            dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
+                                            dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
                                             dplyr::filter(is.na(Markenprogramm))
       }
     }else{
