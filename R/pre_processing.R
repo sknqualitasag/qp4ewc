@@ -406,7 +406,7 @@ pre_process_ew_input <- function(ps_sirebreed,
                                            ps_input_file_flp = ps_input_file_flp,
                                            ps_start_flp_date = ps_start_date,
                                            ps_end_flp_date = ps_end_date,
-                                           ps_input_file_ped,
+                                           ps_input_file_ped = ps_input_file_ped,
                                            pb_log = pb_log,
                                            plogger = lgr)
  }else{
