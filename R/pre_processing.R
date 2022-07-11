@@ -90,6 +90,7 @@ pre_process_ew_input <- function(ps_sirebreed,
                            ' * ps_input_file_flp_carcass_matrix_statement: ',ps_input_file_flp_carcass_matrix_statement,'\n',
                            ' * ps_input_file_price_cow: ',ps_input_file_price_cow,'\n',
                            ' * ps_input_file_price_bull: ',ps_input_file_price_bull,'\n',
+                           ' * ps_input_file_price_calf: ',ps_input_file_price_calf,'\n',
                            ' * ps_input_file_price_heifer: ',ps_input_file_price_heifer,'\n'))
   }
 
@@ -2054,51 +2055,6 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                plogger = lgr)
 
 
-    # Update statement-progeny-flp-input from the data by calculating mean slaughter age
-    slaughterage_f_purebeef <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_beef,
-                                                           ps_sex = l_constants_progeny_beefOndairy$sex_female,
-                                                           ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                           ps_prodsystew = ps_prodsystew,
-                                                           pb_log = pb_log,
-                                                           plogger = lgr)
-    slaughterage_m_purebeef <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_beef,
-                                                           ps_sex = l_constants_progeny_beefOndairy$sex_male,
-                                                           ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                           ps_prodsystew = ps_prodsystew,
-                                                           pb_log = pb_log,
-                                                           plogger = lgr)
-    slaughterage_f_puredairy <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_dairy,
-                                                            ps_sex = l_constants_progeny_beefOndairy$sex_female,
-                                                            ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                            ps_prodsystew = ps_prodsystew,
-                                                            pb_log = pb_log,
-                                                            plogger = lgr)
-    slaughterage_m_puredairy <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_dairy,
-                                                            ps_sex = l_constants_progeny_beefOndairy$sex_male,
-                                                            ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
-                                                            ps_prodsystew = ps_prodsystew,
-                                                            pb_log = pb_log,
-                                                            plogger = lgr)
-
-
-    # Update statement-progeny-flp-input from the data by calculating mature cow weight
-    mature_weight_cow_dairy <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
-                                                        ps_first_calvingweight = FALSE,
-                                                        ps_second_calvingweight = FALSE,
-                                                        ps_dambreed = ps_dambreed,
-                                                        pb_log = pb_log,
-                                                        plogger = lgr)
-    mature_weight_cow_beef <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
-                                                       ps_first_calvingweight = FALSE,
-                                                       ps_second_calvingweight = FALSE,
-                                                       ps_dambreed = ps_sirebreed,
-                                                       pb_log = pb_log,
-                                                       plogger = lgr)
-
-
-
-
-
   }
   # ****************************************************************************
   ## ---- Conventional-Veal ----
@@ -2214,53 +2170,38 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                 pb_log = pb_log,
                                 plogger = lgr)
 
-
-    # Update statement-progeny-flp-input from the data by calculating mean slaughter age
-    slaughterage_f_purebeef <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_beef,
-                                                           ps_sex = l_constants_progeny_beefOndairy$sex_female,
-                                                           ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                           ps_prodsystew = ps_prodsystew,
-                                                           pb_log = pb_log,
-                                                           plogger = lgr)
-    slaughterage_m_purebeef <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_beef,
-                                                           ps_sex = l_constants_progeny_beefOndairy$sex_male,
-                                                           ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                           ps_prodsystew = ps_prodsystew,
-                                                           pb_log = pb_log,
-                                                           plogger = lgr)
-    slaughterage_f_puredairy <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_dairy,
-                                                            ps_sex = l_constants_progeny_beefOndairy$sex_female,
-                                                            ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                            ps_prodsystew = ps_prodsystew,
-                                                            pb_log = pb_log,
-                                                            plogger = lgr)
-    slaughterage_m_puredairy <- calculate_mean_slaughterage(ps_input_flp_tibble = tbl_purebred_dairy,
-                                                            ps_sex = l_constants_progeny_beefOndairy$sex_male,
-                                                            ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_calf,
-                                                            ps_prodsystew = ps_prodsystew,
-                                                            pb_log = pb_log,
-                                                            plogger = lgr)
-
-
-    # Update statement-progeny-flp-input from the data by calculating mature cow weight
-    mature_weight_cow_dairy <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
-                                                        ps_first_calvingweight = FALSE,
-                                                        ps_second_calvingweight = FALSE,
-                                                        ps_dambreed = ps_dambreed,
-                                                        pb_log = pb_log,
-                                                        plogger = lgr)
-    mature_weight_cow_beef <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
-                                                       ps_first_calvingweight = FALSE,
-                                                       ps_second_calvingweight = FALSE,
-                                                       ps_dambreed = ps_sirebreed,
-                                                       pb_log = pb_log,
-                                                       plogger = lgr)
-
-
-
-
   }
 
+  # Update statement-progeny-flp-input from the data by calculating mature cow weight
+  mature_weight_cow_dairy <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
+                                                      ps_first_calvingweight = FALSE,
+                                                      ps_second_calvingweight = FALSE,
+                                                      ps_dambreed = ps_dambreed,
+                                                      pb_log = pb_log,
+                                                      plogger = lgr)
+  mature_weight_cow_beef <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
+                                                     ps_first_calvingweight = FALSE,
+                                                     ps_second_calvingweight = FALSE,
+                                                     ps_dambreed = ps_sirebreed,
+                                                     pb_log = pb_log,
+                                                     plogger = lgr)
+
+
+  update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_cowwt_dairy_3calving,l_constants_progeny_beefOndairy$idx_col_input_file]),
+                              ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_cowwt_dairy_3calving,l_constants_progeny_beefOndairy$idx_col_input],
+                              ps_value2update = mature_weight_cow_dairy,
+                              pb_log = pb_log,
+                              plogger = lgr)
+
+  update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_cowwt_beef_3calving,l_constants_progeny_beefOndairy$idx_col_input_file]),
+                              ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_cowwt_beef_3calving,l_constants_progeny_beefOndairy$idx_col_input],
+                              ps_value2update = mature_weight_cow_beef,
+                              pb_log = pb_log,
+                              plogger = lgr)
 
 }
 

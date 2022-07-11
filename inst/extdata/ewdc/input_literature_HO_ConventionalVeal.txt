@@ -65,10 +65,10 @@ INPUT11.TXT;"Dressing proportion of cows";" ";0.56
 INPUT15.TXT;"Dressing proportion of heifers";" ";
 INPUT15.TXT;"Dressing proportion of bulls";" ";
 INPUT11.TXT;"Governmental financial support per kg milk";"MU/kg";0.20
-INPUT11.TXT;"Governmental financial support per cow and year (e.g. for culled cows)";"MU/cow and year";
-INPUT11.TXT;"Governmental financial support per cow in performance test and year";"MU/cow and year";
-INPUT11.TXT;"Governmental financial support per exported male calf";"MU/animal";
-INPUT11.TXT;"Governmental financial support per fattened animal";"MU/animal";
+INPUT11.TXT;"Governmental financial support per cow and year (e.g. for culled cows)";"MU/cow and year";2025
+INPUT11.TXT;"Governmental financial support per cow in performance test and year";"MU/cow and year";280
+INPUT11.TXT;"Governmental financial support per exported male calf";"MU/animal";280
+INPUT11.TXT;"Governmental financial support per fattened animal";"MU/animal";280
 INPUT11.TXT;"Gestation length";"days";279
 INPUT07.TXT;"Vector of conception rate after ith insemination for cows not having dystocia (i=1 to inmax where inmax is the maximal number of inseminations for cows - see INPUT11.TXT)";" ";0.43 0.33 0.40 0.26 0.14
 INPUT07.TXT;"Vector of conception rate after ith insemination for heifers (i=1 to inmaxh where inmaxh is the maximal number of inseminations for heifers - see INPUT11.TXT)";" ";0.57 0.54 0.40 0.20 0.07
