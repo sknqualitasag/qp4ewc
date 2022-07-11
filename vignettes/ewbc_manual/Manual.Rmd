@@ -63,9 +63,9 @@ s_input_file_flp_carcass_matrix_statement <- file.path(here::here(),"inst","extd
 s_input_file_price_cow <- file.path(here::here(),"inst","extdata","ewbc","cow_price.txt")
 # Path to input with bull price. Based on this example an other file can be created with different input-values.
 s_input_file_price_bull <- file.path(here::here(),"inst","extdata","ewbc","bull_price.txt")
-# Path to input with heifer price. Based on this example an other file can be created with different input-values.
+# Path to input with heifer price. Based on this example an other file can be created with different input-values.ONLY REQUIRED BEEF ON DAIRY (will not be used for beef on beef)
 s_input_file_price_heifer <- file.path(here::here(),"inst","extdata","ewbc","heifer_price.txt")
-# Path to input with heifer price. Based on this example an other file can be created with different input-values. ONLY REQUIRED BEEF ON DAIRY (will not be used for beef on beef)
+# Path to input with calf price. Based on this example an other file can be created with different input-values.
 s_input_file_price_calf <- file.path(here::here(),"inst","extdata","ewdc","veal_price.txt")
 # Path to pedigree input file
 s_input_file_ped <- file.path("/qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/test_file/ped_withBreedCode_damside")
