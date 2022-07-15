@@ -604,6 +604,65 @@ calculate_dailygain <- function(pv_mean_slaughterage,
 
 }
 
+#' @title Calculate average daily gain during rearing
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate average daily gain.
+#'
+#' @param pv_mean_rearingage vector with the mean of slaughter age
+#' @param pv_mean_rearing_wt vector with the mean of live weight at slaughter
+#' @param pv_mean_birthwt vector with the mean of weaning weight
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#'
+#' @return dailygain_rearing vector
+#'
+#' @export calculate_dailygain_rearing
+calculate_dailygain_rearing <- function(pv_mean_rearingage,
+                                        pv_mean_rearing_wt,
+                                        pv_mean_birthwt,
+                                        pb_log = FALSE,
+                                        plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_dailygain_rearing.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_dailygain_rearing',
+                    paste0('Starting function with parameters:\n * pv_mean_rearingage: ',pv_mean_rearingage,'\n',
+                           ' * pv_mean_rearing_wt: ', pv_mean_rearing_wt,'\n',
+                           ' * pv_mean_birthwt: ', pv_mean_birthwt))
+  }
+
+
+  ### # Calculate rearing weight gain
+  rearing_weight_gain <- pv_mean_rearing_wt - pv_mean_birthwt
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_dailygain_rearing',
+                    paste0('Rearing weight gain: ',rearing_weight_gain,' is the difference between pv_mean_rearing_wt ',pv_mean_rearing_wt,' and pv_mean_birthwt ', pv_mean_birthwt))
+  }
+
+
+  ### # Calculate daily gain
+  dailygain_rearing <- round(rearing_weight_gain/pv_mean_rearingage,4)
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'calculate_dailygain',
+                    paste0('Daily gain during rearing is : ',dailygain_rearing))
+  }
+
+
+  return(dailygain_rearing)
+
+
+}
+
 
 #' @title Extrapolate weaning weight at t-days
 #'

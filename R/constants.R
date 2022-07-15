@@ -254,7 +254,20 @@ get_constants_progeny_beefOndairy <- function(){
               idx_row_lw_heifer_slaughter_dairy = 23,
               idx_row_lw_bull_slaughter_dairy = 24,
               idx_row_cowwt_dairy_3calving = 1,
-              idx_row_cowwt_beef_3calving = 2
+              idx_row_cowwt_beef_3calving = 2,
+              rearing_end_age = 90,
+              rearing_end_wt = 130,
+              sale_age = 38,
+              sale_wt = 75,
+              age_1stfeeding = 21,
+              idx_row_rearingage = 7,
+              idx_row_age1stfeeding = 6,
+              idx_row_rearingdailygain_f = 12,
+              idx_row_rearingdailygain_m = 13,
+              idx_row_fatdailygain_f = 17,
+              idx_row_fatdailygain_m = 18,
+              idx_row_agesale_f = 8,
+              idx_row_agesale_m = 11
               ))
 }
 

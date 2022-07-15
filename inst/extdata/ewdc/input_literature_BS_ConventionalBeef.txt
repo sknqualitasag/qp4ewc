@@ -1,10 +1,11 @@
 input_file;input;input_unit;input_value;input_source
+INPUT11.TXT;"Amount of water per cow and day";"l/day";60
 INPUT11.TXT;"Price per l water";"MU/l";0
 INPUT11.TXT;"Price per kg straw";"MU/kg";0.16
-INPUT21.TXT;"Amount of straw per reared calf and day";"kg/day";
-INPUT21.TXT;"Amount of straw per reared heifer and day";"kg/day";
-INPUT21.TXT;"Amount of straw per bull and day in fattening";"kg/day";
-INPUT21.TXT;"Amount of straw per heifer and day in fattening";"kg/day";
+INPUT21.TXT;"Amount of straw per reared calf and day";"kg/day";3.5
+INPUT21.TXT;"Amount of straw per reared heifer and day";"kg/day";3.5
+INPUT21.TXT;"Amount of straw per bull and day in fattening";"kg/day";3.5
+INPUT21.TXT;"Amount of straw per heifer and day in fattening";"kg/day";3.5
 INPUT11.TXT;"Amount of straw per cow and day";"kg/day";3.6
 INPUT11.TXT;"Price per kg dung";"MU/kg";0
 INPUT11.TXT;"Price per portion of semen from AI dairy bulls including external labour for insemination";"MU/portion";82
@@ -20,7 +21,7 @@ INPUT11.TXT;"Veterinary cost connected with calving score 1";"MU/calving";0
 INPUT11.TXT;"Veterinary cost connected with calving score 2";"MU/calving";0
 INPUT11.TXT;"Veterinary cost connected with calving score 3";"MU/calving";300
 INPUT11.TXT;"Veterinary cost connected with calving score 4";"MU/calving";1000
-INPUT21.TXT;"Cost for veterinary treatment per heifer in the whole fattening period";"MU/animal";
+INPUT21.TXT;"Cost for veterinary treatment per heifer in the whole fattening period";"MU/animal";138.9
 INPUT11.TXT;"Stock-man hours connected with calving score 1";"h";0
 INPUT11.TXT;"Stock-man hours connected with calving score 2";"h";0
 INPUT11.TXT;"Stock-man hours connected with calving score 3";"h";3
@@ -28,9 +29,9 @@ INPUT11.TXT;"Stock-man hours connected with calving score 4";"h";5
 INPUT11.TXT;"Cost per stock-man hour (needed for dystocia cost)";"MU/h";11.5
 INPUT11.TXT;"Fixed cost per cow and day";"MU/day";8.39
 INPUT21.TXT;"Fixed cost per reared calf and day";"MU/day";1.15
-INPUT21.TXT;"Fixed cost per reared heifer from the end of rearing period of calves to calving and per day";"MU/day"
+INPUT21.TXT;"Fixed cost per reared heifer from the end of rearing period of calves to calving and per day";"MU/day";3.82
 INPUT21.TXT;"Fixed cost per bull and day in fattening";"MU/day";3.28
-INPUT21.TXT;"Fixed cost per heifer and day in fattening";"MU/day";
+INPUT21.TXT;"Fixed cost per heifer and day in fattening";"MU/day";3.28
 INPUT11.TXT;"Net energy per kg dry matter of feed ration for cows";"MJ NE/kg dry matter";6.1
 INPUT11.TXT;"Dry matter per kg feed for cows (average feed ration through the whole calving interval)";"kg/kg";0.27
 INPUT11.TXT;"Protein per kg dry matter of feed ration for cows";"g PDI/kg";105
@@ -60,13 +61,13 @@ INPUT11.TXT;"Fat content in milk";"%";4.0
 INPUT11.TXT;"Protein content in milk";"%";3.2
 INPUT22.TXT;"Average milk yield per cow and year";"kg";8272
 INPUT11.TXT;"Dressing proportion of cows";" ";0.54
-INPUT15.TXT;"Dressing proportion of heifers";" ";0.56
-INPUT15.TXT;"Dressing proportion of bulls";" ";0.58
+INPUT15.TXT;"Dressing proportion of heifers";" ";0.56 0.56
+INPUT15.TXT;"Dressing proportion of bulls";" ";0.58 0.58
 INPUT11.TXT;"Governmental financial support per kg milk";"MU/kg";0.20
-INPUT11.TXT;"Governmental financial support per cow and year (e.g. for culled cows)";"MU/cow and year";
-INPUT11.TXT;"Governmental financial support per cow in performance test and year";"MU/cow and year";
-INPUT11.TXT;"Governmental financial support per exported male calf";"MU/animal";
-INPUT11.TXT;"Governmental financial support per fattened animal";"MU/animal";
+INPUT11.TXT;"Governmental financial support per cow and year (e.g. for culled cows)";"MU/cow and year";2025
+INPUT11.TXT;"Governmental financial support per cow in performance test and year";"MU/cow and year";280
+INPUT11.TXT;"Governmental financial support per exported male calf";"MU/animal";280
+INPUT11.TXT;"Governmental financial support per fattened animal";"MU/animal";280
 INPUT11.TXT;"Gestation length";"days";291
 INPUT07.TXT;"Vector of conception rate after ith insemination for cows not having dystocia (i=1 to inmax where inmax is the maximal number of inseminations for cows - see INPUT11.TXT)";" ";0.46 0.48 0.52 0.35 0.19
 INPUT07.TXT;"Vector of conception rate after ith insemination for heifers (i=1 to inmaxh where inmaxh is the maximal number of inseminations for heifers - see INPUT11.TXT)";" ";0.57 0.56 0.6 0.36 0.13
