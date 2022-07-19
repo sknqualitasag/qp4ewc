@@ -323,6 +323,95 @@ pre_process_ew_input <- function(ps_sirebreed,
  }
 
 
+ ### Semen for AI including service, fraction performance tested-cows
+ if(ps_prodsystew == l_constants_ewbc_input_beefOnbeef$prodsyst2 || ps_prodsystew == l_constants_ewbc_input_beefOnbeef$prodsyst3){
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_input03),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$price_semenAI,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$price_semenAI_3,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_input03),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$price_reinsem,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$price_semenAI_3,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_input03),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$fraction_perftestedcows,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$fraction_perftestedcows_3,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_input19),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$peak_milk,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$peak_milk_3,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_input03),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$prop_female_fattening,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$prop_female_fattening_3,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_input13),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$pregnant_heifer_sold,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$pregnant_heifer_sold_3,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+
+
+ }else if(ps_prodsystew == l_constants_ewbc_input_beefOnbeef$prodsyst1){
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_input03),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$price_semenAI,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$price_semenAI_1,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_input03),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$price_reinsem,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$price_semenAI_1,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_input03),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$fraction_perftestedcows,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$fraction_perftestedcows_1,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_input19),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$peak_milk,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$peak_milk_1,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_input03),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$prop_female_fattening,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$prop_female_fattening_1,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_input13),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$pregnant_heifer_sold,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$pregnant_heifer_sold_1,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+    }
+
+
  ### # If productionsystem 1 : Read file with input for tested bulls for input-parameter-file of ECOWEIGHT
  if(ps_prodsystew == as.character(1)){
    tbl_input_testedbull <- read_file_input(ps_input_file = ps_input_file_testedbulls,
