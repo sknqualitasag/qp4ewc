@@ -2,7 +2,7 @@ input_file;input;input_unit;input_value;input_source
 INPUT11.TXT;"Amount of water per cow and day";"l/day";60
 INPUT11.TXT;"Price per l water";"MU/l";0
 INPUT11.TXT;"Price per kg straw";"MU/kg";0.16
-INPUT21.TXT;"Amount of straw per reared calf and day";"kg/day";3.5
+INPUT21.TXT;"Amount of straw per reared calf and day";"kg/day";3.5 3.5
 INPUT21.TXT;"Amount of straw per reared heifer and day";"kg/day";3.5 3.5
 INPUT21.TXT;"Amount of straw per bull and day in fattening";"kg/day";3.5 3.5
 INPUT21.TXT;"Amount of straw per heifer and day in fattening";"kg/day";3.5 3.5
