@@ -8,10 +8,10 @@ INPUT21.TXT;"Amount of straw per bull and day in fattening";"kg/day";3.5
 INPUT21.TXT;"Amount of straw per heifer and day in fattening";"kg/day";3.5
 INPUT11.TXT;"Amount of straw per cow and day";"kg/day";3.6
 INPUT11.TXT;"Price per kg dung";"MU/kg";0
-INPUT11.TXT;"Price per portion of semen from AI dairy bulls including external labour for insemination";"MU/portion";100
-INPUT11.TXT;"Cost per re-insemination from dairy bulls including external labour for insemination";"MU/re-insemination";100
-INPUT11.TXT;"Price per portion of semen from AI beef bulls including external labour for insemination";"MU/portion";61
-INPUT11.TXT;"Cost per re-insemination from beef bulls including external labour for insemination";"MU/re-insemination";61
+INPUT11.TXT;"Price per portion of semen from AI dairy bulls including external labour";"MU/portion";100
+INPUT11.TXT;"Cost per re-insemination from dairy bulls including external labour";"MU/re-insemination";100
+INPUT11.TXT;"Price per portion of semen from AI beef bulls including external labour";"MU/portion";61
+INPUT11.TXT;"Cost per re-insemination from beef bulls including external labour";"MU/re-insemination";61
 INPUT11.TXT;"Cost for removing and rendering a dead cow";"MU/animal";200
 INPUT11.TXT;"Average costs for removing and rendering of a dead young animal (replacement heifer or animal in fattening)";"MU/animal";0
 INPUT11.TXT;"Average costs for removing and rendering of a dead calf";"MU/animal";0
