@@ -18,7 +18,7 @@ PARAD.TXT;"Number of reproductive cycles (should be in the range from 4";" ";10
 PARAD.TXT;"Genetic standard deviation of the traits";" ";2
 PARAD.TXT;"Data for claw disease incidence";" ";0
 PARAD.TXT;"Data for milking speed";" ";0
-PARAD.TXT;"Calculation of economic value for residual dry matter intake of calves in rearing";" ";0
-PARAD.TXT;"Calculation of economic value for residual dry matter intake of heifers in rearing";" ";0
-PARAD.TXT;"Calculation of economic value for residual dry matter intake of animals in fattening";" ";0
+PARAD.TXT;"Calculation of economic value for residual dry matter intake of calves;" ";0
+PARAD.TXT;"Calculation of economic value for residual dry matter intake of heifers";" ";0
+PARAD.TXT;"Calculation of economic value for residual dry matter intake of animals";" ";0
 PARAD.TXT;"Calculation of economic value for residual dry matter intake of cows";" ";0
