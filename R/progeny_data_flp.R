@@ -904,3 +904,285 @@ calculate_bull_liveweight <- function(ps_input_flp_tibble,
 
 
 }
+
+
+#' @title calculate_rearing_age_beef
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate rearing age of beef animals.
+#'
+#' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
+#'
+#' @return rearing_age
+#'
+#' @export calculate_rearing_age_beef
+calculate_rearing_age_beef <- function(ps_input_flp_tibble,
+                                      pb_log = FALSE,
+                                      plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_rearing_age.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_rearing_age',
+                    paste0('Starting function with parameters:\n * ps_input_flp_tibble'))
+  }
+
+ tbl_input <- ps_input_flp_tibble
+
+ tbl_input$rearingAge <- age_in_days(pdate_birth = as.Date(as.character(as.numeric(tbl_input$`Geburtsdatum Nako`)), format = "%Y%m%d", origin="1970-01-01"),
+                                     pdate_today = as.Date(tbl_input$RearingDateBeef),
+                                     pb_floor = FALSE)
+ rearingageBeef <- round(as.numeric(dplyr::summarise(tbl_input, mean_raringageBeef = mean(`rearingAge`))),4)
+
+
+  return(rearingageBeef)
+
+
+}
+
+#' @title calculate_rearing_weight_beef
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate rearing weight of beef animals.
+#'
+#' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param ps_sex sex of the animal
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
+#'
+#' @return rearing_age
+#'
+#' @export calculate_rearing_weight_beef
+calculate_rearing_weight_beef <- function(ps_input_flp_tibble,
+                                          ps_sex,
+                                       pb_log = FALSE,
+                                       plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_rearing_weight_beef.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_rearing_weight_beef',
+                    paste0('Starting function with parameters:\n * ps_input_flp_tibble'))
+  }
+
+
+
+  tbl_input <- ps_input_flp_tibble %>%
+    dplyr::filter(`Geschlecht Nako` == ps_sex)
+
+  rearingwtBeef <- round(as.numeric(dplyr::summarise(tbl_input, mean_raringwtBeef = mean(`RearingWtBeef`))),4)
+
+  return(rearingwtBeef)
+
+
+}
+
+#' @title calculate_rearing_age_calf
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate rearing age of calves
+#'
+#' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
+#'
+#' @return rearing_age
+#'
+#' @export calculate_rearing_age_calf
+calculate_rearing_age_calf <- function(ps_input_flp_tibble,
+                                       pb_log = FALSE,
+                                       plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_rearing_age_calf.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_rearing_age_calf',
+                    paste0('Starting function with parameters:\n * ps_input_flp_tibble'))
+  }
+
+  tbl_input <- ps_input_flp_tibble
+
+  tbl_input$rearingAge <- age_in_days(pdate_birth = as.Date(as.character(as.numeric(tbl_input$`Geburtsdatum Nako`)), format = "%Y%m%d", origin="1970-01-01"),
+                                      pdate_today = as.Date(tbl_input$GewogenAm),
+                                      pb_floor = FALSE)
+  rearingageveal <- round(as.numeric(dplyr::summarise(tbl_input, mean_raringageBeef = mean(`rearingAge`))),4)
+
+
+  return(rearingageveal)
+
+
+}
+
+#' @title calculate_rearing_weight_veal
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate rearing weight of calves.
+#'
+#' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param ps_sex sex of the animal
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
+#'
+#' @return rearing_age
+#'
+#' @export calculate_rearing_weight_veal
+calculate_rearing_weight_veal <- function(ps_input_flp_tibble,
+                                          ps_sex,
+                                          pb_log = FALSE,
+                                          plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_rearing_weight_veal.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_rearing_weight_veal',
+                    paste0('Starting function with parameters:\n * ps_input_flp_tibble'))
+  }
+
+
+
+  tbl_input <- ps_input_flp_tibble %>%
+    dplyr::filter(`Geschlecht Nako` == ps_sex)
+
+  rearingwtveal <- round(as.numeric(dplyr::summarise(tbl_input, mean_raringwtBeef = mean(`Gewicht`))),4)
+
+  return(rearingwtveal)
+
+
+}
+
+#' @title calculate_rearing_weight_calf
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate rearing weight of calves.
+#'
+#' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param ps_sex sex of the animal
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
+#'
+#' @return rearing_age
+#'
+#' @export calculate_rearing_weight_calf
+calculate_rearing_weight_calf <- function(ps_input_flp_tibble,
+                                          ps_sex,
+                                          pb_log = FALSE,
+                                          plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_rearing_weight_calf.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_rearing_weight_calf',
+                    paste0('Starting function with parameters:\n * ps_input_flp_tibble'))
+  }
+
+
+
+  tbl_input <- ps_input_flp_tibble %>%
+    dplyr::filter(`Geschlecht Nako` == ps_sex)
+
+  rearingwtcalf <- round(as.numeric(dplyr::summarise(tbl_input, mean_raringwtBeef = mean(`GewichtBezahlt`))),4)
+
+  return(rearingwtcalf)
+
+
+}
+
+#' @title calculate_age_calf_sale
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate rearing weight of calves.
+#'
+#' @param ps_input_flp_tibble input flp tibble coming from read_file_input_flp in this package
+#' @param ps_sex sex of the animal
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
+#'
+#' @return rearing_age
+#'
+#' @export calculate_age_calf_sale
+calculate_age_calf_sale <- function(ps_input_flp_tibble,
+                                          ps_sex,
+                                          pb_log = FALSE,
+                                          plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculat_age_calf_sale.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_age_calf_sale',
+                    paste0('Starting function with parameters:\n * ps_input_flp_tibble'))
+  }
+
+
+
+  tbl_input <- ps_input_flp_tibble %>%
+    dplyr::filter(`Geschlecht Nako` == ps_sex)
+
+  rearingwtcalf <- round(as.numeric(dplyr::summarise(tbl_input, mean_price = mean(`Preis`))),4)
+
+  return(rearingwtcalf)
+
+
+}
+

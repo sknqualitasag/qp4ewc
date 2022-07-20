@@ -33,8 +33,8 @@ s_sirebreed <- "LM"
 s_dambreed <- "HO"
 # Production system according to ECOWEIGHT for beef-on-dairy: 4 corresponding to dairy
 s_prodsystew <- "4"
-# Marketing channel can be: ConventionalBeef, ConventionalVeal corresponding to intensive fattening system for beef or veal
-s_marketingchannel <- "ConventionalBeef"
+# Marketing channel can be: ConventionalBeef, ConventionalVeal, Export corresponding to intensive fattening system for beef or veal or all crossbred calves being sold as calves to the handler
+s_marketingchannel <- "Export"
 # Path to define from the working directory for beef-on-dairy
 s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc")
 # Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
@@ -57,6 +57,8 @@ s_end_date <- 20211231
 s_input_file_progeny_flp_statement <- file.path(here::here(),"inst","extdata","ewdc","input_flp_statement.txt")
 # Path to flp data file #### !!!! Making specific test file for beef-on-dairy
 s_input_file_flp <- file.path("/qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/2022_08/zws_muku_flp.csv")
+# Path to calf price data file #### !!!! Making specific test file for beef-on-dairy
+s_input_file_calf <- file.path("~/Ecoweight_package/Data/calf_data.csv")
 # Path to input statement for carcass and price
 s_input_file_flp_carcass_matrix_statement <- file.path(here::here(),"inst","extdata","ewdc","input_flp_carcass_matrix_statement.txt")
 # Path to input with cow price. Based on this example an other file can be created with different input-values.
@@ -109,6 +111,7 @@ pre_process_ew_input(ps_sirebreed = s_sirebreed,
                      ps_end_date = s_end_date,
                      ps_input_file_progeny_flp_statement = s_input_file_progeny_flp_statement,
                      ps_input_file_flp = s_input_file_flp,
+                     ps_input_file_calf = s_input_file_calf,
                      ps_input_file_flp_carcass_matrix_statement = s_input_file_flp_carcass_matrix_statement,
                      ps_input_file_price_cow = s_input_file_price_cow,
                      ps_input_file_price_bull = s_input_file_price_bull,

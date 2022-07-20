@@ -20,6 +20,7 @@ pre_process_ew_input(
   ps_end_date,
   ps_input_file_progeny_flp_statement,
   ps_input_file_flp,
+  ps_input_file_calf,
   ps_input_file_flp_carcass_matrix_statement,
   ps_input_file_price_cow,
   ps_input_file_price_bull,
@@ -60,6 +61,8 @@ pre_process_ew_input(
 \item{ps_input_file_progeny_flp_statement}{path to file with statement based on carcass for the input-parameter-file for ECOWEIGHT}
 
 \item{ps_input_file_flp}{path to file with input coming from carcass for the input-parameter-file for ECOWEIGHT}
+
+\item{ps_input_file_calf}{path to file with input coming from calf price data for the input-parameter-file for ECOWEIGHT}
 
 \item{ps_input_file_flp_carcass_matrix_statement}{path to file with statement based on carcass frequency and price for the input-parameter-file for ECOWEIGHT}
 

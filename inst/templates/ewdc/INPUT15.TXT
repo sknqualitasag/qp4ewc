@@ -1,21 +1,21 @@
 /* This file is necessary for program EWDC (Production System 4).
    It includes input parameters connected with progeny. Two types of
    calving (after pure-bred and cross-bred mating) are distinguished giving
-   two types of progeny (pure-bred and cross-bred). The first number refers to 
-   pure-bred (dairy) progeny and must be always given. The second number is 
+   two types of progeny (pure-bred and cross-bred). The first number refers to
+   pure-bred (dairy) progeny and must be always given. The second number is
    for cross-bred progeny and can be omitted if there is no crossbreeding in the
    system. If a second number is given in a system without crossbreeding, this
-   number is ignored and its value is of no importance (that means you can insert 
+   number is ignored and its value is of no importance (that means you can insert
    any value for it).
-   The inputs for castrates are read only if there are castrates in the system. 
-   Similarly, the inputs for bulls in fattening are only read if there is fattening 
-   of bulls. The proportion of male calves for fattening is calculated from the 
+   The inputs for castrates are read only if there are castrates in the system.
+   Similarly, the inputs for bulls in fattening are only read if there is fattening
+   of bulls. The proportion of male calves for fattening is calculated from the
    first two inputs of this file.
    All input data are arranged in the following way:
      Each parameter takes three rows,
      in the first row there are mostly two values:
-       the first one is for pure-bred (dairy) progeny, 
-       the second one is for cross-bred progeny. 
+       the first one is for pure-bred (dairy) progeny,
+       the second one is for cross-bred progeny.
        If there is only one type of progeny, the parameter not concerned
        is ignored and its value is of no importance; it is recommended to
        write zeros for clarity in these cases.
@@ -24,11 +24,11 @@
      If there is no unit given, enter [SPACE] enclosed into quotation
      marks. */
 0.99  1
-"Proportion of male calves alive at 48 hours after birth that are determined 
+"Proportion of male calves alive at 48 hours after birth that are determined
 for export (selling outside of the evaluated production system)"
 " "
-0.01
-"Proportion of pure-bred male calves alive at 48 hours after birth that are 
+0
+"Proportion of pure-bred male calves alive at 48 hours after birth that are
 sold as breeding males (e.g. to test stations or AI stations)"
 " "
 0  0
@@ -43,7 +43,7 @@ sold as breeding males (e.g. to test stations or AI stations)"
 38  39
 "Weight of male calves at birth"
 "kg"
-90   90  
+90   90
 "Age of calves at the end of the first feeding period"
 "days"
 180  180
@@ -79,7 +79,7 @@ sold as breeding males (e.g. to test stations or AI stations)"
 450  190
 "Age of breeding heifers not mated at selling"
 "days"
-660  660 
+660  660
 "Age of pregnant heifers at selling"
 "days"
 0.8  1.0

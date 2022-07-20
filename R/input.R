@@ -450,3 +450,59 @@ read_file_input_ped <-  function(ps_input_file_ped,
 
 
 }
+
+#' @title Read file with pedigree input
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will read a pedigree file.
+#'
+#' @param ps_input_file_calf path to calf price file
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @import readr
+#'
+#' @return tibble with the pedigree content
+#'
+#' @export read_file_input_calf
+read_file_input_calf <-  function(ps_input_file_calf,
+                                 pb_log = FALSE,
+                                 plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'read_file_input_calf.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'read_file_input_calf',
+                    paste0('Starting function with parameters:\n * ps_input_file_calf: ', ps_input_file_calf))
+  }
+
+
+  ### # Check if file exist otherwise stop running the function
+  if(!file.exists(ps_input_file_calf)){
+    stop("read_file_input_calf: file ",ps_input_file_calf," does not exist, please check the path !")
+  }else{
+    if(pb_log){
+      qp4ewc_log_info(lgr, 'read_file_input_calf',paste0('File exists:\n * ps_input_file_calf',ps_input_file_calf))
+    }
+  }
+
+
+  ### # Read the input flp file
+  tbl_calf <- readr::read_delim(file = ps_input_file_calf, delim = ",")
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'read_file_input_calf',paste0('Read file: \n * ps_input_file_calf: ',ps_input_file_calf,"\n",
+                                                      ' * in a tibble'))
+  }
+
+
+  ### # Return tibble
+  return(tbl_calf)
+
+
+}

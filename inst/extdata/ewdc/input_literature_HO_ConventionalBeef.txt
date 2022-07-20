@@ -8,10 +8,10 @@ INPUT21.TXT;"Amount of straw per bull and day in fattening";"kg/day";3.5 3.5
 INPUT21.TXT;"Amount of straw per heifer and day in fattening";"kg/day";3.5 3.5
 INPUT11.TXT;"Amount of straw per cow and day";"kg/day";3.6
 INPUT11.TXT;"Price per kg dung";"MU/kg";0
-INPUT11.TXT;"Price per portion of semen from AI dairy bulls including external labour for insemination";"MU/portion";74
-INPUT11.TXT;"Cost per re-insemination from dairy bulls including external labour for insemination";"MU/re-insemination";74
-INPUT11.TXT;"Price per portion of semen from AI beef bulls including external labour for insemination";"MU/portion";39
-INPUT11.TXT;"Cost per re-insemination from beef bulls including external labour for insemination";"MU/re-insemination";39
+INPUT11.TXT;"Price per portion of semen from AI dairy bulls including external labour for insemination";"MU/portion";100
+INPUT11.TXT;"Cost per re-insemination from dairy bulls including external labour for insemination";"MU/re-insemination";100
+INPUT11.TXT;"Price per portion of semen from AI beef bulls including external labour for insemination";"MU/portion";61
+INPUT11.TXT;"Cost per re-insemination from beef bulls including external labour for insemination";"MU/re-insemination";61
 INPUT11.TXT;"Cost for removing and rendering a dead cow";"MU/animal";200
 INPUT11.TXT;"Average costs for removing and rendering of a dead young animal (replacement heifer or animal in fattening)";"MU/animal";0
 INPUT11.TXT;"Average costs for removing and rendering of a dead calf";"MU/animal";0
@@ -39,12 +39,12 @@ INPUT11.TXT;"Dry matter per kg feed for cows (average feed ration through the wh
 INPUT11.TXT;"Protein per kg dry matter of feed ration for cows";"g PDI/kg";105
 INPUT11.TXT;"Price per kg fresh matter of feed ration for cows";"MU/kg";0.04
 INPUT21.TXT;"Dry matter per kg feed ration for reared calves in the first feeding period";"kg/kg";0.13 0.13
-INPUT21.TXT;"Net energy content per kg dry matter of feed ration for reared calves in the first feeding period";"MJ NE/kg dry matter";22.1 22.1
-INPUT21.TXT;"Protein content per kg dry matter of feed ration for reared calves in the first feeding period";"g PDI/kg";242 242
+INPUT21.TXT;"Net energy content per kg dry matter of feed ration for reared calves in the first feeding period";"MJ NE/kg dry matter";6.7 6.7
+INPUT21.TXT;"Protein content per kg dry matter of feed ration for reared calves in the first feeding period";"g PDI/kg";110 110
 INPUT21.TXT;"Price per kg fresh matter of feed ration for reared calves in the first feeding period";"MU/kg";0.04 0.04
 INPUT21.TXT;"Dry matter per kg feed ration for reared calves in the second feeding period"; "kg/kg";0.3 0.3
-INPUT21.TXT;"Net energy content per kg dry matter of feed ration for reared calves in the second feeding period"; "MJ NE/kg dry matter";21 21
-INPUT21.TXT;"Protein content per kg dry matter of feed ration for reared calves in the second feeding period"; "g PDI/kg";226 226
+INPUT21.TXT;"Net energy content per kg dry matter of feed ration for reared calves in the second feeding period";"MJ NE/kg dry matter";6.7 6.7
+INPUT21.TXT;"Protein content per kg dry matter of feed ration for reared calves in the second feeding period";"g PDI/kg";110 110
 INPUT21.TXT;"Price per kg fresh matter of feed ration for reared calves in the second feeding period";"MU/kg";0.21 0.21
 INPUT21.TXT;"Dry matter per kg feed ration for reared heifers";"kg/kg";0.27 0.27
 INPUT21.TXT;"Net energy content per kg dry matter of feed ration for reared heifers";"MJ NE/kg dry matter";6.1 6.1
