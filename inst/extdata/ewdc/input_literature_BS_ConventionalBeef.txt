@@ -1,4 +1,4 @@
-input_file;input;input_unit;input_value;input_source
+input_file;input;input_unit;input_value
 INPUT11.TXT;"Amount of water per cow and day";"l/day";60
 INPUT11.TXT;"Price per l water";"MU/l";0
 INPUT11.TXT;"Price per kg straw";"MU/kg";0.16
@@ -12,7 +12,7 @@ INPUT11.TXT;"Price per portion of semen from AI dairy bulls including external l
 INPUT11.TXT;"Cost per re-insemination from dairy bulls including external labour";"MU/re-insemination";100
 INPUT11.TXT;"Price per portion of semen from AI beef bulls including external labour";"MU/portion";61
 INPUT11.TXT;"Cost per re-insemination from beef bulls including external labour";"MU/re-insemination";61
-INPUT11.TXT;"Cost for removing and rendering a dead cow";"MU/animal";200;
+INPUT11.TXT;"Cost for removing and rendering a dead cow";"MU/animal";200
 INPUT21.TXT;"Average costs for removing and rendering of a dead young animal (replacement heifer or animal in fattening)";"MU/animal";0
 INPUT21.TXT;"Average costs for removing and rendering of a dead calf";"MU/animal";0
 INPUT11.TXT;"Cost for veterinary treatment per cow and reproductive cycle";"MU/reproductive cycle";355.7
@@ -79,4 +79,3 @@ INPUT07.TXT;"Vector of females mated with beef bulls as proportion of females ma
 INPUT11.TXT;"Average interval between calving and first insemination";" ";63
 INPUT11.TXT;"Mature weight of dairy cows (weight of cows after 3rd calving)";"kg";610
 INPUT15.TXT;"Proportion of pure-bred male calves alive at 48 hours after birth";" ";0
-
