@@ -12,6 +12,7 @@ pre_process_ewdc_input_progeny_data_flp(
   ps_path_directory2create,
   ps_input_file_progeny_flp_statement,
   ps_input_file_flp,
+  ps_input_file_calf,
   ps_start_flp_date,
   ps_end_flp_date,
   ps_input_file_ped,

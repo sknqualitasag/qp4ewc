@@ -120,9 +120,13 @@ get_constants_ew_input_beefOndairy <- function(){
               prodsyst4 = 4,
               maturitytype_purebred = "Maturity type of pure-bred progeny",
               maturitytype_crossbred = "Maturity type of cross-bred progeny",
+              utilisation_purebred = "Utilization of pure-bred female calves which are not needed for replacement",
+              utilisation_crossbred = "Utilization of cross-bred female calves which are not needed for replacement",
               maturitytype_early = 1,
               maturitytype_medium = 2,
-              maturitytype_late = 3))
+              maturitytype_late = 3,
+              utilisation_export = 1,
+              utilisation_fattening = 2))
 }
 
 
@@ -263,6 +267,7 @@ get_constants_progeny_beefOndairy <- function(){
               sex_male = "M",
               conv_fattening_beef = "ConventionalBeef",
               conv_fattening_calf = "ConventionalVeal",
+              export_calf = "Export",
               purebred_dairy = "PurebredDairy",
               purebred_beef = "PurebredBeef",
               crossbred = "Crossbred",
@@ -274,11 +279,8 @@ get_constants_progeny_beefOndairy <- function(){
               idx_row_lw_bull_slaughter_dairy = 24,
               idx_row_cowwt_dairy_3calving = 1,
               idx_row_cowwt_beef_3calving = 2,
-              rearing_end_age = 90,
-              rearing_end_wt = 130,
-              sale_age = 38,
-              sale_wt = 75,
               age_1stfeeding = 21,
+              rearing_age_update = 90,
               idx_row_rearingage = 7,
               idx_row_age1stfeeding = 6,
               idx_row_rearingdailygain_f = 12,
@@ -286,7 +288,12 @@ get_constants_progeny_beefOndairy <- function(){
               idx_row_fatdailygain_f = 17,
               idx_row_fatdailygain_m = 18,
               idx_row_agesale_f = 8,
-              idx_row_agesale_m = 11
+              idx_row_agesale_m = 11,
+              idx_row_price_f = 26,
+              idx_row_price_m = 27,
+              idx_row_utilisation_male = 28,
+              male_export = 1,
+              male_fattening = 0
               ))
 }
 
