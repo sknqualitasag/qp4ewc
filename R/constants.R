@@ -80,7 +80,26 @@ get_constants_ewbc_input_beefOnbeef <- function(){
               matingtype_heifer = "Mating type for heifers",
               matingtype_cow = "Mating type for cows",
               matingtype_AI = 1,
-              matingtype_NM = 2))
+              matingtype_NM = 2,
+              file_input03 = "INPUT03.TXT",
+              price_semenAI = "Price per portion of semen for AI (including service)",
+              price_reinsem = "Price per re-insemination (for semen portion and service)",
+              price_semenAI_1 = 80,
+              price_semenAI_3 = 50,
+              fraction_perftestedcows = "Fraction of performance-tested cows",
+              fraction_perftestedcows_1 = 1,
+              fraction_perftestedcows_3 = 0,
+              file_input19 = "INPUT19.TXT",
+              peak_milk = "Peak milk in kg per day",
+              peak_milk_1 = 8,
+              peak_milk_3 = 12,
+              prop_female_fattening = "Proportion of surplus female calves for fattening",
+              prop_female_fattening_1 = 0.2,
+              prop_female_fattening_3 = 1,
+              file_input13 = "INPUT13.TXT",
+              pregnant_heifer_sold = "Pregnant heifers sold expressed as proportion of surplus female calves",
+              pregnant_heifer_sold_1 = 0.1,
+              pregnant_heifer_sold_3 = 0))
 }
 
 
