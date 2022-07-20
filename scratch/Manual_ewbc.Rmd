@@ -1,0 +1,125 @@
+---
+title: "Manual pre-process EWBC"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Manual}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(qp4ewc)
+```
+
+# Aim
+
+In this vignette, you will get more information about the construction of the main-function `pre_process_ew_input()`. The task of this function is to pre-process the input-parameter-files of ECOWEIGHT for beef cattle (EWBC).
+
+# Parameters
+
+The parameters needed are:
+
+```{r}
+# Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
+s_sirebreed <- "SI"
+# Dam breed can be for beef-on-beef: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental 
+s_dambreed <- "SI"
+# Production system according to ECOWEIGHT for beef-on-beef: 1,2,3 corresponding to purebreeding, crossbreeding, terminal crossing
+s_prodsystew <- "1"
+# Marketing channel can be: Natura-Beef, SwissPrimBeef
+s_marketingchannel <- "Natura-Beef"
+# Path to define from the working directory
+s_path_directory2create <- "/Users/skn/muku_Ecoweigth/2022/work"
+# Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
+s_input_file_literature <- "/Users/skn/muku_Ecoweigth/2022/par/input_literature.txt"
+# Path to input from the parameter specific for the scenario. Based on this example an other file can be created with different input-value.
+s_input_file_par <- "/Users/skn/muku_Ecoweigth/2022/par/input_par_statement.txt"
+# Path to specific input for ProdSyst1 for tested bulls
+s_input_file_testedbulls <- "/Users/skn/muku_Ecoweigth/2022/par/input_testedbulls.txt"
+# Path to specific input for ProdSyst3 for replacement progeny heifers
+s_input_file_purchasedreplacementheifers  <- "/Users/skn/muku_Ecoweigth/2022/par/input_purchasedreplacementheifers.txt"
+# Path to input from the calving. Based on this example an other file can be created with different input-values.
+s_input_file_calving_statement <- "/Users/skn/muku_Ecoweigth/2022/par/input_calving_statement.txt"
+# Path to calving data file
+s_input_file_calving <- "/Users/skn/muku_Ecoweigth/2022/work/zws_muku_gal.csv"
+# Date YYYYMMDD used as start date to filter data for calving or carcass
+s_start_date <- 20200101
+# Date YYYYMMDD used as end date to filter data for calving or carcass
+s_end_date <- 20211231
+# Path to input from the progeny flp data. Based on this example an other file can be created with different input-values.
+s_input_file_progeny_flp_statement <- "/Users/skn/muku_Ecoweigth/2022/par/input_flp_statement.txt"
+# Path to flp data file
+s_input_file_flp <- "/Users/skn/muku_Ecoweigth/2022/work/zws_muku_flp.csv"
+# Path to input statement for carcass and price
+s_input_file_flp_carcass_matrix_statement <- "/Users/skn/muku_Ecoweigth/2022/par/input_flp_carcass_matrix_statement.txt"
+# Path to input with cow price. Based on this example an other file can be created with different input-values.
+s_input_file_price_cow <- "/Users/skn/muku_Ecoweigth/2022/par/cow_price.txt"
+# Path to input with bull price. Based on this example an other file can be created with different input-values.
+s_input_file_price_bull <- "/Users/skn/muku_Ecoweigth/2022/par/bull_price.txt"
+# Path to input with heifer price. Based on this example an other file can be created with different input-values.ONLY REQUIRED BEEF ON DAIRY (will not be used for beef on beef)
+s_input_file_price_heifer <- "/Users/skn/muku_Ecoweigth/2022/par/heifer_price.txt"
+# Path to input with calf price. Based on this example an other file can be created with different input-values.
+s_input_file_price_calf <- "/Users/skn/muku_Ecoweigth/2022/par/veal_price.txt"
+# Path to pedigree input file
+s_input_file_ped <- "/Users/skn/muku_Ecoweigth/2022/work/ped_withBreedCode_damside"
+# Flag to set to TRUE, if a log-file is whished
+b_log <- FALSE
+```
+
+# Logfile
+
+At the beginning of the function depending of the setting for `pb_log` and `plogger`, a log-file will be created.
+
+# Major steps of pre_process_ew_input() are
+
+ 1) function `create_directory_scenario()` : create directory per scenario with input-parameter-file for ECOWEIGHT. Details in the vignette Explain the function create_directory_scenario().
+ 
+ 2) Read file with input from literature research and update input-parameter-file coming from literature of ECOWEIGHT. Details in the vignette Explain the part only from literature. Next to the literature some initial parameter need to be set for EWBC. Further depending of the 
+ * `s_sirebreed` some values for average price per breeding bull purchased for natural mating or maturity type of progeny, 
+ * `s_prodsystew` some values for production system or mating type for heifers and cows or tested bulls or purchased replacement heifers.
+ 
+ 3) function `pre_process_ew_input_calving()` : Pre-processing the calving data for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_calving().
+ 
+ 4) function `pre_process_ewbc_input_progeny_data_flp()` : Pre-processing the progeny data flp for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ewbc_input_progeny_data_flp(). 
+ 
+ 5) function `pre_process_ew_input_carcass_data_flp()` : Pre-processing the carcass conformation, fat, prices based on flp-data for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_carcass_data_flp().
+
+# Run pre_process_ew_input() in RStudio
+
+
+```{r, warning=FALSE, message=FALSE}
+pre_process_ew_input(ps_sirebreed = s_sirebreed,
+                       ps_dambreed = s_dambreed,
+                       ps_prodsystew = s_prodsystew,
+                       ps_marketchannel = s_marketingchannel,
+                       ps_path_directory2create = s_path_directory2create,
+                       ps_input_file_literature = s_input_file_literature,
+                       ps_input_file_par = s_input_file_par,
+                       ps_input_file_testedbulls = s_input_file_testedbulls,
+                       ps_input_file_purchasedreplacementheifers = s_input_file_purchasedreplacementheifers,
+                       ps_input_file_calving_statement = s_input_file_calving_statement,
+                       ps_input_file_calving = s_input_file_calving,
+                       ps_start_date = s_start_date,
+                       ps_end_date = s_end_date,
+                       ps_input_file_progeny_flp_statement = s_input_file_progeny_flp_statement,
+                       ps_input_file_flp = s_input_file_flp,
+                       ps_input_file_flp_carcass_matrix_statement = s_input_file_flp_carcass_matrix_statement,
+                       ps_input_file_price_cow = s_input_file_price_cow,
+                       ps_input_file_price_bull = s_input_file_price_bull,
+                       ps_input_file_price_heifer = s_input_file_price_heifer,
+                       ps_input_file_price_calf = s_input_file_price_calf,
+                       ps_input_file_ped = s_input_file_ped,
+                       pb_log = b_log)
+```
+
+# Post-processing steps
+
+At this stage the post-processing steps done during the internship is in post_processing.R implemented.
+However this function needs to be reviewed as soon as new results are produced with pre_process_ew_input().
