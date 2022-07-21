@@ -6,16 +6,16 @@
 	feeding season defined for the whole year in INPUT01.TXT, insert values
 	for feeding season with code 1 only,  the values for feeding season with
 	code 2 will not be read.
-	Do not omit rows with unnecessary  information in the input file. The 
+	Do not omit rows with unnecessary  information in the input file. The
 	program will skip the inputs which  are not needed.
    The input parameters are arranged in the following way:
-        parameters for reproduction, growth, mortality, feeding, prices and 
-	costs. 
-	Speaking about the 1st, 2nd and 3rd oestrus of heifers or cows, the 
+        parameters for reproduction, growth, mortality, feeding, prices and
+	costs.
+	Speaking about the 1st, 2nd and 3rd oestrus of heifers or cows, the
 	range of oestruses from the beginning of the mating period is thought.
    All input data are arranged in the following way:
 	each parameter takes three rows,
-	in the first row stands its value, 
+	in the first row stands its value,
 	the string expression in the second row describes the parameter and
 	the last string in the third row contains the units of the parameter.
 	If there is no unit given, enter [SPACE] enclosed into quotation
@@ -26,25 +26,25 @@
 " "
 0.67
 "Conception rate of heifers in the 2nd oestrus during the second part of the mating period expressed as proportion of heifers not being pregnant after the 1st oestrus"
-" " 
+" "
 0.55
 "Conception rate of heifers in the 3rd oestrus during the third part of the mating period expressed as proportion of heifers not being pregnant after the 2nd oestrus"
-" " 
+" "
 0.73
 "Conception rate of cows in the 1st oestrus during the first part of the mating period for cows not having dystocia, averaged over reproductive cycles 1 to LL-1 and expressed as proportion of cows mated in this oestrus"
-" " 
+" "
 0.58
 "Conception rate of cows in the 2nd oestrus during the second part of the mating period for cows not having dystocia, averaged over reproductive cycles 1 to LL-1 and expressed as proportion of cows not being pregnant after the 1st oestrus"
-" " 
+" "
 0.50
 "Conception rate of cows in the 3rd oestrus during the third part of the mating period for cows not having dystocia, averaged over reproductive cycles 1 to LL-1 and expressed as proportion of cows not being pregnant after the 2nd oestrus"
-" " 
+" "
 283
 "Length of pregnancy"
 "days"
 0.1
 "Decrease in conception rate of cows after having dystocia, averaged over reproductive cycles 1 to LL"
-" " 
+" "
 19.5
 "Number of cows per bull for natural mating"
 " "
@@ -59,7 +59,7 @@
 the herd from previous calving"
 "days"
 53
-"Average number of days for cows from weaning a calf until culling for 
+"Average number of days for cows from weaning a calf until culling for
 failure to conceive"
 "days"
 4
@@ -91,17 +91,15 @@ failure to conceive"
 "%"
 20
 "Losses of feed through wasting in feeding season with code 2"
-"%" 
+"%"
 3500
 "Amount of dry matter produced per ha pasture"
 "kg/ha"
 0.59
-"Dry matter per kg feed ration in feeding season with code 1
- for suckling calves (without milk)"
+"Dry matter per kg feed ration in feeding season with code 1 for suckling calves (without milk)"
 "kg/kg"
 0.28
-"Dry matter per kg feed ration in feeding season with code 2
- for suckling calves (without milk)"
+"Dry matter per kg feed ration in feeding season with code 2 for suckling calves (without milk)"
 "kg/kg"
 0.4
 "Dry matter per kg feed ration in feeding season with code 1 for cows"
@@ -112,7 +110,7 @@ failure to conceive"
 /* The following two inputs are read only if the economic weight for
 residual feed intake of adult animals is to be calculated */
 0.0
-"Residual dry matter intake of cows from feed ration of code 1 
+"Residual dry matter intake of cows from feed ration of code 1
 (difference between the daily actual and predicted dry matter intake)"
 "kg/day"
 0.0
@@ -125,12 +123,10 @@ residual feed intake of adult animals is to be calculated */
 "Net energy per kg dry matter of feed ration of code 2 for cows"
 "MJ NE/kg dry matter"
 5.28
-"Net energy per kg dry matter of feed ration (without milk) for suckling calves
-in feeding season with code 1"
+"Net energy per kg dry matter of feed ration (without milk) for suckling calves in feeding season with code 1"
 "MJ NE/kg dry matter"
 5.56
-"Net energy per kg dry matter of feed ration (without milk) for suckling calves
-in feeding season with code 2"
+"Net energy per kg dry matter of feed ration (without milk) for suckling calves in feeding season with code 2"
 "MJ NE/kg dry matter"
 70.38
 "Protein per kg dry matter of feed ration of code 1 for cows"
@@ -139,19 +135,17 @@ in feeding season with code 2"
 "Protein per kg dry matter of feed ration of code 2 for cows"
 "g PDI/kg"
 76.14
-"Protein per kg dry matter of feed ration (without milk) for suckling calves
-in feeding season with code 1"
+"Protein per kg dry matter of feed ration (without milk) for suckling calves in feeding season with code 1"
 "g PDI/kg"
 71.56
-"Protein per kg dry matter of feed ration (without milk) for suckling calves
-in feeding season with code 2"
+"Protein per kg dry matter of feed ration (without milk) for suckling calves in feeding season with code 2"
 "g PDI/kg"
 1
 "Adjustment factor for breed energy requirement for maintenance - dry cows"
 " "
 1.2
 "Adjustment factor for breed energy requirement for maintenance - lactating cows"
-" " 
+" "
 1.2
 "Adjustment factor for energy requirement for maintenance according to technology - pasture"
 " "
@@ -166,7 +160,7 @@ in feeding season with code 2"
 "kg/day"
 60.0
 "Amount of water per cow (including calf) and day"
-"l/day"     
+"l/day"
 8.0
 "Amount of straw per cow (including calf) and day during feeding season with code 1"
 "kg/day"
@@ -174,12 +168,10 @@ in feeding season with code 2"
 "Amount of straw per cow (including calf) and day during feeding season with code 2"
 "kg/day"
 10.5
-"Amount of dung per cow (including calf) and day during feeding season with 
-code 1"
+"Amount of dung per cow (including calf) and day during feeding season with code 1"
 "kg/day"
 0
-"Amount of dung per cow (including calf) and day during feeding season with 
-code 2"
+"Amount of dung per cow (including calf) and day during feeding season with code 2"
 "kg/day"
 800
 "Price per portion of semen for AI (including service)"
@@ -300,7 +292,7 @@ code 2"
 " "
 0
 "Barren heifers culled after their 1st mating period expressed as proportion of heifers not being pregnant in their 1st mating period"
-" "     
+" "
 1
 "Barren heifers culled after their 2nd mating period expressed as proportion of heifers not being pregnant in their 2nd mating period"
 " "
@@ -312,7 +304,7 @@ code 2"
 " "
 0.23
 "Proportion of weaned male calves which are performance tested (only read in Production System 1)"
-" "    
+" "
 0
 "Fattened castrates expressed as proportion of male calves determined for fattening"
 " "

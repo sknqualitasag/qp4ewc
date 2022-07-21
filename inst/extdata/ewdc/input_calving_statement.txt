@@ -17,6 +17,5 @@ INPUT07.TXT;"Probability of calving score 3 when a cross-bred (beef x dairy) mal
 INPUT07.TXT;"Probability of calving score 4 when a cross-bred (beef x dairy) female calf is born in reproductive cycles 1 to LL";" ";
 INPUT07.TXT;"Probability of calving score 4 when a cross-bred (beef x dairy) male calf is born in reproductive cycles 1 to LL";" ";
 INPUT11.TXT;"Number of classes for calving performance (must be in the interval from 2 to 6)";" ";
-INPUT11.TXT;"For defining dystocia give the lowest number of the class of calving
-performance which is considered to be dystocia";" ";
+INPUT11.TXT;"For defining dystocia give the lowest number of the class of calving";" ";
 INPUT07.TXT;"Vector of females mated with beef bulls as proportion of females mated in reproductive cycles 1 to LL-1";" ";

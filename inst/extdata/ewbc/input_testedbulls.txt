@@ -1,5 +1,5 @@
 input_file;input;input_unit;input_value
-INPUT05.TXT;"Daily gain of bulls in test";"kg/day";1452
+INPUT05.TXT;"Daily gain of bulls in test";"kg/day";1.452
 INPUT05.TXT;"Price per kg fresh matter of feed ration for bulls before test";"MU/kg";0.09
 INPUT05.TXT;"Price per kg fresh matter of feed ration for bulls in test";"MU/kg";0.09
 INPUT05.TXT;"Price per kg fresh matter of feed ration for bulls after test";"MU/kg";0.09

@@ -7,7 +7,7 @@
    will not be read.
    All input data are arranged in the following way:
 	each parameter takes three rows,
-	in the first row stands its value, 
+	in the first row stands its value,
 	the string expression in the second row describes the parameter and
 	the last string in the third row contains the units of the parameter.
 	If there is no unit given, enter [SPACE] enclosed into quotation
@@ -73,7 +73,7 @@ residual feed intake of adult animals is to be calculated */
 "Amount of dung per day per breeding bull in the herd during feeding season with code 1"
 "kg/day"
 0
-"Amount of dung  per day per breeding bull in the herd during feeding season with code 2"
+"Amount of dung per day per breeding bull in the herd during feeding season with code 2"
 "kg/day"
 40
 "Amount of water per day and breeding bull"

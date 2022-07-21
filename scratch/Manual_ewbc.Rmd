@@ -30,9 +30,9 @@ The parameters needed are:
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
 s_sirebreed <- "SI"
 # Dam breed can be for beef-on-beef: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental 
-s_dambreed <- "SI"
+s_dambreed <- "KR"
 # Production system according to ECOWEIGHT for beef-on-beef: 1,2,3 corresponding to purebreeding, crossbreeding, terminal crossing
-s_prodsystew <- "1"
+s_prodsystew <- "3"
 # Marketing channel can be: Natura-Beef, SwissPrimBeef
 s_marketingchannel <- "Natura-Beef"
 # Path to define from the working directory
