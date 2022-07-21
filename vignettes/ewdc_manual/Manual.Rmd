@@ -34,7 +34,7 @@ s_dambreed <- "BS"
 # Production system according to ECOWEIGHT for beef-on-dairy: 4 corresponding to dairy
 s_prodsystew <- "4"
 # Marketing channel can be: ConventionalBeef, ConventionalVeal, Export corresponding to intensive fattening system for beef or veal or all crossbred calves being sold as calves to the handler
-s_marketingchannel <- "ConventionalBeef"
+s_marketingchannel <- "Export"
 # Path to define from the working directory for beef-on-dairy
 s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc")
 # Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
