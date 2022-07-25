@@ -21,6 +21,8 @@
 #' @param ps_path_directory2create path of the directory that will be created
 #' @param ps_input_file_literature path to file with input coming from literature for the input-parameter-file for ECOWEIGHT
 #' @param ps_input_file_par path to file with input as parameter for each scenanario for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file_35 path to file with input for file 35 for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file_36 path to file with input for file 36 for the input-parameter-file for ECOWEIGHT
 #' @param ps_input_file_testedbulls path to file with input for ProdSyst 1 (tested bulls) for the input-parameter-file for ECOWEIGHT
 #' @param ps_input_file_purchasedreplacementheifers path to file with input for ProdSyst 3 (purchased replacement heifers) for the input-parameter-file for ECOWEIGHT
 #' @param ps_input_file_calving_statement path to file with statement based on calving for the input-parameter-file for ECOWEIGHT
@@ -47,6 +49,8 @@ pre_process_ew_input <- function(ps_sirebreed,
                                  ps_path_directory2create,
                                  ps_input_file_literature,
                                  ps_input_file_par,
+                                 ps_input_file_35,
+                                 ps_input_file_36,
                                  ps_input_file_testedbulls,
                                  ps_input_file_purchasedreplacementheifers,
                                  ps_input_file_calving_statement,
@@ -81,6 +85,8 @@ pre_process_ew_input <- function(ps_sirebreed,
                            ' * ps_path_directory2create: ', ps_path_directory2create, '\n',
                            ' * ps_input_file_literature: ', ps_input_file_literature, '\n',
                            ' * ps_input_file_par: ',ps_input_file_par,'\n',
+                           ' * ps_input_file_35: ',ps_input_file_35,'\n',
+                           ' * ps_input_file_36: ',ps_input_file_36,'\n',
                            ' * ps_input_file_testedbulls: ',ps_input_file_testedbulls,'\n',
                            ' * ps_input_file_purchasedreplacementheifers: ',ps_input_file_purchasedreplacementheifers,'\n',
                            ' * ps_input_file_calving_statement: ',ps_input_file_calving_statement, '\n',
@@ -297,6 +303,52 @@ pre_process_ew_input <- function(ps_sirebreed,
                                ps_value2update = l_constants_ewbc_input_beefOnbeef$matingtype_NM,
                                pb_log = pb_log,
                                plogger = lgr)
+ }
+
+
+ tbl_input_35 <- read_file_input(ps_input_file = ps_input_file_35,
+                                  pb_log = pb_log,
+                                  plogger = lgr)
+ tbl_input_36 <- read_file_input(ps_input_file = ps_input_file_36,
+                                 pb_log = pb_log,
+                                 plogger = lgr)
+ ### # Genetic standard deviations of the traits
+ ### # are known for the direct and maternal components of the traits  and given in INPUT35.TXT
+ if(ps_prodsystew == l_constants_ewbc_input_beefOnbeef$prodsyst2 || ps_prodsystew == l_constants_ewbc_input_beefOnbeef$prodsyst1){
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$genStd,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$genStd_known_d_m,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+   for(l in 1:nrow(tbl_input_35)){
+     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                   paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                   tbl_input_35[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
+                                 ps_statement2search = tbl_input_35[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
+                                 ps_value2update = tbl_input_35[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
+                                 pb_log = pb_log,
+                                 plogger = lgr)
+   }
+
+ ### # are not differentiated between direct and maternal components  and given in INPUT36.TXT
+ }else if(ps_prodsystew == l_constants_ewbc_input_beefOnbeef$prodsyst3){
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_par),
+                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$genStd,
+                               ps_value2update = l_constants_ewbc_input_beefOnbeef$genStd_nodiff_d_m,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+   for(l in 1:nrow(tbl_input_36)){
+     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                   paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                   tbl_input_36[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
+                                 ps_statement2search = tbl_input_36[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
+                                 ps_value2update = tbl_input_36[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_value]$input_value,
+                                 pb_log = pb_log,
+                                 plogger = lgr)
+   }
+
  }
 
 

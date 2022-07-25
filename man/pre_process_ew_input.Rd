@@ -12,6 +12,8 @@ pre_process_ew_input(
   ps_path_directory2create,
   ps_input_file_literature,
   ps_input_file_par,
+  ps_input_file_35,
+  ps_input_file_36,
   ps_input_file_testedbulls,
   ps_input_file_purchasedreplacementheifers,
   ps_input_file_calving_statement,
@@ -45,6 +47,10 @@ pre_process_ew_input(
 \item{ps_input_file_literature}{path to file with input coming from literature for the input-parameter-file for ECOWEIGHT}
 
 \item{ps_input_file_par}{path to file with input as parameter for each scenanario for the input-parameter-file for ECOWEIGHT}
+
+\item{ps_input_file_35}{path to file with input for file 35 for the input-parameter-file for ECOWEIGHT}
+
+\item{ps_input_file_36}{path to file with input for file 36 for the input-parameter-file for ECOWEIGHT}
 
 \item{ps_input_file_testedbulls}{path to file with input for ProdSyst 1 (tested bulls) for the input-parameter-file for ECOWEIGHT}
 

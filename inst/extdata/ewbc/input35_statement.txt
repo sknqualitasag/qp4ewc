@@ -1,0 +1,7 @@
+input_file;input;input_unit;input_value
+INPUT35.TXT;"Genetic standard deviation for direct and maternal component of calving performance score";"0.01 score";16.94 12.22
+INPUT35.TXT;"Genetic standard deviation for direct and maternal components of birth weight";"kg";3.482 1.447
+INPUT35.TXT;"Genetic standard deviation for direct and maternal components of average daily gain of calves from birth to 1st weighing";"g/d";19.493 9.716
+INPUT35.TXT;"Genetic standard deviation for daily gain in fattening";"g/d";0.207
+INPUT35.TXT;"Genetic standard deviation for mean class of fleshiness";"0.01 class";0.445
+INPUT35.TXT;"Genetic standard deviation for mean class of fat covering";"0.01 class";0.447

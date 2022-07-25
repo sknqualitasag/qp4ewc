@@ -41,6 +41,10 @@ s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc")
 s_input_file_literature <- file.path(here::here(),"inst","extdata","ewdc",paste0("input_literature_",s_dambreed,"_",s_marketingchannel,".txt"))
 # Path to input from the parameter specific for the scenario. Based on this example an other file can be created with different input-value.
 s_input_file_par <- file.path(here::here(),"inst","extdata","ewdc","input_par_statement.txt")
+# path to file with input for file 35 for the input-parameter-file for ECOWEIGHT
+s_input_file_35 <- file.path(here::here(),"inst","extdata","ewbc","input35_statement.txt")
+# path to file with input for file 36 for the input-parameter-file for ECOWEIGHT
+s_input_file_36 <- file.path(here::here(),"inst","extdata","ewbc","input36_statement.txt")
 # Path to specific input for ProdSyst1 for tested bulls (this is only for beef-on-beef needed)
 s_input_file_testedbulls <- file.path(here::here(),"inst","extdata","ewbc","input_testedbulls.txt")
 # Path to specific input for ProdSyst3 for replacement progeny heifers (this is only for beef-on-beef needed)
@@ -103,6 +107,8 @@ pre_process_ew_input(ps_sirebreed = s_sirebreed,
                      ps_path_directory2create = s_path_directory2create,
                      ps_input_file_literature = s_input_file_literature,
                      ps_input_file_par = s_input_file_par,
+                     ps_input_file_35 = s_input_file_35,
+                     ps_input_file_36 = s_input_file_36,
                      ps_input_file_testedbulls = s_input_file_testedbulls,
                      ps_input_file_purchasedreplacementheifers = s_input_file_purchasedreplacementheifers,
                      ps_input_file_calving_statement = s_input_file_calving_statement,
