@@ -79,4 +79,4 @@ INPUT07.TXT;"Vector of females mated with beef bulls as proportion of females ma
 INPUT11.TXT;"Average interval between calving and first insemination";" ";63
 INPUT11.TXT;"Mature weight of dairy cows (weight of cows after 3rd calving)";"kg";610
 INPUT15.TXT;"Proportion of pure-bred male calves alive at 48 hours after birth that are sold as breeding males (e.g. to test stations or AI stations)";" ";1
-
+INPUT11.TXT;"Average daily gain of cows in the 1st reproductive cycle";"kg/day";0.13

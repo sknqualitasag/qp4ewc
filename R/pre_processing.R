@@ -2231,6 +2231,10 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
       rearing_end_wt_pure_m <- rearing_end_wt_cross_m
     }
 
+    if(rearing_end_wt_cross_m == "NaN"){
+      rearing_end_wt_cross_m <- rearing_end_wt_cross_m
+    }
+
 
     rearing_end_wt_pure_f <- calculate_rearing_weight_beef(ps_input_flp_tibble = tbl_purebred_rearing,
                                                            ps_sex = l_constants_progeny_beefOndairy$sex_female,
@@ -2245,6 +2249,9 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
       rearing_end_wt_pure_f <- rearing_end_wt_cross_f
     }
 
+    if(rearing_end_wt_cross_f == "NaN"){
+      rearing_end_wt_cross_f <- rearing_end_wt_pure_f
+    }
 
     #daily gain from birth to rearing at 90 days
     dailygain_rearing_f_purebred <- calculate_dailygain_rearing(pv_mean_rearingage = rearing_end_age_pure,
@@ -2551,6 +2558,10 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
       rearing_end_wt_pure_m <- rearing_end_wt_cross_m
     }
 
+    if(rearing_end_wt_cross_m == "NaN"){
+      rearing_end_wt_cross_m <- rearing_end_wt_pure_m
+    }
+
     rearing_end_wt_pure_f <- calculate_rearing_weight_veal(ps_input_flp_tibble = tbl_purebred_rearing,
                                                            ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                            pb_log = pb_log,
@@ -2561,6 +2572,10 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                             plogger = lgr)
     if(rearing_end_wt_pure_f == "NaN"){
       rearing_end_wt_pure_f <- rearing_end_wt_cross_f
+    }
+
+    if(rearing_end_wt_cross_f == "NaN"){
+      rearing_end_wt_cross_f <- rearing_end_wt_pure_f
     }
 
     #daily gain from birth to rearing at 90 days
