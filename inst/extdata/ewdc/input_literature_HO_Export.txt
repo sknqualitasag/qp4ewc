@@ -6,7 +6,7 @@ INPUT21.TXT;"Amount of straw per reared calf and day";"kg/day";3.5 3.5
 INPUT21.TXT;"Amount of straw per reared heifer and day";"kg/day";3.5 3.5
 INPUT21.TXT;"Amount of straw per bull and day in fattening";"kg/day";3.5 3.5
 INPUT21.TXT;"Amount of straw per heifer and day in fattening";"kg/day";3.5 3.5
-INPUT11.TXT;"Amount of straw per cow and day";"kg/day";3.6
+INPUT11.TXT;"Amount of straw per cow and day";"kg/day";3.5
 INPUT11.TXT;"Price per kg dung";"MU/kg";0
 INPUT11.TXT;"Price per portion of semen from AI dairy bulls including external labour";"MU/portion";100
 INPUT11.TXT;"Cost per re-insemination from dairy bulls including external labour";"MU/re-insemination";100

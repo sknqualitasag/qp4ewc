@@ -2227,6 +2227,10 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                             ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                          pb_log = pb_log,
                                                          plogger = lgr)
+    if(rearing_end_wt_pure_m == "NaN"){
+      rearing_end_wt_pure_m <- rearing_end_wt_cross_m
+    }
+
 
     rearing_end_wt_pure_f <- calculate_rearing_weight_beef(ps_input_flp_tibble = tbl_purebred_rearing,
                                                            ps_sex = l_constants_progeny_beefOndairy$sex_female,
@@ -2237,6 +2241,9 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                             pb_log = pb_log,
                                                             plogger = lgr)
 
+    if(rearing_end_wt_pure_f == "NaN"){
+      rearing_end_wt_pure_f <- rearing_end_wt_cross_f
+    }
 
 
     #daily gain from birth to rearing at 90 days
@@ -2540,6 +2547,9 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                             ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                                             pb_log = pb_log,
                                                             plogger = lgr)
+    if(rearing_end_wt_pure_m == "NaN"){
+      rearing_end_wt_pure_m <- rearing_end_wt_cross_m
+    }
 
     rearing_end_wt_pure_f <- calculate_rearing_weight_veal(ps_input_flp_tibble = tbl_purebred_rearing,
                                                            ps_sex = l_constants_progeny_beefOndairy$sex_female,
@@ -2549,6 +2559,9 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                             ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                             pb_log = pb_log,
                                                             plogger = lgr)
+    if(rearing_end_wt_pure_f == "NaN"){
+      rearing_end_wt_pure_f <- rearing_end_wt_cross_f
+    }
 
     #daily gain from birth to rearing at 90 days
     dailygain_rearing_f_purebred <- calculate_dailygain_rearing(pv_mean_rearingage = rearing_end_age_pure,
@@ -2650,8 +2663,8 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
     value2update_fatteningf <- paste0(c(dailygain_fattening_f_purebred, dailygain_fattening_f_crossbred),collapse = " ")
     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                   paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                  tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_rearingdailygain_f,l_constants_progeny_beefOndairy$idx_col_input_file]),
-                                ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_rearingdailygain_f,l_constants_progeny_beefOndairy$idx_col_input],
+                                                                                  tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_fatdailygain_f,l_constants_progeny_beefOndairy$idx_col_input_file]),
+                                ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_fatdailygain_f,l_constants_progeny_beefOndairy$idx_col_input],
                                 ps_value2update = value2update_fatteningf,
                                 pb_log = pb_log,
                                 plogger = lgr)
@@ -2669,11 +2682,11 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                            pv_mean_weaningwt = rearing_end_wt_cross_m,
                                                            pb_log = pb_log,
                                                            plogger = lgr)
-    value2update_fatteningm <- paste0(c(dailygain_fattening_f_purebred, dailygain_fattening_m_crossbred),collapse = " ")
+    value2update_fatteningm <- paste0(c(dailygain_fattening_m_purebred, dailygain_fattening_m_crossbred),collapse = " ")
     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                   paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                  tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_rearingdailygain_m,l_constants_progeny_beefOndairy$idx_col_input_file]),
-                                ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_rearingdailygain_m,l_constants_progeny_beefOndairy$idx_col_input],
+                                                                                  tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_fatdailygain_m,l_constants_progeny_beefOndairy$idx_col_input_file]),
+                                ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_fatdailygain_m,l_constants_progeny_beefOndairy$idx_col_input],
                                 ps_value2update = value2update_fatteningm,
                                 pb_log = pb_log,
                                 plogger = lgr)
