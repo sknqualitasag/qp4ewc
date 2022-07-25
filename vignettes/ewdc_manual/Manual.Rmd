@@ -28,13 +28,13 @@ The parameters needed for beef-on-dairy are:
 
 ```{r}
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
-s_sirebreed <- "LM"
+s_sirebreed <- "OB"
 # Dam breed can be for beef-on-dairy: HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
-s_dambreed <- "BS"
+s_dambreed <- "OB"
 # Production system according to ECOWEIGHT for beef-on-dairy: 4 corresponding to dairy
 s_prodsystew <- "4"
 # Marketing channel can be: ConventionalBeef, ConventionalVeal, Export corresponding to intensive fattening system for beef or veal or all crossbred calves being sold as calves to the handler
-s_marketingchannel <- "Export"
+s_marketingchannel <- "ConventionalVeal"
 # Path to define from the working directory for beef-on-dairy
 s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc")
 # Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
