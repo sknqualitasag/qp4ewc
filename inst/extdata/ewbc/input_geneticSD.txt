@@ -6,8 +6,8 @@ trait;genetic_standarddeviation
 "Fleshiness conventional calves";0.553
 "Fat conventional calves";0.302
 "Age adjusted carcass weight conventional aduts";0.114
-"Fleshiness conventional calves";0.479
-"Fat conventional calves";0.272
+"Fleshiness conventional aduts";0.479
+"Fat conventional aduts";0.272
 "Calving ease direct beef";16.94
 "Birth weight direct beef";3.482
 "Calving ease maternal beef";12.22
