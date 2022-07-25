@@ -3,7 +3,6 @@ PARA.TXT;"Fattening";" ";1
 PARA.TXT;"Housing technology in fattening";" ";2
 PARA.TXT;"Way of calculating feed cost";" ";1
 PARA.TXT;"Sex for which gene flow is calculated";" ";1
-PARA.TXT;"Genetic standard deviations of the traits";" ";2
 INPUT01.TXT;"Number of different feeding seasons during the year";" ";2
 INPUT01.TXT;"Code of the feeding season on January 1st.";" ";1
 INPUT01.TXT;"Number of changes betweem feeding seasons during the year";" ";2
