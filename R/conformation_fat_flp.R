@@ -198,6 +198,14 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
             result_matrix[i,j] <- freq_input[i,j]
           }
         }
+      }else{
+        if(as.character(i+2) == vec_rownames[i]){
+          for(j in 1:ncol(freq_input)){
+            if(as.character(j+1) == vec_colnames[j]){
+              result_matrix[i+1,j+1] <- freq_input[i,j]
+            }
+          }
+        }
       }
     }
   }
