@@ -94,7 +94,7 @@ get_constants_ewbc_input_beefOnbeef <- function(){
               peak_milk_1 = 8,
               peak_milk_3 = 12,
               prop_female_fattening = "Proportion of surplus female calves for fattening",
-              prop_female_fattening_1 = 0.2,
+              prop_female_fattening_1 = 0.9,
               prop_female_fattening_3 = 1,
               file_input13 = "INPUT13.TXT",
               pregnant_heifer_sold = "Pregnant heifers sold expressed as proportion of surplus female calves",
