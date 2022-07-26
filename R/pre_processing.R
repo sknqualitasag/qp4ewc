@@ -261,6 +261,11 @@ pre_process_ew_input <- function(ps_sirebreed,
        }
      }
 
+     if(ps_dambreed == "OB" || ps_dambreed == "SI"){
+       maturitytype_status_purebred <- l_constants_ew_input_beefOndairy$maturitytype_medium
+       maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_medium
+     }
+
      update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
                                  ps_statement2search = l_constants_ew_input_beefOndairy$maturitytype_purebred,
                                  ps_value2update = maturitytype_status_purebred,
