@@ -28,10 +28,10 @@ INPUT04.TXT;"Amount of dung per day per breeding bull in the herd during feeding
 INPUT08.TXT;"Amount of dung per animal and day in intensive fattening";"kg/day";0;
 INPUT13.TXT;"Amount of dung per breeding heifer per day during feeding season with code 1";"kg/day";0;
 INPUT13.TXT;"Amount of dung per breeding heifer per day during feeding season with code 2";"kg/day";0;
-INPUT03.TXT;"Cost for veterinary treatment per cow and reproductive cycle (including calf to weaning)";"MU/reproductive cycle";127;
-INPUT04.TXT;"Cost for veterinary treatment per breeding bull in the herd per reproductive cycle";"MU/reproductive cycle";127;
-INPUT08.TXT;"Cost for veterinary treatment per animal in intensive fattening";"MU/animal";39;
-INPUT13.TXT;"Costs for veterinary treatment per breeding heifer from weaning to calving";"MU/animal";46.5;
+INPUT03.TXT;"Cost for veterinary treatment per cow and reproductive cycle (including calf to weaning)";"MU/reproductive cycle";206.8;
+INPUT04.TXT;"Cost for veterinary treatment per breeding bull in the herd per reproductive cycle";"MU/reproductive cycle";183;
+INPUT08.TXT;"Cost for veterinary treatment per animal in intensive fattening";"MU/animal";60.4;
+INPUT13.TXT;"Costs for veterinary treatment per breeding heifer from weaning to calving";"MU/animal";73.2;
 INPUT03.TXT;"Veterinary cost connected with calving score 1";"MU/calving";0;
 INPUT03.TXT;"Veterinary cost connected with calving score 2";"MU/calving";0;
 INPUT03.TXT;"Veterinary cost connected with calving score 3";"MU/calving";300;
