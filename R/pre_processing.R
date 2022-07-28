@@ -72,7 +72,8 @@ pre_process_ew_input <- function(ps_sirebreed,
   ### # Setting the log-file
   if(pb_log){
     if(is.null(plogger)){
-      lgr <- get_qp4ewc_logger(ps_logfile = 'pre_process_ew_input.log',
+      lgr <- get_qp4ewc_logger(ps_logfile = paste(format(Sys.time(), "%Y%m%d%H%M%S"),
+                                                  'pre_process_ew_input.log', sep = "_"),
                                ps_level = 'INFO')
     }else{
       lgr <- plogger
@@ -759,7 +760,6 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
     abortrate_prim <- unlist(strsplit(tbl_input_statement_calving[idx_row_abortrate,idx_row_abortrate]$input_value,
                                       split = " "))[first_element_vector]
   }
-
   # Check if abortrate_multi is zero. If it is the case, set a default value
   if(abortrate_multi == 0){
     abortrate_multi <- unlist(strsplit(tbl_input_statement_calving[idx_row_abortrate,idx_col_input_value]$input_value,
@@ -814,7 +814,6 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
     stillbirthrate_prim_easy <- unlist(strsplit(tbl_input_statement_calving[idx_row_stillborn_easy,idx_col_input_value]$input_value,
                                                 split = " "))[first_element_vector]
   }
-
   # Check if stillbirthrate_multi_easy is zero. If it is the case, set a default value
   if(stillbirthrate_multi_easy == 0){
     stillbirthrate_multi_easy <- unlist(strsplit(tbl_input_statement_calving[idx_row_stillborn_easy,idx_col_input_value]$input_value,
@@ -1283,7 +1282,6 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
     calvingdied24h_prop_prim_easy <- unlist(strsplit(tbl_input_statement_calving[idx_row_calfdied48h_easy,idx_col_input_value]$input_value,
                                                      split = " "))[first_element_vector]
   }
-
   # Check if calvingdied24h_prop_multi_easy is zero. If it is the case, set a default value
   if(calvingdied24h_prop_multi_easy == 0){
     calvingdied24h_prop_multi_easy <- unlist(strsplit(tbl_input_statement_calving[idx_row_calfdied48h_easy,idx_col_input_value]$input_value,
@@ -1312,7 +1310,6 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
     calvingdied24h_prop_prim_difficult <- unlist(strsplit(tbl_input_statement_calving[idx_row_calfdied48h_dystocia,idx_col_input_value]$input_value,
                                                           split = " "))[first_element_vector]
   }
-
   # Check if calvingdied24h_prop_multi_difficult is zero. If it is the case, set a default value
   if(calvingdied24h_prop_multi_difficult == 0){
     calvingdied24h_prop_multi_difficult <- unlist(strsplit(tbl_input_statement_calving[idx_row_calfdied48h_dystocia,idx_col_input_value]$input_value,
@@ -1444,6 +1441,10 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
   ### # Get the constants
   l_constants_progeny_beefOnbeef <- get_constants_progeny_beefOnbeef()
 
+  ### # Write marketchannel to logfile
+  if (pb_log)
+    qp4ewc_log_info(lgr, 'pre_process_ew_input_progeny_data_flp',
+                    paste0(" * Entering branch for marketchannel: ", ps_marketchannel, collapse = ""))
 
   ### # Read pedigree file
   tbl_ped <- read_file_input_ped(ps_input_file_ped,
@@ -1942,8 +1943,12 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
   }
 
 
+  if (pb_log)
+    qp4ewc_log_info(lgr, 'pre_process_ewbc_input_progeny_data_flp',
+                    " * Enter computations after marketchanel ...")
 
   # Update statement-progeny-flp-input from the data by calculating cow weight after second calving
+<<<<<<< HEAD
   second_calving_wt <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
                                                 ps_first_calvingweight = FALSE,
                                                 ps_second_calvingweight = TRUE,

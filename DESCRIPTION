@@ -1,15 +1,17 @@
 Package: qp4ewc
-Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: Process Input and Results of ECOWEIGHT
+Version: 0.1.8
+Authors@R: c(
+    person(given = "Sophie", family = "Kunz", email = "sophie.kunz@qualitasag.ch", role = c("aut", "cre")),
+    person(given = "Jessica", family = "Gearing", email = "jessica.gearing@qualitasag.ch", role = c("aut")),
+    person(given = "Peter",  family = "von Rohr", email = "peter.vonrohr@qualitasag.ch", role = c("aut")))
+Description: The input for ECOWEIGHT is read from different sources and is formatted 
+    according to the requirements of ECOWEIGHT. Results of ECOWEIGHT are taken and 
+    presented in a form suitable for further processing
+License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.1.2
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.0
 Suggests: 
     knitr,
     rmarkdown,
