@@ -1948,7 +1948,6 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                     " * Enter computations after marketchanel ...")
 
   # Update statement-progeny-flp-input from the data by calculating cow weight after second calving
-<<<<<<< HEAD
   second_calving_wt <- calculate_cow_liveweight(ps_input_flp_tibble = tbl_merged_data,
                                                 ps_first_calvingweight = FALSE,
                                                 ps_second_calvingweight = TRUE,
