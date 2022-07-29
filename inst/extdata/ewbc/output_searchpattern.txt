@@ -1,21 +1,19 @@
 Trait;SearchPattern;IndexOffset
-"CalvingPerformance";"Mean class of calving performance";1
-"LossAtBirth";"Losses of calves at calving";0
-"Loss48hours";"Losses of calves from 48 hours";1
-"CowMatureWeight";"Mature weight of cows";0
-"BirthWeightCalves";"Birth weight of calves";0
-"AverageDailyGainFattening";"Average daily gain in fattening";0
-"DressingPercentage";"Dressing percentage";0
-"ConceptionRateHeifers";"Conception rate of heifers";0
-"ConceptionRateCows";"Conception rate of cows";0
-"Fleshiness";"Mean class of fleshiness";1
-"Fat";"Mean class of fat";1
-"WeightGainWeaning";"Weight gain of calves from birth to 1st weighing";1
-"WeightGain2";"Weight gain of calves from 1st to 2nd weighing";1
-"WeightGain3";"Weight gain of calves from 2nd to 3rd weighing";1
+"CalvingPerformance";"Mean class of calving performance";2
+"LossAtBirth";"Losses of calves at calving";1
+"Loss48hours";"Losses of calves from 48 hours";2
+"BirthWeightCalves";"Birth weight of calves";1
+"AverageDailyGainFattening";"Average daily gain in fattening";1
+"DressingPercentage";"Dressing percentage";1
+"Fleshiness";"Mean class of fleshiness";2
+"Fat";"Mean class of fat";2
+"WeightGainWeaning";"Weight gain of calves from birth to 1st weighing";2
+"WeightGain2";"Weight gain of calves from 1st to 2nd weighing";2
+"WeightGain3";"Weight gain of calves from 2nd to 3rd weighing";2
+"CowMatureWeight";"Mature weight of cows";1
+"ConceptionRateHeifers";"Conception rate of heifers";1
+"ConceptionRateCows";"Conception rate of cows";1
 "AvgLifetimeCows";"Average lifetime of cows";0
-"Weaning_wt_direct";"Weight gain of calves from birth to 1st weighing";2
-"Weaning_wt_maternal";"Weight gain of calves from birth to 1st weighing";2
 "Length_fattening_male";"Length of the fattening period for which the feed costs are calculated";1
 "Length_fattening_female";"Length of fattening period for which the feed costs are calculated";1
 "Proportion_males_slaughtered";"Number of male calves available for fattening (per cow and year)";0

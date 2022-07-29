@@ -1,19 +1,10 @@
 trait;genetic_standarddeviation
-"Age adjusted carcass weight Natura-Beef";0.207
-"Fleshiness Natura-Beef";0.445
-"Fat Natura-Beef";0.447
 "Age adjusted carcass weight conventional calves";0.055
 "Fleshiness conventional calves";0.553
 "Fat conventional calves";0.302
 "Age adjusted carcass weight conventional adults";0.114
 "Fleshiness conventional adults";0.479
 "Fat conventional aduts";0.272
-"Calving ease direct beef";16.94
-"Birth weight direct beef";3.482
-"Calving ease maternal beef";12.22
-"Birth weight maternal beef";1.447
 "Calving ease direct dairy";18.43
 "Birth weight direct dairy";2.715
 "Gestation length direct dairy";4.017
-"Weaning weight direct";19.493
-"Weaning weight maternal";9.716

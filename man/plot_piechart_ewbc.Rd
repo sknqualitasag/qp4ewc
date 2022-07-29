@@ -14,6 +14,17 @@ plot_piechart_ewbc(
   pb_log,
   plogger = NULL
 )
+
+plot_piechart_ewbc(
+  ps_path_2genSD,
+  ptbl_aggregate_results,
+  ps_traitgroup2consider,
+  ps_sirebreed,
+  ps_prodsystew,
+  ps_marketchannel,
+  pb_log,
+  plogger = NULL
+)
 }
 \arguments{
 \item{ps_path_2genSD}{path to file with genetic standard deviation}
@@ -33,6 +44,10 @@ plot_piechart_ewbc(
 \item{plogger}{logger object}
 }
 \description{
+The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+produce output file. This function processed different functions
+to prepare information to be plot.
+
 The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
 produce output file. This function processed different functions
 to prepare information to be plot.

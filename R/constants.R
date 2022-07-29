@@ -375,3 +375,127 @@ get_constants_carcass_beefOndairy <- function(){
               line9 = 9))
 }
 
+#' @title Get constants for post processing for beef-on_beef
+#'
+#' @description
+#' Return a list with specific constants that are used.
+#'
+#' @export get_constants_postprocess_beefOnbeef
+get_constants_postprocess_beefOnbeef <- function(){
+  # return list of default constants
+  return(list(idx_row_EW_d_m = 2,
+              idx_row_EW_relative = 3,
+              EW_values = 1:15,
+              string_3 = 3,
+              string_2 = 2,
+              string_1 = 1,
+              idx_row_fattened_bulls = 4,
+              idx_row_fattened_heifers = 17,
+              idx_row_fattened_heifers1 = 5,
+              idx_row_fattened_heifers3 = 16,
+              idx_row_fat_length_m = 16,
+              idx_row_fat_length_f = 17,
+              idx_row_structure = 6,
+              idx_row_growth = 7,
+              idx_row_prop = 18:19,
+              search_ew = 1:14,
+              idx_row_misc = 8,
+              idx_row_nutrition = 9,
+              search_misc = 20:26,
+              idx_row_input06 = 10,
+              idx_row_input13 = 11,
+              idx_row_input08 = 12,
+              idx_row_input04 = 13,
+              idx_row_input05 = 15,
+              idx_row_input10 = 14,
+              search_birth_wean = 27:30,
+              search_slaughter = 31:32,
+              idx_row_avg_prop_m = 1,
+              idx_row_avg_prop_f = 2,
+              idx_row_avg_fat_m = 3,
+              idx_row_avg_fat_f = 4,
+              idx_row_avg_flesh_m = 5,
+              idx_row_avg_flesh_f = 6,
+              idx_row_avg_calving = 7,
+              idx_row_avg_bw_m = 8,
+              idx_row_avg_bw_f = 9,
+              idx_row_avg_wean_m = 10,
+              idx_row_avg_wean_f = 11,
+              idx_row_avg_slaughter_m = 12,
+              idx_row_avg_slaughter_f = 13,
+              ew_calving = 1,
+              ew_birthwt = 4,
+              ew_ADG = 5,
+              ew_fleshiness = 7,
+              ew_fat = 8,
+              ew_weanwt = 9
+
+  ))
+}
+
+
+
+#' @title Get constants for post processing for beef-on_dairy
+#'
+#' @description
+#' Return a list with specific constants that are used.
+#'
+#' @export get_constants_postprocess_beefOndairy
+get_constants_postprocess_beefOndairy <- function(){
+  # return list of default constants
+  return(list(idx_row_profit = 1,
+              idx_row_marginal_EW = 2,
+              idx_row_direct_maternal_EW = 3,
+              idx_row_relative_EW = 4,
+              idx_row_miscellaneous = 5,
+              idx_row_nutrition = 6,
+              idx_row_INPUT15 = 7,
+              idx_row_INPUT11 = 8,
+              idx_row_fattened_bull = 9,
+              idx_row_fattened_dairyheifer = 10,
+              idx_row_fattened_beefheifer = 11,
+              idx_row_heifers = 12,
+              idx_row_INPUT23 = 13,
+              idx_row_INPUT22 = 14,
+              idx_row_fat_m = 1,
+              idx_row_fat_f = 2,
+              idx_row_flesh_m = 3,
+              idx_row_flesh_f = 4,
+              idx_calving_m = 6,
+              idx_calving_f = 5,
+              idx_calving_exportm = 2,
+              idx_calving_exportf = 1,
+              idx_birthwt_m = 8,
+              idx_birthwt_f = 7,
+              idx_birthwt_exportm = 4,
+              idx_birthwt_exportf = 3,
+              idx_row_ADGm = 15,
+              idx_row_ADGf = 14,
+              idx_row_growth = 15,
+              idx_row_reproduction = 16,
+              idx_row_rearingwt_f = 17,
+              idx_row_rearingwt_m = 16,
+              string_EW_value = 2,
+              avg_dressing = 0.56,
+              ew_results = 1:9,
+              search_fatm = 10,
+              search_fatf = 11,
+              search_misc = 12:17,
+              search_misc_export = 16:17,
+              search_bw = 18:19,
+              search_gestation = 24,
+              search_slaughter = 20:23,
+              search_carcass = 25:26,
+              search_rearing = 27:28,
+              string_4 = 4,
+              string_3 = 3,
+              string_2 = 2,
+              ew_ADG = 6,
+              ew_ACCW = 10,
+              ew_fat = 9,
+              ew_fleshiness = 8,
+              ew_birthwt = 4,
+              ew_calving = 1
+              ))
+}
+

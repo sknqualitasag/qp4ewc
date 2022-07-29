@@ -36,7 +36,7 @@ s_prodsystew <- "4"
 # Marketing channel can be: ConventionalBeef, ConventionalVeal, Export corresponding to intensive fattening system for beef or veal or all crossbred calves being sold as calves to the handler
 s_marketingchannel <- "ConventionalVeal"
 # Path to define from the working directory for beef-on-dairy
-s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc")
+s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc","results")
 # Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
 s_input_file_literature <- file.path(here::here(),"inst","extdata","ewdc",paste0("input_literature_",s_dambreed,"_",s_marketingchannel,".txt"))
 # Path to input from the parameter specific for the scenario. Based on this example an other file can be created with different input-value.
@@ -125,4 +125,33 @@ pre_process_ew_input(ps_sirebreed = s_sirebreed,
                      ps_input_file_price_calf = s_input_file_price_calf,
                      ps_input_file_ped = s_input_file_ped,
                      pb_log = b_log)
+```
+
+```{r}
+#Path to files
+path_results_files <- "~/Ecoweight_package/qp4ewc/inst/extdata/ewdc/results"
+# Path to output statements from the results file of ewdc
+s_output_statement <- "~/Ecoweight_package/qp4ewc/inst/extdata/ewdc/output_statement.txt"
+# Path to search patterns needed to find correct results 
+s_output_search_pattern <- "~/Ecoweight_package/qp4ewc/inst/extdata/ewdc/output_searchpattern.txt"
+# Path to save table of result 
+s_path_tbl_save <- "~/Ecoweight_package/qp4ewc/inst/extdata/ewdc/results"
+# Name of results file from ewdc
+s_results_name <- "test"
+# Flag to set to TRUE, if a log-file is whished
+b_log <- TRUE
+```
+
+```{r, warning=FALSE, message=FALSE}
+  results_files <- data.frame(filename = list.files(paste0(path_results_files,"/")))
+
+for(idx in 1:nrow(results_files)){
+  s_path_2outputfile <- paste0(s_path_tbl_save,"/",results_files[idx,],"/",s_results_name)
+
+post_process_ewdc_output(ps_path_2outputfile = s_path_2outputfile,
+                         ps_output_statement = s_output_statement,
+                         ps_output_search_pattern = s_output_search_pattern,
+                         ps_path_tbl_save = s_path_tbl_save,
+                         pb_log = b_log)
+}
 ```
