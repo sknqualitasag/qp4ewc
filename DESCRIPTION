@@ -1,6 +1,6 @@
 Package: qp4ewc
 Title: Process Input and Results of ECOWEIGHT
-Version: 0.1.8
+Version: 0.2.0
 Authors@R: c(
     person(given = "Sophie", family = "Kunz", email = "sophie.kunz@qualitasag.ch", role = c("aut", "cre")),
     person(given = "Jessica", family = "Gearing", email = "jessica.gearing@qualitasag.ch", role = c("aut")),

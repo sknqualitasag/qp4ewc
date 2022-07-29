@@ -1,3 +1,7 @@
+# qp4ewc 0.2.0
+
+* Merge the branch beefOndairy to the main branch
+
 # qp4ewc 0.1.8
 
 * Fixed problem with NA input
