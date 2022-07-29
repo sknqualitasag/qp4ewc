@@ -64,8 +64,7 @@ gain of calves from 2nd to 3rd weighing"
 "Genetic standard deviation for mean class of fat covering"
 "0.01 class"
 7.2
-"Genetic standard deviation for weight gain of calves
-from birth to 1st weighing"
+"Genetic standard deviation for weight gain of calves from birth to 1st weighing"
 "kg"
 10.2
 "Genetic standard deviation for weight gain of calves from

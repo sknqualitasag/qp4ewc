@@ -19,4 +19,4 @@ INPUT14.TXT;"Price per kg fresh matter of feed ration of code 1 for replacement 
 INPUT14.TXT;"Price per kg fresh matter of feed ration of code 2 for replacement heifers";"MU/kg";0.02
 INPUT14.TXT;"Price per kg live weight of replacement heifers at purchase";"MU/animal";6
 INPUT14.TXT;"Fixed cost from purchase to calving per replacement heifer and day";"MU/day";4.9
-INPUT14.TXT;"Cost for veterinary treatment per replacement heifer from purchase to calving";"MU/animal";46.5
+INPUT14.TXT;"Cost for veterinary treatment per replacement heifer from purchase to calving";"MU/animal";73.2

@@ -15,6 +15,6 @@ INPUT05.TXT;"Dry matter per kg feed ration for bulls after test";"kg/kg";0.57
 INPUT05.TXT;"Amount of dung per bull at station per day";"kg/day";0
 INPUT05.TXT;"Amount of straw per bull at station per day";"kg/day";3.5
 INPUT05.TXT;"Amount of water per bull per day";"l/day";40
-INPUT05.TXT;"Cost for veterinary treatment per bull at test station till selling";"MU/animal";39
+INPUT05.TXT;"Cost for veterinary treatment per bull at test station till selling";"MU/animal";73.2
 INPUT05.TXT;"Fixed costs per bull on the test station per day";"MU/day";13.36
 INPUT05.TXT;"Average price for selected bulls at selling";"MU/bull";5000
