@@ -28,11 +28,11 @@ The parameters needed are:
 
 ```{r}
 # Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
-s_sirebreed <- "LM"
+s_sirebreed <- "AN"
 # Dam breed can be for beef-on-beef: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental 
-s_dambreed <- "LM"
+s_dambreed <- "AN"
 # Production system according to ECOWEIGHT for beef-on-beef: 1,2,3 corresponding to purebreeding, crossbreeding, terminal crossing
-s_prodsystew <- "2"
+s_prodsystew <- "1"
 # Marketing channel can be: Natura-Beef, SwissPrimBeef
 s_marketingchannel <- "Natura-Beef"
 # Path to define from the working directory
@@ -132,30 +132,91 @@ Because we are did test-data-set, it is possible that some values of the INPUTXX
 # Post-processing steps
 
 ```{r}
-#Path to files
-path_results_files <- "~/Ecoweight_package/qp4ewc/inst/extdata/ewbc/results"
+#Path to results files of ewbc
+path_results_files <- file.path(here::here(),"inst", "extdata", "ewbc", "Ecoweight_output")
 # Path to output statements from the results file of ewdc
-s_output_statement <- "~/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt"
+s_output_statement <-  file.path(here::here(),"inst", "extdata", "ewbc", "output_statement.txt")
 # Path to search patterns needed to find correct results 
-s_output_search_pattern <- "~/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt"
+s_output_search_pattern <- file.path(here::here(),"inst", "extdata", "ewbc", "output_searchpattern.txt")
 # Path to save table of result 
-s_path_tbl_save <- "~/Ecoweight_package/qp4ewc/inst/extdata/ewbc/results"
+s_path_tbl_save <- file.path(here::here(),"inst", "extdata", "ewbc", "results")
 # Name of results file from ewdc
 s_results_name <- "test"
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
 
+Step 1 post processing reads data from the results files and makes single tables per scenario.
+
 ```{r, warning=FALSE, message=FALSE}
   results_files <- data.frame(filename = list.files(paste0(path_results_files,"/")))
 
 for(idx in 1:nrow(results_files)){
-  s_path_2outputfile <- paste0(s_path_tbl_save,"/",results_files[idx,],"/",s_results_name)
-
+  s_path_2outputfile <- paste0(path_results_files,"/",results_files[idx,],"/",s_results_name)
+  s_scenario <- results_files[idx,]
 post_process_ewbc_output(ps_path_2outputfile = s_path_2outputfile,
                          ps_output_statement = s_output_statement,
                          ps_output_search_pattern = s_output_search_pattern,
                          ps_path_tbl_save = s_path_tbl_save,
+                         ps_scenario = s_scenario,
                          pb_log = b_log)
 }
 ```
+
+Step 2 post processing combines the single scenario tables into tables sorted by the defined criteria for s_sort_by
+
+sort by sire breed
+```{r}
+# How you want the tables to be organised. one table per sire breed (sire_breed), one table per dam breed (dam_breed) or one table per production system (production_system)
+s_sort_by = "sire_breed"
+# Path to the results tables printed from the post_processing_ewdc_output function above
+s_path_results_tbl <-  file.path(here::here(),"inst", "extdata", "ewbc", "results")
+# Where to save the tables of results: this can be the same or different to the directory for the results saved from the initial post processing 
+s_path_save <-   file.path(here::here(),"inst", "extdata", "ewbc", "results")
+
+create_table_results_ewbc(ps_sort_by = s_sort_by,
+ ps_path_results_tbl = s_path_results_tbl,
+ ps_path_save = s_path_save,
+pb_log = b_log)
+
+
+ps_sort_by = s_sort_by
+ ps_path_results_tbl = s_path_results_tbl
+ ps_path_save = s_path_save
+```
+
+sort by dam breed
+```{r}
+# How you want the tables to be organised. one table per sire breed (sire_breed), one table per dam breed (dam_breed) or one table per production system (production_system)
+s_sort_by = "dam_breed"
+# Path to the results tables printed from the post_processing_ewdc_output function above
+s_path_results_tbl <-  file.path(here::here(),"inst", "extdata", "ewbc", "results")
+# Where to save the tables of results: this can be the same or different to the directory for the results saved from the initial post processing 
+s_path_save <-   file.path(here::here(),"inst", "extdata", "ewbc", "results")
+
+create_table_results_ewbc(ps_sort_by = s_sort_by,
+ ps_path_results_tbl = s_path_results_tbl,
+ ps_path_save = s_path_save,
+pb_log = b_log)
+
+
+ps_sort_by = s_sort_by
+ ps_path_results_tbl = s_path_results_tbl
+ ps_path_save = s_path_save
+```
+
+sort by production system 
+```{r}
+# How you want the tables to be organised. one table per sire breed (sire_breed), one table per dam breed (dam_breed) or one table per production system (production_system)
+s_sort_by = "production_system"
+# Path to the results tables printed from the post_processing_ewdc_output function above
+s_path_results_tbl <-  file.path(here::here(),"inst", "extdata", "ewbc", "results")
+# Where to save the tables of results: this can be the same or different to the directory for the results saved from the initial post processing 
+s_path_save <-   file.path(here::here(),"inst", "extdata", "ewbc", "results")
+
+create_table_results_ewbc(ps_sort_by = s_sort_by,
+ ps_path_results_tbl = s_path_results_tbl,
+ ps_path_save = s_path_save,
+pb_log = b_log)
+```
+

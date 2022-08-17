@@ -1,0 +1,1522 @@
+INFO  [2022-08-16 11:06:10] post_process_ewbc_output -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_output_statement: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * ps_output_search_pattern: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * ps_path_tbl_save: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/results
+
+INFO  [2022-08-16 11:06:10] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 11:06:10] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 11:06:10] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * in a tibble
+
+INFO  [2022-08-16 11:06:10] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 11:06:10] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 11:06:10] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * in a tibble
+
+INFO  [2022-08-16 11:06:15] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.12. Economic weights for direct (1st number) and maternal (2nd number)
+ * ps_end_statement2extract: 3.13 Relative
+INFO  [2022-08-16 11:06:15] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:15] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:06:40] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.5.5. Fattened heifers (categories 6, 13 and 12)
+ * ps_end_statement2extract: 3.5.7. Replacement heifers negatively selected
+INFO  [2022-08-16 11:06:40] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:06:40] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:     
+
+INFO  [2022-08-16 11:06:40] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.5.3. Fattened bulls
+ * ps_end_statement2extract: 3.5.5. Fattened heifers (categories 6, 13 and 12)
+INFO  [2022-08-16 11:06:40] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:06:40] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:     
+
+INFO  [2022-08-16 11:06:50] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.4.1 Structure of progeny
+ * ps_end_statement2extract: 3.4.2 Growth characteristics for calves
+INFO  [2022-08-16 11:06:50] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.4.6. Miscellaneous
+ * ps_end_statement2extract: 3.5 Nutrition costs
+INFO  [2022-08-16 11:06:50] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 2.4 Data from file INPUT06.TXT
+ * ps_end_statement2extract: 2.5 Data from file INPUT13.TXT
+INFO  [2022-08-16 11:06:50] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: Data from file INPUT08.TXT
+ * ps_end_statement2extract: 2.8 Data from file INPUT05.TXT
+INFO  [2022-08-16 11:06:50] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:06:50] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] post_process_ewbc_output -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_output_statement: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * ps_output_search_pattern: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * ps_path_tbl_save: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/results
+
+INFO  [2022-08-16 11:24:24] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 11:24:24] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 11:24:24] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * in a tibble
+
+INFO  [2022-08-16 11:24:24] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 11:24:24] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 11:24:24] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * in a tibble
+
+INFO  [2022-08-16 11:24:24] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.12. Economic weights for direct (1st number) and maternal (2nd number)
+ * ps_end_statement2extract: 3.13 Relative
+INFO  [2022-08-16 11:24:24] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:24:24] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.5.5. Fattened heifers (categories 6, 13 and 12)
+ * ps_end_statement2extract: 3.5.7. Replacement heifers negatively selected
+INFO  [2022-08-16 11:24:24] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:     
+
+INFO  [2022-08-16 11:24:24] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.5.3. Fattened bulls
+ * ps_end_statement2extract: 3.5.5. Fattened heifers (categories 6, 13 and 12)
+INFO  [2022-08-16 11:24:24] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:     
+
+INFO  [2022-08-16 11:24:24] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.4.1 Structure of progeny
+ * ps_end_statement2extract: 3.4.2 Growth characteristics for calves
+INFO  [2022-08-16 11:24:24] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.4.6. Miscellaneous
+ * ps_end_statement2extract: 3.5 Nutrition costs
+INFO  [2022-08-16 11:24:24] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 2.4 Data from file INPUT06.TXT
+ * ps_end_statement2extract: 2.5 Data from file INPUT13.TXT
+INFO  [2022-08-16 11:24:24] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: Data from file INPUT08.TXT
+ * ps_end_statement2extract: 2.8 Data from file INPUT05.TXT
+INFO  [2022-08-16 11:24:24] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:24:24] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:38] post_process_ewbc_output -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_output_statement: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * ps_output_search_pattern: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * ps_path_tbl_save: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/results
+
+INFO  [2022-08-16 11:34:38] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 11:34:38] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 11:34:38] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * in a tibble
+
+INFO  [2022-08-16 11:34:38] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 11:34:38] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 11:34:38] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * in a tibble
+
+INFO  [2022-08-16 11:34:38] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.12. Economic weights for direct (1st number) and maternal (2nd number)
+ * ps_end_statement2extract: 3.13 Relative
+INFO  [2022-08-16 11:34:38] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 11:34:38] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.5.5. Fattened heifers (categories 6, 13 and 12)
+ * ps_end_statement2extract: 3.5.7. Replacement heifers negatively selected
+INFO  [2022-08-16 11:34:38] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:     
+
+INFO  [2022-08-16 11:34:39] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.5.3. Fattened bulls
+ * ps_end_statement2extract: 3.5.5. Fattened heifers (categories 6, 13 and 12)
+INFO  [2022-08-16 11:34:39] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:     
+
+INFO  [2022-08-16 11:34:39] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.4.1 Structure of progeny
+ * ps_end_statement2extract: 3.4.2 Growth characteristics for calves
+INFO  [2022-08-16 11:34:39] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.4.6. Miscellaneous
+ * ps_end_statement2extract: 3.5 Nutrition costs
+INFO  [2022-08-16 11:34:39] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: 2.4 Data from file INPUT06.TXT
+ * ps_end_statement2extract: 2.5 Data from file INPUT13.TXT
+INFO  [2022-08-16 11:34:39] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+ * ps_start_statement2extract: Data from file INPUT08.TXT
+ * ps_end_statement2extract: 2.8 Data from file INPUT05.TXT
+INFO  [2022-08-16 11:34:39] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/SI_SI_1_Natura-Beef/test
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 11:34:39] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:26:16] post_process_ewbc_output -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_output_statement: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * ps_output_search_pattern: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * ps_path_tbl_save: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/results
+
+INFO  [2022-08-16 14:26:20] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 14:26:20] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 14:26:21] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * in a tibble
+
+INFO  [2022-08-16 14:26:21] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 14:26:21] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 14:26:21] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * in a tibble
+
+INFO  [2022-08-16 14:32:41] post_process_ewbc_output -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_output_statement: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * ps_output_search_pattern: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * ps_path_tbl_save: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/results
+
+INFO  [2022-08-16 14:32:41] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 14:32:41] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 14:32:41] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * in a tibble
+
+INFO  [2022-08-16 14:32:41] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 14:32:41] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 14:32:41] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * in a tibble
+
+INFO  [2022-08-16 14:32:41] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.12. Economic weights for direct (1st number) and maternal (2nd number)
+ * ps_end_statement2extract: 3.13 Relative
+INFO  [2022-08-16 14:32:41] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:32:42] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.5.5. Fattened heifers (categories 6, 13 and 12)
+ * ps_end_statement2extract: 3.5.7. Replacement heifers negatively selected
+INFO  [2022-08-16 14:32:42] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:     
+
+INFO  [2022-08-16 14:32:42] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.5.3. Fattened bulls
+ * ps_end_statement2extract: 3.5.5. Fattened heifers (categories 6, 13 and 12)
+INFO  [2022-08-16 14:32:42] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:     
+
+INFO  [2022-08-16 14:32:42] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.4.1 Structure of progeny
+ * ps_end_statement2extract: 3.4.2 Growth characteristics for calves
+INFO  [2022-08-16 14:32:42] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.4.6. Miscellaneous
+ * ps_end_statement2extract: 3.5 Nutrition costs
+INFO  [2022-08-16 14:32:42] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: 2.4 Data from file INPUT06.TXT
+ * ps_end_statement2extract: 2.5 Data from file INPUT13.TXT
+INFO  [2022-08-16 14:32:42] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: Data from file INPUT08.TXT
+ * ps_end_statement2extract: 2.8 Data from file INPUT05.TXT
+INFO  [2022-08-16 14:32:42] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:32:42] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] post_process_ewbc_output -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_output_statement: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * ps_output_search_pattern: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * ps_path_tbl_save: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/results
+
+INFO  [2022-08-16 14:33:27] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 14:33:27] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 14:33:27] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * in a tibble
+
+INFO  [2022-08-16 14:33:27] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 14:33:27] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 14:33:27] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * in a tibble
+
+INFO  [2022-08-16 14:33:27] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.12. Economic weights for direct (1st number) and maternal (2nd number)
+ * ps_end_statement2extract: 3.13 Relative
+INFO  [2022-08-16 14:33:27] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:27] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.5.5. Fattened heifers (categories 6, 13 and 12)
+ * ps_end_statement2extract: 3.5.7. Replacement heifers negatively selected
+INFO  [2022-08-16 14:33:27] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:     
+
+INFO  [2022-08-16 14:33:27] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.5.3. Fattened bulls
+ * ps_end_statement2extract: 3.5.5. Fattened heifers (categories 6, 13 and 12)
+INFO  [2022-08-16 14:33:27] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:     
+
+INFO  [2022-08-16 14:33:27] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.4.1 Structure of progeny
+ * ps_end_statement2extract: 3.4.2 Growth characteristics for calves
+INFO  [2022-08-16 14:33:27] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: 3.4.6. Miscellaneous
+ * ps_end_statement2extract: 3.5 Nutrition costs
+INFO  [2022-08-16 14:33:27] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: 2.4 Data from file INPUT06.TXT
+ * ps_end_statement2extract: 2.5 Data from file INPUT13.TXT
+INFO  [2022-08-16 14:33:27] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+ * ps_start_statement2extract: Data from file INPUT08.TXT
+ * ps_end_statement2extract: 2.8 Data from file INPUT05.TXT
+INFO  [2022-08-16 14:33:27] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_AN_1_Natura-Beef/test
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:27] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:47] post_process_ewbc_output -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+ * ps_output_statement: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * ps_output_search_pattern: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * ps_path_tbl_save: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/results
+
+INFO  [2022-08-16 14:33:47] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 14:33:47] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+INFO  [2022-08-16 14:33:47] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_statement.txt
+ * in a tibble
+
+INFO  [2022-08-16 14:33:47] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 14:33:47] read_file_input -- File exists:
+ * ps_input_file/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+INFO  [2022-08-16 14:33:47] read_file_input -- Read file: 
+ * ps_input_file: /home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/output_searchpattern.txt
+ * in a tibble
+
+INFO  [2022-08-16 14:33:47] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+ * ps_start_statement2extract: 3.12. Economic weights for direct (1st number) and maternal (2nd number)
+ * ps_end_statement2extract: 3.13 Relative
+INFO  [2022-08-16 14:33:47] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+INFO  [2022-08-16 14:33:47] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:47] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 2
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:   
+
+INFO  [2022-08-16 14:33:48] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+ * ps_start_statement2extract: 3.5.5. Fattened heifers (categories 6, 13 and 12)
+ * ps_end_statement2extract: 3.5.9. Purchased female replacement (category 20)
+INFO  [2022-08-16 14:33:48] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:     
+
+INFO  [2022-08-16 14:33:48] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+ * ps_start_statement2extract: 3.5.3. Fattened bulls
+ * ps_end_statement2extract: 3.5.5. Fattened heifers (categories 6, 13 and 12)
+INFO  [2022-08-16 14:33:48] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby:     
+
+INFO  [2022-08-16 14:33:48] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+ * ps_start_statement2extract: 3.4.1 Structure of progeny
+ * ps_end_statement2extract: 3.4.2 Growth characteristics for calves
+INFO  [2022-08-16 14:33:48] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+ * ps_start_statement2extract: 3.4.6. Miscellaneous
+ * ps_end_statement2extract: 3.5 Nutrition costs
+INFO  [2022-08-16 14:33:48] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 0
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+ * ps_start_statement2extract: 2.4 Data from file INPUT06.TXT
+ * ps_end_statement2extract: Data from file INPUT08.TXT
+INFO  [2022-08-16 14:33:48] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] extract_result -- Starting function with parameters:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+ * ps_start_statement2extract: Data from file INPUT08.TXT
+ * ps_end_statement2extract: 2.7 Data from file INPUT04.TXT
+INFO  [2022-08-16 14:33:48] extract_result -- File exists:
+ * ps_path_2outputfile/home/jgearing/Ecoweight_package/qp4ewc/inst/extdata/ewbc/Ecoweight_output/AN_KR_3_Natura-Beef/test
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+
+INFO  [2022-08-16 14:33:48] get_result_value -- Starting function with parameters:
+ * pvec_ecow_result_2extract 
+ * ps_statement2search 
+ * ps_line2get: 1
+ * ps_splitby: :
+

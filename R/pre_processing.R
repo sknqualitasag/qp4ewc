@@ -2842,16 +2842,23 @@ price_sale_pure_f <- calculate_age_calf_sale(ps_input_flp_tibble = tbl_purebred_
                                            ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                            pb_log = pb_log,
                                            plogger = lgr)
+
+
 price_sale_cross_f <- calculate_age_calf_sale(ps_input_flp_tibble = tbl_crossbred_rearing,
                                             ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                             pb_log = pb_log,
                                             plogger = lgr)
+
+if(price_sale_pure_f == "NaN"){
+  price_sale_pure_f <- price_sale_cross_f
+}
+
 value2update_pricesale_f <- paste0(c(price_sale_pure_f, price_sale_cross_f),collapse = " ")
 update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                               paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                               tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_price_f,l_constants_progeny_beefOndairy$idx_col_input_file]),
                             ps_statement2search = tbl_input_statement_flp[l_constants_progeny_beefOndairy$idx_row_price_f,l_constants_progeny_beefOndairy$idx_col_input],
-                            ps_value2update = value2update_agesale,
+                            ps_value2update = value2update_pricesale_f,
                             pb_log = pb_log,
                             plogger = lgr)
 
@@ -2863,6 +2870,11 @@ price_sale_cross_m <- calculate_age_calf_sale(ps_input_flp_tibble = tbl_crossbre
                                             ps_sex = l_constants_progeny_beefOndairy$sex_male,
                                             pb_log = pb_log,
                                             plogger = lgr)
+
+if(price_sale_pure_m == "NaN"){
+  price_sale_pure_m <- price_sale_cross_m
+}
+
 value2update_pricesale_m <- paste0(c(price_sale_pure_m, price_sale_cross_m),collapse = " ")
 update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                               paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
