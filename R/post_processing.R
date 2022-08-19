@@ -970,6 +970,14 @@ tbl_avg_carcasswt <- tibble::tibble(Trait = "Carcass_wt", MeanValue = avg_carcas
 
 tbl_result_mean <- dplyr::bind_rows(tbl_result_mean, tbl_avg_carcasswt)
 
+
+#Transformation of calving score economic weight to scale used for EBV
+# EW_calving <-tbl_result_ew$EconomicValue[l_constants_postprocess_beefOndairy$ew_calving]
+# ps_EW_calving <- EW_calving
+#
+#
+
+
   # ****************************************************************************
   ## ---- Combination of Results ----
   # ****************************************************************************
@@ -1128,6 +1136,80 @@ write.csv(tbl_aggregate_results, file = paste0(ps_path_tbl_save,"/df_",name_file
 
    return(tbl_aggregate_results)
  }
+}
+
+#' @title Calculate the economic weight for calving score on the transformed scale used for ebv
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' produce output file. This function processed different functions
+#' to prepare information to be plot.
+#'
+#' @param ps_input_file_calving calving data used for the calculation of calving score proportions
+#' @param ps_start_calving_date start date for calving data
+#' @param ps_end_calving_data end date for calving data
+#' @param ps_sire_breed sire breed
+#' @param ps_dam_breed dam breed
+#' @param ps_EW_calving economic weight for calving score
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#' @import dplyr
+#'
+#' @export calculate_transformed_EW_ewdc
+
+calculate_transformed_EW_ewdc <- function(ps_input_file_calving,
+                                          ps_start_calving_date,
+                                          ps_end_calving_data,
+                                          ps_sirebreed,
+                                          ps_dambreed,
+                                          ps_EW_calving,
+                                          pb_log,
+                                          plogger = NULL){
+
+  tbl_calving <- read_file_input_calving(ps_input_file_calving = ps_input_file_calving,
+                                         ps_start_calving_date = ps_start_calving_date,
+                                         ps_end_calving_date = ps_end_calving_date,
+                                         pb_log = b_log,
+                                         plogger = lgr)
+
+  tbl_input <- tbl_calving %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>%
+    dplyr::filter(Mutter_RasseCode == ps_dambreed)
+
+  tbl_input$calving_transform <- 0
+  tbl_input <- tbl_input %>%
+    filter(!is.na(Geburtsverlauf))
+  tbl_input <- tbl_input %>%
+    filter(Geburtsverlauf != 0)
+
+  for (idx in 1:nrow(tbl_input)) {
+    if (tbl_input[idx,]$Geburtsverlauf == 1) {
+      tbl_input[idx,]$calving_transform <- 300
+    } else if (tbl_input[idx,]$Geburtsverlauf == 2){
+      tbl_input[idx,]$calving_transform <- 200
+    } else {
+      tbl_input[idx,]$calving_transform <- 100
+    }
+  }
+
+#Calculated during pre_process
+EW <- ps_EW_calving
+
+  calving_score <- tbl_input$Geburtsverlauf
+  m_r <- mean(calving_score)
+  sd_r <- sd(calving_score)
+
+  calving_transformed <- tbl_input$calving_transform
+  m_t <- mean(calving_transformed)
+  sd_t <- sd(calving_transformed)
+
+  ew_sd <- as.numeric(EW)*sd_r/0.01
+  ew_sd_t <- as.numeric(EW)*sd_t
+  ew_u = -(ew_sd/sd_t)
+
+  return(ew_u)
+
 }
 
 #' @title Create table of results depending on sire breed, dam breed or marketing channel
@@ -1370,3 +1452,5 @@ plot_piechart_ewbc <- function(ps_path_2genSD,
   return(piechart)
 
 }
+
+

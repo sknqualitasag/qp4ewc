@@ -1365,6 +1365,10 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
 
 
   }
+
+  #For the transformation of calving weight genetic standard deviation to the same scale as for the raw phenotype:
+
+
 }
 
 
@@ -2107,8 +2111,7 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
 
   ### # Merge progeny-flp data and pedigree files
   tbl_merged_data <- tbl_flp %>% dplyr::inner_join(tbl_ped, by = c("NakoTVD" = "TVDid"))
-  tbl_merged_rearing_data <- tbl_ped %>% dplyr::inner_join(tbl_calf, by = c("TVDid" = "TVD")) %>% dplyr::inner_join(tbl_flp, by = c("TVDid" = "NakoTVD"))
-
+  tbl_merged_rearing_data <- tbl_ped %>% dplyr::inner_join(tbl_calf, by = c("TVDid" = "TVD"))
   ### # Create different tibble if purebred or crossbred
   tbl_purebred_beef <- tbl_merged_data %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>% dplyr::filter(Mutter_RasseCode == ps_sirebreed)
   tbl_purebred_dairy <- tbl_merged_data %>% dplyr::filter(Vater_RasseCode == ps_dambreed) %>% dplyr::filter(Mutter_RasseCode == ps_dambreed)

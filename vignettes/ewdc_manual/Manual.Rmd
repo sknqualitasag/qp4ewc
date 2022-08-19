@@ -62,7 +62,7 @@ s_end_date <- 20211231
 s_input_file_progeny_flp_statement <- file.path(here::here(),"inst","extdata","ewdc","input_flp_statement.txt")
 # Path to flp data file
 s_input_file_flp <- file.path(here::here(),"inst","extdata","ewbc","test","zws_muku_flp.csv")
-# Path to calf price data file
+# Path to calf price data file.
 s_input_file_calf <- file.path(here::here(),"inst","extdata","ewbc","test","test_calf_data.csv")
 # Path to input statement for carcass and price
 s_input_file_flp_carcass_matrix_statement <- file.path(here::here(),"inst","extdata","ewdc","input_flp_carcass_matrix_statement.txt")
@@ -72,7 +72,7 @@ s_input_file_price_cow <- file.path(here::here(),"inst","extdata","ewdc","cow_pr
 s_input_file_price_bull <- file.path(here::here(),"inst","extdata","ewdc","bull_price.txt")
 # Path to input with heifer price. Based on this example an other file can be created with different input-values.
 s_input_file_price_heifer <- file.path(here::here(),"inst","extdata","ewdc","heifer_price.txt")
-# Path to input with heifer price. Based on this example an other file can be created with different input-values.
+# Path to input with calf price. Based on this example an other file can be created with different input-values
 s_input_file_price_calf <- file.path(here::here(),"inst","extdata","ewdc","veal_price.txt")
 # Path to pedigree input file
 s_input_file_ped <- file.path(here::here(),"inst","extdata","ewbc","test","test_pedigree.txt")
@@ -139,6 +139,8 @@ s_output_search_pattern <- file.path(here::here(),"inst", "extdata", "ewdc", "ou
 s_path_tbl_save <- file.path(here::here(),"inst", "extdata", "ewdc", "results")
 # Name of results file from ewdc
 s_results_name <- "test"
+# Calving data used for the calculation of calving score during pre_processing
+s_input_file_calving <- file.path("/qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/zws_muku_gal.csv")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
