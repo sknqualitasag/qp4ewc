@@ -347,8 +347,19 @@ get_constants_carcass_beefOndairy <- function(){
   # return list of default constants
   return(list(idx_col_input_file = 1,
               idx_col_input = 2,
-              idx_col_input_value = 4,
-              idx_col_input_value_calf = 5,
+              idx_col_input_value = 5,
+              idx_col_input_value_calf = 4,
+              idx_col_input_beef2 = 6,
+              idx_col_input_beef3 = 7,
+              idx_col_input_beef4 = 8,
+              idx_col_input_beef5 = 9,
+              idx_col_input_beef6 = 10,
+              idx_col_input_beef7 = 11,
+              idx_col_input_beef8 = 12,
+              idx_col_input_beef9 = 13,
+              idx_col_input_beef10 = 14,
+              idx_col_input_beef10 = 15,
+              idx_col_input_beef11 = 16,
               idx_row_bull_freq_class = 9,
               idx_row_heifer_freq_class = 10,
               idx_row_cow_freq_class = 4,
@@ -386,6 +397,7 @@ get_constants_postprocess_beefOnbeef <- function(){
   return(list(idx_row_EW_d_m = 2,
               idx_row_EW_relative = 3,
               EW_values = 1:15,
+              string_4 = 4,
               string_3 = 3,
               string_2 = 2,
               string_1 = 1,
@@ -410,10 +422,12 @@ get_constants_postprocess_beefOnbeef <- function(){
               idx_row_input10 = 14,
               search_birth_wean = 27:30,
               search_slaughter = 31:32,
+              #row for mean trait value from MeanValue in computed table
               idx_row_avg_prop_m = 1,
               idx_row_avg_prop_f = 2,
               idx_row_avg_fat_m = 3,
               idx_row_avg_fat_f = 4,
+              #row for mean trait value from MeanValue in computed table: production system 3
               idx_row_avg_flesh_m = 5,
               idx_row_avg_flesh_f = 6,
               idx_row_avg_calving = 7,
@@ -423,6 +437,7 @@ get_constants_postprocess_beefOnbeef <- function(){
               idx_row_avg_wean_f = 10,
               idx_row_avg_slaughter_m = 12,
               idx_row_avg_slaughter_f = 13,
+              #row for mean trait value from MeanValue in computed table: production system 1
               idx_row_avg_fat_h_1 = 5,
               idx_row_avg_flesh_m_1 = 6,
               idx_row_avg_flesh_f_1 = 8,
@@ -433,13 +448,32 @@ get_constants_postprocess_beefOnbeef <- function(){
               idx_row_avg_wean_f_1 = 12,
               idx_row_avg_slaughter_m_1 = 14,
               idx_row_avg_slaughter_f_1 = 15,
+              #row of each trait in the calculated EW table
               ew_calving = 1,
               ew_birthwt = 4,
               ew_ADG = 5,
               ew_fleshiness = 7,
               ew_fat = 8,
-              ew_weanwt = 9
-
+              ew_weanwt = 9,
+              ew_calving_transform = 16,
+              ew_ACCW = 15,
+              ew_calving_transform_3 = 12,
+              ew_ACCW_3 = 11,
+              #for transformation of EW for calving to scale used for EBV, delta = unit of EW
+              calving_t_1 = 300,
+              calving_t_2 = 200,
+              calving_t_3_4 = 100,
+              calving_t_delta = 0.01,
+              #idx rows for the genetic SD input table
+              idx_row_ACCW_Natura = 1,
+              idx_row_fleshiness_Natura = 2,
+              idx_row_fat_Natura = 3,
+              idx_row_calving_direct = 10,
+              idx_row_calving_maternal = 12,
+              idx_birth_weight_direct = 11,
+              idx_birth_weight_maternal = 13,
+              weaning_direct = 17,
+              weaning_maternal = 18
   ))
 }
 
@@ -497,15 +531,35 @@ get_constants_postprocess_beefOndairy <- function(){
               search_slaughter = 20:23,
               search_carcass = 25:26,
               search_rearing = 27:28,
+              string_5 = 5,
               string_4 = 4,
               string_3 = 3,
               string_2 = 2,
+              string_1 = 1,
+              #row of each trait in the calculated EW table
               ew_ADG = 6,
               ew_ACCW = 10,
               ew_fat = 9,
               ew_fleshiness = 8,
               ew_birthwt = 4,
-              ew_calving = 1
+              ew_calving = 1,
+              ew_calving_transform = 11,
+              ew_calving_transform_export = 6,
+              #for transformation of EW for calving to scale used for EBV, delta = unit of EW
+              calving_t_1 = 300,
+              calving_t_2 = 200,
+              calving_t_3_4 = 100,
+              calving_t_delta = 0.01,
+              #idx rows for the genetic SD input table
+              idx_row_ACCW_calf = 1,
+              idx_row_fleshiness_calf = 2,
+              idx_row_fat_calf = 3,
+              idx_row_ACCW_adult = 4,
+              idx_row_fleshiness_adult = 5,
+              idx_row_fat_adult = 6,
+              idx_row_calving_ease = 7,
+              idx_birth_weight = 8,
+              idx_gestation_length = 9
               ))
 }
 

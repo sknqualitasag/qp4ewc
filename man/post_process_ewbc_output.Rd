@@ -10,6 +10,8 @@ post_process_ewbc_output(
   ps_output_search_pattern,
   ps_path_tbl_save,
   ps_scenario,
+  ps_sirebreed,
+  ps_dambreed,
   pb_log,
   plogger = NULL
 )
@@ -24,6 +26,10 @@ post_process_ewbc_output(
 \item{ps_path_tbl_save}{path tp the directory for saving the results output pdfs}
 
 \item{ps_scenario}{name of scenario (sire_dam_system_marketingchannel)}
+
+\item{ps_sirebreed}{sire breed}
+
+\item{ps_dambreed}{dam breed}
 
 \item{pb_log}{indicator whether logs should be produced}
 

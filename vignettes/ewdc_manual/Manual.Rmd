@@ -135,12 +135,18 @@ path_results_files <- file.path(here::here(),"inst", "extdata", "ewdc", "Ecoweig
 s_output_statement <-  file.path(here::here(),"inst", "extdata", "ewdc", "output_statement.txt")
 # Path to search patterns needed to find correct results 
 s_output_search_pattern <- file.path(here::here(),"inst", "extdata", "ewdc", "output_searchpattern.txt")
+# Path to genetic standard deviation values 
+s_input_genetic_SD <- file.path(here::here(),"inst", "extdata", "ewdc", "input_geneticSD.txt")
 # Path to save table of result 
 s_path_tbl_save <- file.path(here::here(),"inst", "extdata", "ewdc", "results")
 # Name of results file from ewdc
 s_results_name <- "test"
 # Calving data used for the calculation of calving score during pre_processing
 s_input_file_calving <- file.path("/qualstorzws01/data_projekte/projekte/beef-production-model/2022/test_pipeline/data/zws_muku_gal.csv")
+# Date YYYMMDD used as start date to filter for calving score 
+s_start_date <- 20160101
+# Date YYYYMMDD used as end date to filter data for calving score
+s_end_date <- 20211231
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
@@ -153,14 +159,21 @@ results_files <- data.frame(filename = list.files(paste0(path_results_files,"/")
 for(idx in 1:nrow(results_files)){
   s_path_2outputfile <- paste0(path_results_files,"/",results_files[idx,],"/",s_results_name)
   s_scenario <- results_files[idx,]
+  scenario_split <- unlist(strsplit(s_scenario, split = "_", fixed = TRUE))
+  s_sirebreed <- scenario_split[1]
+  s_dambreed <- scenario_split[2]
 post_process_ewdc_output(ps_path_2outputfile = s_path_2outputfile,
                          ps_output_statement = s_output_statement,
                          ps_output_search_pattern = s_output_search_pattern,
-                         ps_path_tbl_save = s_path_tbl_save,
+                         ps_input_genetic_SD = s_input_genetic_SD,
                          ps_scenario = s_scenario,
+                         ps_sirebreed = s_sirebreed,
+                         ps_dambreed = s_dambreed,
+                         ps_path_tbl_save = s_path_tbl_save,
                          pb_log = b_log)
 }
 ```
+
 
 Step 2 post processing combines the single scenario tables into tables sorted by the defined criteria for s_sort_by
 

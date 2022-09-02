@@ -1,10 +1,10 @@
-trait;genetic_standarddeviation
-"Age adjusted carcass weight conventional calves";0.055
-"Fleshiness conventional calves";0.553
-"Fat conventional calves";0.302
-"Age adjusted carcass weight conventional adults";0.114
-"Fleshiness conventional adults";0.479
-"Fat conventional aduts";0.272
-"Calving ease direct dairy";18.43
-"Birth weight direct dairy";2.715
-"Gestation length direct dairy";4.017
+trait;genetic_standarddeviation;unit
+"Age adjusted carcass weight conventional calves";0.055;1 score
+"Fleshiness conventional calves";0.553;1 score
+"Fat conventional calves";0.302;1 score
+"Age adjusted carcass weight conventional adults";0.114;dt
+"Fleshiness conventional adults";0.479;1 score
+"Fat conventional aduts";0.272;1 score
+"Calving ease direct dairy";18.43;1 score
+"Birth weight direct dairy";2.715;kg
+"Gestation length direct dairy";4.017;kg

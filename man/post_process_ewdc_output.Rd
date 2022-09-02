@@ -8,8 +8,11 @@ post_process_ewdc_output(
   ps_path_2outputfile,
   ps_output_statement,
   ps_output_search_pattern,
+  ps_input_genetic_SD,
   ps_path_tbl_save,
   ps_scenario,
+  ps_sirebreed,
+  ps_dambreed,
   pb_log,
   plogger = NULL
 )
@@ -21,9 +24,15 @@ post_process_ewdc_output(
 
 \item{ps_output_search_pattern}{output file with the search patterns}
 
+\item{ps_input_genetic_SD}{input file for genetic standard deviation}
+
 \item{ps_path_tbl_save}{path tp the directory for saving the results output pdfs}
 
 \item{ps_scenario}{name of scenario (sire_dam_system_marketingchannel)}
+
+\item{ps_sirebreed}{sire breed}
+
+\item{ps_dambreed}{dam breed}
 
 \item{pb_log}{indicator whether logs should be produced}
 

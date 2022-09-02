@@ -19,6 +19,8 @@
 #' @param ps_output_search_pattern output file with the search patterns
 #' @param ps_path_tbl_save path tp the directory for saving the results output pdfs
 #' @param ps_scenario name of scenario (sire_dam_system_marketingchannel)
+#' @param ps_sirebreed sire breed
+#' @param ps_dambreed dam breed
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -32,6 +34,8 @@ post_process_ewbc_output <- function(ps_path_2outputfile,
                                      ps_output_search_pattern,
                                      ps_path_tbl_save,
                                      ps_scenario,
+                                     ps_sirebreed,
+                                     ps_dambreed,
                                      pb_log,
                                      plogger = NULL){
 
@@ -317,14 +321,60 @@ avg_length_fat <- (length_fattening_f + length_fattening_m)/2
   # we divide the economic weight for ADG by the total number of days of fattening.
   # This gives the EV per gram increase in carcass weight → multiply by 1000 to get EV per kg increase in carcass weight.
   Slaughter_weight_EV <- tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_ADG]/avg_length_fat
-  AACW_EW <- round(Slaughter_weight_EV*l_constant$dressingpercentage_male*1000, digits = 2) #*0.58 to get from slaughter to carcass weight, *1000 to go from g to kg
+  ACCW_EW <- round(Slaughter_weight_EV*l_constant$dressingpercentage_male*1000, digits = 2) #*0.58 to get from slaughter to carcass weight, *1000 to go from g to kg
 
+  tbl_ACCW <- tibble::tibble(Trait = "EWAgeCorrectedCarcassWeight", EconomicValueDirect = ACCW_EW, EconomicValueMaternal = NA)
+  tbl_result_ew <- dplyr::bind_rows(tbl_result_ew, tbl_ACCW)
+
+
+  tbl_calving <- read_file_input_calving(ps_input_file_calving = s_input_file_calving,
+                                         ps_start_calving_date = s_start_date,
+                                         ps_end_calving_date = s_end_date,
+                                         pb_log = b_log,
+                                         plogger = NULL)
+
+  tbl_input <- tbl_calving %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>%
+    dplyr::filter(Mutter_RasseCode == ps_dambreed)
+
+  tbl_input <- tbl_input %>%
+    filter(!is.na(Geburtsverlauf))
+  tbl_input <- tbl_input %>%
+    filter(Geburtsverlauf != 0)
+  tbl_input$calving_transform <- NA
+
+  tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% 1] <- l_constants_postprocess_beefOnbeef$calving_t_1
+  tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% 2] <- l_constants_postprocess_beefOnbeef$calving_t_2
+  tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% c(3, 4)] <- l_constants_postprocess_beefOnbeef$calving_t_3_4
+
+  m_r <- mean(tbl_input$Geburtsverlauf)
+  sd_r <- sd(tbl_input$Geburtsverlauf)
+
+  m_t <- mean(tbl_input$calving_transform)
+  sd_t <- sd(tbl_input$calving_transform)
+
+  EW_calving_direct <- tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_calving]
+  EW_calving_maternal <- tbl_result_ew$EconomicValueMaternal[l_constants_postprocess_beefOnbeef$ew_calving]
+
+  ew_sd_direct <- as.numeric(EW_calving_direct)*sd_r/l_constants_postprocess_beefOnbeef$calving_t_delta
+  ew_sd_t_direct <- as.numeric(EW_calving_direct)*sd_t
+  ew_u_direct = -(ew_sd_direct/sd_t)
+
+  ew_sd_maternal <- as.numeric(EW_calving_maternal)*sd_r/l_constants_postprocess_beefOnbeef$calving_t_delta
+  ew_sd_t_maternal <- as.numeric(EW_calving_maternal)*sd_t
+  ew_u_maternal = -(ew_sd_maternal/sd_t)
+
+  #Add transformed EW for calving score to the EW table
+  tbl_transformed_dir <- tibble::tibble(Trait = "EWCalvingPerformanceTransform", EconomicValueDirect = ew_u_direct, EconomicValueMaternal = ew_u_maternal)
+  tbl_result_ew <- dplyr::bind_rows(tbl_result_ew, tbl_transformed_dir)
 
   # ****************************************************************************
   ## ---- Combination of Results ----
   # ****************************************************************************
-  traits <- c("Calving_performance_direct",
-              "Calving_performance_maternal",
+  if(production_system == 1) {
+  traits <- c(#"Calving_performance_direct",
+              "Calving_performance_direct_transformed",
+              #"Calving_performance_maternal",
+              "Calving_performance_maternal_transformed",
               "Birth_weight_direct",
               "Birth_weight_maternal",
               "Age_adjusted_carcass_weight",
@@ -332,34 +382,92 @@ avg_length_fat <- (length_fattening_f + length_fattening_m)/2
               "Mean_class_fat",
               "Weaning_weight_direct",
               "Weaning_weight_maternal")
+  EW <- c(#round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_calving], digits = 2),
+          round(ew_u_direct, digits = 2),
+          #round(tbl_result_ew$EconomicValueMaternal[l_constants_postprocess_beefOnbeef$ew_calving], digits = 2),
+          round(ew_u_maternal, digits = 2),
+          round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_birthwt], digits = 2),
+          round(tbl_result_ew$EconomicValueMaternal[l_constants_postprocess_beefOnbeef$ew_birthwt], digits = 2),
+          round(ACCW_EW, digits = 2),
+          round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_fleshiness], digits = 2),
+          round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_fat], digits = 2),
+          round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_weanwt], digits = 2),
+          round(tbl_result_ew$EconomicValueMaternal[l_constants_postprocess_beefOnbeef$ew_weanwt], digits = 2))
+  EW_unit = c(#"CHF/0.01 score",
+              "CHF/0.01 transformed score",
+              #"CHF/0.01 score",
+              "CHF/0.01 transformed score",
+              "CHF/kg",
+              "CHF/kg",
+              "CHF/kg",
+              "CHF/0.01 score",
+              "CHF/0.01 score",
+              "CHF/kg",
+              "CHF/kg")
+  Population_mean <- c(#round(tbl_result_mean$MeanValue[calving], digits = 2),
+                       round(m_t, digits = 2),
+                       #round(tbl_result_mean$MeanValue[calving], digits = 2),
+                       round(m_t, digits = 2),
+                       round(Birth_weight, digits = 2),
+                       round(Birth_weight, digits = 2),
+                       round(AgeAdjusted_Carcass_weight, digits = 2),
+                       round(Fleshiness, digits = 2),
+                       round(Fat, digits = 2),
+                       round(Weaning_weight, digits = 2),
+                       round(Weaning_weight, digits = 2))
+  }else if (production_system == 3) {
+    traits <- c(#"Calving_performance_direct",
+                "Calving_performance_direct_transformed",
+                #"Calving_performance_maternal",
+                "Calving_performance_maternal_transformed",
+                "Birth_weight_direct",
+                "Birth_weight_maternal",
+                "Age_adjusted_carcass_weight",
+                "Mean_class_fleshiness",
+                "Mean_class_fat",
+                "Weaning_weight_direct",
+                "Weaning_weight_maternal")
+    EW <- c(#round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_calving], digits = 2),
+            round(ew_u_direct, digits = 2),
+            #"NA",
+            "NA",
+            round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_birthwt], digits = 2),
+            "NA",
+            round(ACCW_EW, digits = 2),
+            round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_fleshiness], digits = 2),
+            round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_fat], digits = 2),
+            round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_weanwt], digits = 2),
+            "NA")
+    EW_unit = c(#"CHF/0.01 score",
+                "CHF/0.01 transformed score",
+                #"CHF/0.01 score",
+                "CHF/0.01 transformed score",
+                "CHF/kg",
+                "CHF/kg",
+                "CHF/kg",
+                "CHF/0.01 score",
+                "CHF/0.01 score",
+                "CHF/kg",
+                "CHF/kg")
+    Population_mean <- c(#round(tbl_result_mean$MeanValue[calving], digits = 2),
+                         round(m_t, digits = 2),
+                         #"NA",
+                         "NA",
+                         round(Birth_weight, digits = 2),
+                         "NA",
+                         round(AgeAdjusted_Carcass_weight, digits = 2),
+                         round(Fleshiness, digits = 2),
+                         round(Fat, digits = 2),
+                         round(Weaning_weight, digits = 2),
+                         "NA")
+  }
+
+
+
   tbl_aggregate_results <- tibble::tibble(Traits =  traits,
-                                          EW = c(round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_calving], digits = 2),
-                                                        round(tbl_result_ew$EconomicValueMaternal[l_constants_postprocess_beefOnbeef$ew_calving], digits = 2),
-                                                              round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_birthwt], digits = 2),
-                                                        round(tbl_result_ew$EconomicValueMaternal[l_constants_postprocess_beefOnbeef$ew_birthwt], digits = 2),
-                                                              round(AACW_EW, digits = 2),
-                                                              round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_fleshiness], digits = 2),
-                                                              round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_fat], digits = 2),
-                                                              round(tbl_result_ew$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_weanwt], digits = 2),
-                                                        round(tbl_result_ew$EconomicValueMaternal[l_constants_postprocess_beefOnbeef$ew_weanwt], digits = 2)),
-                                          EW_unit = c("CHF/0.01 score",
-                                                      "CHF/0.01 score",
-                                                      "CHF/kg",
-                                                      "CHF/kg",
-                                                      "CHF/kg",
-                                                      "CHF/0.01 score",
-                                                      "CHF/0.01 score",
-                                                      "CHF/kg",
-                                                      "CHF/kg"),
-                                          Population_mean = c(round(tbl_result_mean$MeanValue[calving], digits = 2),
-                                                              round(tbl_result_mean$MeanValue[calving], digits = 2),
-                                                              round(Birth_weight, digits = 2),
-                                                              round(Birth_weight, digits = 2),
-                                                              round(AgeAdjusted_Carcass_weight, digits = 2),
-                                                              round(Fleshiness, digits = 2),
-                                                              round(Fat, digits = 2),
-                                                              round(Weaning_weight, digits = 2),
-                                                              round(Weaning_weight, digits = 2)))
+                                          EW = EW,
+                                          EW_unit = EW_unit,
+                                          Population_mean = Population_mean)
 
 
 
@@ -377,7 +485,37 @@ avg_length_fat <- (length_fattening_f + length_fattening_m)/2
   assign((paste0("df_",name_file)), tbl_aggregate_results, envir=globalenv())
   write.csv(tbl_aggregate_results, file = paste0(ps_path_tbl_save,"/df_",name_file, ".csv"), row.names = TRUE)
 
-  return(tbl_aggregate_results)
+  pie_chart_functional <-  plot_piechart_ewbc(ps_path_2genSD = s_input_genetic_SD,
+                                              ptbl_EW_results = tbl_result_ew,
+                                              ps_traitgroup2consider = "Functional Traits",
+                                              ps_scenario = ps_scenario,
+                                              ps_prodsystew = production_system,
+                                              pb_log = b_log)
+
+  pie_chart_carcass <-  plot_piechart_ewbc(ps_path_2genSD = s_input_genetic_SD,
+                                           ptbl_EW_results = tbl_result_ew,
+                                           ps_traitgroup2consider = "Carcass Traits",
+                                           ps_scenario = ps_scenario,
+                                           ps_prodsystew = production_system,
+                                           pb_log = b_log)
+
+  pie_chart_combined <-  plot_piechart_ewbc(ps_path_2genSD = s_input_genetic_SD,
+                                            ptbl_EW_results = tbl_result_ew,
+                                            ps_traitgroup2consider = "Combined",
+                                            ps_scenario = ps_scenario,
+                                            ps_prodsystew = production_system,
+                                            pb_log = b_log)
+
+
+  opar <- par()
+  pdf(file = paste0(ps_path_tbl_save,"/plots_",name_file, ".pdf"), onefile = TRUE, width = 25)
+  gridExtra::grid.table(tbl_aggregate_results)
+  par(mfrow = c(3,1))
+  print(pie_chart_functional)
+  print(pie_chart_carcass)
+  print(pie_chart_combined)
+  par(opar)
+  dev.off()
 
 }
 
@@ -408,6 +546,8 @@ create_table_results_ewbc <- function(ps_sort_by,
                                       pb_log,
                                       plogger = NULL){
 
+  l_constants_postprocess_beefOnbeef <- get_constants_postprocess_beefOnbeef()
+
   temp = list.files(path = ps_path_results_tbl, pattern="df_")
   results_tables <- data.frame(temp)
 
@@ -417,9 +557,9 @@ create_table_results_ewbc <- function(ps_sort_by,
   for(idx in 1:nrow(results_tables)){
     scenario_split <- unlist(strsplit(results_tables[idx,], split = "_", fixed = TRUE))
     scenario_split <- unlist(strsplit(scenario_split, split = ".", fixed = TRUE))
-    sire <- scenario_split[2]
-    dam <- scenario_split[3]
-    production <- scenario_split[4]
+    sire <- scenario_split[l_constants_postprocess_beefOnbeef$string_2]
+    dam <- scenario_split[l_constants_postprocess_beefOnbeef$string_3]
+    production <- scenario_split[l_constants_postprocess_beefOnbeef$string_4]
 
 
     tbl_cur_info <- tibble::tibble(Sire = sire, Dam = dam, Production = production)
@@ -447,11 +587,12 @@ create_table_results_ewbc <- function(ps_sort_by,
     sex <- "production_system"
   }
 
+  #To make sure the strings are correctly found in the scenario name rather than from elsewhere in the table
   for(idx in 1:length(sex_breed)){
     if(ps_sort_by == "production_system"){
       breed <- paste0("_", sex_breed[idx], "_")
     } else if (ps_sort_by == "sire_breed"){
-      breed <- sex_breed[idx]
+      breed <- paste0(sex_breed[idx], "_")
     } else {
       breed <- paste0("_", sex_breed[idx])
     }
@@ -460,13 +601,15 @@ create_table_results_ewbc <- function(ps_sort_by,
     tbl_sex_breed <- myfiles[grep(breed, myfiles)]
     tbl_breed <- NULL
 
+
+
     for (jdx in 1:length(tbl_sex_breed)){
       tbl_current_breed <- as.data.frame(tbl_sex_breed[jdx])
       colnames(tbl_current_breed) <- tbl_current_breed[1,]
       rownames(tbl_current_breed) <- tbl_current_breed[,1]
       tbl_current_breed <- tbl_current_breed[-1,]
       tbl_current_breed <- tbl_current_breed[,-1]
-      #
+
       if(is.null(tbl_breed)){
         tbl_breed <- tbl_current_breed
       } else {
@@ -480,9 +623,9 @@ create_table_results_ewbc <- function(ps_sort_by,
 
     for(n in 2:nrow(tbl_breed)){
       column_split <- unlist(strsplit(row.names(tbl_breed)[n], "_", fixed = TRUE))
-      sire <- column_split[1]
-      dam <- column_split[2]
-      production_sys <- column_split[3]
+      sire <- column_split[l_constants_postprocess_beefOnbeef$string_1]
+      dam <- column_split[l_constants_postprocess_beefOnbeef$string_2]
+      production_sys <- column_split[l_constants_postprocess_beefOnbeef$string_3]
       tbl_breed$SirexDam[n] <- paste0(sire, "_", dam)
       tbl_breed$Production_system[n] <- production_sys
     }
@@ -496,7 +639,7 @@ create_table_results_ewbc <- function(ps_sort_by,
     tbl_breed <- tbl_breed[order((tbl_breed$Production_system)), ]
     row.names(tbl_breed) <- NULL
 
-    pdf(paste0(ps_path_save,"/results_tbl_",sex,"_",breed,".pdf"), height=11, width=25)
+    pdf(paste0(ps_path_save,"/results_tbl_",sex,"_",breed,".pdf"), height=11, width=30)
     gridExtra::grid.table(tbl_breed)
     dev.off()
   }
@@ -512,11 +655,10 @@ create_table_results_ewbc <- function(ps_sort_by,
 #' to prepare information to be plot.
 #'
 #' @param ps_path_2genSD path to file with genetic standard deviation
-#' @param ptbl_aggregate_results resulting tibble from post_process_ewbc_output()
+#' @param ptbl_EW_results tibble of economic weights
 #' @param ps_traitgroup2consider traitgroup may be Carcass or Functional Traits
-#' @param ps_sirebreed sire breed
 #' @param ps_prodsystew production system build up as option in ECOWEIGHT
-#' @param ps_marketchannel market channel
+#' @param ps_scenario scenario name
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -525,13 +667,12 @@ create_table_results_ewbc <- function(ps_sort_by,
 #'
 #' @export plot_piechart_ewbc
 plot_piechart_ewbc <- function(ps_path_2genSD,
-                              ptbl_aggregate_results,
-                              ps_traitgroup2consider,
-                              ps_sirebreed,
-                              ps_prodsystew,
-                              ps_marketchannel,
-                              pb_log,
-                              plogger = NULL){
+                               ptbl_EW_results,
+                               ps_traitgroup2consider,
+                               ps_scenario,
+                               ps_prodsystew,
+                               pb_log,
+                               plogger = NULL){
 
   ### # Setting the log-file
   if(pb_log){
@@ -545,9 +686,7 @@ plot_piechart_ewbc <- function(ps_path_2genSD,
                     paste0('Starting function with parameters:\n * ps_path_2genSD', ps_path_2genSD,'\n',
                            ' * ptbl_aggregate_results \n',
                            ' * ps_traitgroup2consider: ', ps_traitgroup2consider, '\n',
-                           ' * ps_sirebreed: ', ps_sirebreed, '\n',
-                           ' * ps_prodsystew: ', ps_prodsystew, '\n',
-                           ' * ps_marketchannel: ', ps_marketchannel))
+                           ' * ps_scenario: ', ps_scenario, '\n'))
   }
 
 
@@ -556,81 +695,164 @@ plot_piechart_ewbc <- function(ps_path_2genSD,
                                 pb_log,
                                 plogger = lgr)
 
+  l_constants_postprocess_beefOnbeef <- get_constants_postprocess_beefOnbeef()
 
-  ### # Transform to the economic weight to the same unit as CHE-EBV
-  ### # Fleshiness in ECOWEIGHT output: mean class by 0.01 -> class 1
-  fleshiness_score <- ptbl_aggregate_results[4,2]$Economic_weight * 100
-  ### # Fat in ECOWEIGHT output: mean class by 0.01 -> class 1
-  fat_score <- ptbl_aggregate_results[5,2]$Economic_weight * 100
-  ### # Age adjusted carcass weight from 1 dt to 100 kg
-  carcass_wt_kg <- ptbl_aggregate_results[3,2]$Economic_weight * 100
-  ### # Calving in ECOWEIGHT output: mean class by 0.01 -> class 1
-  calving_score <- ptbl_aggregate_results[1,2]$Economic_weight * 100
+  if (ps_prodsystew == 1) {
+    genetic_SD_calving_mat <- (tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOnbeef$idx_row_calving_maternal])
+    genetic_SD_BW_mat <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOnbeef$idx_birth_weight_maternal]
+    genetic_SD_Wean_wt_mat <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOnbeef$weaning_maternal]
+  }
+
+  genetic_SD_calving_dir <- (tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOnbeef$idx_row_calving_direct])
+  genetic_SD_BW_dir <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOnbeef$idx_birth_weight_direct]
+  genetic_SD_Wean_wt_dir <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOnbeef$weaning_direct]
+
+  genetic_SD_ACCW <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOnbeef$idx_row_ACCW_Natura]
+  gemetic_SD_fleshiness <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOnbeef$idx_row_fleshiness_Natura]
+  genetic_SD_fat <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOnbeef$idx_row_fat_Natura]
 
 
-  ### # Insure that the sign is positiv egal the trait so use absolute value
-  ### # when multipling economic weight with the genetic standarddeviation to transform all the traits to the same unit
-  ### # such as the trait are comparable
-  fleshiness <- abs(fleshiness_score*tbl_gen_SD[2,2]$genetic_standarddeviation)
-  fat <- abs(fat_score*tbl_gen_SD[3,2]$genetic_standarddeviation)
-  carcass_weight <- abs(carcass_wt_kg*tbl_gen_SD[1,2]$genetic_standarddeviation)
-  Weaning_weight_maternal <- abs(ptbl_aggregate_results[7,2]$Economic_weight*tbl_gen_SD[7,2]$genetic_standarddeviation)
-  Weaning_weight_direct <- abs(ptbl_aggregate_results[6,2]$Economic_weight*tbl_gen_SD[6,2]$genetic_standarddeviation)
-  Calving_ease <- abs(calving_score*tbl_gen_SD[4,2]$genetic_standarddeviation)
-  Birth_weight <- abs(ptbl_aggregate_results[2,2]$Economic_weight*tbl_gen_SD[5,2]$genetic_standarddeviation)
+  ### # Take economic weights from table and transform them to same unit as EBV
+  #calving score are on different rows for beef and export animals:
+  if (ps_prodsystew == 1){
+    EW_calving_score_mat <- (round(ptbl_EW_results$EconomicValueMaternal[l_constants_postprocess_beefOnbeef$ew_calving_transform], digits = 2))
+    EW_birthwt_mat <- (round(ptbl_EW_results$EconomicValueMaternal[l_constants_postprocess_beefOnbeef$ew_birthwt], digits = 2))
+    EW_Weantwt_mat <- (round(ptbl_EW_results$EconomicValueMaternal[l_constants_postprocess_beefOnbeef$ew_weanwt], digits = 2))
+    EW_calving_score_dir <- (round(ptbl_EW_results$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_calving_transform], digits = 2))
+    EW_birthwt_dir <- (round(ptbl_EW_results$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_birthwt], digits = 2))
+    EW_Weantwt_dir <- (round(ptbl_EW_results$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_weanwt], digits = 2))
+    EW_ACCW <- (round(ptbl_EW_results$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_ACCW], digits = 2))*100 #EBV is in unit dt whereas EW is in unit kg
+    EW_fleshiness <- (round(ptbl_EW_results$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_fleshiness], digits = 2))*100 #unit 1 score
+    EW_fat <- (round(ptbl_EW_results$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_fat], digits = 2))*100 #unit 1 score
+  } else {
+  EW_calving_score_dir <- (round(ptbl_EW_results$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_calving_transform_3], digits = 2))
+  EW_birthwt_dir <- (round(ptbl_EW_results$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_birthwt], digits = 2))
+  EW_Weantwt_dir <- (round(ptbl_EW_results$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_weanwt], digits = 2))
+  EW_ACCW <- (round(ptbl_EW_results$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_ACCW_3], digits = 2))*100 #EBV is in unit dt whereas EW is in unit kg
+  EW_fleshiness <- (round(ptbl_EW_results$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_fleshiness], digits = 2))*100 #unit 1 score
+  EW_fat <- (round(ptbl_EW_results$EconomicValueDirect[l_constants_postprocess_beefOnbeef$ew_fat], digits = 2))*100 #unit 1 score
+  }
+
+  ### # Ensure the economic weight is positive using absolute value for calculation of percentages
+  ### # multipling economic weight with the genetic standard deviation to compare traits
+  if(ps_prodsystew == 1) {
+    calving_mat <- abs(EW_calving_score_mat*genetic_SD_calving_mat)
+    birth_wt_mat <- abs(EW_birthwt_mat*genetic_SD_BW_mat)
+    wean_wt_mat <- abs(EW_Weantwt_mat*genetic_SD_Wean_wt_mat)
+  }
+
+  calving_dir <- abs(EW_calving_score_dir*genetic_SD_calving_dir)
+  birth_wt_dir <- abs(EW_birthwt_dir*genetic_SD_BW_dir)
+  wean_wt_dir <- abs(EW_Weantwt_dir*genetic_SD_Wean_wt_dir)
+  ACCW <- abs(EW_ACCW*genetic_SD_ACCW)
+  fleshiness <- (EW_fleshiness*gemetic_SD_fleshiness)
+  fat <- (EW_fat*genetic_SD_fat)
 
 
   ### # Transform in percentage
-  sum_carcass <- sum(fleshiness, fat, carcass_weight)
-  fleshiness_percentage <- (fleshiness/sum_carcass)*100
-  fat_percentage <- (fat/sum_carcass)*100
-  carcass_weight_percentage <- (carcass_weight/sum_carcass)*100
-
-  sum_functional <- sum(Weaning_weight_maternal, Weaning_weight_direct, Calving_ease, Birth_weight)
-  Weaning_wt_maternal_perc <- (Weaning_weight_maternal/sum_functional)*100
-  Weaning_wt_direct_perc <- (Weaning_weight_direct/sum_functional)*100
-  Calving_ease_perc <- (Calving_ease/sum_functional)*100
-  Birth_weight_perc <- (Birth_weight/sum_functional)*100
-
+  if(ps_prodsystew == 1) {
+    #for carcass traits (production system 1 requires maternal and direct components of traits)
+    sum_functional <- sum(calving_mat, calving_dir, birth_wt_mat, birth_wt_dir, wean_wt_mat, wean_wt_dir)
+    calving_mat_percentage <- (calving_mat/sum_functional)*100
+    birthwt_mat_percentage <- (birth_wt_mat/sum_functional)*100
+    weanwt_mat_percentage <- (wean_wt_mat/sum_functional)*100
+    calving_dir_percentage <- (calving_dir/sum_functional)*100
+    birthwt_dir_percentage <- (birth_wt_dir/sum_functional)*100
+    weanwt_dir_percentage <- (wean_wt_dir/sum_functional)*100
 
 
-  ### # Depending on the traitgroup to consider
-  if(ps_traitgroup2consider == "Carcass Traits"){
-    df <- data.frame(trait = c("Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
-                     value = c(carcass_weight_percentage, fleshiness_percentage, fat_percentage))
-  }else if(ps_traitgroup2consider == "Functional Traits"){
-    df <- data.frame(trait = c("Calving ease", "Weaning weight direct", "Birth weight", "Weaning weight maternal"),
-                     value = c(Calving_ease_perc, Weaning_wt_direct_perc, Birth_weight_perc, Weaning_wt_maternal_perc))
+    # for combining functional and carcass traits - not applicable to export calves
+    sum_combined <- sum(calving_mat, calving_dir, birth_wt_mat, birth_wt_dir, wean_wt_mat, wean_wt_dir, ACCW, fleshiness, fat)
+    calving_ease_perc_mat_comb <- (calving_mat/sum_combined)*100
+    calving_ease_perc_dir_comb <- (calving_dir/sum_combined)*100
+    birth_weight_perc_mat_comb <- (birth_wt_mat/sum_combined)*100
+    birth_weight_perc_dir_comb <- (birth_wt_dir/sum_combined)*100
+    wean_wt_perc_mat_comb <- (wean_wt_mat/sum_combined)
+    wean_wt_perc_dir_comb <- (wean_wt_dir/sum_combined)
+    fleshiness_percentage_comb <- (fleshiness/sum_combined)*100
+    fat_percentage_comb <- (fat/sum_combined)*100
+    carcass_weight_percentage_comb <- (ACCW/sum_combined)*100
+
+  }else if(ps_prodsystew == 3) {
+    sum_functional <- sum(calving_dir, birth_wt_dir, wean_wt_dir)
+    calving_dir_percentage <- (calving_dir/sum_functional)*100
+    birthwt_dir_percentage <- (birth_wt_dir/sum_functional)*100
+    weanwt_dir_percentage <- (wean_wt_dir/sum_functional)*100
+
+    sum_combined <- sum(calving_dir, birth_wt_dir, wean_wt_dir, ACCW, fleshiness, fat)
+    calving_ease_perc_dir_comb <- (calving_dir/sum_combined)*100
+    birth_weight_perc_dir_comb <- (birth_wt_dir/sum_combined)*100
+    wean_wt_perc_dir_comb <- (wean_wt_dir/sum_combined)*100
+    fleshiness_percentage_comb <- (fleshiness/sum_combined)*100
+    fat_percentage_comb <- (fat/sum_combined)*100
+    carcass_weight_percentage_comb <- (ACCW/sum_combined)*100
+
   }
 
+  sum_carcass <- sum(ACCW, fleshiness, fat) #Need to add gestation length when we have a solution to its calculation
+  carcass_wt_perc <- (ACCW/sum_carcass)*100
+  carcass_conformation_perc <- (fleshiness/sum_carcass)*100
+  carcass_fat_percentage <- (fat/sum_carcass)*100
+
+  ### # Depending on the trait group to consider
+  if (ps_prodsystew == 1){
+  if(ps_traitgroup2consider == "Carcass Traits"){
+    df <- data.frame(trait = c("Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
+                     value = c(carcass_wt_perc, carcass_conformation_perc, carcass_fat_percentage))
+  }else if(ps_traitgroup2consider == "Functional Traits"){
+    df <- data.frame(trait = c("Calving ease direct", "Calving ease maternal", "Birth weight direct", "Birth weight maternal", "Weaning weight direct", "Weaning weight maternal"),
+                     value = c(calving_dir_percentage, calving_mat_percentage, birthwt_dir_percentage, birthwt_mat_percentage, weanwt_dir_percentage, weanwt_mat_percentage))
+  }else if (ps_traitgroup2consider == "Combined") {
+    df <- data.frame(trait = c("Calving ease direct", "Calving ease maternal", "Birth weight direct", "Birth weight maternal", "Weaning weight direct", "Weaning weight maternal", "Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
+                     value = c(calving_ease_perc_dir_comb, calving_ease_perc_mat_comb, birth_weight_perc_dir_comb, birth_weight_perc_mat_comb, wean_wt_perc_dir_comb, wean_wt_perc_mat_comb, carcass_weight_percentage_comb, fleshiness_percentage_comb, fat_percentage_comb))
+  }
+  }
+
+  if (ps_prodsystew == 3){
+    if(ps_traitgroup2consider == "Carcass Traits"){
+      df <- data.frame(trait = c("Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
+                       value = c(carcass_wt_perc, carcass_conformation_perc, carcass_fat_percentage))
+    }else if(ps_traitgroup2consider == "Functional Traits"){
+      df <- data.frame(trait = c("Calving ease direct", "Birth weight direct", "Weaning weight direct"),
+                       value = c(calving_dir_percentage, birthwt_dir_percentage, weanwt_dir_percentage))
+    }else if (ps_traitgroup2consider == "Combined") {
+      df <- data.frame(trait = c("Calving ease direct", "Birth weight direct", "Weaning weight direct", "Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
+                       value = c(calving_ease_perc_dir_comb, birth_weight_perc_dir_comb, wean_wt_perc_dir_comb, carcass_weight_percentage_comb, fleshiness_percentage_comb, fat_percentage_comb))
+    }
+  }
 
   ### # Pie chart
-  carcass_pie <- ggplot(df, aes(x = "" , y = value, fill = fct_inorder(trait))) +
-                   ggtitle(paste0("Economic Weights for ",ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                           subtitle = ps_traitgroup2consider)+
-                   geom_col(width = 1) +
-                   coord_polar(theta = "y", start = 0 ) +
-                   geom_text(aes(x = 1.6, label = paste0(round(value, 0), "%")),
-                             position = position_stack(vjust = 0.5))+
-                   guides(fill = guide_legend(title = "Trait")) +
-                   theme(plot.title = element_text(hjust = 0.5, size = 15),
-                         axis.title = element_blank(),
-                         axis.text = element_blank(),
-                         axis.ticks = element_blank(),
-                         panel.grid = element_blank(),
-                         panel.border = element_blank(),
-                         plot.margin = margin(10, 0, 0, 50))
+  carcass_pie <- ggplot2::ggplot(df, aes(x = "" , y = value, fill = forcats::fct_inorder(trait))) +
+    ggtitle(paste0("Standardized Economic Weights for ", ps_scenario),
+            subtitle = ps_traitgroup2consider)+
+    geom_col(width = 1) +
+    coord_polar(theta = "y", start = 0 ) +
+    geom_text(aes(x = 1.6, label = paste0(round(value, 0), "%")),
+              position = position_stack(vjust = 0.5))+
+    guides(fill = guide_legend(title = "Trait")) +
+    theme(plot.title = element_text(hjust = 0.5, size = 15),
+          axis.title = element_blank(),
+          axis.text = element_blank(),
+          axis.ticks = element_blank(),
+          panel.grid = element_blank(),
+          panel.border = element_blank(),
+          plot.margin = margin(10, 0, 0, 50))
   if(ps_traitgroup2consider == "Carcass Traits"){
     piechart <- carcass_pie + scale_fill_manual(values=c("deepskyblue3", "darkolivegreen3", "gold1"))
   }else if(ps_traitgroup2consider == "Functional Traits"){
-    piechart <- carcass_pie + scale_fill_manual(values=c("darkorchid1","coral1" , "chartreuse3", "cadetblue3"))
+    if(ps_prodsystew == 1) {
+      piechart <- carcass_pie + scale_fill_manual(values=c("darkorchid1","cornflowerblue", "coral1", "chocolate", "aquamarine4", "darkturquoise"))
+    }else{
+      piechart <- carcass_pie + scale_fill_manual(values=c("darkorchid1", "coral1", "aquamarine4"))
+    }
+  } else if (ps_traitgroup2consider == "Combined") {
+    if(ps_prodsystew == 1) {
+      piechart <- carcass_pie + scale_fill_manual(values=c("darkorchid1","cornflowerblue", "coral1", "chocolate", "aquamarine4", "darkturquoise", "deepskyblue3", "darkolivegreen3", "gold1"))
+    }else{
+    piechart <- carcass_pie + scale_fill_manual(values=c("darkorchid1","coral1", "aquamarine4", "deepskyblue3", "darkolivegreen3", "gold1"))
+    }
   }
-
-
-  return(piechart)
-
 }
-
 
 
 #' @title Post-processing the output-parameter-file of ECOWEIGHT beef on dairy
@@ -643,8 +865,11 @@ plot_piechart_ewbc <- function(ps_path_2genSD,
 #' @param ps_path_2outputfile path to output file of ECOWEIGHT
 #' @param ps_output_statement output statement in a file
 #' @param ps_output_search_pattern output file with the search patterns
+#' @param ps_input_genetic_SD input file for genetic standard deviation
 #' @param ps_path_tbl_save path tp the directory for saving the results output pdfs
 #' @param ps_scenario name of scenario (sire_dam_system_marketingchannel)
+#' @param ps_sirebreed sire breed
+#' @param ps_dambreed dam breed
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -656,8 +881,11 @@ plot_piechart_ewbc <- function(ps_path_2genSD,
 post_process_ewdc_output <- function(ps_path_2outputfile,
                                      ps_output_statement,
                                      ps_output_search_pattern,
+                                     ps_input_genetic_SD,
                                      ps_path_tbl_save,
                                      ps_scenario,
+                                     ps_sirebreed,
+                                     ps_dambreed,
                                      pb_log,
                                      plogger = NULL){
 
@@ -673,7 +901,11 @@ post_process_ewdc_output <- function(ps_path_2outputfile,
                     paste0('Starting function with parameters:\n * ps_path_2outputfile', ps_path_2outputfile, '\n',
                            ' * ps_output_statement: ', ps_output_statement, '\n',
                            ' * ps_output_search_pattern: ', ps_output_search_pattern, '\n',
-                           ' * ps_path_tbl_save: ', ps_path_tbl_save, '\n'))
+                           ' * ps_input_genetic_SD: ', ps_input_genetic_SD, '\n',
+                           ' * ps_path_tbl_save: ', ps_path_tbl_save, '\n',
+                           ' * ps_scenario: ', ps_scenario, '\n',
+                           ' * ps_sirebreed: ', ps_sirebreed, '\n',
+                           ' * ps_dambreed: ', ps_dambreed, '\n'))
   }
 
 
@@ -690,12 +922,15 @@ post_process_ewdc_output <- function(ps_path_2outputfile,
 
   l_constants_postprocess_beefOndairy <- get_constants_postprocess_beefOndairy()
 
-#if the scenario name has "Export" in, a 1 will be returned and we know this is the export marketing channel. If integer(0) is returned, it is Beef/Veal-
+#if the scenario name has "Export" in, a 1 will be returned and we know this is the export marketing channel. If integer(0) is returned, it is Beef/Veal etc..
 #This is important because the results files from ecoweight differ between export calves vs. conventional/veal production.
+#THis is also required to distinguish between the different genetic standard deviation values depending on beef or veal
   if(length(grep(pattern = "Export", ps_scenario, fixed = TRUE)) > 0 ) {
     marketing_channel <- "Export"
-  }else{
-    marketing_channel <- "Beef/Veal"
+  }else if (length(grep(pattern = "ConventionalBeef", ps_scenario, fixed = TRUE)) > 0 ) {
+    marketing_channel <- "Beef"
+  } else if (length(grep(pattern = "ConventionalVeal", ps_scenario, fixed = TRUE)) > 0 ){
+    marketing_channel <- "Veal"
   }
   # ****************************************************************************
   ## ---- Economic weight results ----
@@ -783,8 +1018,8 @@ post_process_ewdc_output <- function(ps_path_2outputfile,
   # This gives the EV per gram increase in carcass weight → multiply by 1000 to get EV per kg increase in carcass weight.
   AASW_EW <- (tbl_result_ew$EconomicValue[l_constants_postprocess_beefOndairy$ew_ADG])/(avg_fattening_length)*1000
   ACCW <- AASW_EW*l_constants_postprocess_beefOndairy$avg_dressing
-  tbl_AACW <- tibble::tibble(Trait = "EWAgeCorrectedCarcassWeight", EconomicValue = ACCW)
-  tbl_result_ew <- dplyr::bind_rows(tbl_result_ew, tbl_AACW)
+  tbl_ACCW <- tibble::tibble(Trait = "EWAgeCorrectedCarcassWeight", EconomicValue = ACCW)
+  tbl_result_ew <- dplyr::bind_rows(tbl_result_ew, tbl_ACCW)
 
   # ****************************************************************************
   ## ---- Average values ----
@@ -974,14 +1209,48 @@ tbl_result_mean <- dplyr::bind_rows(tbl_result_mean, tbl_avg_carcasswt)
 #Transformation of calving score economic weight to scale used for EBV
 # EW_calving <-tbl_result_ew$EconomicValue[l_constants_postprocess_beefOndairy$ew_calving]
 # ps_EW_calving <- EW_calving
-#
-#
 
+tbl_calving <- read_file_input_calving(ps_input_file_calving = s_input_file_calving,
+                                       ps_start_calving_date = s_start_date,
+                                       ps_end_calving_date = s_end_date,
+                                       pb_log = b_log,
+                                       plogger = NULL)
+
+tbl_input <- tbl_calving %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>%
+  dplyr::filter(Mutter_RasseCode == ps_dambreed)
+
+
+tbl_input <- tbl_input %>%
+  filter(!is.na(Geburtsverlauf))
+tbl_input <- tbl_input %>%
+  filter(Geburtsverlauf != 0)
+tbl_input$calving_transform <- NA
+
+tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% 1] <- l_constants_postprocess_beefOndairy$calving_t_1
+tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% 2] <- l_constants_postprocess_beefOndairy$calving_t_2
+tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% c(3, 4)] <- l_constants_postprocess_beefOndairy$calving_t_3_4
+
+m_r <- mean(tbl_input$Geburtsverlauf)
+sd_r <- sd(tbl_input$Geburtsverlauf)
+
+m_t <- mean(tbl_input$calving_transform)
+sd_t <- sd(tbl_input$calving_transform)
+
+EW_calving <- tbl_result_ew$EconomicValue[l_constants_postprocess_beefOndairy$ew_calving]
+
+ew_sd <- as.numeric(EW_calving)*sd_r/l_constants_postprocess_beefOndairy$calving_t_delta
+ew_sd_t <- as.numeric(EW_calving)*sd_t
+ew_u = -(ew_sd/sd_t)
+
+#Add transformed EW for calving score to the EW table
+tbl_transformed <- tibble::tibble(Trait = "EWCalvingPerformanceTransform", EconomicValue = ew_u)
+tbl_result_ew <- dplyr::bind_rows(tbl_result_ew, tbl_transformed)
 
   # ****************************************************************************
   ## ---- Combination of Results ----
   # ****************************************************************************
  traits <-  c("Calving_performance",
+              "Calving_performance_transformed",
               "Birth_weight",
               "Age_adjusted_carcass_weight",
               "Mean_class_fleshiness",
@@ -989,16 +1258,19 @@ tbl_result_mean <- dplyr::bind_rows(tbl_result_mean, tbl_avg_carcasswt)
 
 tbl_aggregate_results <- tibble::tibble(Traits =  traits,
                                           EW = c(round(tbl_result_ew$EconomicValue[l_constants_postprocess_beefOndairy$ew_calving], digits = 2),
+                                                 round(ew_u, digits = 2),
                                                               round(tbl_result_ew$EconomicValue[l_constants_postprocess_beefOndairy$ew_birthwt], digits = 2),
                                                               round(tbl_result_ew$EconomicValue[l_constants_postprocess_beefOndairy$ew_ACCW], digits = 2),
                                                               round(tbl_result_ew$EconomicValue[l_constants_postprocess_beefOndairy$ew_fleshiness], digits = 2),
                                                               round(tbl_result_ew$EconomicValue[l_constants_postprocess_beefOndairy$ew_fat], digits = 2)),
                                           EW_unit = c("CHF/0.01 score",
+                                                      "CHF/0.01 transformed score",
                                                                    "CHF/kg",
                                                                    "CHF/kg",
                                                                    "CHF/0.01 score",
                                                                    "CHF/0.01 score"),
                                           Population_mean = c(round(Calving_score, digits = 2),
+                                                              round(m_t, digits = 2),
                                                                                   round(Birth_weight, digits = 2),
                                                                                   round(avg_carcass_wt, digits = 2),
                                                                                   round(Fleshiness, digits = 2),
@@ -1016,7 +1288,40 @@ colnames(tbl_aggregate_results) <- traits
 rownames(tbl_aggregate_results) <- c("EW_unit", paste0(name_file))
 assign((paste0("df_",name_file)), tbl_aggregate_results, envir=globalenv())
 write.csv(tbl_aggregate_results, file = paste0(ps_path_tbl_save,"/df_",name_file, ".csv"), row.names = TRUE)
-  return(tbl_aggregate_results)
+
+pie_chart_functional <-  plot_piechart_ewdc(ps_path_2genSD = ps_input_genetic_SD,
+                                            ptbl_EW_results = tbl_result_ew,
+                                            ps_traitgroup2consider = "Functional Traits",
+                                            ps_scenario = ps_scenario,
+                                            ps_marketchannel = marketing_channel,
+                                            pb_log = b_log)
+
+pie_chart_carcass <-  plot_piechart_ewdc(ps_path_2genSD = ps_input_genetic_SD,
+                                         ptbl_EW_results = tbl_result_ew,
+                                         ps_traitgroup2consider = "Carcass Traits",
+                                         ps_scenario = ps_scenario,
+                                         ps_marketchannel = marketing_channel,
+                                         pb_log = b_log)
+
+pie_chart_combined <-  plot_piechart_ewdc(ps_path_2genSD = ps_input_genetic_SD,
+                                          ptbl_EW_results = tbl_result_ew,
+                                          ps_traitgroup2consider = "Combined",
+                                          ps_scenario = ps_scenario,
+                                          ps_marketchannel = marketing_channel,
+                                          pb_log = b_log)
+
+#save table and pie charts to pdf
+#save original values of parameters
+opar <- par()
+pdf(file = paste0(ps_path_tbl_save,"/plots_",name_file, ".pdf"), onefile = TRUE, width = 16)
+gridExtra::grid.table(tbl_aggregate_results)
+par(mfrow = c(3,1))
+print(pie_chart_functional)
+print(pie_chart_carcass)
+print(pie_chart_combined)
+par(opar)
+dev.off()
+
  }else if (marketing_channel == "Export"){
    # Table of economic weights for export calves: only calving traits
    vec_ecow_result_EW <- extract_result(ps_path_2outputfile,
@@ -1043,7 +1348,7 @@ write.csv(tbl_aggregate_results, file = paste0(ps_path_tbl_save,"/df_",name_file
        tbl_result_ew <- dplyr::bind_rows(tbl_result_ew, tbl_cur_ew)
      }
    }
- # Average values for clacing score and birth weight
+ # Average values for calving score and birth weight
    vec_ecow_result_misc <- extract_result(ps_path_2outputfile,
                                           ps_start_statement2extract = tbl_output_statement[l_constants_postprocess_beefOndairy$idx_row_miscellaneous,],
                                           ps_end_statement2extract = tbl_output_statement[l_constants_postprocess_beefOndairy$idx_row_nutrition,],
@@ -1099,21 +1404,63 @@ write.csv(tbl_aggregate_results, file = paste0(ps_path_tbl_save,"/df_",name_file
    Birth_weight <- ((tbl_result_mean$MeanValue[l_constants_postprocess_beefOndairy$idx_birthwt_exportm])+(tbl_result_mean$MeanValue[l_constants_postprocess_beefOndairy$idx_birthwt_exportf]))/2
    Calving_score <- ((tbl_result_mean$MeanValue[l_constants_postprocess_beefOndairy$idx_calving_exportm])+(tbl_result_mean$MeanValue[l_constants_postprocess_beefOndairy$idx_calving_exportf]))/2
 
+   #Transform the EW for calving performance
+   tbl_calving <- read_file_input_calving(ps_input_file_calving = s_input_file_calving,
+                                          ps_start_calving_date = s_start_date,
+                                          ps_end_calving_date = s_end_date,
+                                          pb_log = b_log,
+                                          plogger = NULL)
+
+   tbl_input <- tbl_calving %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>%
+     dplyr::filter(Mutter_RasseCode == ps_dambreed)
+
+   tbl_input$calving_transform <- 0
+   tbl_input <- tbl_input %>%
+     filter(!is.na(Geburtsverlauf))
+   tbl_input <- tbl_input %>%
+     filter(Geburtsverlauf != 0)
+
+   tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% 1] <- l_constants_postprocess_beefOndairy$calving_t_1
+   tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% 2] <- l_constants_postprocess_beefOndairy$calving_t_2
+   tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% c(3, 4)] <- l_constants_postprocess_beefOndairy$calving_t_3_4
+
+   calving_score <- tbl_input$Geburtsverlauf
+   m_r <- mean(calving_score)
+   sd_r <- sd(calving_score)
+
+   calving_transformed <- tbl_input$calving_transform
+   m_t <- mean(calving_transformed)
+   sd_t <- sd(calving_transformed)
+
+   EW_calving <- tbl_result_ew$EconomicValue[l_constants_postprocess_beefOndairy$ew_calving]
+
+   ew_sd <- as.numeric(EW_calving)*sd_r/l_constants_postprocess_beefOndairy$calving_t_delta
+   ew_sd_t <- as.numeric(EW_calving)*sd_t
+   ew_u = -(ew_sd/sd_t)
+
+   #add the transformed EW for calving score to the table of economic weights
+   tbl_transformed <- tibble::tibble(Trait = "EWCalvingPerformanceTransform", EconomicValue = ew_u)
+   tbl_result_ew <- dplyr::bind_rows(tbl_result_ew, tbl_transformed)
+
    #Form a table and export as pdf
    traits <-  c("Calving_performance",
+                "Calving_performance_transformed",
                 "Birth_weight",
                 "Age_adjusted_carcass_weight",
                 "Mean_class_fleshiness",
                 "Mean_class_fat")
    tbl_aggregate_results <- tibble::tibble(Traits =  traits,
                                            EW = c((round(tbl_result_ew$EconomicValue[l_constants_postprocess_beefOndairy$ew_calving], digits = 2)),
+                                                  round(ew_u, digits = 2),
                                                                round(tbl_result_ew$EconomicValue[l_constants_postprocess_beefOndairy$ew_birthwt], digits = 2), NA, NA, NA),
                                            EW_unit = c("CHF/0.01 score",
+                                                       "CHF/0.01 transformed score",
                                                        "CHF/kg",
                                                        "CHF/kg",
                                                        "CHF/0.01 score",
                                                        "CHF/0.01 score"),
                                            Population_mean = c(round(Calving_score, digits = 2),
+                                                               round(m_t, digits = 2),
                                                                round(Birth_weight,digits = 2),
                                                                NA,
                                                                NA,
@@ -1131,86 +1478,26 @@ write.csv(tbl_aggregate_results, file = paste0(ps_path_tbl_save,"/df_",name_file
    colnames(tbl_aggregate_results) <- traits
    rownames(tbl_aggregate_results) <- c("EW_unit", paste0(name_file))
    assign((paste0("df_",name_file)), tbl_aggregate_results, envir=globalenv())
-
    write.csv(tbl_aggregate_results, file = paste0(ps_path_tbl_save,"/df_",name_file, ".csv"), row.names = TRUE)
 
-   return(tbl_aggregate_results)
+   pie_chart_functional <-  plot_piechart_ewdc(ps_path_2genSD = ps_input_genetic_SD,
+                                               ptbl_EW_results = tbl_result_ew,
+                                               ps_traitgroup2consider = "Functional Traits",
+                                               ps_scenario = ps_scenario,
+                                               ps_marketchannel = marketing_channel,
+                                               pb_log = b_log)
+
+   opar <- par()
+   pdf(file = paste0(ps_path_tbl_save,"/plots_",name_file, ".pdf"), onefile = TRUE, width = 16)
+   gridExtra::grid.table(tbl_aggregate_results)
+   par(mfrow = c(3,1))
+   print(pie_chart_functional)
+   par(opar)
+   dev.off()
+
  }
 }
 
-#' @title Calculate the economic weight for calving score on the transformed scale used for ebv
-#'
-#' @description
-#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
-#' produce output file. This function processed different functions
-#' to prepare information to be plot.
-#'
-#' @param ps_input_file_calving calving data used for the calculation of calving score proportions
-#' @param ps_start_calving_date start date for calving data
-#' @param ps_end_calving_data end date for calving data
-#' @param ps_sire_breed sire breed
-#' @param ps_dam_breed dam breed
-#' @param ps_EW_calving economic weight for calving score
-#' @param pb_log indicator whether logs should be produced
-#' @param plogger logger object
-#'
-#' @importFrom dplyr %>%
-#' @import dplyr
-#'
-#' @export calculate_transformed_EW_ewdc
-
-calculate_transformed_EW_ewdc <- function(ps_input_file_calving,
-                                          ps_start_calving_date,
-                                          ps_end_calving_data,
-                                          ps_sirebreed,
-                                          ps_dambreed,
-                                          ps_EW_calving,
-                                          pb_log,
-                                          plogger = NULL){
-
-  tbl_calving <- read_file_input_calving(ps_input_file_calving = ps_input_file_calving,
-                                         ps_start_calving_date = ps_start_calving_date,
-                                         ps_end_calving_date = ps_end_calving_date,
-                                         pb_log = b_log,
-                                         plogger = lgr)
-
-  tbl_input <- tbl_calving %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>%
-    dplyr::filter(Mutter_RasseCode == ps_dambreed)
-
-  tbl_input$calving_transform <- 0
-  tbl_input <- tbl_input %>%
-    filter(!is.na(Geburtsverlauf))
-  tbl_input <- tbl_input %>%
-    filter(Geburtsverlauf != 0)
-
-  for (idx in 1:nrow(tbl_input)) {
-    if (tbl_input[idx,]$Geburtsverlauf == 1) {
-      tbl_input[idx,]$calving_transform <- 300
-    } else if (tbl_input[idx,]$Geburtsverlauf == 2){
-      tbl_input[idx,]$calving_transform <- 200
-    } else {
-      tbl_input[idx,]$calving_transform <- 100
-    }
-  }
-
-#Calculated during pre_process
-EW <- ps_EW_calving
-
-  calving_score <- tbl_input$Geburtsverlauf
-  m_r <- mean(calving_score)
-  sd_r <- sd(calving_score)
-
-  calving_transformed <- tbl_input$calving_transform
-  m_t <- mean(calving_transformed)
-  sd_t <- sd(calving_transformed)
-
-  ew_sd <- as.numeric(EW)*sd_r/0.01
-  ew_sd_t <- as.numeric(EW)*sd_t
-  ew_u = -(ew_sd/sd_t)
-
-  return(ew_u)
-
-}
 
 #' @title Create table of results depending on sire breed, dam breed or marketing channel
 #'
@@ -1233,11 +1520,14 @@ EW <- ps_EW_calving
 #' @import gridExtra
 #'
 #' @export create_table_results_ewdc
+
 create_table_results_ewdc <- function(ps_sort_by,
                                       ps_path_results_tbl,
                                  ps_path_save,
                                pb_log,
                                plogger = NULL){
+
+  l_constants_postprocess_beefOndairy <- get_constants_postprocess_beefOndairy()
 
   temp = list.files(path = ps_path_results_tbl, pattern="df_")
   results_tables <- data.frame(temp)
@@ -1248,9 +1538,9 @@ create_table_results_ewdc <- function(ps_sort_by,
   for(idx in 1:nrow(results_tables)){
     scenario_split <- unlist(strsplit(results_tables[idx,], split = "_", fixed = TRUE))
     scenario_split <- unlist(strsplit(scenario_split, split = ".", fixed = TRUE))
-    sire <- scenario_split[2]
-    dam <- scenario_split[3]
-    marketing <- scenario_split[5]
+    sire <- scenario_split[l_constants_postprocess_beefOndairy$string_2]
+    dam <- scenario_split[l_constants_postprocess_beefOndairy$string_3]
+    marketing <- scenario_split[l_constants_postprocess_beefOndairy$string_5]
 
 
     tbl_cur_info <- tibble::tibble(Sire = sire, Dam = dam, Marketing = marketing)
@@ -1303,9 +1593,9 @@ create_table_results_ewdc <- function(ps_sort_by,
 
     for(n in 2:nrow(tbl_breed)){
       column_split <- unlist(strsplit(row.names(tbl_breed)[n], "_", fixed = TRUE))
-      sire <- column_split[1]
-      dam <- column_split[2]
-      marketing_ch <- column_split[4]
+      sire <- column_split[l_constants_postprocess_beefOndairy$string_1]
+      dam <- column_split[l_constants_postprocess_beefOndairy$string_2]
+      marketing_ch <- column_split[l_constants_postprocess_beefOndairy$string_4]
       tbl_breed$SirexDam[n] <- paste0(sire, "_", dam)
       tbl_breed$Marketing_channel[n] <- marketing_ch
     }
@@ -1326,7 +1616,7 @@ create_table_results_ewdc <- function(ps_sort_by,
 
 }
 
-#' @title Plot pie chart of the results coming from ECOWEIGHT beef cattle
+#' @title Plot pie chart of the results coming from ECOWEIGHT dairy beef cattle
 #'
 #' @description
 #' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
@@ -1334,23 +1624,21 @@ create_table_results_ewdc <- function(ps_sort_by,
 #' to prepare information to be plot.
 #'
 #' @param ps_path_2genSD path to file with genetic standard deviation
-#' @param ptbl_aggregate_results resulting tibble from post_process_ewbc_output()
+#' @param ptbl_EW_results tibble of economic weights
 #' @param ps_traitgroup2consider traitgroup may be Carcass or Functional Traits
-#' @param ps_sirebreed sire breed
-#' @param ps_prodsystew production system build up as option in ECOWEIGHT
-#' @param ps_marketchannel market channel
+#' @param ps_scenario name of the scenario (includes sire breed, dam breed, production system and marketing channel)
+#' @param ps_marketchannel marketing channel required for determining the correct genetic standard deviation to use
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
 #' @import ggplot2
 #' @import forcats
 #'
-#' @export plot_piechart_ewbc
-plot_piechart_ewbc <- function(ps_path_2genSD,
-                               ptbl_aggregate_results,
+#' @export plot_piechart_ewdc
+plot_piechart_ewdc <- function(ps_path_2genSD,
+                               ptbl_EW_results,
                                ps_traitgroup2consider,
-                               ps_sirebreed,
-                               ps_prodsystew,
+                               ps_scenario,
                                ps_marketchannel,
                                pb_log,
                                plogger = NULL){
@@ -1367,68 +1655,95 @@ plot_piechart_ewbc <- function(ps_path_2genSD,
                     paste0('Starting function with parameters:\n * ps_path_2genSD', ps_path_2genSD,'\n',
                            ' * ptbl_aggregate_results \n',
                            ' * ps_traitgroup2consider: ', ps_traitgroup2consider, '\n',
-                           ' * ps_sirebreed: ', ps_sirebreed, '\n',
-                           ' * ps_prodsystew: ', ps_prodsystew, '\n',
-                           ' * ps_marketchannel: ', ps_marketchannel))
+                           ' * ps_scenario: ', ps_scenario, '\n'))
   }
 
 
   ### # Read file with genetic standard deviation
   tbl_gen_SD <- read_file_input(ps_path_2genSD,
-                                pb_log,
-                                plogger = lgr)
+                                      pb_log,
+                                      plogger = lgr)
+
+  l_constants_postprocess_beefOndairy <- get_constants_postprocess_beefOndairy()
+
+  if (ps_marketchannel == "Beef") {
+    genetic_SD_ACCW <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOndairy$idx_row_ACCW_adult]
+    genetic_SD_fleshiness <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOndairy$idx_row_fleshiness_adult]
+    genetic_SD_fat <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOndairy$idx_row_fat_adult]
+  } else if (ps_marketchannel == "Veal") {
+    genetic_SD_ACCW <- (tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOndairy$idx_row_ACCW_calf])
+    genetic_SD_fleshiness <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOndairy$idx_row_fleshiness_calf]
+    genetic_SD_fat <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOndairy$idx_row_fat_calf]
+  }
+
+  genetic_SD_calving_score <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOndairy$idx_row_calving_ease]
+  gemetic_SD_birth_wt <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOndairy$idx_birth_weight]
+  genetic_SD_gestation <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOndairy$idx_gestation_length]
 
 
-  ### # Transform to the economic weight to the same unit as CHE-EBV
-  ### # Fleshiness in ECOWEIGHT output: mean class by 0.01 -> class 1
-  fleshiness_score <- ptbl_aggregate_results[4,2]$Economic_weight * 100
-  ### # Fat in ECOWEIGHT output: mean class by 0.01 -> class 1
-  fat_score <- ptbl_aggregate_results[5,2]$Economic_weight * 100
-  ### # Age adjusted carcass weight from 1 dt to 100 kg
-  carcass_wt_kg <- ptbl_aggregate_results[3,2]$Economic_weight * 100
-  ### # Calving in ECOWEIGHT output: mean class by 0.01 -> class 1
-  calving_score <- ptbl_aggregate_results[1,2]$Economic_weight * 100
 
+  ### # Take economic weights from table and transform them to same unit as EBV
+  #calving score are on different rows for beef and export animals:
+if (ps_marketchannel == "Export"){
+  EW_calving_score <- (round(ptbl_EW_results$EconomicValue[l_constants_postprocess_beefOndairy$ew_calving_transform_export], digits = 2))#using transformed EW we dont need to change the unit
+}else{
+  EW_calving_score <- (round(ptbl_EW_results$EconomicValue[l_constants_postprocess_beefOndairy$ew_calving_transform], digits = 2)) #using transformed EW we dont need to change the unit
+}
 
-  ### # Insure that the sign is positiv egal the trait so use absolute value
-  ### # when multipling economic weight with the genetic standarddeviation to transform all the traits to the same unit
-  ### # such as the trait are comparable
-  fleshiness <- abs(fleshiness_score*tbl_gen_SD[2,2]$genetic_standarddeviation)
-  fat <- abs(fat_score*tbl_gen_SD[3,2]$genetic_standarddeviation)
-  carcass_weight <- abs(carcass_wt_kg*tbl_gen_SD[1,2]$genetic_standarddeviation)
-  Weaning_weight_maternal <- abs(ptbl_aggregate_results[7,2]$Economic_weight*tbl_gen_SD[7,2]$genetic_standarddeviation)
-  Weaning_weight_direct <- abs(ptbl_aggregate_results[6,2]$Economic_weight*tbl_gen_SD[6,2]$genetic_standarddeviation)
-  Calving_ease <- abs(calving_score*tbl_gen_SD[4,2]$genetic_standarddeviation)
-  Birth_weight <- abs(ptbl_aggregate_results[2,2]$Economic_weight*tbl_gen_SD[5,2]$genetic_standarddeviation)
+  EW_birth_wt <- round(ptbl_EW_results$EconomicValue[l_constants_postprocess_beefOndairy$ew_birthwt], digits = 2)
+
+  if(ps_marketchannel != "Export") {
+  EW_fleshiness <- (round(ptbl_EW_results$EconomicValue[l_constants_postprocess_beefOndairy$ew_fleshiness], digits = 2))*100
+  EW_fat <- (round(ptbl_EW_results$EconomicValue[l_constants_postprocess_beefOndairy$ew_fat], digits = 2))*100
+  EW_ACCW <-(round(ptbl_EW_results$EconomicValue[l_constants_postprocess_beefOndairy$ew_ACCW], digits = 2))*100 #need to convert kg to dt to match EBV
+}
+
+  ### # Ensure the economic weight is positive using absolute value for calculation of percentages
+  ### # multipling economic weight with the genetic standard deviation to compare traits
+  if(ps_marketchannel != "Export") {
+  fleshiness <- abs(EW_fleshiness*genetic_SD_fleshiness)
+  fat <- abs(EW_fat*genetic_SD_fat)
+  carcass_weight <- abs(genetic_SD_ACCW*EW_ACCW)
+  }
+  calving_ease <- abs(genetic_SD_calving_score*EW_calving_score)
+  birth_weight <- abs(gemetic_SD_birth_wt*EW_birth_wt)
 
 
   ### # Transform in percentage
+  if(ps_marketchannel != "Export") {
+    #for carcass traits (not required for export)
   sum_carcass <- sum(fleshiness, fat, carcass_weight)
   fleshiness_percentage <- (fleshiness/sum_carcass)*100
   fat_percentage <- (fat/sum_carcass)*100
   carcass_weight_percentage <- (carcass_weight/sum_carcass)*100
+  # for combining functional and carcass traits - not applicable to export calves
+  sum_combined <- sum(calving_ease, birth_weight, fleshiness, fat, carcass_weight)
+  calving_ease_perc_comb <- (calving_ease/sum_combined)*100
+  birth_weight_perc_comb <- (birth_weight/sum_combined)*100
+  fleshiness_percentage_comb <- (fleshiness/sum_combined)*100
+  fat_percentage_comb <- (fat/sum_combined)*100
+  carcass_weight_percentage_comb <- (carcass_weight/sum_combined)*100
+  }
 
-  sum_functional <- sum(Weaning_weight_maternal, Weaning_weight_direct, Calving_ease, Birth_weight)
-  Weaning_wt_maternal_perc <- (Weaning_weight_maternal/sum_functional)*100
-  Weaning_wt_direct_perc <- (Weaning_weight_direct/sum_functional)*100
-  Calving_ease_perc <- (Calving_ease/sum_functional)*100
-  Birth_weight_perc <- (Birth_weight/sum_functional)*100
+  sum_functional <- sum(calving_ease, birth_weight) #Need to add gestation length when we have a solution to its calculation
+  calving_ease_perc <- (calving_ease/sum_functional)*100
+  birth_weight_perc <- (birth_weight/sum_functional)*100
 
-
-
-  ### # Depending on the traitgroup to consider
+  ### # Depending on the trait group to consider
   if(ps_traitgroup2consider == "Carcass Traits"){
     df <- data.frame(trait = c("Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
                      value = c(carcass_weight_percentage, fleshiness_percentage, fat_percentage))
   }else if(ps_traitgroup2consider == "Functional Traits"){
-    df <- data.frame(trait = c("Calving ease", "Weaning weight direct", "Birth weight", "Weaning weight maternal"),
-                     value = c(Calving_ease_perc, Weaning_wt_direct_perc, Birth_weight_perc, Weaning_wt_maternal_perc))
+    df <- data.frame(trait = c("Calving ease", "Birth weight"),
+                     value = c(calving_ease_perc, birth_weight_perc))
+  }else if (ps_traitgroup2consider == "Combined") {
+    df <- data.frame(trait = c("Calving ease", "Birth weight", "Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
+                     value = c(calving_ease_perc_comb, birth_weight_perc_comb, carcass_weight_percentage_comb, fleshiness_percentage_comb, fat_percentage_comb))
   }
 
-
   ### # Pie chart
-  carcass_pie <- ggplot(df, aes(x = "" , y = value, fill = fct_inorder(trait))) +
-    ggtitle(paste0("Economic Weights for ",ps_sirebreed,"_",ps_prodsystew,"_",ps_marketchannel),
+  carcass_pie <- ggplot2::ggplot(df, aes(x = "" , y = value, fill = forcats::fct_inorder(trait))) +
+    ggtitle(paste0("Standardized Economic Weights for ", ps_scenario),
             subtitle = ps_traitgroup2consider)+
     geom_col(width = 1) +
     coord_polar(theta = "y", start = 0 ) +
@@ -1445,8 +1760,12 @@ plot_piechart_ewbc <- function(ps_path_2genSD,
   if(ps_traitgroup2consider == "Carcass Traits"){
     piechart <- carcass_pie + scale_fill_manual(values=c("deepskyblue3", "darkolivegreen3", "gold1"))
   }else if(ps_traitgroup2consider == "Functional Traits"){
-    piechart <- carcass_pie + scale_fill_manual(values=c("darkorchid1","coral1" , "chartreuse3", "cadetblue3"))
+    piechart <- carcass_pie + scale_fill_manual(values=c("darkorchid1","coral1"))
+  } else if (ps_traitgroup2consider == "Combined") {
+    piechart <- carcass_pie + scale_fill_manual(values=c("darkorchid1","coral1", "deepskyblue3", "darkolivegreen3", "gold1"))
   }
+
+
 
 
   return(piechart)
