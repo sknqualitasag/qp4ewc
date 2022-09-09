@@ -1,0 +1,224 @@
+/* This file is necessary for program EWDC (Production System 4).
+   It includes input parameters describing the dairy cow herd.
+   The input parameters are arranged in the following way:
+        parameters for reproduction, growth, mortality, feeding, prices and costs.
+   All input data are arranged in the following way:
+	each parameter takes three rows,
+	in the first row stands its value,
+	the string expression in the second row describes the parameter and
+	the last string in the third row contains the units of the parameter.
+	If there is no unit given, enter [SPACE] enclosed into quotation
+	marks.
+   MU: monetary unit */
+4
+"Number of classes for calving performance (must be in the interval from 2 to 6)"
+" "
+3
+"For defining dystocia give the lowest number of the class of calving
+performance which is considered to be dystocia. For example, if there are
+classes 1 to 5 and classes 3 to 5 will be considered as dystocia your input will
+be 3."
+" "
+279
+"Gestation length"
+"days"
+63
+"Average interval between calving and first insemination"
+"days"
+38.5
+"Average interval between two subsequent inseminations (This shoud be greater than the interval between two oestruses because of possible failure to detect heat etc.)"
+"days"
+60
+"Number of days dry"
+"days"
+5
+"Maximal number of inseminations per cow after calving"
+" "
+5
+"Maximal number of inseminations per heifer"
+" "
+2
+"Number of re-inseminations per oestrus"
+" "
+0.15
+"Decrease in conception rate of cows after dystocia averaged over reproductive cycles 1 to LL"
+" "
+0.1
+"Culling rate of cows after dystocia"
+" "
+4.0
+"Fat content in milk"
+"%"
+3.3
+"Protein content in milk"
+"%"
+610
+"Mature weight of dairy cows (weight of cows after 3rd calving)"
+"kg"
+750
+"Mature weight of beef cows of the same breed the bulls of which are used for terminal crossing (weight of cows after 3rd calving)"
+"kg"
+60
+"Weight gain for pregnancy (= loss of cow weight after calving) averaged over reproductive cycles 1 to LL"
+"kg"
+0.13
+"Average daily gain of cows in the 1st reproductive cycle"
+"kg/day"
+15
+"Average number of days between calving and culling cows due to dystocia"
+"days"
+0.56
+"Dressing proportion of cows"
+" "
+10
+"Losses of feed through wasting in cow herds or in rearing of young animals"
+"%"
+10
+"Losses of feed through wasting in fattening"
+"%"
+0.27
+"Dry matter per kg feed for cows (average feed ration through the whole calving interval)"
+"kg/kg"
+6.1
+"Net energy per kg dry matter of feed ration for cows"
+"MJ NE/kg dry matter"
+105
+"Protein per kg dry matter of feed ration for cows"
+"g PDI/kg"
+0
+"Average residual daily dry matter intake of cows (difference between the
+daily actual and predicted dry matter intake)"
+"kg/day"
+1.12
+"Adjustment factor for breed energy requirement for maintenance - dry cows"
+" "
+1.0
+"Adjustment factor for breed energy requirement for maintenance - lactating cows"
+" "
+1.2
+"Adjustment factor for energy requirement for maintenance according to technology - pasture"
+" "
+1
+"Adjustment factor for energy requirement for maintenance according to technology - bind technology"
+" "
+1.1
+"Adjustment factor for energy requirement for maintenance according to technology - free technology"
+" "
+60
+"Amount of water per cow and day"
+"l/day"
+3.5
+"Amount of straw per cow and day"
+"kg/day"
+30
+"Amount of dung per cow and day"
+"kg/day"
+0.04
+"Price per kg fresh matter of feed ration for cows"
+"MU/kg"
+0
+"Price per kg dung"
+"MU/kg"
+0.16
+"Price per kg straw"
+"MU/kg"
+0
+"Price per l water"
+"MU/l"
+100
+"Price per portion of semen from AI dairy bulls including external labour for
+insemination"
+"MU/portion"
+100
+"Cost per re-insemination from dairy bulls including external labour for
+insemination"
+"MU/re-insemination"
+61
+"Price per portion of semen from AI beef bulls including external labour for
+insemination"
+"MU/portion"
+61
+"Cost per re-insemination from beef bulls including external labour for
+insemination"
+"MU/re-insemination"
+9.6
+"Price per kg carcass of cows in the base class for carcass grading"
+"MU/kg"
+0.8
+"Ratio of price per kg carcass of cows involuntarily culled to the price per kg carcass of cows voluntarily culled"
+" "
+200
+"Cost for removing and rendering a dead cow"
+"MU/animal"
+395.2
+"Cost for veterinary treatment per cow and reproductive cycle"
+"MU/reproductive cycle"
+0
+"Veterinary cost connected with calving score 1"
+"MU/calving"
+0
+"Veterinary cost connected with calving score 2"
+"MU/calving"
+300
+"Veterinary cost connected with calving score 3"
+"MU/calving"
+1000
+"Veterinary cost connected with calving score 4"
+"MU/calving"
+84
+"Veterinary cost connected with calving score 5"
+"MU/calving"
+90
+"Veterinary cost connected with calving score 6"
+"MU/calving"
+0
+"Stock-man hours connected with calving score 1"
+"h"
+0
+"Stock-man hours connected with calving score 2"
+"h"
+3
+"Stock-man hours connected with calving score 3"
+"h"
+5
+"Stock-man hours connected with calving score 4"
+"h"
+6
+"Stock-man hours connected with calving score 5"
+"h"
+7
+"Stock-man hours connected with calving score 6"
+"h"
+11.5
+"Cost per stock-man hour (needed for dystocia cost)"
+"MU/h"
+0.056
+"Variable costs for milk when increasing the milk amount above average (e.g. energy for cooling, transport costs; feeding costs are not part of the variable costs.)"
+"MU/kg"
+9.32
+"Fixed cost per cow and day"
+"MU/day"
+0.1
+"Discount rate"
+" "
+0.20
+"Governmental financial support per kg milk"
+"MU/kg"
+2025
+"Governmental financial support per cow and year (e.g. for culled cows)"
+"MU/cow and year"
+0
+"Governmental financial support per cow in performance test and year"
+"MU/cow and year"
+0
+"Governmental financial support per exported male calf"
+"MU/animal"
+0
+"Governmental financial support per fattened animal"
+"MU/animal"
+0
+"Proportion of cows performance tested"
+" "
+0
+"Dairy heifers mated with beef bulls as proportion of all mated dairy heifers (this parameter is given ohnly if there is crossbreeding in the system)"
+" "                                           

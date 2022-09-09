@@ -33,7 +33,7 @@ s_sirebreed <- "LM"
 s_dambreed <- "HO"
 # Production system according to ECOWEIGHT: 4 corresponding to dairy
 s_prodsystew <- "4"
-# Marketing channel can be: ConventionalBeef, ConventionalVeal
+# Marketing channel can be: ConventionalBeef, ConventionalVeal, Export
 s_marketingchannel <- "ConventionalBeef"
 # Path to define from the working directory
 s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc")

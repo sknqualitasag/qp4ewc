@@ -1,0 +1,108 @@
+---
+title: "7_Overview_scenari"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{7_Overview_scenari}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(qp4ewc)
+```
+
+# Aim
+
+In this vignette, you will get more information about how to get an overview of all the scenario producted with `post_process_ewdc_output()`. 
+
+# Parameters 
+
+```{r,warning=FALSE,message=FALSE}
+#Path to files
+path_results_files <- system.file("extdata","ewdc","Ecoweight_output", package = "qp4ewc")
+# Name of results file from ewdc
+s_results_name <- "test"
+# Path to output statements from the results file of ewdc
+s_output_statement <-  system.file("extdata","ewdc","output_statement.txt", package = "qp4ewc")
+# Path to search patterns needed to find correct results 
+s_output_search_pattern <- system.file("extdata","ewdc","output_searchpattern.txt", package = "qp4ewc")
+# Path to define from the working directory for beef-on-dairy
+s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc","test","Ecoweight_output")
+# Path to save table of result 
+s_path_extracted_results <- file.path(here::here(),"inst", "extdata", "ewdc", "results")
+# Path to genetic standard deviation values 
+s_input_genetic_SD <- system.file("extdata","ewdc","input_geneticSD.txt", package = "qp4ewc")
+# Flag to set to TRUE, if a log-file is whished
+b_log <- TRUE
+```
+
+
+## Step 1:  post-processing reads data from the results files and makes single tables per scenario.
+
+```{r, warning=FALSE, message=FALSE}
+results_files <- data.frame(filename = list.files(paste0(path_results_files,"/")))
+
+for(idx in 1:nrow(results_files)){
+  s_path_2outputfile <- paste0(path_results_files,"/",results_files[idx,],"/",s_results_name)
+  s_scenario <- results_files[idx,]
+  scenario_split <- unlist(strsplit(s_scenario, split = "_", fixed = TRUE))
+  s_sirebreed <- scenario_split[1]
+  s_dambreed <- scenario_split[2]
+  s_prodsystew <- scenario_split[3]
+  s_marketingchannel <- scenario_split[4]
+  post_process_ewdc_output(ps_path_2outputfile = s_path_2outputfile,
+                           ps_output_statement = s_output_statement,
+                           ps_output_search_pattern = s_output_search_pattern,
+                           ps_sirebreed = s_sirebreed,
+                           ps_dambreed = s_dambreed,
+                           ps_prodsystew = s_prodsystew,
+                           ps_marketchannel = s_marketingchannel,
+                           ps_path_directory2create = s_path_directory2create,
+                           ps_scenario = s_scenario,
+                           ps_path_tbl_save = s_path_extracted_results,
+                           ps_input_genetic_SD = s_input_genetic_SD,
+                           pb_log = b_log)
+
+}
+```
+
+
+## Step 2: post processing combines the single scenario tables into tables sorted by the defined criteria for s_sort_by
+
+### sort by sire: 
+```{r}
+s_sort_by = "sire_breed"
+create_table_results_ewdc(ps_sort_by = s_sort_by,
+                          ps_path_results_tbl = s_path_extracted_results,
+                          ps_path_save = s_path_extracted_results,
+                          pb_log = b_log)
+
+```
+
+### sort by dam:
+```{r}
+s_sort_by = "dam_breed"
+create_table_results_ewdc(ps_sort_by = s_sort_by,
+                          ps_path_results_tbl = s_path_extracted_results,
+                          ps_path_save = s_path_extracted_results,
+                          pb_log = b_log)
+
+```
+
+### sort by marketing channel 
+```{r}
+s_sort_by = "marketing_channel"
+create_table_results_ewdc(ps_sort_by = s_sort_by,
+                          ps_path_results_tbl = s_path_extracted_results,
+                          ps_path_save = s_path_extracted_results,
+                          pb_log = b_log)
+
+```
+
