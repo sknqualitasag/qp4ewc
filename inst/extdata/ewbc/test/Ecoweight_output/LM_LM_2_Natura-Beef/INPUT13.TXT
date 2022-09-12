@@ -1,0 +1,143 @@
+/* This file is necessary for program EWBC for Production Systems 1 and 2 only.
+   It includes input parameters referring to breeding heifers from weaning to
+   calving or to selling. Selling of pregnant or not mated heifers is possible.
+   If not enough female calves are reared for replacement the input parameters
+   referring to purchased breeding heifers (the last two parameters in this
+   file) are to be filled in.
+   If there is only one feeding season defined for the whole year in 
+   INPUT01.TXT, insert only values for feeding season with code 1; 
+   the values for feeding season with code 2 are not read.
+   
+   All input data are arranged in the following way:
+	each parameter takes three rows,
+	in the first row stands its value, 
+	the string expression in the second row describes the parameter and
+	the last string in the third row contains the units of the parameter.
+	If there is no unit given, enter [SPACE] enclosed into quotation
+	marks.
+   MU: monetary unit */
+0.6581
+"Daily gain of breeding heifers from weaning to the first mating period
+following that weaning (fill in only if there is no third weighing of calves
+around the age of 1 year)"
+"kg/day"
+0.5387
+"Daily gain of breeding heifers between the 1st and 2nd mating period"
+"kg/day"
+0.36644
+"Daily gain of breeding heifers between the 2nd and 3rd mating period"
+"kg/day"
+0.03122
+"Daily gain of breeding heifers between the 3rd (last possible) mating period and calving. This daily gain should not include the weight gain caused by pregnancy"
+"kg/day"
+260
+"Minimal live weight of heifers at first mating"
+"kg"
+54
+"Phenotypic standard deviation of the weight of heifers at the first mating period after weaning (at an age of about 1 year)"
+"kg"
+0
+"Losses of heifers in the rearing period (heifers died from weaning till mating as proportion of female calves reared as breeding heifers)"
+" "
+0.01
+"Heifers negatively selected on health and exterior before mating and slaughtered as proportion of reared heifers"
+" "
+0
+"Pregnant heifers sold expressed as proportion of surplus female calves"
+" "
+0
+"Breeding heifers sold before mating expressed as proportion of surplus female calves"
+" "
+90
+"Number of days from the average date of mating heifers to the date of culling barren heifers"
+"days"
+190
+"Days of pregnancy of sold breeding heifers"
+"days"	
+/* The following input is read only if there is AI in heifers */
+1
+"Heifers inseminated in 1st oestrus within the mating period as proportion of heifers available for mating"
+" "
+0.57
+"Dry matter per kg feed ration of code 1 for breeding heifers"
+"kg/kg"
+0.24
+"Dry matter per kg feed ration of code 2 for breeding heifers"
+"kg/kg"
+0.0  
+"Residual daily dry matter intake from feed ration of code 1 for breeding heifers"
+"kg/day"
+0.0   
+"Residual daily dry matter intake from feed ration of code 2 for breeding heifers"
+"kg/day"
+5.5
+"Net energy content per kg dry matter of feed ration of code 1 for breeding heifers"
+"MJ NE/kg dry matter"
+6.1
+"Net energy content per kg dry matter of feed ration of code 2 for breeding heifers"
+"MJ NE/kg dry matter"
+78.3
+"Protein content per kg dry matter of feed ration of code 1 for breeding heifers"
+"g PDI/kg"
+98.2
+"Protein content per kg dry matter of feed ration of code 2 for breeding heifers"
+"g PDI/kg"
+0.09
+"Price per kg fresh matter of feed ration of code 1 for breeding heifers"
+"MU/kg"
+0.02
+"Price per kg fresh matter of feed ration of code 2 for breeding heifers"
+"MU/kg"
+3.5
+"Amount of straw per breeding heifer per day during feeding season with code 1"
+"kg/day"
+0
+"Amount of straw per breeding heifer per day during feeding season with code 2"
+"kg/day"
+0
+"Amount of dung per breeding heifer per day during feeding season with code 1"
+"kg/day"
+0
+"Amount of dung per breeding heifer per day during feeding season with code 2"
+"kg/day"
+0.2
+"Amount of minerals per day and breeding heifer"
+"kg"
+35
+"Amount of water per day and breeding heifer"
+"l/day"
+73.2
+"Costs for veterinary treatment per breeding heifer from weaning to calving"
+"MU/animal"
+4.9
+"Fixed costs from weaning to calving per breeding heifer and day"
+"MU/day"
+84
+"Price per kg live weight for non-pregnant breeding heifers at selling"
+"MU/kg live weight"
+94
+"Price per kg live weight for pregnant heifers at selling"
+"MU/kg life weight"
+310
+"Average age of non-pregnant breeding heifers sold before the first mating period after their weaning"
+"days"
+600
+"Average age of non-pregnant breeding heifers sold between the first and second mating period after their weaning"
+"days"
+0
+"Proportion of non-pregnant breeding heifers sold before the first mating period after their weaning"
+" "
+0
+"Proportion of non-pregnant breeding heifers sold between the first and second mating period after their weaning"
+" "
+/* The following three inputs will be needed only if there are not enough
+heifers reared for replacement */
+2.28
+"Price per kg live weight for pregnant breeding heifers at purchase"
+"MU/kg live weight"
+210
+"Days of pregnancy of purchased heifers"
+"days"
+580
+"Weight of purchased pregnant heifers"
+"kg"                       

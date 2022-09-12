@@ -8,10 +8,14 @@ post_process_ewbc_output(
   ps_path_2outputfile,
   ps_output_statement,
   ps_output_search_pattern,
-  ps_path_tbl_save,
-  ps_scenario,
   ps_sirebreed,
   ps_dambreed,
+  ps_prodsystew,
+  ps_marketchannel,
+  ps_path_directory2create,
+  ps_scenario,
+  ps_path_tbl_save,
+  ps_input_genetic_SD,
   pb_log,
   plogger = NULL
 )
@@ -23,13 +27,21 @@ post_process_ewbc_output(
 
 \item{ps_output_search_pattern}{output file with the search patterns}
 
-\item{ps_path_tbl_save}{path tp the directory for saving the results output pdfs}
-
-\item{ps_scenario}{name of scenario (sire_dam_system_marketingchannel)}
-
 \item{ps_sirebreed}{sire breed}
 
 \item{ps_dambreed}{dam breed}
+
+\item{ps_prodsystew}{production system build up as option in ECOWEIGHT}
+
+\item{ps_marketchannel}{market channel}
+
+\item{ps_path_directory2create}{path of the directory that will be created}
+
+\item{ps_scenario}{name of the scenario (includes sire breed, dam breed, production system and marketing channel)}
+
+\item{ps_path_tbl_save}{path to save results}
+
+\item{ps_input_genetic_SD}{input file with genetic standarddeviation}
 
 \item{pb_log}{indicator whether logs should be produced}
 

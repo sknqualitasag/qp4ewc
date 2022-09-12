@@ -1,0 +1,40 @@
+/* Parameters for the lactation curve
+   The file is needed for program EWBC (Production Systems 1 to 3).
+   The file is only read if the parameters are not calculated according
+      to Fox et al. (1990). The parameters are explained in the Manual. */
+0.945
+"Parameter a for two year old cows"
+" "
+2.124
+"Parameter a for three year old cows"
+" "
+1.701
+"Parameter a for four year old cows"
+" "
+1.4625
+"Parameter a for mature cows"
+" "
+0.5297
+"Parameter b for two year old cows"
+" "
+0.4214
+"Parameter b for three year old cows"
+" "
+0.5189
+"Parameter b for four year old cows"
+" "
+0.5781
+"Parameter b for mature cows"
+" "
+0.007256
+"Parameter c for two year old cows"
+" "
+0.007950
+"Parameter c for three year old cows"
+" "
+0.008946
+"Parameter c for four year old cows"
+" "
+0.009176
+"Parameter c for mature cows"
+" "

@@ -136,7 +136,7 @@ As soon as we have the result file of ECOWEIGHT for dairy cattle, we can run the
 The major step of `post_process_ewdc_output` is to read output file from ECOWEIGHT and makes single table with piechart per scenario. 
 More details to this step is in the vignette number 6.
 
-Because numerous scenari can be calculated, in the vignette number 7, you can find an extra function how to sort by sirebreed or dambreed or marketing channel to facilite the interpretation of the results.
+Because numerous scenari can be calculated, in the vignette number 7, you can find an extra function how to sort by sirebreed or dambreed or marketing channel to facilitate the interpretation of the results.
 
 ## Parameters
 

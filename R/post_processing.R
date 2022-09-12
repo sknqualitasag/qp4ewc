@@ -7,6 +7,104 @@
 ### # ##################################################################### ###
 
 
+#' @title Extract average fattening length from the output-parameter-file of ECOWEIGHT beef
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' produce output file. This function extract the average fattening length.
+#'
+#' @param ps_path_2outputfile path to output file of ECOWEIGHT
+#' @param ps_tbl_output_statement tibble with output statement
+#' @param ps_output_search_pattern output file with the search patterns
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tibble
+#' @import readr
+#'
+#' @return avg_length_fat output average fattening length
+#'
+#' @export extract_avg_fattening_length_ewbc
+extract_avg_fattening_length_ewbc <- function(ps_path_2outputfile,
+                                              ps_tbl_output_statement,
+                                              ps_tbl_output_search_pattern,
+                                              ps_prodsystew,
+                                              pb_log,
+                                              plogger = NULL){
+  
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'extract_avg_fattening_length_ewbc.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'extract_avg_fattening_length_ewbc',
+                    paste0('Starting function with parameters:\n * ps_path_2outputfile', ps_path_2outputfile, '\n',
+                           ' * ps_tbl_output_statement: ', ps_tbl_output_statement, '\n',
+                           ' * ps_tbl_output_search_pattern: ', ps_tbl_output_search_pattern, '\n',
+                           ' * ps_prodsystew: ',ps_prodsystew,'\n'))
+  }
+  
+  
+  ### # Get constant
+  l_constants_ewbc_input_beefOnbeef <- get_constants_ewbc_input_beefOnbeef()
+  l_constants_postprocess_beefOnbeef <- get_constants_postprocess_beefOnbeef()
+  
+  
+  # Value depending of ps_prodsystew
+  if(ps_prodsystew == l_constants_ewbc_input_beefOnbeef$prodsyst1){
+    ps_end_statement2extract_fat_f = ps_tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_fattened_heifers1,]
+  }else{
+    ps_end_statement2extract_fat_f = ps_tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_fattened_heifers3,]
+  }
+  
+  
+  #Fattening length for heifers
+  vec_ecow_result_fat_f <- extract_result(ps_path_2outputfile = ps_path_2outputfile,
+                                          ps_start_statement2extract = ps_tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_fattened_heifers,],
+                                          ps_end_statement2extract = ps_end_statement2extract_fat_f,
+                                          pb_log = pb_log,
+                                          plogger = lgr)
+  
+  tbl_search_fat_f <- ps_tbl_output_search_pattern[l_constants_postprocess_beefOnbeef$idx_row_fat_length_f,]
+  n_cur_ew_fat_f <- get_result_value(pvec_ecow_result_2extract = vec_ecow_result_fat_f,
+                                     ps_statement2search = tbl_search_fat_f$SearchPattern,
+                                     ps_line2get = tbl_search_fat_f$IndexOffset,
+                                     ps_splitby = "    ",
+                                     pb_log = pb_log,
+                                     plogger = lgr)
+  n_cur_ew_fat_f <- n_cur_ew_fat_f[n_cur_ew_fat_f != ""]
+  length_fattening_f <- as.numeric(n_cur_ew_fat_f[l_constants_postprocess_beefOnbeef$string_3])
+  
+  #Fattening length for bulls
+  vec_ecow_result_fat_m <- extract_result(ps_path_2outputfile = ps_path_2outputfile,
+                                          ps_start_statement2extract = ps_tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_fattened_bulls,],
+                                          ps_end_statement2extract = ps_tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_fattened_heifers,],
+                                          pb_log = pb_log,
+                                          plogger = lgr)
+  
+  tbl_search_fat_m <- ps_tbl_output_search_pattern[l_constants_postprocess_beefOnbeef$idx_row_fat_length_m,]
+  n_cur_ew_fat_m <- get_result_value(pvec_ecow_result_2extract = vec_ecow_result_fat_m,
+                                     ps_statement2search = tbl_search_fat_m$SearchPattern,
+                                     ps_line2get = tbl_search_fat_m$IndexOffset,
+                                     ps_splitby = "    ",
+                                     pb_log = pb_log,
+                                     plogger = lgr)
+  n_cur_ew_fat_m <- n_cur_ew_fat_m[n_cur_ew_fat_m != ""]
+  length_fattening_m <- as.numeric(n_cur_ew_fat_m[l_constants_postprocess_beefOnbeef$string_3])
+  
+  avg_length_fat <- (length_fattening_f + length_fattening_m)/2
+  
+  
+  return(avg_length_fat)
+  
+}
+
+
 #' @title Post-processing the output-parameter-file of ECOWEIGHT beef cattle
 #'
 #' @description
@@ -17,10 +115,14 @@
 #' @param ps_path_2outputfile path to output file of ECOWEIGHT
 #' @param ps_output_statement output statement in a file
 #' @param ps_output_search_pattern output file with the search patterns
-#' @param ps_path_tbl_save path tp the directory for saving the results output pdfs
-#' @param ps_scenario name of scenario (sire_dam_system_marketingchannel)
 #' @param ps_sirebreed sire breed
 #' @param ps_dambreed dam breed
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
+#' @param ps_marketchannel market channel
+#' @param ps_path_directory2create path of the directory that will be created
+#' @param ps_path_tbl_save path to save results
+#' @param ps_scenario name of the scenario (includes sire breed, dam breed, production system and marketing channel)
+#' @param ps_input_genetic_SD input file with genetic standarddeviation
 #' @param pb_log indicator whether logs should be produced
 #' @param plogger logger object
 #'
@@ -32,12 +134,17 @@
 post_process_ewbc_output <- function(ps_path_2outputfile,
                                      ps_output_statement,
                                      ps_output_search_pattern,
-                                     ps_path_tbl_save,
-                                     ps_scenario,
                                      ps_sirebreed,
                                      ps_dambreed,
+                                     ps_prodsystew,
+                                     ps_marketchannel,
+                                     ps_path_directory2create,
+                                     ps_scenario,
+                                     ps_path_tbl_save,
+                                     ps_input_genetic_SD,
                                      pb_log,
                                      plogger = NULL){
+    
 
   ### # Setting the log-file
   if(pb_log){
@@ -51,40 +158,39 @@ post_process_ewbc_output <- function(ps_path_2outputfile,
                     paste0('Starting function with parameters:\n * ps_path_2outputfile', ps_path_2outputfile, '\n',
                            ' * ps_output_statement: ', ps_output_statement, '\n',
                            ' * ps_output_search_pattern: ', ps_output_search_pattern, '\n',
-                           ' * ps_path_tbl_save: ', ps_path_tbl_save, '\n'))
+                           ' * ps_sirebreed: ', ps_sirebreed, '\n',
+                           ' * ps_dambreed: ', ps_dambreed, '\n',
+                           ' * ps_prodsystew: ',ps_prodsystew, '\n',
+                           ' * ps_marketchannel: ',ps_marketchannel,'\n',
+                           ' * ps_path_directory2create: ',ps_path_directory2create,'\n',
+                           ' * ps_scenario: ',ps_scenario,'\n',
+                           ' * ps_path_tbl_save: ',ps_path_tbl_save,'\n',
+                           ' * ps_input_genetic_SD: ',ps_input_genetic_SD,'\n'))
   }
 
 
   ### # Read file with output statement to search in ECOWEIGHT output
-  tbl_output_statement <- read_file_input(ps_output_statement,
-                                          pb_log,
+  tbl_output_statement <- read_file_input(ps_input_file = ps_output_statement,
+                                          pb_log = pb_log,
                                           plogger = lgr)
 
 
   tbl_search <- read_file_input(ps_input_file = ps_output_search_pattern,
-                                pb_log,
+                                pb_log = pb_log,
                                 plogger = lgr)
 
 
   l_constants_postprocess_beefOnbeef <- get_constants_postprocess_beefOnbeef()
 
-  #we need to use the name of the file to determine the porduction system (1 or 3)
-  #if there is a 1 in the scenario (e.g. AN_AN_1_Natura_Beef), the output will be one and production system is 1. If the output is integer(0) it is production system 3.
-  #this is important because the results files from ecoweight are different for system 1 and 3.
-
-  if(length(grep(pattern = "1", ps_scenario, fixed = TRUE)) > 0 ) {
-    production_system <- "1"
-  }else{
-    production_system <- "3"
-  }
   # ****************************************************************************
   ## ---- Economic weight results ----
   # ****************************************************************************
-  ### # Extract the part of interest of the results coming from ECOWEIGHT output
-  vec_ecow_result_EW <- extract_result(ps_path_2outputfile,
+  ### # Extract the part of interest of the results coming from ECOWEIGHT output (section 3.12)
+  ### # explanations under https://qualitasag.atlassian.net/wiki/spaces/ZWS/pages/2965569565/20220728+--+Weekly+Meeting+Projekt+Gesamtzuchtwert+mit+Produktionsmodellen
+  vec_ecow_result_EW <- extract_result(ps_path_2outputfile = ps_path_2outputfile,
                                        ps_start_statement2extract = tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_EW_d_m,],
                                        ps_end_statement2extract = tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_EW_relative,],
-                                       pb_log,
+                                       pb_log = pb_log,
                                        plogger = lgr)
 
 
@@ -95,7 +201,7 @@ post_process_ewbc_output <- function(ps_path_2outputfile,
                                  ps_statement2search = tbl_search$SearchPattern[idx],
                                  ps_line2get = tbl_search$IndexOffset[idx],
                                  ps_splitby = "  ",
-                                 pb_log,
+                                 pb_log = pb_log,
                                  plogger = lgr)
     n_cur_ew <- n_cur_ew[n_cur_ew != ""]
     n_cur_ew_direct <- as.numeric(n_cur_ew[l_constants_postprocess_beefOnbeef$string_1])
@@ -112,48 +218,13 @@ post_process_ewbc_output <- function(ps_path_2outputfile,
 
   ### # Extract the part of interest of the results coming from ECOWEIGHT output for fattening length
   ### # Average fattening length is required for calculating the economic weight for age adjusted carcass weight: EW ADG/days fattening
-
-  if(production_system == 1){
-    ps_end_statement2extract_fat_f = tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_fattened_heifers1,]
-  }else{
-    ps_end_statement2extract_fat_f = tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_fattened_heifers3,]
-  }
-#Fattening length for heifers
-  vec_ecow_result_fat_f <- extract_result(ps_path_2outputfile,
-                                        ps_start_statement2extract = tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_fattened_heifers,],
-                                        ps_end_statement2extract = ps_end_statement2extract_fat_f,
-                                        pb_log,
-                                        plogger = lgr)
-
-  tbl_search_fat_f <- tbl_search[l_constants_postprocess_beefOnbeef$idx_row_fat_length_f,]
-    n_cur_ew_fat_f <- get_result_value(pvec_ecow_result_2extract = vec_ecow_result_fat_f,
-                                     ps_statement2search = tbl_search_fat_f$SearchPattern,
-                                     ps_line2get = tbl_search_fat_f$IndexOffset,
-                                     ps_splitby = "    ",
-                                     pb_log,
-                                     plogger = lgr)
-    n_cur_ew_fat_f <- n_cur_ew_fat_f[n_cur_ew_fat_f != ""]
-    length_fattening_f <- as.numeric(n_cur_ew_fat_f[l_constants_postprocess_beefOnbeef$string_3])
-
-#Fattening length for bulls
-vec_ecow_result_fat_m <- extract_result(ps_path_2outputfile,
-                                            ps_start_statement2extract = tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_fattened_bulls,],
-                                            ps_end_statement2extract = tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_fattened_heifers,],
-                                            pb_log,
-                                            plogger = lgr)
-
-    tbl_search_fat_m <- tbl_search[l_constants_postprocess_beefOnbeef$idx_row_fat_length_m,]
-    n_cur_ew_fat_m <- get_result_value(pvec_ecow_result_2extract = vec_ecow_result_fat_m,
-                                       ps_statement2search = tbl_search_fat_m$SearchPattern,
-                                       ps_line2get = tbl_search_fat_m$IndexOffset,
-                                       ps_splitby = "    ",
-                                       pb_log,
-                                       plogger = lgr)
-    n_cur_ew_fat_m <- n_cur_ew_fat_m[n_cur_ew_fat_m != ""]
-    length_fattening_m <- as.numeric(n_cur_ew_fat_m[l_constants_postprocess_beefOnbeef$string_3])
-
-avg_length_fat <- (length_fattening_f + length_fattening_m)/2
-
+  avg_length_fat <- extract_avg_fattening_length_ewbc(ps_path_2outputfile = ps_path_2outputfile,
+                                                      ps_tbl_output_statement = tbl_output_statement,
+                                                      ps_tbl_output_search_pattern = tbl_search,
+                                                      ps_prodsystew = ps_prodsystew,
+                                                      pb_log = pb_log,
+                                                      plogger = lgr)
+    
 
   # ****************************************************************************
   ## ---- Average values ----
@@ -211,7 +282,7 @@ avg_length_fat <- (length_fattening_f + length_fattening_m)/2
 
 
   ### # Extract the part of interest of the results coming from ECOWEIGHT output for birth and weaning weight
-  if(production_system == 1){
+  if(ps_prodsystew == 1){
     ps_end_statement2extract_wt = tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_input13,]
   }else{
     ps_end_statement2extract_wt = tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_input08,]
@@ -243,7 +314,7 @@ avg_length_fat <- (length_fattening_f + length_fattening_m)/2
 
 
   ### # Extract the part of interest of the results coming from ECOWEIGHT output for carcass weight
-  if(production_system == 1){
+  if(ps_prodsystew == 1){
     ps_end_statement2extract_carcass = tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_input05,]
   }else{
     ps_end_statement2extract_carcass = tbl_output_statement[l_constants_postprocess_beefOnbeef$idx_row_input04,]
@@ -275,7 +346,7 @@ avg_length_fat <- (length_fattening_f + length_fattening_m)/2
 
 
   ### # Calculation of some average values
-  if(production_system == 1) {
+  if(ps_prodsystew == 1) {
     fleshiness_m <- l_constants_postprocess_beefOnbeef$idx_row_avg_flesh_m_1
     prop_m <- l_constants_postprocess_beefOnbeef$idx_row_avg_prop_m
     fleshiness_f <- l_constants_postprocess_beefOnbeef$idx_row_avg_flesh_f_1
@@ -290,7 +361,7 @@ avg_length_fat <- (length_fattening_f + length_fattening_m)/2
     slaughter_f <- l_constants_postprocess_beefOnbeef$idx_row_avg_slaughter_f_1
     calving <- l_constants_postprocess_beefOnbeef$idx_row_avg_calving_1
 
-  } else if(production_system == 3){
+  } else if(ps_prodsystew == 3){
     fleshiness_m <- l_constants_postprocess_beefOnbeef$idx_row_avg_flesh_m
     prop_m <- l_constants_postprocess_beefOnbeef$idx_row_avg_prop_m
     fleshiness_f <- l_constants_postprocess_beefOnbeef$idx_row_avg_flesh_f
@@ -370,7 +441,7 @@ avg_length_fat <- (length_fattening_f + length_fattening_m)/2
   # ****************************************************************************
   ## ---- Combination of Results ----
   # ****************************************************************************
-  if(production_system == 1) {
+  if(ps_prodsystew == 1) {
   traits <- c(#"Calving_performance_direct",
               "Calving_performance_direct_transformed",
               #"Calving_performance_maternal",
@@ -415,7 +486,7 @@ avg_length_fat <- (length_fattening_f + length_fattening_m)/2
                        round(Fat, digits = 2),
                        round(Weaning_weight, digits = 2),
                        round(Weaning_weight, digits = 2))
-  }else if (production_system == 3) {
+  }else if (ps_prodsystew == 3) {
     traits <- c(#"Calving_performance_direct",
                 "Calving_performance_direct_transformed",
                 #"Calving_performance_maternal",
@@ -489,21 +560,21 @@ avg_length_fat <- (length_fattening_f + length_fattening_m)/2
                                               ptbl_EW_results = tbl_result_ew,
                                               ps_traitgroup2consider = "Functional Traits",
                                               ps_scenario = ps_scenario,
-                                              ps_prodsystew = production_system,
+                                              ps_prodsystew = ps_prodsystew,
                                               pb_log = b_log)
 
   pie_chart_carcass <-  plot_piechart_ewbc(ps_path_2genSD = s_input_genetic_SD,
                                            ptbl_EW_results = tbl_result_ew,
                                            ps_traitgroup2consider = "Carcass Traits",
                                            ps_scenario = ps_scenario,
-                                           ps_prodsystew = production_system,
+                                           ps_prodsystew = ps_prodsystew,
                                            pb_log = b_log)
 
   pie_chart_combined <-  plot_piechart_ewbc(ps_path_2genSD = s_input_genetic_SD,
                                             ptbl_EW_results = tbl_result_ew,
                                             ps_traitgroup2consider = "Combined",
                                             ps_scenario = ps_scenario,
-                                            ps_prodsystew = production_system,
+                                            ps_prodsystew = ps_prodsystew,
                                             pb_log = b_log)
 
 
@@ -1288,13 +1359,8 @@ extract_birthweight_popmean_ewdc <- function(ps_path_2outputfile,
                                       pb_log = pb_log,
                                       plogger = lgr)
     
-    if(ps_marketchannel != pl_constants_progeny_beefOndairy$export_calf){
-      n_cur_birthwt <- as.numeric(n_cur_birthwt[pl_constants_postprocess_beefOndairy$string_2])
-    }else{
-      n_cur_birthwt <- as.numeric(n_cur_birthwt[pl_constants_postprocess_beefOndairy$string_3])
-    }
-  
-  
+    n_cur_birthwt <- as.numeric(n_cur_birthwt[pl_constants_postprocess_beefOndairy$string_3])
+
     tbl_cur_result_birthwt <- tibble::tibble(Trait = tbl_search_birthwt$Trait[idx], MeanValue = n_cur_birthwt)
     if (is.null(tbl_result_birthwt)){
       tbl_result_birthwt <- tbl_cur_result_birthwt
@@ -1535,7 +1601,8 @@ extract_adgfattening_popmean_ewdc <- function(ps_path_2outputfile,
                                   ps_splitby = "    ",
                                   pb_log = pb_log,
                                   plogger = lgr)
-    n_cur_adg <- as.numeric(n_cur_adg[pl_constants_postprocess_beefOndairy$string_2])
+    # Get the value for crossbreds
+    n_cur_adg <- as.numeric(n_cur_adg[pl_constants_postprocess_beefOndairy$string_3])
     tbl_cur_result_adg <- tibble::tibble(Trait = tbl_search_adg$Trait[idx], MeanValue = n_cur_adg)
     if (is.null(tbl_cur_result_adg)){
       tbl_result_adg <- tbl_cur_result_adg
@@ -1615,7 +1682,7 @@ extract_rearingweight_popmean_ewdc <- function(ps_path_2outputfile,
                                       ps_splitby = "    ",
                                       pb_log = pb_log,
                                       plogger = lgr)
-    n_cur_rearing <- as.numeric(n_cur_rearing[pl_constants_postprocess_beefOndairy$string_2])
+    n_cur_rearing <- as.numeric(n_cur_rearing[pl_constants_postprocess_beefOndairy$string_3])
     tbl_cur_result_rearing <- tibble::tibble(Trait = tbl_search_rearing$Trait[idx], MeanValue = n_cur_rearing)
     if (is.null(tbl_cur_result_rearing)){
       tbl_result_rearing <- tbl_cur_result_rearing
@@ -1726,21 +1793,21 @@ extract_popmean_ewdc <- function(ps_path_2outputfile,
                                                          pb_log = pb_log,
                                                          plogger = lgr)
   tbl_result_mean <- dplyr::bind_rows(tbl_result_mean, tbl_result_birthwt)
+  
+  
+  ### # Extract the part of interest of the results coming from ECOWEIGHT output for gestation length
+  tbl_result_gestation <- extract_gestlength_popmean_ewdc(ps_path_2outputfile = ps_path_2outputfile,
+                                                          ps_tbl_output_statement = tbl_output_statement,
+                                                          ps_tbl_output_search_pattern = tbl_search,
+                                                          pl_constants_postprocess_beefOndairy = l_constants_postprocess_beefOndairy,
+                                                          pl_constants_progeny_beefOndairy = l_constants_progeny_beefOndairy,
+                                                          ps_marketchannel = ps_marketchannel,
+                                                          pb_log = pb_log,
+                                                          plogger = lgr)
+  tbl_result_mean <- dplyr::bind_rows(tbl_result_mean, tbl_result_gestation)
 
 
   if(ps_marketchannel != l_constants_progeny_beefOndairy$export_calf){
-    ### # Extract the part of interest of the results coming from ECOWEIGHT output for gestation length
-    tbl_result_gestation <- extract_gestlength_popmean_ewdc(ps_path_2outputfile = ps_path_2outputfile,
-                                                           ps_tbl_output_statement = tbl_output_statement,
-                                                           ps_tbl_output_search_pattern = tbl_search,
-                                                           pl_constants_postprocess_beefOndairy = l_constants_postprocess_beefOndairy,
-                                                           pl_constants_progeny_beefOndairy = l_constants_progeny_beefOndairy,
-                                                           ps_marketchannel = ps_marketchannel,
-                                                           pb_log = pb_log,
-                                                           plogger = lgr)
-    tbl_result_mean <- dplyr::bind_rows(tbl_result_mean, tbl_result_gestation)
-    
-    
     ### # Extract the part of interest of the results coming from ECOWEIGHT output for carcass weight
     tbl_result_slaughter <- extract_slaughterweight_popmean_ewdc(ps_path_2outputfile = ps_path_2outputfile,
                                                                  ps_tbl_output_statement = tbl_output_statement,
