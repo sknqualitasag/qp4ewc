@@ -49,7 +49,7 @@ s_sirebreed <- "LM"
 # Dam breed can be for beef-on-beef: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental 
 s_dambreed <- "LM"
 # Production system according to ECOWEIGHT for beef-on-beef: 1,2,3 corresponding to purebreeding, crossbreeding, terminal crossing
-s_prodsystew <- "2"
+s_prodsystew <- "1"
 # Marketing channel can be: Natura-Beef, SwissPrimBeef
 s_marketingchannel <- "Natura-Beef"
 # Path to define from the working directory
@@ -149,8 +149,8 @@ To show how `post_process_ewbc_output` is build, we made some test-file from ECO
 #Path to file
 s_path_2outputfile <- system.file("extdata","ewbc","Ecoweight_output",
                                   paste0(s_sirebreed,"_",s_dambreed, "_",s_prodsystew,"_",s_marketingchannel,"_test",collapse = ""),
-                                  "test",package = "qp4ewc")
-# Path to output statements from the results file of ewdc
+                                  "test", package = "qp4ewc")
+# Path to output statements from the results file of ewbc
 s_output_statement <-  system.file("extdata","ewbc","output_statement.txt", package = "qp4ewc")
 # Path to search patterns needed to find correct results 
 s_output_search_pattern <- system.file("extdata","ewbc","output_searchpattern.txt", package = "qp4ewc")
@@ -159,38 +159,22 @@ s_input_genetic_SD <- system.file("extdata","ewbc","input_geneticSD.txt", packag
 # Scenario
 s_scenario <- paste0(s_sirebreed,"_",s_dambreed, "_",s_prodsystew,"_",s_marketingchannel,"_test",collapse = "")
 # Path to save table of result 
-s_path_extracted_results <- file.path(here::here(),"inst", "extdata", "ewdc", "results")
+s_path_extracted_results <- file.path(here::here(),"inst", "extdata", "ewbc", "results")
 ```
 
 ```{r}
-ps_path_2outputfile = s_path_2outputfile
-ps_output_statement = s_output_statement
-ps_output_search_pattern = s_output_search_pattern
-ps_sirebreed = s_sirebreed
-ps_dambreed = s_dambreed
-ps_prodsystew = s_prodsystew
-ps_marketchannel = s_marketingchannel
-ps_path_directory2create = s_path_directory2create
-ps_scenario = s_scenario
-ps_path_tbl_save = s_path_extracted_results
-ps_input_genetic_SD = s_input_genetic_SD
-pb_log = b_log
-
-
-
-
-#post_process_ewdc_output(ps_path_2outputfile = s_path_2outputfile,
-#                         ps_output_statement = s_output_statement,
-#                         ps_output_search_pattern = s_output_search_pattern,
-#                         ps_sirebreed = s_sirebreed,
-#                         ps_dambreed = s_dambreed,
-#                         ps_prodsystew = s_prodsystew,
-#                         ps_marketchannel = s_marketingchannel,
-#                         ps_path_directory2create = s_path_directory2create,
-#                         ps_scenario = s_scenario,
-#                         ps_path_tbl_save = s_path_extracted_results,
-#                         ps_input_genetic_SD = s_input_genetic_SD,
-#                         pb_log = b_log)
+post_process_ewbc_output(ps_path_2outputfile = s_path_2outputfile,
+                         ps_output_statement = s_output_statement,
+                         ps_output_search_pattern = s_output_search_pattern,
+                         ps_sirebreed = s_sirebreed,
+                         ps_dambreed = s_dambreed,
+                         ps_prodsystew = s_prodsystew,
+                         ps_marketchannel = s_marketingchannel,
+                         ps_path_directory2create = s_path_directory2create,
+                         ps_scenario = s_scenario,
+                         ps_path_tbl_save = s_path_extracted_results,
+                         ps_input_genetic_SD = s_input_genetic_SD,
+                         pb_log = b_log)
 ```
 
 
