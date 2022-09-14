@@ -456,7 +456,7 @@ get_constants_postprocess_beefOnbeef <- function(){
               ew_fat = 8,
               ew_weanwt = 9,
               ew_calving_transform = 16,
-              ew_ACCW = 15,
+              ew_ACCW = 11,
               ew_calving_transform_3 = 12,
               ew_ACCW_3 = 11,
               #for transformation of EW for calving to scale used for EBV, delta = unit of EW

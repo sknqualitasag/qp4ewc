@@ -10,7 +10,7 @@ extract_ewbc(
   ps_output_search_pattern,
   ps_sirebreed,
   ps_dambreed,
-  ps_prodsystew,
+  ps_prodsystem,
   ps_marketchannel,
   ps_path_directory2create,
   pb_log,
@@ -28,7 +28,7 @@ extract_ewbc(
 
 \item{ps_dambreed}{dam breed}
 
-\item{ps_prodsystew}{production system build up as option in ECOWEIGHT}
+\item{ps_prodsystem}{production system build up as option in ECOWEIGHT}
 
 \item{ps_marketchannel}{market channel}
 

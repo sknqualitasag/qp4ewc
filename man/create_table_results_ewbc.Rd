@@ -11,6 +11,14 @@ create_table_results_ewbc(
   pb_log,
   plogger = NULL
 )
+
+create_table_results_ewbc(
+  ps_sort_by,
+  ps_path_results_tbl,
+  ps_path_save,
+  pb_log,
+  plogger = NULL
+)
 }
 \arguments{
 \item{ps_sort_by}{parameter to determine how to sort the tables: sire_breed, dam_breed or production_system}
@@ -24,6 +32,10 @@ create_table_results_ewbc(
 \item{ps_path_tbl_save}{path to save the results: cannot be the same path as the results tables from inital post processing}
 }
 \description{
+The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+produce output file. This function processed different functions
+to prepare information to be plot.
+
 The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
 produce output file. This function processed different functions
 to prepare information to be plot.

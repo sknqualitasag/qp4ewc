@@ -48,7 +48,7 @@ s_sirebreed <- "LM"
 # Dam breed can be for beef-on-dairy: HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
 s_dambreed <- "HO"
 # Production system according to ECOWEIGHT for beef-on-dairy: 4 corresponding to dairy
-s_prodsystew <- "4"
+s_prodsystem <- "4"
 # Marketing channel can be: ConventionalBeef, ConventionalVeal, Export corresponding to intensive fattening system for beef or veal or all crossbred calves being sold as calves to the handler
 s_marketingchannel <- "ConventionalBeef"
 # Path to define from the working directory for beef-on-dairy
@@ -103,7 +103,7 @@ At the beginning of the function depending of the setting for `pb_log` and `plog
 ```{r, warning=FALSE, message=FALSE}
 pre_process_ew_input(ps_sirebreed = s_sirebreed,
                      ps_dambreed = s_dambreed,
-                     ps_prodsystew = s_prodsystew,
+                     ps_prodsystew = s_prodsystem,
                      ps_marketchannel = s_marketingchannel,
                      ps_path_directory2create = s_path_directory2create,
                      ps_input_file_literature = s_input_file_literature,
@@ -145,7 +145,7 @@ To show how `post_process_ewdc_output` is build, we made some test-file from ECO
 ```{r}
 #Path to file
 s_path_2outputfile <- system.file("extdata","ewdc","Ecoweight_output",
-                                  paste0(s_sirebreed,"_",s_dambreed, "_",s_prodsystew,"_",s_marketingchannel,"_test",collapse = ""),
+                                  paste0(s_sirebreed,"_",s_dambreed, "_",s_prodsystem,"_",s_marketingchannel,"_test",collapse = ""),
                                   "test",package = "qp4ewc")
 # Path to output statements from the results file of ewdc
 s_output_statement <-  system.file("extdata","ewdc","output_statement.txt", package = "qp4ewc")
@@ -154,22 +154,22 @@ s_output_search_pattern <- system.file("extdata","ewdc","output_searchpattern.tx
 # Path to genetic standard deviation values 
 s_input_genetic_SD <- system.file("extdata","ewdc","input_geneticSD.txt", package = "qp4ewc")
 # Scenario
-s_scenario <- paste0(s_sirebreed,"_",s_dambreed, "_",s_prodsystew,"_",s_marketingchannel,"_test",collapse = "")
+s_scenario <- paste0(s_sirebreed,"_",s_dambreed, "_",s_prodsystem,"_",s_marketingchannel,"_test",collapse = "")
 # Path to save table of result 
 s_path_extracted_results <- file.path(here::here(),"inst", "extdata", "ewdc", "results")
 ```
 
 ```{r, warning=FALSE, message=FALSE}
-post_process_ewdc_output(ps_path_2outputfile = s_path_2outputfile,
-                         ps_output_statement = s_output_statement,
-                         ps_output_search_pattern = s_output_search_pattern,
-                         ps_sirebreed = s_sirebreed,
-                         ps_dambreed = s_dambreed,
-                         ps_prodsystew = s_prodsystew,
-                         ps_marketchannel = s_marketingchannel,
-                         ps_path_directory2create = s_path_directory2create,
-                         ps_scenario = s_scenario,
-                         ps_path_tbl_save = s_path_extracted_results,
-                         ps_input_genetic_SD = s_input_genetic_SD,
-                         pb_log = b_log)
+post_process_output(ps_path_2outputfile = s_path_2outputfile,
+                    ps_output_statement = s_output_statement,
+                    ps_output_search_pattern = s_output_search_pattern,
+                    ps_sirebreed = s_sirebreed,
+                    ps_dambreed = s_dambreed,
+                    ps_prodsystem = s_prodsystem,
+                    ps_marketchannel = s_marketingchannel,
+                    ps_path_directory2create = s_path_directory2create,
+                    ps_scenario = s_scenario,
+                    ps_path_tbl_save = s_path_extracted_results,
+                    ps_input_genetic_SD = s_input_genetic_SD,
+                    pb_log = b_log)
 ```

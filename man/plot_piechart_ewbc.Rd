@@ -9,7 +9,7 @@ plot_piechart_ewbc(
   ptbl_EW_results,
   ps_traitgroup2consider,
   ps_scenario,
-  ps_prodsystew,
+  ps_prodsystem,
   pb_log,
   plogger = NULL
 )
@@ -23,7 +23,7 @@ plot_piechart_ewbc(
 
 \item{ps_scenario}{scenario name}
 
-\item{ps_prodsystew}{production system build up as option in ECOWEIGHT}
+\item{ps_prodsystem}{production system build up as option in ECOWEIGHT}
 
 \item{pb_log}{indicator whether logs should be produced}
 

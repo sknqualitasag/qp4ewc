@@ -20,25 +20,25 @@ library(qp4ewc)
 
 # Aim
 
-In this vignette, you will get more information about how to get an overview of all the scenario producted with `post_process_ewdc_output()`. 
+In this vignette, you will get more information about how to get an overview of all the scenario producted with `post_process_output()`. 
 
 # Parameters 
 
 ```{r,warning=FALSE,message=FALSE}
-#Path to files
-path_results_files <- system.file("extdata","ewdc","Ecoweight_output", package = "qp4ewc")
-# Name of results file from ewdc
+#Path to file
+path_results_files <- system.file("extdata","ewbc","Ecoweight_output", package = "qp4ewc")
+# Name of results file from ewbc
 s_results_name <- "test"
-# Path to output statements from the results file of ewdc
-s_output_statement <-  system.file("extdata","ewdc","output_statement.txt", package = "qp4ewc")
+# Path to output statements from the results file of ewbc
+s_output_statement <-  system.file("extdata","ewbc","output_statement.txt", package = "qp4ewc")
 # Path to search patterns needed to find correct results 
-s_output_search_pattern <- system.file("extdata","ewdc","output_searchpattern.txt", package = "qp4ewc")
+s_output_search_pattern <- system.file("extdata","ewbc","output_searchpattern.txt", package = "qp4ewc")
 # Path to define from the working directory for beef-on-dairy
-s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc","test","Ecoweight_output")
+s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc","test","Ecoweight_output")
 # Path to save table of result 
-s_path_extracted_results <- file.path(here::here(),"inst", "extdata", "ewdc", "results")
+s_path_extracted_results <- file.path(here::here(),"inst", "extdata", "ewbc", "results")
 # Path to genetic standard deviation values 
-s_input_genetic_SD <- system.file("extdata","ewdc","input_geneticSD.txt", package = "qp4ewc")
+s_input_genetic_SD <- system.file("extdata","ewbc","input_geneticSD.txt", package = "qp4ewc")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
 ```
@@ -78,26 +78,26 @@ for(idx in 1:nrow(results_files)){
 ### sort by sire: 
 ```{r}
 s_sort_by = "sire_breed"
-create_table_results_ewdc(ps_sort_by = s_sort_by,
-                         ps_path_results_tbl = s_path_extracted_results,
-                         ps_path_save = s_path_extracted_results,
-                         pb_log = b_log)
+create_table_results_ewbc(ps_sort_by = s_sort_by,
+                          ps_path_results_tbl = s_path_extracted_results,
+                          ps_path_save = s_path_extracted_results,
+                          pb_log = b_log)
 
 ```
 
 ### sort by dam:
 ```{r}
 s_sort_by = "dam_breed"
-create_table_results_ewdc(ps_sort_by = s_sort_by,
-                          ps_path_results_tbl = s_path_extracted_results,
-                          ps_path_save = s_path_extracted_results,
-                          pb_log = b_log)
+create_table_results_ewbc(ps_sort_by = s_sort_by,
+                         ps_path_results_tbl = s_path_extracted_results,
+                         ps_path_save = s_path_extracted_results,
+                         pb_log = b_log)
 ```
 
 ### sort by marketing channel 
 ```{r}
-s_sort_by = "marketing_channel"
-create_table_results_ewdc(ps_sort_by = s_sort_by,
+s_sort_by = "production_system"
+create_table_results_ewbc(ps_sort_by = s_sort_by,
                           ps_path_results_tbl = s_path_extracted_results,
                           ps_path_save = s_path_extracted_results,
                           pb_log = b_log)
