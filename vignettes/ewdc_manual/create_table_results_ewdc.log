@@ -1,0 +1,15 @@
+INFO  [2022-09-16 10:51:01] create_table_results_ewdc -- Starting function with parameters:
+ * ps_sort_bysire_breed
+ * ps_path_results_tbl: /home/zws/beef-production-model_Jessica/2022/GZW/prog/qp4ewc/inst/extdata/ewdc/results
+ * ps_path_save: /home/zws/beef-production-model_Jessica/2022/GZW/prog/qp4ewc/inst/extdata/ewdc/results
+
+INFO  [2022-09-16 10:51:07] create_table_results_ewdc -- Starting function with parameters:
+ * ps_sort_bydam_breed
+ * ps_path_results_tbl: /home/zws/beef-production-model_Jessica/2022/GZW/prog/qp4ewc/inst/extdata/ewdc/results
+ * ps_path_save: /home/zws/beef-production-model_Jessica/2022/GZW/prog/qp4ewc/inst/extdata/ewdc/results
+
+INFO  [2022-09-16 10:51:10] create_table_results_ewdc -- Starting function with parameters:
+ * ps_sort_bymarketing_channel
+ * ps_path_results_tbl: /home/zws/beef-production-model_Jessica/2022/GZW/prog/qp4ewc/inst/extdata/ewdc/results
+ * ps_path_save: /home/zws/beef-production-model_Jessica/2022/GZW/prog/qp4ewc/inst/extdata/ewdc/results
+

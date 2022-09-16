@@ -1375,9 +1375,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
 
 
   }
-
-  #For the transformation of calving weight genetic standard deviation to the same scale as for the raw phenotype:
-
+  
 
 }
 
@@ -2457,7 +2455,7 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
   }
 
   # ****************************************************************************
-  ## ---- Conventional-Veal ----
+  ## ---- Conventional-Veal or Export----
   # ****************************************************************************
   if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_calf | ps_marketchannel == l_constants_progeny_beefOndairy$export_calf){
 

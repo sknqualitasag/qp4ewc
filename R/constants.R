@@ -559,7 +559,13 @@ get_constants_postprocess_beefOndairy <- function(){
               idx_row_fat_adult = 6,
               idx_row_calving_ease = 7,
               idx_birth_weight = 8,
-              idx_gestation_length = 9
-              ))
+              idx_gestation_length = 9,
+              #row of each trait in the calculated EW to use in piechart
+              ew_pie_calving = 1,
+              ew_pie_calving_transform = 2,
+              ew_pie_birthwt = 3,
+              ew_pie_ACCW = 4,
+              ew_pie_fleshiness = 5,
+              ew_pie_fat = 6))
 }
 

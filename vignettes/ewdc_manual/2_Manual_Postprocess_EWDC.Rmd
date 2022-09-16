@@ -1,0 +1,93 @@
+---
+title: "Manual Postprocess EWDC"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Manual Postprocess EWDC}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(qp4ewc)
+```
+
+# Aim
+
+In this vignette, you will get more information about the construction of the main-function `post_process_output`. 
+The task of `post_process_output` is to extract from the result file of ECOWEIGHT specific for dairy cattle economic weights and population means for a specific scenario.
+
+The input-files are produced under the vignette *1_Manual_Preprocess_EWDC*, the ECOWEIGHT for dairy cattle (EWDC) has been executed. This part need to be done separately and is not part of the package qp4ewc. As soon as we have the result file of EWDC, we can run the post-processing part to extract economic weights and population means.
+
+To show how `post_process_output` is build, we made some test-file from ECOWEIGHT (EWDC).
+
+# Post-processing part
+
+The major steps of `post_process_output` are
+
+1) function `extract_ewdc()` : the task is to extract economic weights from the output-parameter-file of ECOWEIGHT beef on dairy.
+
+2) function `extract_popmean_ewdc()` : the task is to extract or calculate population mean from the output-parameter-file of ECOWEIGHT beef on dairy.
+
+3) function `combine_popmean_ewdc` : the task is to combine information extracted, this means economic weight and population means for specific traits of beef on dairy.
+
+4) function `save_csv_table_piechart_ewdc()` : the task is to save the scenario result as csv-file as well as to produce a pdf with a table and piecharts per scenario for beef on dairy. 
+## Parameters 
+
+```{r}
+# Sire breed can be: AN,AU,CH,LM,OB,SI corresponding to Angus,Aubrac, Charolais, Limousin, Original-Braunvieh, Simmental
+s_sirebreed <- "LM"
+# Dam breed can be for beef-on-dairy: HO,BS corresponding to Holstein or Brown Swiss (+Braunvieh) 
+s_dambreed <- "HO"
+# Production system according to ECOWEIGHT for beef-on-dairy: 4 corresponding to dairy
+s_prodsystem <- "4"
+# Marketing channel can be: ConventionalBeef, ConventionalVeal, Export corresponding to intensive fattening system for beef or veal or all crossbred calves being sold as calves to the handler
+s_marketingchannel <- "ConventionalBeef"
+# Path to define from the working directory for beef-on-dairy
+s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc","test","Ecoweight_output")
+# Flag to set to TRUE, if a log-file is whished
+b_log <- TRUE
+#Path to file
+s_path_2outputfile <- system.file("extdata","ewdc","Ecoweight_output",
+                                  paste0(s_sirebreed,"_",s_dambreed, "_",s_prodsystem,"_",s_marketingchannel,"_test",collapse = ""),
+                                  "test",package = "qp4ewc")
+# Path to output statements from the results file of ewdc
+s_output_statement <-  system.file("extdata","ewdc","output_statement.txt", package = "qp4ewc")
+# Path to search patterns needed to find correct results 
+s_output_search_pattern <- system.file("extdata","ewdc","output_searchpattern.txt", package = "qp4ewc")
+# Path to genetic standard deviation values 
+s_input_genetic_SD <- system.file("extdata","ewdc","input_geneticSD.txt", package = "qp4ewc")
+# Scenario
+s_scenario <- paste0(s_sirebreed,"_",s_dambreed, "_",s_prodsystem,"_",s_marketingchannel,"_test",collapse = "")
+# Path to save table of result 
+s_path_extracted_results <- file.path(here::here(),"inst", "extdata", "ewdc", "results")
+```
+
+At the beginning of the function depending of the setting for `pb_log` and `plogger`, a log-file will be created.
+
+## Run post_process_output() in RStudio
+
+```{r, warning=FALSE, message=FALSE}
+post_process_output(ps_path_2outputfile = s_path_2outputfile,
+                    ps_output_statement = s_output_statement,
+                    ps_output_search_pattern = s_output_search_pattern,
+                    ps_sirebreed = s_sirebreed,
+                    ps_dambreed = s_dambreed,
+                    ps_prodsystem = s_prodsystem,
+                    ps_marketchannel = s_marketingchannel,
+                    ps_path_directory2create = s_path_directory2create,
+                    ps_scenario = s_scenario,
+                    ps_path_tbl_save = s_path_extracted_results,
+                    ps_input_genetic_SD = s_input_genetic_SD,
+                    pb_log = b_log)
+```
+
+Now you can have a look under `s_path_extracted_results` to the result-files (.csv and .pdf).
+
+Because numerous scenari can be calculated, in the vignette *3_Manual_Overview_scenari_EWDC*, you can find an extra function how to sort the scenari by s_sirebreed or dambreed or marketing channel to facilitate the interpretation of the results.

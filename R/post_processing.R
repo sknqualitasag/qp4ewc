@@ -2510,17 +2510,17 @@ plot_piechart_ewdc <- function(ps_path_2genSD,
   
   
   ### # Take economic weights from table and transform them to same unit as EBV
-  EW_calving_score <- as.numeric(ptbl_EW_results$EW[2]) 
+  EW_calving_score <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOndairy$ew_pie_calving_transform]) 
   #need to convert kg to dt to match EBV
-  EW_fleshiness <- as.numeric(ptbl_EW_results$EW[5]) *100
-  EW_fat <- as.numeric(ptbl_EW_results$EW[6]) *100
-  EW_ACCW <- as.numeric(ptbl_EW_results$EW[4]) *100
-  EW_birth_wt <- as.numeric(ptbl_EW_results$EW[3])
+  EW_fleshiness <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOndairy$ew_pie_fleshiness]) *100
+  EW_fat <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOndairy$ew_pie_fat]) *100
+  EW_ACCW <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOndairy$ew_pie_ACCW]) *100
+  EW_birth_wt <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOndairy$ew_pie_birthwt])
   
   
   ### # Ensure the economic weight is positive using absolute value for calculation of percentages
   ### # multipling economic weight with the genetic standard deviation to compare traits
-  if(ps_marketchannel != "Export") {
+  if(ps_marketchannel != l_constants_progeny_beefOndairy$export_calf) {
     fleshiness <- abs(EW_fleshiness*genetic_SD_fleshiness)
     fat <- abs(EW_fat*genetic_SD_fat)
     carcass_weight <- abs(EW_ACCW*genetic_SD_ACCW)
@@ -2530,7 +2530,7 @@ plot_piechart_ewdc <- function(ps_path_2genSD,
   
   
   ### # Transform in percentage
-  if(ps_marketchannel != "Export") {
+  if(ps_marketchannel != l_constants_progeny_beefOndairy$export_calf) {
     #for carcass traits (not required for export)
     sum_carcass <- sum(fleshiness, fat, carcass_weight)
     fleshiness_percentage <- (fleshiness/sum_carcass)*100

@@ -1,8 +1,8 @@
 ---
-title: "Manual EWDC"
+title: "Manual Preprocess EWDC"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Manual}
+  %\VignetteIndexEntry{Manual Preprocess EWDC}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -20,25 +20,22 @@ library(qp4ewc)
 
 # Aim
 
-In this vignette, you will get more information about the construction of the main-functions `pre_process_ew_input()` and `post_process_ewdc_output`. 
-The task of `pre_process_ew_input()` is to pre-process the input-parameter-files for ECOWEIGHT specific for dairy cattle (EWDC).
-Whereas the task of `post_process_ewdc_output` is to extract from the result file of ECOWEIGHT specific for dairy cattle economic weights and population means for a specific scenario.
+In this vignette, you will get more information about the construction of the main-function `pre_process_ew_input()`. The task of `pre_process_ew_input()` is to pre-process the input-parameter-files for ECOWEIGHT specific for dairy cattle (EWDC).
 
 # Pre-processing part
 
 Major steps of `pre_process_ew_input()` are 
 
- 1) function `create_directory_scenario()` : create directory per scenario with input-parameter-file for ECOWEIGHT. Details in the vignette Explain the function create_directory_scenario().
+ 1) function `create_directory_scenario()` : the task of this function is to create a directory per scenario with template of input-parameter-file for ECOWEIGHT. 
  
- 2) Read file with input from literature research and update input-parameter-file coming from literature of ECOWEIGHT. Details in the vignette Explain the part only from literature. Next to the literature some initial parameter need to be set for EWDC (ECOWEIGHT Dairy Cattle). Further depending of the 
- * `s_sirebreed` and `s_dambreed` some values for maturity type of progeny are set, 
+ 2) Read file with input from literature research and update input-parameter-file coming from literature of ECOWEIGHT. All these inputs (minerals, straw, water, dung, veterinary cost, cost removing dead animal, cost stock-man hours, fixed cost, semen, gestation length, natural mating, culled, sold, proportion, milk, protein, fat, governmental support, dry matter, net energy, protein, amount, price) are coming from literature research. Further depending of the `s_sirebreed` and `s_dambreed` some values for maturity type of progeny are set as well as the utilisation of the calves (export, fattening). 
 
- 3) function `pre_process_ew_input_calving()` : Pre-processing the calving data for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_calving().
- 
- 4) function `pre_process_ewdc_input_progeny_data_flp()` : Pre-processing the progeny data flp for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ewdc_input_progeny_data_flp(). 
- 
- 5) function `pre_process_ew_input_carcass_data_flp()` : Pre-processing the carcass conformation, fat, prices based on flp-data for input-parameter-file of ECOWEIGHT. Details in the vignette Explain the function pre_process_ew_input_carcass_data_flp().
+ 3) function `pre_process_ew_input_calving()` : the task of this function is to pre-process the calving data (by calculating abortion rate, stillbirth rate, calving score proportions, proportion of calves died to 24 hours) to update the input-parameter-file of ECOWEIGHT. In the calving file `s_input_file_calving` are the raw calving data readed. With the `s_start_date` and `s_end_date` , the time frame of the calving data to consider is set. Most of the calculation are done for primiparous (first lactation) as well as multiparous (more than first lactation). Beef-on-dairy requires the same calculations also for purbred dairy animals (these infos are already in the raw calving data).
 
+ 4) function `pre_process_ewdc_input_progeny_data_flp()` : the task of this function is to pre-process the progeny data flp (by calculating mean birth weight, mean live weight at slaughter, slaughter age, rearing age, daily gain during rearing and fattening) to update the input-parameter-file of ECOWEIGHT for beef-on-dairy production system. In `s_input_file_flp` are the carcass and progeny raw data as well as calf export `s_input_file_calf` readed. With the `s_start_date` and `s_end_date` , the time frame of this data are set. The pedigree `s_input_file_ped` is needed to get the breed of the sire and the dam, so that we can know if we are looking to purebred beef, purebred dairy or crossbred. The pedigree informations will be merged with the flp-data-file. There are different situation depending on the `s_marketingchannel`.
+
+ 
+ 5) function `pre_process_ew_input_carcass_data_flp()` : the task of this function is to pre-process the carcass conformation, fat, prices based on different input like `s_input_file_flp`, prices to update the input-parameter-file of ECOWEIGHT. Number of classes for fleshiness and fat covering are set (here is to say that for fleshiness we consider X, XX, XXX as the same class X due to the preprocessing of the genetic evaluation for carcass traits). Frequency per slaughtercategory (cow, bull (for conventional only MT are considered), heifer, whereas bull and heifer are looked for purebred dairy and crossbred). Then a price week of Proviande is defined to set the base price.
 
 ## Parameters 
 
@@ -52,7 +49,7 @@ s_prodsystem <- "4"
 # Marketing channel can be: ConventionalBeef, ConventionalVeal, Export corresponding to intensive fattening system for beef or veal or all crossbred calves being sold as calves to the handler
 s_marketingchannel <- "ConventionalBeef"
 # Path to define from the working directory for beef-on-dairy
-s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc","test","Ecoweight_output")
+s_path_directory2create <- file.path(here::here(),"inst","extdata","ewdc","test","Preprocess_output")
 # Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
 s_input_file_literature <- system.file("extdata","ewdc",paste0("input_literature_",s_dambreed,"_",s_marketingchannel,".txt"), package = "qp4ewc")
 # Path to input from the parameter specific for the scenario. Based on this example an other file can be created with different input-value.
@@ -129,47 +126,6 @@ pre_process_ew_input(ps_sirebreed = s_sirebreed,
 ```
 
 The input-files are now ready to execute ECOWEIGHT for dairy cattle (EWDC). This need to be done separately and is not part of the package qp4ewc.
-As soon as we have the result file of ECOWEIGHT for dairy cattle, we can run the post-processing part to extract economic weights and population means.
+As soon as we have the result file of ECOWEIGHT for dairy cattle (in the vignette *2_Manual_Postprocess_EWDC* some test-file are already available to allow to proceed to the post-processing part), we can run the post-processing part to extract economic weights and population means.
 
-# Post-processing part
 
-The major step of `post_process_ewdc_output` is to read output file from ECOWEIGHT and makes single table with piechart per scenario. 
-More details to this step is in the vignette number 6.
-
-Because numerous scenari can be calculated, in the vignette number 7, you can find an extra function how to sort by sirebreed or dambreed or marketing channel to facilitate the interpretation of the results.
-
-## Parameters
-
-To show how `post_process_ewdc_output` is build, we made some test-file from ECOWEIGHT (EWDC).
-
-```{r}
-#Path to file
-s_path_2outputfile <- system.file("extdata","ewdc","Ecoweight_output",
-                                  paste0(s_sirebreed,"_",s_dambreed, "_",s_prodsystem,"_",s_marketingchannel,"_test",collapse = ""),
-                                  "test",package = "qp4ewc")
-# Path to output statements from the results file of ewdc
-s_output_statement <-  system.file("extdata","ewdc","output_statement.txt", package = "qp4ewc")
-# Path to search patterns needed to find correct results 
-s_output_search_pattern <- system.file("extdata","ewdc","output_searchpattern.txt", package = "qp4ewc")
-# Path to genetic standard deviation values 
-s_input_genetic_SD <- system.file("extdata","ewdc","input_geneticSD.txt", package = "qp4ewc")
-# Scenario
-s_scenario <- paste0(s_sirebreed,"_",s_dambreed, "_",s_prodsystem,"_",s_marketingchannel,"_test",collapse = "")
-# Path to save table of result 
-s_path_extracted_results <- file.path(here::here(),"inst", "extdata", "ewdc", "results")
-```
-
-```{r, warning=FALSE, message=FALSE}
-post_process_output(ps_path_2outputfile = s_path_2outputfile,
-                    ps_output_statement = s_output_statement,
-                    ps_output_search_pattern = s_output_search_pattern,
-                    ps_sirebreed = s_sirebreed,
-                    ps_dambreed = s_dambreed,
-                    ps_prodsystem = s_prodsystem,
-                    ps_marketchannel = s_marketingchannel,
-                    ps_path_directory2create = s_path_directory2create,
-                    ps_scenario = s_scenario,
-                    ps_path_tbl_save = s_path_extracted_results,
-                    ps_input_genetic_SD = s_input_genetic_SD,
-                    pb_log = b_log)
-```
