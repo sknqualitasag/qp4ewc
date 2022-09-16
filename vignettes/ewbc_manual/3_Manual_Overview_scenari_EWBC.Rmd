@@ -1,8 +1,8 @@
 ---
-title: "7_Overview_scenari"
+title: "Overview scenari EWBC"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{7_Overview_scenari}
+  %\VignetteIndexEntry{Overview scenari EWBC}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -20,7 +20,7 @@ library(qp4ewc)
 
 # Aim
 
-In this vignette, you will get more information about how to get an overview of all the scenario producted with `post_process_output()`. 
+In this vignette, you will get more information about how to get an overview of all the scenario produced. 
 
 # Parameters 
 
@@ -44,7 +44,7 @@ b_log <- TRUE
 ```
 
 
-## Step 1:  post-processing reads data from the results files and makes single tables per scenario.
+## Produce result files (csv and pdf) for each scenario
 
 ```{r, warning=FALSE, message=FALSE}
 results_files <- data.frame(filename = list.files(paste0(path_results_files,"/")))
@@ -73,7 +73,7 @@ for(idx in 1:nrow(results_files)){
 ```
 
 
-## Step 2: post processing combines the single scenario tables into tables sorted by the defined criteria for s_sort_by
+## Sort the scenario by a criterium and produce a table in a pdf 
 
 ### sort by sire: 
 ```{r}
@@ -104,3 +104,4 @@ create_table_results_ewbc(ps_sort_by = s_sort_by,
 
 ```
 
+Have a look under  `s_path_extracted_results `.

@@ -1513,31 +1513,32 @@ plot_piechart_ewbc <- function(ps_path_2genSD,
   gemetic_SD_fleshiness <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOnbeef$idx_row_fleshiness_Natura]
   genetic_SD_fat <- tbl_gen_SD$genetic_standarddeviation[l_constants_postprocess_beefOnbeef$idx_row_fat_Natura]
 
-
+  
+  
   ### # Take economic weights from table and transform them to same unit as EBV
   if(ps_prodsystem == as.character(l_constants_ewbc_input_beefOnbeef$prodsyst1)){
-    EW_calving_score_dir <- as.numeric(ptbl_EW_results$EW[1])
-    EW_calving_score_mat <- as.numeric(ptbl_EW_results$EW[2])
-    EW_birthwt_dir <- as.numeric(ptbl_EW_results$EW[3])
-    EW_birthwt_mat <- as.numeric(ptbl_EW_results$EW[4])
+    EW_calving_score_dir <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_calving_dir_transform])
+    EW_calving_score_mat <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_calving_mat_transform])
+    EW_birthwt_dir <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_birthwt_dir])
+    EW_birthwt_mat <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_birthwt_mat])
     #EBV is in unit dt whereas EW is in unit kg
-    EW_ACCW <- as.numeric(ptbl_EW_results$EW[5])*100
+    EW_ACCW <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_ACCW])*100
     # unit 1 score
-    EW_fleshiness <- as.numeric(ptbl_EW_results$EW[6])*100
+    EW_fleshiness <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_fleshiness])*100
     # unit 1 score
-    EW_fat <- as.numeric(ptbl_EW_results$EW[7])*100
-    EW_Weantwt_dir <- as.numeric(ptbl_EW_results$EW[8])
-    EW_Weantwt_mat <- as.numeric(ptbl_EW_results$EW[9])
+    EW_fat <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_fat])*100
+    EW_Weantwt_dir <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_weanwt_dir])
+    EW_Weantwt_mat <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_weanwt_mat])
   }else{
-    EW_calving_score_dir <- as.numeric(ptbl_EW_results$EW[1])
-    EW_birthwt_dir <- as.numeric(ptbl_EW_results$EW[3])
+    EW_calving_score_dir <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_calving_dir_transform])
+    EW_birthwt_dir <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_birthwt_dir])
     #EBV is in unit dt whereas EW is in unit kg
-    EW_ACCW <- as.numeric(ptbl_EW_results$EW[5])*100
+    EW_ACCW <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_ACCW])*100
     # unit 1 score
-    EW_fleshiness <- as.numeric(ptbl_EW_results$EW[6])*100
+    EW_fleshiness <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_fleshiness])*100
     # unit 1 score
-    EW_fat <- as.numeric(ptbl_EW_results$EW[7])*100
-    EW_Weantwt_dir <- as.numeric(ptbl_EW_results$EW[8])
+    EW_fat <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_fat])*100
+    EW_Weantwt_dir <- as.numeric(ptbl_EW_results$EW[l_constants_postprocess_beefOnbeef$ew_pie_weanwt_dir])
 }
   
 
@@ -1603,32 +1604,83 @@ plot_piechart_ewbc <- function(ps_path_2genSD,
   carcass_conformation_perc <- (fleshiness/sum_carcass)*100
   carcass_fat_percentage <- (fat/sum_carcass)*100
 
+  
   ### # Depending on the trait group to consider
-  if (ps_prodsystem == as.character(l_constants_ewbc_input_beefOnbeef$prodsyst1)){
-     if(ps_traitgroup2consider == "Carcass Traits"){
-       df <- data.frame(trait = c("Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
-                        value = c(carcass_wt_perc, carcass_conformation_perc, carcass_fat_percentage))
-     }else if(ps_traitgroup2consider == "Functional Traits"){
-       df <- data.frame(trait = c("Calving ease direct", "Calving ease maternal", "Birth weight direct", "Birth weight maternal", "Weaning weight direct", "Weaning weight maternal"),
-                        value = c(calving_dir_percentage, calving_mat_percentage, birthwt_dir_percentage, birthwt_mat_percentage, weanwt_dir_percentage, weanwt_mat_percentage))
-     }else if (ps_traitgroup2consider == "Combined") {
-       df <- data.frame(trait = c("Calving ease direct", "Calving ease maternal", "Birth weight direct", "Birth weight maternal", "Weaning weight direct", "Weaning weight maternal", "Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
-                        value = c(calving_ease_perc_dir_comb, calving_ease_perc_mat_comb, birth_weight_perc_dir_comb, birth_weight_perc_mat_comb, wean_wt_perc_dir_comb, wean_wt_perc_mat_comb, carcass_weight_percentage_comb, fleshiness_percentage_comb, fat_percentage_comb))
-     }
+  if(ps_traitgroup2consider == "Carcass Traits"){
+    df <- data.frame(trait = c(l_constants_postprocess_beefOnbeef$name_ACCW,
+                               l_constants_postprocess_beefOnbeef$name_fleshiness,
+                               l_constants_postprocess_beefOnbeef$name_fat),
+                     value = c(carcass_wt_perc, 
+                               carcass_conformation_perc, 
+                               carcass_fat_percentage))
+  }else if(ps_traitgroup2consider == "Functional Traits"){
+    
+    if (ps_prodsystem == as.character(l_constants_ewbc_input_beefOnbeef$prodsyst1)){
+       df <- data.frame(trait = c(l_constants_postprocess_beefOnbeef$name_calvease_dir,
+                                  l_constants_postprocess_beefOnbeef$name_calvease_mat,
+                                  l_constants_postprocess_beefOnbeef$name_birthwt_dir,
+                                  l_constants_postprocess_beefOnbeef$name_birthwt_mat,
+                                  l_constants_postprocess_beefOnbeef$name_weanwt_dir,
+                                  l_constants_postprocess_beefOnbeef$name_weanwt_mat),
+                        value = c(calving_dir_percentage, 
+                                  calving_mat_percentage, 
+                                  birthwt_dir_percentage, 
+                                  birthwt_mat_percentage, 
+                                  weanwt_dir_percentage, 
+                                  weanwt_mat_percentage))
+       
+    }else{
+      df <- data.frame(trait = c(l_constants_postprocess_beefOnbeef$name_calvease_dir,
+                                 l_constants_postprocess_beefOnbeef$name_birthwt_dir,
+                                 l_constants_postprocess_beefOnbeef$name_weanwt_dir),
+                       value = c(calving_dir_percentage, 
+                                 birthwt_dir_percentage, 
+                                 weanwt_dir_percentage))
+    }
+    
+  }else if (ps_traitgroup2consider == "Combined") {
+    
+    if (ps_prodsystem == as.character(l_constants_ewbc_input_beefOnbeef$prodsyst1)){
+       df <- data.frame(trait = c(l_constants_postprocess_beefOnbeef$name_calvease_dir,
+                                  l_constants_postprocess_beefOnbeef$name_calvease_mat,
+                                  l_constants_postprocess_beefOnbeef$name_birthwt_dir,
+                                  l_constants_postprocess_beefOnbeef$name_birthwt_mat,
+                                  l_constants_postprocess_beefOnbeef$name_weanwt_dir,
+                                  l_constants_postprocess_beefOnbeef$name_weanwt_mat,
+                                  l_constants_postprocess_beefOnbeef$name_ACCW,
+                                  l_constants_postprocess_beefOnbeef$name_fleshiness,
+                                  l_constants_postprocess_beefOnbeef$name_fat),
+                        value = c(calving_ease_perc_dir_comb, 
+                                  calving_ease_perc_mat_comb, 
+                                  birth_weight_perc_dir_comb, 
+                                  birth_weight_perc_mat_comb, 
+                                  wean_wt_perc_dir_comb, 
+                                  wean_wt_perc_mat_comb, 
+                                  carcass_weight_percentage_comb, 
+                                  fleshiness_percentage_comb, 
+                                  fat_percentage_comb))
+       
+    }else{
+      df <- data.frame(trait = c(l_constants_postprocess_beefOnbeef$name_calvease_dir,
+                                 l_constants_postprocess_beefOnbeef$name_birthwt_dir,
+                                 l_constants_postprocess_beefOnbeef$name_weanwt_dir,
+                                 l_constants_postprocess_beefOnbeef$name_ACCW,
+                                 l_constants_postprocess_beefOnbeef$name_fleshiness,
+                                 l_constants_postprocess_beefOnbeef$name_fat),
+                       value = c(calving_ease_perc_dir_comb, 
+                                 birth_weight_perc_dir_comb, 
+                                 wean_wt_perc_dir_comb, 
+                                 carcass_weight_percentage_comb, 
+                                 fleshiness_percentage_comb, 
+                                 fat_percentage_comb))
+      
+      
+    }
+    
+    
   }
 
-  if (ps_prodsystem == as.character(l_constants_ewbc_input_beefOnbeef$prodsyst3)){
-    if(ps_traitgroup2consider == "Carcass Traits"){
-      df <- data.frame(trait = c("Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
-                       value = c(carcass_wt_perc, carcass_conformation_perc, carcass_fat_percentage))
-    }else if(ps_traitgroup2consider == "Functional Traits"){
-      df <- data.frame(trait = c("Calving ease direct", "Birth weight direct", "Weaning weight direct"),
-                       value = c(calving_dir_percentage, birthwt_dir_percentage, weanwt_dir_percentage))
-    }else if (ps_traitgroup2consider == "Combined") {
-      df <- data.frame(trait = c("Calving ease direct", "Birth weight direct", "Weaning weight direct", "Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
-                       value = c(calving_ease_perc_dir_comb, birth_weight_perc_dir_comb, wean_wt_perc_dir_comb, carcass_weight_percentage_comb, fleshiness_percentage_comb, fat_percentage_comb))
-    }
-  }
+
 
   ### # Pie chart
   base_pie <- ggplot2::ggplot(df, aes(x = "" , y = value, fill = forcats::fct_inorder(trait))) +
@@ -1647,21 +1699,45 @@ plot_piechart_ewbc <- function(ps_path_2genSD,
           panel.border = element_blank(),
           plot.margin = margin(10, 0, 0, 50))
   if(ps_traitgroup2consider == "Carcass Traits"){
-    piechart <- base_pie + scale_fill_manual(values=c("deepskyblue3", "darkolivegreen3", "gold1"))
+    piechart <- base_pie + scale_fill_manual(values=c(l_constants_postprocess_beefOnbeef$colour_ACCW, 
+                                                      l_constants_postprocess_beefOnbeef$colour_fleshiness, 
+                                                      l_constants_postprocess_beefOnbeef$colour_fat))
   }else if(ps_traitgroup2consider == "Functional Traits"){
     if(ps_prodsystem == as.character(l_constants_ewbc_input_beefOnbeef$prodsyst1)) {
-      piechart <- base_pie + scale_fill_manual(values=c("darkorchid1","cornflowerblue", "coral1", "chocolate", "aquamarine4", "darkturquoise"))
+      piechart <- base_pie + scale_fill_manual(values=c(l_constants_postprocess_beefOnbeef$colour_calvease_dir,
+                                                        l_constants_postprocess_beefOnbeef$colour_calvease_mat,
+                                                        l_constants_postprocess_beefOnbeef$colour_birthwt_dir,
+                                                        l_constants_postprocess_beefOnbeef$colour_birthwt_mat,
+                                                        l_constants_postprocess_beefOnbeef$colour_weanwt_dir,
+                                                        l_constants_postprocess_beefOnbeef$colour_weanwt_mat))
     }else{
-      piechart <- base_pie + scale_fill_manual(values=c("darkorchid1", "coral1", "aquamarine4"))
+      piechart <- base_pie + scale_fill_manual(values=c(l_constants_postprocess_beefOnbeef$colour_calvease_dir,
+                                                        l_constants_postprocess_beefOnbeef$colour_birthwt_dir,
+                                                        l_constants_postprocess_beefOnbeef$colour_weanwt_dir))
     }
   } else if (ps_traitgroup2consider == "Combined") {
     if(ps_prodsystem == as.character(l_constants_ewbc_input_beefOnbeef$prodsyst1)) {
-      piechart <- base_pie + scale_fill_manual(values=c("darkorchid1","cornflowerblue", "coral1", "chocolate", "aquamarine4", "darkturquoise", "deepskyblue3", "darkolivegreen3", "gold1"))
+      piechart <- base_pie + scale_fill_manual(values=c(l_constants_postprocess_beefOnbeef$colour_calvease_dir,
+                                                        l_constants_postprocess_beefOnbeef$colour_calvease_mat,
+                                                        l_constants_postprocess_beefOnbeef$colour_birthwt_dir,
+                                                        l_constants_postprocess_beefOnbeef$colour_birthwt_mat,
+                                                        l_constants_postprocess_beefOnbeef$colour_weanwt_dir,
+                                                        l_constants_postprocess_beefOnbeef$colour_weanwt_mat,
+                                                        l_constants_postprocess_beefOnbeef$colour_ACCW,
+                                                        l_constants_postprocess_beefOnbeef$colour_fleshiness,
+                                                        l_constants_postprocess_beefOnbeef$colour_fat))
+      
     }else{
-    piechart <- base_pie + scale_fill_manual(values=c("darkorchid1","coral1", "aquamarine4", "deepskyblue3", "darkolivegreen3", "gold1"))
+    piechart <- base_pie + scale_fill_manual(values=c(l_constants_postprocess_beefOnbeef$colour_calvease_dir,
+                                                      l_constants_postprocess_beefOnbeef$colour_birthwt_dir,
+                                                      l_constants_postprocess_beefOnbeef$colour_weanwt_dir,
+                                                      l_constants_postprocess_beefOnbeef$colour_ACCW, 
+                                                      l_constants_postprocess_beefOnbeef$colour_fleshiness,
+                                                      l_constants_postprocess_beefOnbeef$colour_fat))
     }
   }
 }
+
 
 
 #' @title Create table of results depending on sire breed, dam breed or production system

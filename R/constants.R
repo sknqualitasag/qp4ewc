@@ -459,6 +459,16 @@ get_constants_postprocess_beefOnbeef <- function(){
               ew_ACCW = 11,
               ew_calving_transform_3 = 12,
               ew_ACCW_3 = 11,
+              #row of each trait in the calculated EW table for piechart
+              ew_pie_calving_dir_transform = 1,
+              ew_pie_calving_mat_transform = 2,
+              ew_pie_birthwt_dir = 3,
+              ew_pie_birthwt_mat = 4,
+              ew_pie_weanwt_dir = 8,
+              ew_pie_weanwt_mat = 9,
+              ew_pie_ACCW = 5,
+              ew_pie_fleshiness = 6,
+              ew_pie_fat = 7,
               #for transformation of EW for calving to scale used for EBV, delta = unit of EW
               calving_t_1 = 300,
               calving_t_2 = 200,
@@ -473,8 +483,27 @@ get_constants_postprocess_beefOnbeef <- function(){
               idx_birth_weight_direct = 11,
               idx_birth_weight_maternal = 13,
               weaning_direct = 17,
-              weaning_maternal = 18
-  ))
+              weaning_maternal = 18,
+              # colour per traits for piechart
+              colour_calvease_dir = "darkorchid1",
+              colour_calvease_mat = "plum2",
+              colour_birthwt_dir = "chocolate4",
+              colour_birthwt_mat = "tan",
+              colour_weanwt_dir = "aquamarine4",
+              colour_weanwt_mat = "mediumaquamarine",
+              colour_ACCW = "deepskyblue3",
+              colour_fleshiness = "darkolivegreen3",
+              colour_fat = "gold1",
+              # name each trait for piechart
+              name_calvease_dir = "Calving ease direct",
+              name_calvease_mat = "Calving ease maternal",
+              name_birthwt_dir = "Birth weight direct",
+              name_birthwt_mat = "Birth weight maternal",
+              name_weanwt_dir = "Weaning weight direct",
+              name_weanwt_mat = "Weaning weight maternal",
+              name_ACCW = "Age corrected slaughter weight",
+              name_fleshiness = "Carcass conformation",
+              name_fat = "Carcass fat"))
 }
 
 
