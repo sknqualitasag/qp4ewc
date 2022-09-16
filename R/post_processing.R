@@ -2628,14 +2628,28 @@ plot_piechart_ewdc <- function(ps_path_2genSD,
   
   ### # Depending on the trait group to consider
   if(ps_traitgroup2consider == "Carcass Traits"){
-    df <- data.frame(trait = c("Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
-                     value = c(carcass_weight_percentage, fleshiness_percentage, fat_percentage))
+    df <- data.frame(trait = c(l_constants_postprocess_beefOndairy$name_ACCW,
+                               l_constants_postprocess_beefOndairy$name_fleshiness,
+                               l_constants_postprocess_beefOndairy$name_fat),
+                     value = c(carcass_weight_percentage, 
+                               fleshiness_percentage, 
+                               fat_percentage))
   }else if(ps_traitgroup2consider == "Functional Traits"){
-    df <- data.frame(trait = c("Calving ease", "Birth weight"),
-                     value = c(calving_ease_perc, birth_weight_perc))
+    df <- data.frame(trait = c(l_constants_postprocess_beefOndairy$name_calvease_dir,
+                               l_constants_postprocess_beefOndairy$name_birthwt_dir),
+                     value = c(calving_ease_perc, 
+                               birth_weight_perc))
   }else if (ps_traitgroup2consider == "Combined") {
-    df <- data.frame(trait = c("Calving ease", "Birth weight", "Age corrected slaughter weight","Carcass conformation", "Carcass fat"),
-                     value = c(calving_ease_perc_comb, birth_weight_perc_comb, carcass_weight_percentage_comb, fleshiness_percentage_comb, fat_percentage_comb))
+    df <- data.frame(trait = c(l_constants_postprocess_beefOndairy$name_calvease_dir,
+                               l_constants_postprocess_beefOndairy$name_birthwt_dir,
+                               l_constants_postprocess_beefOndairy$name_ACCW,
+                               l_constants_postprocess_beefOndairy$name_fleshiness,
+                               l_constants_postprocess_beefOndairy$name_fat),
+                     value = c(calving_ease_perc_comb,
+                               birth_weight_perc_comb, 
+                               carcass_weight_percentage_comb, 
+                               fleshiness_percentage_comb, 
+                               fat_percentage_comb))
   }
   
   ### # Pie chart
@@ -2656,11 +2670,18 @@ plot_piechart_ewdc <- function(ps_path_2genSD,
           plot.margin = margin(10, 0, 0, 50))
   
   if(ps_traitgroup2consider == "Carcass Traits"){
-    piechart <- base_pie + scale_fill_manual(values=c("deepskyblue3", "darkolivegreen3", "gold1"))
+    piechart <- base_pie + scale_fill_manual(values=c(l_constants_postprocess_beefOndairy$colour_ACCW,
+                                                      l_constants_postprocess_beefOndairy$colour_fleshiness,
+                                                      l_constants_postprocess_beefOndairy$colour_fat))
   }else if(ps_traitgroup2consider == "Functional Traits"){
-    piechart <- base_pie + scale_fill_manual(values=c("darkorchid1","coral1"))
+    piechart <- base_pie + scale_fill_manual(values=c(l_constants_postprocess_beefOndairy$colour_calvease_dir,
+                                                      l_constants_postprocess_beefOndairy$colour_birthwt_dir))
   } else if (ps_traitgroup2consider == "Combined") {
-    piechart <- base_pie + scale_fill_manual(values=c("darkorchid1","coral1", "deepskyblue3", "darkolivegreen3", "gold1"))
+    piechart <- base_pie + scale_fill_manual(values=c(l_constants_postprocess_beefOndairy$colour_calvease_dir,
+                                                      l_constants_postprocess_beefOndairy$colour_birthwt_dir,
+                                                      l_constants_postprocess_beefOndairy$colour_ACCW,
+                                                      l_constants_postprocess_beefOndairy$colour_fleshiness,
+                                                      l_constants_postprocess_beefOndairy$colour_fat))
   }
   
   

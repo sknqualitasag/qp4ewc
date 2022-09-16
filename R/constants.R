@@ -595,6 +595,20 @@ get_constants_postprocess_beefOndairy <- function(){
               ew_pie_birthwt = 3,
               ew_pie_ACCW = 4,
               ew_pie_fleshiness = 5,
-              ew_pie_fat = 6))
+              ew_pie_fat = 6,
+              # colour per traits for piechart
+              colour_calvease_dir = "darkorchid1",
+              colour_birthwt_dir = "chocolate4",
+              colour_ACCW = "deepskyblue3",
+              colour_fleshiness = "darkolivegreen3",
+              colour_fat = "gold1",
+              colour_gestlength = "maroon",
+              # name each trait for piechart
+              name_calvease_dir = "Calving ease direct",
+              name_birthwt_dir = "Birth weight direct",
+              name_ACCW = "Age corrected slaughter weight",
+              name_fleshiness = "Carcass conformation",
+              name_fat = "Carcass fat",
+              name_gestlength = "Gestation length"))
 }
 
