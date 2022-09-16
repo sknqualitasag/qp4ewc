@@ -1,0 +1,29 @@
+Trait;SearchPattern;IndexOffset
+"EWCalvingPerformance";"Mean score of calving performance";2
+"EWLossAtBirth";"Losses of calves at calving";1
+"EWLoss48hours";"Losses of calves from 48 hours";3
+"EWBirthWeightCalves";"Birth weight of calves";1
+"EWDailyGainRearing";"Daily gain of calves from birth to the end of rearing period";2
+"EWAverageDailyGainFattening";"Daily gain in fattening";1
+"EWDressingPercentage";"Dressing percentage";1
+"EWFleshiness";"Mean class of fleshiness";2
+"EWFat";"Mean class of fat covering";2
+"Length_fattening_male";"Length of fattening period for which the feed costs are calculated";1
+"Length_fattening_female";"Length of fattening period for which the feed costs are calculated";1
+"Fat_bulls";"Mean class of fat covering for bulls";0
+"Fat_heifers";"Mean class of fat covering for heifers";0
+"Fleshiness_bulls";"Mean class of fleshiness for bulls";0
+"Fleshiness_heifers";"Mean class of fleshiness for heifers";0
+"Calving_score_F";"Mean score of calving performance (dairy and crossbred female calf)";1
+"Calving_score_M";"Mean score of calving performance (dairy and crossbred male calf)";1
+"Birth_wt_female";"Weight of female calves at birth";1
+"Birth_wt_male";"Weight of male calves at birth";1
+"Slaughter_wt_beef_bulls";"Slaughter weight of pure-bred beef bulls at the end of fattening";1
+"Slaughter_wt_beef_heifers";"Slaughter weight of pure-bred beef heifers at the end of fattening";1
+"Slaughter_wt_dairy_bulls";"Slaughter weight of pure-bred dairy heifers at the end of fattening";1
+"Slaughter_wt_dairy_heifers";"Slaughter weight of pure-bred dairy bulls at the end of fattening";1
+"Gestation_length";"Gestation length";1
+"ADG_fattening_heifer";"Daily gain of heifers in fattening";1
+"ADG_fattening_bull";"Daily gain of bulls in fattening";1
+"Rearing_wt_m";"Average weight of male calves at the end of the rearing period (kg):";1
+"Rearing_wt_f";"Average weight of female calves at the end of the rearing period (kg):";1

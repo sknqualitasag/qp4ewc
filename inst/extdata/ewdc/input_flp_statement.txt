@@ -24,6 +24,6 @@ INPUT23.TXT;"Slaughter weight of pure-bred beef castrates at the end of fattenin
 INPUT23.TXT;"Slaughter weight of pure-bred dairy heifers at the end of fattening";"kg";
 INPUT23.TXT;"Slaughter weight of pure-bred dairy bulls at the end of fattening";"kg";
 INPUT23.TXT;"Slaughter weight of pure-bred dairy castrates at the end of fattening";"kg";
-INPUT21.TXT;"Price of a female reared calf for sale (fill in if the animals are paid per kg live weight, otherwise insert two zeros)";"MU/kg live weight";
-INPUT21.TXT;"Price of a male reared calf for sale (fill in if the animals are paid per kg live weight, otherwise insert two zeros)";"MU/kg live weight";
+INPUT21.TXT;"Price of a female reared calf for sale (fill in if the animals";"MU/kg live weight";
+INPUT21.TXT;"Price of a male reared calf for sale (fill in if the animals";"MU/kg live weight";
 INPUT15.TXT;"Proportion of male calves alive at 48 hours after birth that are determined";" ";

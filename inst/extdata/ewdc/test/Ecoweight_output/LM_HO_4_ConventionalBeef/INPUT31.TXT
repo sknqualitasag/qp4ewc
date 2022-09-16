@@ -1,0 +1,39 @@
+/* This file is necessary for program EWDC. It contains input parameters 
+   for calculating relative economic weights. 
+   In this file you are asked to choose between two alternative definitions of
+   the same trait. Always two trait definitions are presented with a number in
+   parantheses. Type the number of the definition you prefer. 
+   The appropriate input is skipped if the trait is not considered in the
+   calculation.  
+   All input data are arranged in the following way 
+        each parameter takes three parts,
+        the parameter value is given in the first row, 
+        the string expression in the second part describes the parameter and
+	the last string in the third part contains the units of the parameter.
+	If there is no unit given, [SPACE] is written enclosed into quotation
+	marks. */
+32
+"Select (32) milk fat in per cent or (33) milk fat in kg per 305 days of lactation" 
+" "
+34
+"Select (34) milk protein in per cent or (35) milk protein in kg per 305 days 
+of lactation"
+" "
+11
+"Select (11) cow losses in per cent or (29) productive lifetime of cows in years" 
+" " 
+/* The next 2 inputs are always read. Traits 40, 48, 49 and 41 cannot be chosen
+if there is a connection between the dairy system and beef Production
+System 3. */ 
+12
+"Select (12) conception rate of heifers or (40) interval between 1st mating and conception in heifers
+or (48) age at first calving or (49) insemination index of heifers (chose only 12 if there is
+connection between dairy system and beef production system 3, otherwise the program will make this
+for you and will calculate only the trait 12)"
+" "
+13
+"Select (13) conception rate of cows or (41) calving interval in cows or (50) insemination index
+of cows or (51) service period (chose only 13 if there is connection between dairy system and
+beef production system 3, otherwise the program will make this for you and will calculate
+only the trait 13)"
+" " 

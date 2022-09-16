@@ -109,7 +109,7 @@ get_result_value <- function(pvec_ecow_result_2extract,
                     paste0('Starting function with parameters:\n * pvec_ecow_result_2extract \n',
                            ' * ps_statement2search \n',
                            ' * ps_line2get: ',ps_line2get,'\n',
-                           ' * ps_splitby: ',ps_splitby))
+                           ' * ps_splitby: ',ps_splitby,'\n'))
   }
 
 
@@ -117,8 +117,7 @@ get_result_value <- function(pvec_ecow_result_2extract,
   n_cur_trait_idx <- grep(pattern = ps_statement2search, pvec_ecow_result_2extract, fixed = TRUE) + ps_line2get
   s_cur_result <- pvec_ecow_result_2extract[n_cur_trait_idx]
   ### # Get the value
-  vec_cur_result <- unlist(strsplit(s_cur_result, split = ps_splitby, fixed = TRUE))
-
+  vec_cur_result <- unlist(strsplit(s_cur_result, split = ps_splitby, fixed = FALSE))
 
   return(vec_cur_result)
 

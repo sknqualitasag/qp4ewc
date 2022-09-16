@@ -1,0 +1,1731 @@
+******************************************
+Program EWBC, version 3.0.4, December 2013 
+******************************************
+ 
+---------------------------------------------------------
+The program is part of the program package ECOWEIGHT, 
+version 6.0.4.
+
+Copyright: 
+  
+  Jochen Wolf, Marie Wolfova, Emil Krupa
+  Institute of Animal Science
+  P.O.Box 1, CZ 10401 Prague Uhrineves, Czech Republic
+  E-mail: j-m-wolf@gmx.de (Jochen Wolf and Marie Wolfova),
+    krupa.emil@vuzv.cz
+---------------------------------------------------------
+
+Remark: The abbreviation MU is used for monetary units. If you want the
+  program to print out directly a concrete monetary unit as dollars or
+  euro use a text editor to globally replace MU by the abbreviation of the
+  desired monetary unit in the file TEXT_OUT.TXT.
+
+1 System variables (read from PARA.TXT): 
+----------------------------------------
+Comment:
+    Calculation for example data, December 2013
+Production System
+  (1 Closed purebred beef cow herd with pasture system producing males and
+     females for replacement
+   2 Closed crossbred cow herd with pasture system producing its own female 
+     replacement but buying the breeding bulls
+   3 Open beef x dairy or beef x dual purpose crossbred cow herd with pasture
+     system with purchase of cow and bull replacement):  3
+Fattening
+  (0 No fattening at all
+   1 Intensive fattening of bulls, heifers or castrates
+   2 Intensive fattening of bulls, extensive fattening of heifers and castrates
+     on pasture):  1
+Housing technology in fattening
+  (1 Bind technology
+   2 Free technology
+   3 Pasture):  2
+Maturity type of progeny
+  (1 Early
+   2 Medium
+   3 Late):  1
+Way of calculating parameters for lactation curve
+  (1 The values are read from the input file INPUT20.TXT
+   2 The parameters are calculated in the program):  2
+Way of calculating feed cost
+  (1 on the base of energy and protein content in feed rations
+   2 only on the base of energy content in feed):  1
+Mating type for heifers
+  (1 Artificial insemination is used in the first oestrus within
+     one mating period.
+   2 Natural mating is used throughout.):  2
+Mating type for cows
+  (Same options as above):  2
+Sex for which gene flow is calculated
+  (1 Sires
+   2 Dams):  1
+Number of reproductive cycles (should be in the range from 4
+  to 20. If you want to use a value greater than 20, change the parameter 
+  L in the program and recompile the program):  11
+Genetic standard deviations of the traits
+  (1: are not known or are not intended to be used for the calculation of
+      relative economic weights,
+   2: are known for the direct and maternal components of the traits and 
+      given in INPUT35.TXT - this option must not be used for Production
+      System 3,
+   3: are not differentiated between direct and maternal components and 
+      given in INPUT36.TXT).:  3
+Calculation of economic value for residual dry matter intake of heifers in
+   rearing
+  (0: no
+   1: yes):  1
+Calculation of economic value for residual dry matter intake of animals in
+   fattening
+  (0: no
+   1: yes):  0
+Calculation of economic value for residual dry matter intake of adult animals
+  (0: no
+   1: yes):  1
+
+
+2 Data from input files
+-----------------------
+
+2.1 Data from file INPUT01.TXT
+------------------------------
+
+Number of different feeding seasons during the year (e.g. summer and
+winter feeding periods, dry and wet feeding periods). Insert 1 if there 
+is only pasture during the whole year
+   ( ):  2 
+Code of the feeding season on January 1st. Insert 1 if there 
+is only pasture during the whole year
+   ( ):  1 
+Number of changes betweem feeding seasons during the year (set zero if animals
+are pastured during the whole year and only one feeding season is defined in 
+the first input)
+   ( ):  2 
+Start date of a new feeding season (e.g. start of pasture in temperate climate)
+   (year month day): 0 4 25
+   (Days from January 1st of year zero): 115
+Code of the new feeding season
+   ( ):  2 
+Start date of a new feeding season (e.g. end of pasture in temperate climate)
+   (year month day): 0 12 6
+   (Days from January 1st of year zero): 340
+Code of the new feeding season
+   ( ):  1 
+Code for housing technology in feeding seasons with code 1 (for cows, heifers and
+animals in extensive fattening): insert 1 for bind technology, 2 for free technology and 3 for pasture
+   ( ):  2 
+Code for housing technology in feeding seasons with code 2 (for cows, heifers and
+animals in extensive fattening): insert 1 for bind technology, 2 for free technology and 3 for pasture
+   ( ):  3 
+Date of starting the mating period
+   (year month day): 1 4 7
+   (Days from January 1st of year zero): 462
+Date of ending the first part of the mating period (with AI) covering the first possibility of a female to conceive
+   (year month day): 1 4 28
+   (Days from January 1st of year zero): 483
+Date of starting the second part of the mating period
+   (year month day): 1 4 29
+   (Days from January 1st of year zero): 484
+Date of ending the second part the mating period covering the second possibility of females to conceive
+   (year month day): 1 5 20
+   (Days from January 1st of year zero): 505
+Date of starting the third part of the mating period
+   (year month day): 1 5 21
+   (Days from January 1st of year zero): 506
+Date of ending the third part of the mating period (end of the mating period) covering the third possibility of females to conceive
+   (year month day): 1 6 11
+   (Days from January 1st of year zero): 527
+Date of weaning calves
+   (year month day): 1 11 30
+   (Days from January 1st of year zero): 699
+
+2.2 Data from file INPUT02.TXT
+------------------------------
+
+Number of classes for calving performance
+   ( ):  4 
+For defining dystocia give the lowest number of the class of calving
+performance which is considered to be dystocia. For example, if there are
+classes 1 to 5 and classes 3 to 5 will be considered as dystocia your input will
+be 3.
+   ( ):  3 
+Vector of cow losses within reproductive cycles 1 to LL as proportion of cows entered the reproduction cycle as pregnant cows
+   ( ):  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.010
+Vector of cow losses within reproductive cycles 2 to LL as proportion of cows entered the reproduction cycle as barren cows
+   ( ):  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.010
+Vector of cows culled within reproductive cycles 1 to LL for health problems other than dystocia as proportion of cows which entered these cycles as pregnant cows. Cows culled for failure to conceive must not be included.
+   ( ):  0.010  0.010  0.010  0.012  0.012  0.012  0.015  0.018  0.018  0.020  0.020
+Vector of cows culled within reproductive cycles 2 to LL for health problems other than dystocia as proportion of cows which entered these cycles as barren cows. Cows culled for failure to conceive must not be included.
+   ( ):  0.010  0.010  0.010  0.011  0.011  0.012  0.012  0.015  0.015  0.017
+Vector of barren cows which stayed in the herd for the next mating period as proportion of all barren cows 
+in reproductive cycles 1 to LL-1 that entered these cycles as pregnant cows
+   ( ):  1.000  0.500  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+Vector of barren cows which stayed in the herd for the next mating period as proportion of all barren cows
+in reproductive cycles 2 to LL-1 that entered these cycles as barren cows
+   ( ):  0.300  0.200  0.100  0.000  0.000  0.000  0.000  0.000  0.000
+Vector of probabilities of abortion for cows conceived in reproductive cycles 1 to LL
+   ( ):  0.004  0.002  0.002  0.002  0.002  0.002  0.002  0.002  0.002  0.002  0.000
+Vector of still born calves after dystocia as proportion of cows having dystocia in reproductive cycles 1 to LL
+   ( ):  0.014  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.000
+Vector of still born calves after easy calving as proportion of cows having easy calving in reproductive cycles 1 to LL
+   ( ):  0.001  0.001  0.001  0.001  0.001  0.001  0.001  0.001  0.001  0.001  0.000
+Vector of calves died to 48 hours as proportion of calves born alive after dystocia in reproductive cycles 1 to LL
+   ( ):  0.308  0.228  0.228  0.228  0.228  0.228  0.228  0.228  0.228  0.228  0.000
+Vector of calves died to 48 hours as proportion of calves born alive after easy calving in reproductive cycles 1 to LL
+   ( ):  0.041  0.020  0.020  0.020  0.020  0.020  0.020  0.020  0.020  0.020  0.000
+Vector of probabilities of calving score 2 when female is born in reproductive cycles 1 to LL
+   ( ):  0.156  0.062  0.062  0.062  0.062  0.062  0.062  0.062  0.062  0.062  0.000
+Vector of probabilities of calving score 3 when female is born in reproductive cycles 1 to LL
+   ( ):  0.033  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.010  0.000
+Vector of probabilities of calving score 4 when female is born in reproductive cycles 1 to LL
+   ( ):  0.001  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+Vector of probabilities of calving score 2 when male is born in reproductive cycles 1 to LL
+   ( ):  0.224  0.084  0.084  0.084  0.084  0.084  0.084  0.084  0.084  0.084  0.000
+Vector of probabilities of calving score 3 when male is born in reproductive cycles 1 to LL
+   ( ):  0.071  0.018  0.018  0.018  0.018  0.018  0.018  0.018  0.018  0.018  0.000
+Vector of probabilities of calving score 4 when male is born in reproductive cycles 1 to LL
+   ( ):  0.005  0.001  0.001  0.001  0.001  0.001  0.001  0.001  0.001  0.001  0.000
+
+2.3 Data from file INPUT03.TXT
+------------------------------
+
+Conception rate of heifers in the 1st oestrus during the first part of the mating period expressed as proportion of heifers mated in this oestrus
+   ( ):      0.8000 
+Conception rate of heifers in the 2nd oestrus during the second part of the mating period expressed as proportion of heifers not being pregnant after the 1st oestrus
+   ( ):      0.6700 
+Conception rate of heifers in the 3rd oestrus during the third part of the mating period expressed as proportion of heifers not being pregnant after the 2nd oestrus
+   ( ):      0.5500 
+Conception rate of cows in the 1st oestrus during the first part of the mating period for cows not having dystocia, averaged over reproductive cycles 1 to LL-1 and expressed as proportion of cows mated in this oestrus
+   ( ):      0.7300 
+Conception rate of cows in the 2nd oestrus during the second part of the mating period for cows not having dystocia, averaged over reproductive cycles 1 to LL-1 and expressed as proportion of cows not being pregnant after the 1st oestrus
+   ( ):      0.5800 
+Conception rate of cows in the 3rd oestrus during the third part of the mating period for cows not having dystocia, averaged over reproductive cycles 1 to LL-1 and expressed as proportion of cows not being pregnant after the 2nd oestrus
+   ( ):      0.5000 
+Length of pregnancy
+   (days):    289.0000 
+Decrease in conception rate of cows after having dystocia, averaged over reproductive cycles 1 to LL
+   ( ):      0.1000 
+Number of cows per bull for natural mating
+   ( ):     20.0000 
+Number of re-inseminations per oestrus (when applying artificial insemination
+   ( ):      0.2000 
+Average length of the interval between calving and the beginning of the mating period
+   (days):     35.0000 
+Average number of days a cow culled after dystocia stays in
+the herd from previous calving
+   (days):  40 
+Average number of days for cows from weaning a calf until culling for
+failure to conceive
+   (days):  53 
+Fat content in milk
+   (%):      4.0000 
+Protein content in milk
+   (%):      3.2000 
+Cow weight after second calving
+   (kg):    646.0000 
+Mature weight of cows (= cow weight after 3rd calving)
+   (kg):    656.0000 
+Weight gain for pregnancy (= loss of cow weight after calving) in reproductive cycles 1 to LL
+   (kg):     60.0000 
+Dressing proportion of cows
+   ( ):      0.5600 
+Culling rate of cows after dystocia averaged over reproductive cycles 1 to LL
+   ( ):      0.0500 
+Losses of calves from 48 hours after calving to weaning averaged over reproductive cycles and sexes
+   ( ):      0.0020 
+Losses of feed through wasting in feeding season with code 1
+   (%):     10.0000 
+Losses of feed through wasting in feeding season with code 2
+   (%):     20.0000 
+Amount of dry matter produced per ha pasture
+   (kg/ha):   7000.0000 
+Dry matter per kg feed ration in feeding season with code 1 for suckling calves (without milk)
+   (kg/kg):      0.7000 
+Dry matter per kg feed ration in feeding season with code 2 for suckling calves (without milk)
+   (kg/kg):      0.2300 
+Dry matter per kg feed ration in feeding season with code 1 for cows
+   (kg/kg):      0.5700 
+Dry matter per kg feed ration in feeding season with code 2 for cows
+   (kg/kg):      0.2400 
+Residual dry matter intake of cows from feed ration of code 1
+(difference between the daily actual and predicted dry matter intake)
+   (kg/day):      0.0000 
+Residual dry matter intake of cows from feed ration of code 2
+   (kg/day):      0.0000 
+Net energy per kg dry matter of feed ration of code 1 for cows
+   (MJ NE/kg dry matter):      5.5000 
+Net energy per kg dry matter of feed ration of code 2 for cows
+   (MJ NE/kg dry matter):      6.1000 
+Net energy per kg dry matter of feed ration (without milk) for suckling calves in feeding season with code 1
+   (MJ NE/kg dry matter):      5.2800 
+Net energy per kg dry matter of feed ration (without milk) for suckling calves in feeding season with code 2
+   (MJ NE/kg dry matter):      5.5600 
+Protein per kg dry matter of feed ration of code 1 for cows
+   (g PDI/kg):     78.3000 
+Protein per kg dry matter of feed ration of code 2 for cows
+   (g PDI/kg):     98.2000 
+Protein per kg dry matter of feed ration (without milk) for suckling calves in feeding season with code 1
+   (g PDI/kg):     76.1400 
+Protein per kg dry matter of feed ration (without milk) for suckling calves in feeding season with code 2
+   (g PDI/kg):     71.5600 
+Adjustment factor for breed energy requirement for maintenance - dry cows
+   ( ):      1.0000 
+Adjustment factor for breed energy requirement for maintenance - lactating cows
+   ( ):      1.2000 
+Adjustment factor for energy requirement for maintenance according to technology - pasture
+   ( ):      1.2000 
+Adjustment factor for energy requirement for maintenance according to technology - bind technology
+   ( ):      1.0000 
+Adjustment factor for energy requirement for maintenance according to technology - free technology
+   ( ):      1.1000 
+Amount of minerals per cow (including calf) and day
+   (kg/day):      0.3000 
+Amount of water per cow (including calf) and day
+   (l/day):     60.0000 
+Amount of straw per cow (including calf) and day during feeding season with code 1
+   (kg/day):      3.5000 
+Amount of straw per cow (including calf) and day during feeding season with code 2
+   (kg/day):      0.0000 
+Amount of dung per cow (including calf) and day during feeding season with code 1
+   (kg/day):      0.0000 
+Amount of dung per cow (including calf) and day during feeding season with code 2
+   (kg/day):      0.0000 
+Price per portion of semen for AI (including service)
+   (MU/portion):     50.0000 
+Price per re-insemination (for semen portion and service)
+   (MU/re-insemination):     50.0000 
+Price per kg fresh matter of feed ration of code 1 for cows
+   (MU/kg):      0.0900 
+Price per kg fresh matter of feed ration of code 2 for cows
+   (MU/kg):      0.0200 
+Price per kg fresh matter of feed ration for suckling calves (without milk) in feeding season with code 1
+   (MU/kg):      0.1200 
+Price per kg fresh matter of feed ration for suckling calves (without milk) in feeding season with code 2
+   (MU/kg):      0.0400 
+Price per kg dung
+   (MU/kg):      0.0000 
+Price per kg minerals for cows
+   (MU/kg):      1.6000 
+Price per kg minerals for replacement heifers
+   (MU/kg):      1.6000 
+Price per kg straw
+   (MU/kg):      0.1200 
+Price per l water
+   (MU/l):      0.0000 
+Price for sold female weaned calves
+   (MU/kg live weight):     52.0000 
+Price for sold male weaned calves
+   (MU/kg live weight):     60.0000 
+Price per kg carcass of cows in the base class for fleshiness and fat covering
+   (MU/kg):      9.5500 
+Ratio of price per kg carcass of cows involuntarily culled to the price per kg carcass of cows voluntarily culled
+   ( ):      0.8000 
+Governmental financial support per weaned calf
+   (MU/animal):    120.0000 
+Governmental financial support per performance-tested cow and year
+   (MU/cow and year):    220.0000 
+Additional governmental financial support per cow and year
+   (MU/cow and year):   2000.0000 
+Governmental financial support per culled cow
+   (MU/cow):      0.0000 
+Governmental financial support per exported male calf
+   (MU/animal):      0.0000 
+Fraction of performance-tested cows
+   ( ):      0.0000 
+Cost for removing and rendering a dead cow
+   (MU/animal):    200.0000 
+Cost for removing and rendering a dead young animal
+   (MU/animal):      0.0000 
+Cost for veterinary treatment per cow and reproductive cycle (including calf to weaning)
+   (MU/reproductive cycle):    206.8000 
+Veterinary cost connected with calving score 1
+   (MU/calving):      0.0000 
+Veterinary cost connected with calving score 2
+   (MU/calving):      0.0000 
+Veterinary cost connected with calving score 3
+   (MU/calving):    300.0000 
+Veterinary cost connected with calving score 4
+   (MU/calving):   1000.0000 
+Stock-man hours connected with calving score 1
+   (h):      0.0000 
+Stock-man hours connected with calving score 2
+   (h):      0.0000 
+Stock-man hours connected with calving score 3
+   (h):      3.0000 
+Stock-man hours connected with calving score 4
+   (h):      5.0000 
+Cost per stock-man hour (needed for dystocia cost)
+   (MU/h):     11.5000 
+Fixed cost per cow and day (including calf to weaning)
+   (MU/day):     13.3600 
+Discount rate
+   ( ):      0.0100 
+Barren heifers culled after their 1st mating period expressed as proportion of heifers not being pregnant in their 1st mating period
+   ( ):      0.0000 
+Barren heifers culled after their 2nd mating period expressed as proportion of heifers not being pregnant in their 2nd mating period
+   ( ):      0.0000 
+Female calves sold at weaning expressed as proportion of surplus female calves
+   ( ):      0.0000 
+Male calves sold at weaning expressed as proportion of male weaned calves
+   ( ):      0.0000 
+Fattened castrates expressed as proportion of male calves determined for fattening
+   ( ):      0.0000 
+Proportion of surplus female calves for fattening
+   ( ):      1.0000 
+
+2.4 Data from file INPUT06.TXT
+------------------------------
+
+Birth weight of female calves
+   (kg):     38.0649 
+Birth weight of male calves
+   (kg):     39.6368 
+Age of calves at first weighing (first control)	
+   (days):    300.0000 
+Weight of female calves at first weighing
+   (kg):    343.0500 
+Weight of male calves at first weighing
+   (kg):    376.8900 
+Age of calves at second weighing (second control)
+   (days):    302.0000 
+Weight of female calves at second weighing
+   (kg):    344.6200 
+Weight of male calves at second weighing
+   (kg):    378.6200 
+Age of calves at third weighing (third control)
+   (days):    304.0000 
+Weight of female calves at third weighing
+   (kg):    346.1900 
+Weight of male calves at third weighing
+   (kg):    380.3500 
+Mature weight of bulls used in the herd
+   (kg):   1011.0000 
+
+2.5 Data from file INPUT08.TXT
+------------------------------
+
+Daily gain of bulls in intensive fattening
+   (kg/day):      0.8641 
+Live weight of bulls at slaughter in intensive fattening
+   (kg):    384.0000 
+Dressing proportion of bulls
+   ( ):      0.5800 
+Dressing proportion of heifers
+   ( ):      0.5600 
+Dressing proportion of bulls not reaching target slaughter weight as proportion of dressing proportion of bulls reaching target slaughter weight
+   ( ):      0.8000 
+Number of fattened bulls slaughtered before reaching target slaughter weight expressed as proportion of the total number of fattened bulls
+   ( ):      0.0500 
+Losses of bulls in intensive fattening
+   ( ):      0.0100 
+Amount of water per day and animal in intensive fattening
+   (l/day):     40.0000 
+Amount of dung per animal and day in intensive fattening
+   (kg/day):      0.0000 
+Amount of straw per animal and day in intensive fattening
+   (kg/day):      3.5000 
+Dry matter per kg feed ration for fattened bulls
+   (kg/kg):      0.4400 
+Net energy content per kg dry matter of feed ration for fattened bulls
+   (MJ NE/kg dry matter):      6.7600 
+Protein content per kg dry matter of feed ration for fattened bulls
+   (g PDI/kg):     86.0000 
+Price per kg fresh matter of feed ration for fattened bulls
+   (MU/kg):      0.1800 
+Losses of feed through wasting in intensive fattening and in the test of bulls
+   (%):     10.0000 
+Price per kg carcass of bulls in the base class
+   (MU/kg):     12.2500 
+Price per kg carcass of heifers for the base class
+   (MU/kg):     12.2500 
+Coefficient for price decrease for bulls involuntarily culled (ratio between the price per kg carcass of involuntarily culled bulls and the price per kg carcass of bulls that reached target slaughter weight)
+   ( ):      0.8000 
+Cost for veterinary treatment per animal in intensive fattening
+   (MU/animal):     60.4000 
+Fixed cost per animal and day in intensive fattening
+   (MU/day):      4.1100 
+Number of classes for fleshiness (maximum 20)
+   ( ):  9 
+Number of classes for fat covering (maximum 20)
+   ( ):  5 
+Governmental support per intensively fattened bull
+   (MU/animal):    280.0000 
+
+2.6 Data from file INPUT10.TXT
+------------------------------
+
+Daily gain of heifers in intensive fattening
+   (kg/day):      0.7850 
+Live weight of heifers at slaughter
+   (kg):    353.0000 
+Fattened heifers slaughtered before the target slaughter weight expressed as proportion of all intensively fattened heifers
+   ( ):      0.0500 
+Dressing proportion of heifers not reaching the target slaughter weight as proportion of the dressing proportion of heifers reaching the target slaughter weight
+   ( ):      0.8000 
+Losses of heifers in intensive fattening
+   ( ):      0.0100 
+Amount of water per day and heifer in intensive fattening
+   (l/day):     40.0000 
+Dry matter per kg feed ration for intensively fattened heifers
+   (kg/kg):      0.4400 
+Net energy content per kg dry matter of feed ration for intensively fattened heifers
+   (MJ NE/kg dry matter):      6.7600 
+Protein content per kg dry matter of feed ration for intensively fattened heifers
+   (g PDI/kg):     86.0000 
+Price per kg fresh matter of feed ration for intensively fattened heifers
+   (MU/kg):      0.1800 
+Coefficient for price decrease for heifers involuntarily culled (ratio 
+between the price per kg carcass of involuntarily culled heifers and 
+the price per kg carcass of heifers that reached target slaughter weight)
+   ( ):      0.8000 
+Governmental support per fattened animal
+   (MU/animal):    280.0000 
+
+2.7 Data from file INPUT04.TXT
+------------------------------
+
+Age of breeding bulls at purchase for the herd (only for systems 2 to 3)
+   (days):    462.0000 
+Weight of breeding bulls at purchase for the herd (only for systems 2 to 3)
+   (kg):    592.0000 
+Productive lifetime of breeding bulls in numbers of reproductive cycles of cows
+   ( ):      5.0000 
+Age of breeding bulls at reaching mature body weight
+   (days):   1095.0000 
+Dry matter per kg feed ration with code 1 for breeding bulls in the herd
+   (kg/kg):      0.5700 
+Dry matter per kg feed ration with code 2 for breeding bulls in the herd
+   (kg/kg):      0.2400 
+Residual dry matter intake (difference between the daily actual and predicted dry matter intake) of breeding bulls from feed ration of code 1
+   (kg/day):      0.0000 
+Residual dry matter intake of breeding bulls from feed ration of code 2
+   (kg/day):      0.0000 
+Net energy content per kg dry matter of feed ration of code 1 for breeding bulls in the herd
+   (MJ NE/kg dry matter):      5.5000 
+Net energy content per kg dry matter of feed ration of code 2 for breeding bulls in the herd
+   (MJ NE/kg dry matter):      6.1000 
+Protein content per kg dry matter of feed ration of code 1 for breeding bulls in the herd
+   (g PDI/kg):     78.3000 
+Protein content per kg dry matter of feed ration of code 2 for breeding bulls in the herd
+   (g PDI/kg):     98.2000 
+Price per kg fresh matter of feed ration of code 1 for breeding bulls in the herd
+   (MU/kg):      0.0900 
+Price per kg fresh matter of feed ration of code 2 for breeding bulls in the herd
+   (MU/kg):      0.0200 
+Amount of minerals per day and breeding bull
+   (kg/day):      0.1500 
+Price per kg minerals for breeding bulls
+   (MU/kg):      1.6000 
+Amount of straw per day per breeding bull in the herd during feeding season with code 1
+   (kg/day):      3.5000 
+Amount of straw per day per breeding bull in the herd during feeding season with code 2
+   (kg/day):      0.0000 
+Amount of dung per day per breeding bull in the herd during feeding season with code 1
+   (kg/day):      0.0000 
+Amount of dung per day per breeding bull in the herd during feeding season with code 2
+   (kg/day):      0.0000 
+Amount of water per day and breeding bull
+   (l/day):     40.0000 
+Average price per breeding bull purchased for natural mating
+   (MU/bull):   5333.0000 
+Cost for veterinary treatment per breeding bull in the herd per reproductive cycle
+   (MU/reproductive cycle):    183.0000 
+Fixed cost per breeding bull in the herd per day
+   (MU/day):     13.3600 
+Average price per kg carcass weight of culled (old) breeding bulls
+   (MU/kg):      9.9000 
+
+2.8 Data from file INPUT14.TXT
+------------------------------
+
+Age of female for replacement at purchase
+   (days):    852.0000 
+Weight of female for replacement at purchase
+   (kg):    688.0000 
+Days of pregnancy of purchased females for replacement
+   (days):  213 
+Number of days from the average date of mating heifers to the date of culling barren heifers
+   (days):     60.0000 
+Age of cows at first calving
+   (days):    912.0000 
+Weight of cows after 1st calving
+   (kg):    647.0000 
+Weight of cows after 2nd calving
+   (kg):    646.0000 
+Amount of straw per replacement heifer per day during feeding season with code 1
+   (kg/day):      3.5000 
+Amount of straw per replacement heifer per day during feeding season with code 2
+   (kg/day):      0.0000 
+Amount of dung per replacement heifer per day during feeding season with code 1
+   (kg/day):      0.0000 
+Amount of dung per replacement heifer per day during feeding season with code 2
+   (kg/day):      0.0000 
+Amount of minerals per replacement heifer and day
+   (kg):      0.2000 
+Amount of water per replacement heifer and day
+   (l/day):     35.0000 
+Dry matter per kg feed ration with code 1 for replacement heifers
+   (kg/kg):      0.5700 
+Dry matter per kg feed ration with code 2 for replacement heifer
+   (kg/kg):      0.2400    
+Average residual daily dry matter intake of feed ration of code 1 for replacement heifers
+   (kg/day):      0.0000  
+Average residual daily dry matter intake of feed ration of code 2 for replacement heifers
+   (kg/day):      0.0000 
+Net energy content per kg dry matter of feed ration of code 1 for replacement heifers
+   (MJ NE/kg dry matter):      5.5000 
+Net energy content per kg dry matter of feed ration of code 2 for replacement heifers
+   (MJ NE/kg dry matter):      6.1000 
+Protein content per kg dry matter of feed ration of code 1 for replacement heifers
+   (g PDI/kg):     78.3000 
+Protein content per kg dry matter of feed ration of code 2 for replacement heifers
+   (g PDI/kg):     98.2000 
+Price per kg fresh matter of feed ration of code 1 for replacement heifers
+   (MU/kg):      0.0900 
+Price per kg fresh matter of feed ration of code 2 for replacement heifers
+   (MU/kg):      0.0200 
+Price per kg live weight of replacement heifers at purchase
+   (MU/animal):      6.0000 
+Fixed cost from purchase to calving per replacement heifer and day
+   (MU/day):      4.9000 
+Cost for veterinary treatment per replacement heifer from purchase to calving
+   (MU/animal):     73.2000 
+
+2.9 Data from file INPUT19.TXT
+------------------------------
+
+Peak milk in kg per day
+   (kg/day):     12.0000 
+Expected milk production level of the herd (scores 1 to 9, 1 - lowest, 9 - highest)
+   ( ):      6.0000 
+
+2.10 Data from file INPUT16.TXT
+-------------------------------
+
+Matrix Pb - proportions (relative frequencies in %) of bull carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+   (%):
+    0.000    0.000    0.000    0.000    0.000
+    0.000    0.000    0.000    0.000    0.000
+    0.019    0.000    0.000    0.000    0.000
+    0.000    0.019    0.058    0.000    0.000
+    0.155    0.678    0.426    0.039    0.000
+    0.852    2.787    5.865    1.181    0.039
+    1.471    6.291   16.686    6.427    0.387
+    2.013    6.988   19.435    9.272    0.736
+    1.703    4.704    8.401    3.078    0.290
+
+Matrix Pc - proportions (relative frequencies in %) of cow carcasses in commercial classes for fleshiness and fat covering. The sum of all elements of the matrix is 100%.
+   (%):
+    0.289    0.000    0.000    0.000    0.000
+    0.072    0.000    0.000    0.000    0.000
+    0.144    0.144    0.000    0.000    0.000
+    0.866    0.216    0.072    0.000    0.000
+    1.876    0.649    0.577    0.216    0.072
+    2.237    1.443    4.257    1.732    0.577
+    1.948    3.319    7.720    7.071    3.030
+    0.794    3.175   10.534   14.358   11.616
+    0.361    0.794    4.545    7.792    7.504
+
+Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)
+   ( ):
+    0.592    0.641    0.665    0.641    0.592
+    0.629    0.678    0.702    0.678    0.629
+    0.661    0.710    0.735    0.710    0.661
+    0.686    0.735    0.759    0.735    0.686
+    0.718    0.767    0.792    0.767    0.718
+    0.735    0.914    0.939    0.922    0.735
+    0.751    0.931    0.955    0.939    0.751
+    0.767    0.947    0.971    0.955    0.767
+    0.784    0.975    1.000    0.984    0.784
+
+Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)
+   ( ):
+    0.633    0.665    0.675    0.644    0.602
+    0.681    0.712    0.723    0.691    0.649
+    0.728    0.759    0.770    0.738    0.696
+    0.796    0.827    0.838    0.806    0.764
+    0.874    0.895    0.895    0.864    0.822
+    0.911    0.932    0.932    0.900    0.859
+    0.932    0.953    0.953    0.922    0.880
+    0.953    0.974    0.974    0.942    0.900
+    0.979    1.000    1.000    0.969    0.927
+
+
+2.11 Data from file INPUT17.TXT
+-------------------------------
+
+Matrix Ph - proportions of heifer carcasses in commercial classes for fleshiness and fat covering
+   (%):
+    0.000    0.000    0.000    0.000    0.000
+    0.000    0.000    0.000    0.000    0.000
+    0.024    0.000    0.000    0.000    0.000
+    0.048    0.024    0.024    0.024    0.000
+    0.121    0.460    0.993    0.436    0.000
+    0.145    1.937    8.765    5.593    0.484
+    0.218    3.922   18.596   17.966    1.768
+    0.242    1.913   12.688   14.334    1.429
+    0.266    1.283    3.632    2.252    0.412
+
+Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class
+   ( ):
+    0.000    0.000    0.000    0.000    0.000
+    0.000    0.000    0.000    0.000    0.000
+    0.000    0.000    0.000    0.000    0.000
+    0.000    0.000    0.000    0.000    0.000
+    0.718    0.767    0.792    0.767    0.718
+    0.735    0.914    0.939    0.922    0.735
+    0.751    0.931    0.955    0.939    0.751
+    0.767    0.947    0.971    0.955    0.767
+    0.784    0.975    1.000    0.984    0.784
+
+
+2.12 Data from file INPUT26.TXT
+-------------------------------
+
+Number of age classes for sires
+   ( ):      7.0000 
+Number of age classes for dams (number of reproductive cycles + age at calving in years - 1)
+   ( ):     13.0000 
+Number of the sex-age class for which the gene flow will be calculated (see Manual for further explanation)
+   ( ):      2.0000 
+Length of the investment period
+   (years):     25.0000 
+Proportion of genes from individual age classes of sires in the male progeny (path sires to sires, the numbers must sum to 0.5)
+   ( ): 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+Proportion of genes from individual age classes of sires in the female progeny (path sires to dams) or in slaughter progeny (the numbers must sum to 0.5)
+   ( ): 0.0000 0.0750 0.1220 0.1000 0.0815 0.0665 0.0550
+Proportion of genes from individual age classes of dams in the male progeny (path dames to sires, the numbers must sum to 0.5)
+   ( ): 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+
+2.13 Data from file INPUT34.TXT
+-------------------------------
+
+Select (6) average daily gain of calves from birth to 1st weighing or (26)
+weight gain of calves from birth to 1st weighing
+   ( ):  26 
+Select (7) average daily gain of calves from 1st to 2nd weighing or (27)
+weight gain of calves from 1st to 2nd weighing
+   ( ):  27 
+Select (8) average daily gain of calves from 2nd to 3rd weighing or (28)
+weight gain of calves from 2nd to 3rd weighing
+   ( ):  28 
+Select (11) cow losses in per cent or (29) average lifetime of cows in years 
+   ( ):  29 
+
+2.14 Data from file INPUT36.TXT
+-------------------------------
+
+Genetic standard deviation for calving performance score
+   (0.01 score):     16.9400
+Genetic standard deviation for losses of calves at calving
+   (%):      0.1100
+Genetic standard deviation for losses of calves from 48 hour after
+calving till weaning
+   (%):      0.9900
+Genetic standard deviation for birth weight
+   (kg):      3.4820
+Genetic standard deviation for daily gain in fattening
+   (g/d):      0.2070
+Genetic standard deviation for dressing percentage
+   (%):      1.1000
+Genetic standard deviation for mean class of fleshiness
+   (0.01 class):      0.4450
+Genetic standard deviation for mean class of fat covering
+   (0.01 class):      0.4470
+Genetic standard deviation for weight gain of calves from birth to 1st weighing
+   (kg):      7.2000
+Genetic standard deviation for weight gain of calves from
+1st to 2nd weighing
+   (kg):     10.2000
+Genetic standard deviation for weight gain of calves from
+2nd to 3rd weighing
+   (kg):     21.5000
+
+
+3 Results
+---------
+ 
+3.1 Structure of the cow herd in the stationary state
+-----------------------------------------------------
+Number of iterations: 11
+ 
+3.1.1 Relative frequencies of individual categories of cows
+-----------------------------------------------------------
+(The individual categories are defined in the manual.)
+  Category  25:   0.0014
+  Category  26:   0.0004
+  Category  27:   0.0014
+  Category  28:   0.0004
+  Category  29:   0.0082
+  Category  30:   0.1286
+  Category  31:   0.0014
+  Category  32:   0.0001
+  Category  33:   0.0014
+  Category  34:   0.0187
+  Category  35:   0.0036
+  Category  36:   0.1116
+  Category  37:   0.0012
+  Category  38:   0.0001
+  Category  39:   0.0012
+  Category  40:   0.0131
+  Category  41:   0.0000
+  Category  42:   0.0998
+  Category  43:   0.0010
+  Category  44:   0.0001
+  Category  45:   0.0012
+  Category  46:   0.0056
+  Category  47:   0.0000
+  Category  48:   0.0920
+  Category  49:   0.0009
+  Category  50:   0.0001
+  Category  51:   0.0011
+  Category  52:   0.0052
+  Category  53:   0.0000
+  Category  54:   0.0848
+  Category  55:   0.0008
+  Category  56:   0.0001
+  Category  57:   0.0010
+  Category  58:   0.0048
+  Category  59:   0.0000
+  Category  60:   0.0782
+  Category  61:   0.0008
+  Category  62:   0.0001
+  Category  63:   0.0012
+  Category  64:   0.0044
+  Category  65:   0.0000
+  Category  66:   0.0718
+  Category  67:   0.0007
+  Category  68:   0.0001
+  Category  69:   0.0013
+  Category  70:   0.0040
+  Category  71:   0.0000
+  Category  72:   0.0657
+  Category  73:   0.0007
+  Category  74:   0.0000
+  Category  75:   0.0012
+  Category  76:   0.0037
+  Category  77:   0.0000
+  Category  78:   0.0602
+  Category  79:   0.0006
+  Category  80:   0.0000
+  Category  81:   0.0012
+  Category  82:   0.0033
+  Category  83:   0.0000
+  Category  84:   0.0549
+  Category  85:   0.0005
+  Category  86:   0.0000
+  Category  87:   0.0011
+  Category  88:   0.0532
+
+3.1.2 Probabilities that a cow is in the given reproductive cycle
+-----------------------------------------------------------------
+Reproductive cycle  1:   0.1404
+Reproductive cycle  2:   0.1368
+Reproductive cycle  3:   0.1153
+Reproductive cycle  4:   0.0999
+Reproductive cycle  5:   0.0921
+Reproductive cycle  6:   0.0849
+Reproductive cycle  7:   0.0782
+Reproductive cycle  8:   0.0718
+Reproductive cycle  9:   0.0657
+Reproductive cycle 10:   0.0601
+Reproductive cycle 11:   0.0548
+Sum:   1.0000
+
+3.1.3  Productive life time of cows
+------------------------------------
+Average lifetime of cows (years):     6.99
+Average number of calvings per cow:     7.21
+
+3.2. Reproduction characteristics of the herd
+---------------------------------------------
+Total conception rate of heifers:     0.85
+
+Conception rates of cows in reproductive cycles 1 to LL-1, 
+  (pregnant animals as proportion of all animals which entered 
+  the mating period in this cycle):
+  Reproductive cycle  1:   0.9402
+  Reproductive cycle  2:   0.9425
+  Reproductive cycle  3:   0.9425
+  Reproductive cycle  4:   0.9425
+  Reproductive cycle  5:   0.9425
+  Reproductive cycle  6:   0.9425
+  Reproductive cycle  7:   0.9425
+  Reproductive cycle  8:   0.9425
+  Reproductive cycle  9:   0.9425
+  Reproductive cycle 10:   0.9425
+
+Average date of calving for all females in the herd (heifers and cows)
+  (month day): 2 7 (days from January 1st of year 0: 403))
+Average date of conception for all females in the herd (heifers and cows)
+  (month day): 4 24 (days from January 1st of year 0: 479)
+Average interval between calving and conception (d): 76
+Average dystocia incidence per one calving:  0.0191
+
+3.3 Growth of cows during the year in reproductive cycles 1 to 3
+----------------------------------------------------------------  
+(In higher reproductive cycles the same parameters as in cycle 3 are assumed.)
+The first, second and third numbers refer to reproductive cycles 1, 2 and 3,
+respectively.
+Average weight of cows after calving (kg): 
+    647.0   646.0   656.0
+Average weight of cows culled due to health problems other than dystocia (kg): 
+    646.5   651.0   656.0
+Average weight of cows died (kg): 
+    646.5   651.0   656.0
+Average weight of cows culled after weaning because of no pregnancy (kg): 
+    646.0   655.6   656.0
+
+3.4 Characteristics of progeny born in the herd
+-----------------------------------------------
+ 
+3.4.1 Structure of progeny
+--------------------------
+  Category  1:   0.0030
+  Category  2:   0.0262
+  Category  3:   0.0019
+  Category  4:   0.0048
+  Category  5:   0.0000
+  Category  6:   0.0048
+  Category  7:   0.0000
+  Category  8:   0.0000
+  Category  9:   0.0000
+  Category 10:   0.0000
+  Category 11:   0.0000
+  Category 12:   0.4505
+  Category 13:   0.0240
+  Category 14:   0.4491
+  Category 15:   0.0239
+  Category 16:   0.0000
+  Category 17:   0.0000
+  Category 18:   0.0000
+  Category 19:   0.0000
+  Category 20:   0.1404
+  Category 21:   0.0000
+  Category 22:   0.0000
+  Category 23:   0.0000
+  Category 24:   0.0000
+
+Number of calvings per cow entered the reproductive cycle and per year
+  (including aborts and stillbirths) 0.98814
+Total number of animals per cow and year (including aborts and dead
+  animals): 2.129
+Number of female calves born alive (per cow and year): 0.493
+Number of male calves born alive (per cow and year): 0.493
+Number of female calves alive 48 hours after calving (per cow and year): 0.480
+Number of male calves alive 48 hours after calving (per cow and year): 0.479
+Number of female calves died from 48 hours after calving to weaning 
+  (per cow and year): 0.001
+Number of male calves died from 48 hours after calving to weaning 
+  (per cow and year): 0.001
+Number of female calves weaned (per cow and year): 0.479
+Number of male calves weaned (per cow and year): 0.478
+Number of male calves available for fattening (per cow and year): 0.478
+Number of male calves fattened as castrates (per cow and year): 0.000
+Number of male calves fattened as bulls (per cow and year): 0.478
+Number of heifers (per cow and year) that must enter the first mating
+   period after weaning if no heifers are sold pregnant: 0.000
+Number of heifers (per cow and year) that must be held as replacement
+   heifers if no heifers are sold: 0.000
+Number of weaned female calves available for fattening or selling
+  (per cow and year): 0.479
+Number of weaned female calves (per cow and year) available for 
+  selling: 0.000
+Number of weaned female calves (per cow and year) available for 
+  fattening: 0.479
+ 
+3.4.2 Growth characteristics for calves
+---------------------------------------
+Average daily gain of female calves from birth to first control weighing
+  (kg/d):  1.017
+Average daily gain of male calves from birth to first control weighing
+  (kg/d):  1.124
+Average daily gain of female calves from first to second control weighing
+  (kg/d):  0.785
+Average daily gain of male calves from first to second control weighing
+  (kg/d):  0.865
+Average daily gain of female calves from second to third control weighing
+  (kg/d):  0.785
+Average daily gain of male calves from second to third control weighing
+  (kg/d):  0.865
+Average age of calves at weaning (d):   296
+Average age of calves that died from 48 hours after calving to weaning
+  (d):   148
+Average weaning weight of female calves (kg): 340.0
+Average weaning weight of male calves (kg): 373.6
+Average weight of female calves that died from 48 hours after calving
+  to weaning (kg): 188.6
+Average weight of male calves that died from 48 hours after calving to
+  weaning (kg): 206.1
+ 
+3.4.4 Fattening of progeny (bulls, heifers and castrates)
+---------------------------------------------------------
+Average age of heifers at the end of the fattening period (d):    313
+Average age of bulls at the end of the fattening period (d):    308
+Average age of heifers died during fattening (d):    304
+Average weight of heifers died during fattening (kg):  346.5
+Average age of bulls died during fattening (d):    302
+Average weight of bulls died during fattening (kg):  378.8
+Average age of heifers culled during fattening due to health problems (d):    304
+Average weight of heifers culled during fattening due to health problems
+  (kg):  346.5
+Average age of bulls culled during fattening due to health problems (d):    302
+Average weight of bulls culled during fattening due to health problems
+  (kg):  378.8
+ 
+3.4.6. Miscellaneous
+---------------------
+Mean class of fat covering for bulls:   2.890
+Mean class of fat covering for heifers:   3.371
+Mean class of fleshiness for bulls:   7.612
+Mean class of fleshiness for heifers:   7.249
+Mean class of calving performance:   1.112
+ 
+3.5 Nutrition costs
+-------------------
+Comment:
+The parameters are expressed per animal and time period.
+ 
+3.5.1 Calves died from 48 hours after calving till weaning (category 3)
+-----------------------------------------------------------------------
+Length of the period calves are fed with feed ration 1 (d):   76.2
+Length of the period calves are fed with feed ration 2 (d):   71.9
+Total length of the period for which the feed costs are 
+  calculated (d):  148.1
+Net energy requirement to be supplemented from feed ration 1 
+  above the net energy available from milk (MJ NE):    0.0
+Net energy requirement to be supplemented from feed ration 2
+  above the net energy available from milk (MJ NE):  328.5
+Total net energy requirement above milk (MJ NE):  328.5
+Protein requirement to be supplemented from feed ration 1 
+  above the protein available from milk (g PDI):       0
+Protein requirement to be supplemented from feed ration 2 
+  above the protein available from milk (g PDI):  571.5
+Total protein requirement above milk (g PDI):     571
+Total actual dry matter intake from supplement feed ration 1 
+  (kg):     0.0
+Total actual dry matter intake from supplement feed ration 2 
+  (kg):    59.1  
+Average daily actual dry matter intake from supplement feed 
+  ration 1  (kg/d):   0.000
+Average daily actual dry matter intake from supplement feed 
+  ration 2 (kg/d):   0.822
+Fresh feed matter required (without feed wasting) from feed
+  ration 1 (kg):    0.0
+Fresh feed matter required (without feed wasting) from feed
+  ration 2 (kg):  256.9
+Cost for feed (including feed wasting) from feed ration 1 
+  (MU):    0.00
+Cost for feed (including feed wasting) from feed ration 2
+  (MU):   12.84
+Total cost for nutrition (MU):   12.84
+
+3.5.2. Female (first number) and male (second number) calves until
+  weaning
+------------------------------------------------------------------
+If calves are sold, female calves represent category 8 and male calves 
+are category 9
+Length of the period calves are fed with feed ration 1 (d):
+      76.2      76.2
+Length of the period calves are fed with feed ration 2 (d):
+     220.0     220.0
+Length of the period for which the feed costs are calculated (d):
+     296.2     296.2 
+Net energy requirement to be supplemented from feed ration 1 
+  above the net energy available from milk (MJ NE):
+       0.0       0.0
+Net energy requirement to be supplemented from feed ration 2 
+  above the net energy available from milk (MJ NE):
+    3822.3    4609.8
+Total net energy requirement above milk (MJ NE):
+    3822.3    4609.8
+Protein requirement to be supplemented from feed ration 1 
+  above the protein available from milk (g PDI):
+       0.0       0.0
+Protein requirement to be supplemented from feed ration 2 
+  above the protein available from milk (g PDI):
+   36697.3   45201.9
+Total protein requirement above milk (g PDI):
+   36697.3   45201.9
+Total actual dry matter intake from supplement feed ration 1 
+  (kg):
+       0.0       0.0
+Total actual dry matter intake from supplement feed ration 2 
+  (kg):
+     687.5     829.1  
+Average daily actual dry matter intake from supplement feed 
+  ration 1  (kg/d):
+       0.0       0.0
+Average daily actual dry matter intake from supplement feed 
+  ration 2 (kg/d):
+       3.1       3.8
+Fresh feed matter required (without feed wasting) from feed
+  ration 1 (kg):
+       0.0       0.0
+Fresh feed matter required (without feed wasting) from feed
+  ration 2 (kg):
+    2988.9    3604.8
+Cost for feed (including feed wasting) from feed ration 1 
+  (MU):
+      0.00      0.00
+Cost for feed (including feed wasting) from feed ration 2
+  (MU):
+    149.45    180.24
+Total cost for nutrition (MU):
+    149.45    180.24  
+
+3.5.3. Fattened bulls (categories 4, 15 and 14)
+-----------------------------------------------
+  Comment:
+  - first number: bulls died during the fattening period (category 4),
+  - second number: fattened bulls slaughtered before reaching slaughter weight 
+    due to health problems (category 15)
+  - third number: fattened bulls reaching slaughter weight (category 14)
+  Only one feed ration (feed ration 3) is assumed to be used independent
+  of the season.
+Length of the fattening period for which the feed costs are calculated (d):
+      6.0      6.0     12.1
+Total net energy requirement (MJ NE):
+    277.2    277.2    557.2
+Total protein requirement (g PDI):
+     3202     3202     6425
+Total actual dry matter intake (kg):
+       41.0       41.0       82.4
+Average daily actual dry matter intake (kd/d):
+      6.798      6.798      6.831  
+Fresh feed matter requirement without feed waisting (kg):
+     93.2     93.2    187.3
+Cost for feed including waisting (MU):
+     18.64     18.64     37.46
+Cost for water (MU):
+      0.00      0.00      0.00
+Total cost for nutrition (including cost for water) (MU):
+     18.64     18.64     37.46
+
+3.5.5. Fattened heifers (categories 6, 13 and 12)
+-------------------------------------------------
+  Comment:
+  - first number: heifers died during the fattening period (category 6),
+  - second number: fattened heifers slaughtered before reaching slaughter 
+    weight due to health problems (category 13)
+  - third number: fattened heifers reaching slaughter weight (category 12)
+  Only one feed ration independent of the season is assumed in intensive 
+  fattening of (feed ration 3), whereas in extensive fattening up to three
+  different feed rations (1, 2 and 4) are possible.
+Length of fattening period for which the feed costs are calculated (d):
+       8.3       8.3      16.5
+Total net energy requirement (MJ NE):
+     449.8     449.8     906.4
+Total protein requirement (g PDI):
+      3135      3135      6300
+Total actual dry matter intake (kg):
+       66.5       66.5      134.1
+Average daily actual dry matter intake (kg/d):
+      8.062      8.062      8.122  
+Fresh feed matter requirement without feed wasting (kg):
+     151.2     151.2     304.7
+Cost for feed including wasting (MU):
+      30.25      30.25      60.94
+Costs for water (MU):
+       0.00       0.00       0.00
+Total cost for nutrition (feed and water) (MU):
+      30.25      30.25      60.94
+
+3.5.9. Purchased female replacement (category 20)
+--------------------------------------------------
+Length of the period with seasonal feed ration 1 (d):   61.0
+Length of the period with seasonal feed ration 2 (d):    0.0
+Total length of the period for which the feed costs are calculated (d):   61.0
+Net energy requirement from feed ration 1 (MJ NE):   1678.0
+Net energy requirement from feed ration 2 (MJ NE):      0.0
+Total net energy requirement (MJ NE):   1678.0
+Protein requirement from feed ration 1 (g PDI):     14735
+Protein requirement from feed ration 2 (g PDI):         0
+Total protein requirement (g PDI):     14735
+Total actual dry matter intake from feed ration 1 (kg):     305.1
+Total actual dry matter intake from feed ration 2 (kg):       0.0 
+Average daily actual dry matter intake from feed ration 1 (kg/d):     5.002
+Average daily actual dry matter intake from feed ration 2 (kg/d):     0.000 
+Fresh feed matter required (without feed wasting) from feed ration 1 
+  (kg):    535.3
+Fresh feed matter required (without feed wasting) from feed ration 2 
+  (kg):      0.0
+Cost for feed (including feed wasting) for feed ration 1 (MU):     53.53
+Cost for feed (including feed wasting) for feed ration 2 (MU):      0.00
+Costs for minerals (MU):     19.52
+Cost for water (MU):      0.00
+Total cost for nutrition (feed, water and minerals) (MU):     73.05
+
+3.5.15. Bulls in the herds used for natural mating (from purchase to culling)
+----------------------------------------------------------------------------
+Length of the period with seasonal feed ration 1 (d):  700.0
+Length of the period with seasonal feed ration 2 (d): 1125.0
+Total length of the period for which the feed costs are calculated (d): 1825.0
+Net energy requirement from feed ration 1 (MJ NE):   45417.2
+Net energy requirement from feed ration 2 (MJ NE):   72991.9
+Total net energy requirement (MJ NE):  118409.1
+Protein requirement from feed ration 1 (g PDI):    483716
+Protein requirement from feed ration 2 (g PDI):    777400
+Total protein requirement (g PDI):   1261116
+Total actual dry matter intake from feed ration 1 (kg):    8257.7
+Total actual dry matter intake from feed ration 2 (kg):   11965.9 
+Average daily actual dry matter intake from feed ration 1 (kg/d):    11.797
+Average daily actual dry matter intake from feed ration 2 (kg/d):    10.636 
+Fresh feed matter required (without feed wasting) from feed ration 1 
+  (kg):    14487
+Fresh feed matter required (without feed wasting) from feed ration 2 
+  (kg):    49858
+Cost for feed (including feed wasting) for feed ration 1 (MU):   1448.71
+Cost for feed (including feed wasting) for feed ration 2 (MU):   1246.45
+Costs for minerals (MU):    438.00
+Cost for water (MU):      0.00
+Total cost for nutrition (feed, water and minerals) (MU):   3133.16
+
+3.5.16. Cows on reproductive cycle 1
+------------------------------------
+  Comment for cows in all reproductive cycles:
+  The energy and protein requirements are calculated as weighted average for
+  pregnant and non-pregnant cows (according to their proportion in the 
+  reproductive cycle)
+  Comment for cows in reproductive cycle 1:
+  The values printed refer to
+  - cows died during the cycle(category 25 - 1st number)
+  - cows culled after dystocia (category 26 - 2nd number)
+  - cows culled within the cycle for health problems (category 27 - 3rd number)
+  - cows culled after weaning calves because of no pregnancy 
+    (category 28 - 4th number)
+  - non-pregnant cows entering the next reproductive cycle 
+    (category 29 - 5th number)
+  - pregnant cows entering the next reproductive cycle 
+    (category 30 - 6th number)
+  Categories with all values zero are empty categories.
+Length of the period with seasonal feed ration 1 (d):
+       76.2       40.0       76.2      124.2      140.0      140.0
+Length of the period with seasonal feed ration 2 (d):
+      106.8        0.0      106.8      225.0      225.0      225.0
+Total length of the period for which the feed costs are calculated (d):
+      183.0       40.0      183.0      349.2      365.0      365.0
+Net energy requirement from feed ration 1 (MJ NE):
+     6303.8     3278.5     6303.8     8283.5     8936.4     9985.1
+Net energy requirement from feed ration 2 (MJ NE):
+     8562.1        0.0     8562.1    16451.5    16451.5    16943.6
+Total net energy requirement (MJ NE):
+    14865.9     3278.5    14865.9    24735.0    25387.9    26928.7
+Protein requirement from feed ration 1 (g PDI):
+      70232      36383      70232      90194      96777     108843
+Protein requirement from feed ration 2 (g PDI):
+      86924          0      86924     159832     159832     165178
+Total protein requirement (g PDI):
+     157156      36383     157156     250025     256609     274022
+Total actual dry matter intake from feed ration 1 (kg):
+     1146.1      596.1     1146.1     1506.1     1624.8     1815.5
+Total actual dry matter intake from feed ration 2 (kg):
+     1403.6        0.0     1403.6     2697.0     2697.0     2777.6 
+Average daily actual dry matter intake from feed ration 1 (kg/d):
+     15.048     14.902     15.048     12.129     11.606     12.968
+Average daily actual dry matter intake from feed ration 2 (kg/d):
+     13.139      0.000     13.139     11.987     11.987     12.345 
+Fresh feed matter required (without feed wasting) from feed ration 1 
+  (kg):
+       2011       1046       2011       2642       2851       3185
+Fresh feed matter required (without feed wasting) from feed ration 2 
+  (kg):
+       5848          0       5848      11237      11237      11573
+Cost for feed (including feed wasting) for feed ration 1 (MU):
+     201.08     104.58     201.08     264.22     285.05     318.50
+Cost for feed (including feed wasting) for feed ration 2 (MU):
+     146.21       0.00     146.21     280.93     280.93     289.34
+Costs for minerals (MU):
+      87.84      19.20      87.84     167.60     175.20     175.20
+Cost for water (MU):
+       0.00       0.00       0.00       0.00       0.00       0.00
+Total cost for nutrition (feed, water and minerals) (MU):
+     435.13     123.78     435.13     712.76     741.19     783.04
+
+3.5.16. Cows on reproductive cycle 2
+------------------------------------
+  Comment:
+  The values printed refer to
+  - cows died during the cycle(category 31 - 1st number)
+  - cows culled after dystocia (category 32 - 2nd number)
+  - cows culled within the cycle for health problems (category 33 - 3rd number)
+  - cows culled after weaning calves because of no pregnancy 
+    (category 34 - 4th number),
+  - non-pregnant cows entering the next reproductive cycle 
+    (category 35 - 5th number)
+  - pregnant cows entering the next reproductive cycle 
+    (category 36 - 6th number)
+  Categories with all values zero are empty categories.
+Length of the period with seasonal feed ration 1 (d):
+       76.2       40.0       76.2      124.2      140.0      140.0
+Length of the period with seasonal feed ration 2 (d):
+      106.8        0.0      106.8      225.0      225.0      225.0
+Total length of the period for which the feed costs are calculated (d):
+      183.0       40.0      183.0      349.2      365.0      365.0
+Net energy requirement from feed ration 1 (MJ NE):
+     6456.2     3385.5     6456.2     8488.1     9158.9    10207.6
+Net energy requirement from feed ration 2 (MJ NE):
+     8834.0        0.0     8834.0    16890.2    16890.2    17382.3
+Total net energy requirement (MJ NE):
+    15290.2     3385.5    15290.2    25378.3    26049.2    27589.9
+Protein requirement from feed ration 1 (g PDI):
+      72307      38028      72307      92806      99575     111641
+Protein requirement from feed ration 2 (g PDI):
+      90578          0      90578     165307     165307     170653
+Total protein requirement (g PDI):
+     162886      38028     162886     258113     264881     282294
+Total actual dry matter intake from feed ration 1 (kg):
+     1173.9      615.5     1173.9     1543.3     1665.3     1855.9
+Total actual dry matter intake from feed ration 2 (kg):
+     1448.2        0.0     1448.2     2768.9     2768.9     2849.6 
+Average daily actual dry matter intake from feed ration 1 (kg/d):
+     15.412     15.389     15.412     12.429     11.895     13.257
+Average daily actual dry matter intake from feed ration 2 (kg/d):
+     13.556      0.000     13.556     12.306     12.306     12.665 
+Fresh feed matter required (without feed wasting) from feed ration 1 
+  (kg):
+       2059       1080       2059       2708       2922       3256
+Fresh feed matter required (without feed wasting) from feed ration 2 
+  (kg):
+       6034          0       6034      11537      11537      11873
+Cost for feed (including feed wasting) for feed ration 1 (MU):
+     205.94     107.99     205.94     270.75     292.15     325.60
+Cost for feed (including feed wasting) for feed ration 2 (MU):
+     150.85       0.00     150.85     288.43     288.43     296.83
+Costs for minerals (MU):
+      87.84      19.20      87.84     167.60     175.20     175.20
+Cost for water (MU):
+       0.00       0.00       0.00       0.00       0.00       0.00
+Total cost for nutrition (feed, water and minerals) (MU):
+     444.63     127.19     444.63     726.78     755.78     797.63
+
+3.5.18. Cows on reproductive cycle 3
+------------------------------------
+  Comment:
+  The values printed refer to
+  - cows died during the cycle(category 37 - 1st number)
+  - cows culled after dystocia (category 38 - 2nd number)
+  - cows culled within the cycle for health problems (category 39 - 3rd number)
+  - cows culled after weaning calves because of no pregnancy 
+    (category 40 - 4th number),
+  - non-pregnant cows entering the next reproductive cycle 
+    (category 41 - 5th number)
+  - pregnant cows entering the next reproductive cycle 
+    (category 42 - 6th number)
+  Categories with all values zero are empty categories.
+Length of the period with seasonal feed ration 1 (d):
+       76.2       40.0       76.2      124.2      140.0      140.0
+Length of the period with seasonal feed ration 2 (d):
+      106.8        0.0      106.8      225.0      225.0      225.0
+Total length of the period for which the feed costs are calculated (d):
+      183.0       40.0      183.0      349.2      365.0      365.0
+Net energy requirement from feed ration 1 (MJ NE):
+     6710.7     3475.7     6710.7     8715.9     9377.4    10426.1
+Net energy requirement from feed ration 2 (MJ NE):
+     9256.8        0.0     9256.8    17541.7    17541.7    18033.7
+Total net energy requirement (MJ NE):
+    15967.5     3475.7    15967.5    26257.6    26919.1    28459.8
+Protein requirement from feed ration 1 (g PDI):
+      76135      39245      76135      96356     103026     115092
+Protein requirement from feed ration 2 (g PDI):
+      97003          0      97003     175369     175369     180716
+Total protein requirement (g PDI):
+     173137      39245     173137     271725     278395     295808
+Total actual dry matter intake from feed ration 1 (kg):
+     1220.1      631.9     1220.1     1584.7     1705.0     1895.7
+Total actual dry matter intake from feed ration 2 (kg):
+     1517.5        0.0     1517.5     2875.7     2875.7     2956.4 
+Average daily actual dry matter intake from feed ration 1 (kg/d):
+     16.019     15.799     16.019     12.763     12.178     13.540
+Average daily actual dry matter intake from feed ration 2 (kg/d):
+     14.205      0.000     14.205     12.781     12.781     13.139 
+Fresh feed matter required (without feed wasting) from feed ration 1 
+  (kg):
+       2141       1109       2141       2780       2991       3326
+Fresh feed matter required (without feed wasting) from feed ration 2 
+  (kg):
+       6323          0       6323      11982      11982      12318
+Cost for feed (including feed wasting) for feed ration 1 (MU):
+     214.06     110.87     214.06     278.02     299.12     332.57
+Cost for feed (including feed wasting) for feed ration 2 (MU):
+     158.07       0.00     158.07     299.55     299.55     307.95
+Costs for minerals (MU):
+      87.84      19.20      87.84     167.60     175.20     175.20
+Cost for water (MU):
+       0.00       0.00       0.00       0.00       0.00       0.00
+Total cost for nutrition (feed, water and minerals) (MU):
+     459.97     130.07     459.97     745.17     773.87     815.72
+
+3.5.19. Cows on reproductive cycles 4 to LL
+-------------------------------------------
+In reproductive cycles 4 to LL, similar results are obtained as in cycle 3
+(small differences may occur if the proportion of pregnant and not pregnant
+cows differ between reproductive cycles 3 and 4 to LL).
+
+3.6. Costs per animal in each category
+--------------------------------------
+  Comment:
+  Cost components are given per animal for the time from birth till the 
+  end of each progeny category or for the time from calving till the end
+  of each cow category (see Manual for definition of categories).
+  Furthermore, it is assumed that all cost components for calves till weaning 
+  (except costs for supplementary feeding) are included in the costs for cows.
+  Housing costs are costs for bedding minus revenues for manure. Other costs
+  include costs for removing and rendering dead animals and breeding costs.
+  Cost components per cow per year are averaged over all cow categories 
+  (without costs for progeny).
+  No cost components are printed for categories were all components are zero.
+  ------------------------------------------------------------------------- 
+               Veterinary   Housing     Other     Fixed  Nutrition    Total
+  -------------------------------------------------------------------------
+  Category   4      60.40      2.53      0.00     24.79    198.88    286.61
+  Category   6      60.40      3.47      0.00     33.92    179.69    277.48
+  Category  12      60.40      6.93      0.00     67.85    210.39    345.57
+  Category  13      60.40      3.47      0.00     33.92    179.69    277.48
+  Category  14      60.40      5.07      0.00     49.59    217.70    332.76
+  Category  15      60.40      2.53      0.00     24.79    198.88    286.61
+  Category  20       7.25     25.62      0.00   4426.90     73.05   4532.82
+  Category  25     103.68     31.99    528.96   2444.88    435.13   3544.64
+  Category  26      22.66     16.80      0.00    534.40    123.78    697.64
+  Category  27     103.68     31.99    328.96   2444.88    435.13   3344.64
+  Category  28     197.83     52.15    328.96   4664.87    712.76   5956.58
+  Category  29     103.40     58.80    328.96   4876.40    741.19   6108.75
+  Category  30     206.80     58.80    328.96   4876.40    783.04   6254.00
+  Category  31     103.68     31.99    528.96   2444.88    444.63   3554.15
+  Category  32      22.66     16.80      0.00    534.40    127.19    701.05
+  Category  33     103.68     31.99    328.96   2444.88    444.63   3354.15
+  Category  34     197.83     52.15    328.96   4664.87    726.78   5970.59
+  Category  35     103.40     58.80    328.96   4876.40    755.78   6123.34
+  Category  36     206.80     58.80    328.96   4876.40    797.63   6268.59
+  Category  37     103.68     31.99    528.96   2444.88    459.97   3569.48
+  Category  38      22.66     16.80      0.00    534.40    130.07    703.93
+  Category  39     103.68     31.99    328.96   2444.88    459.97   3369.48
+  Category  40     197.83     52.15    328.96   4664.87    745.17   5988.99
+  Category  41     103.40     58.80    328.96   4876.40    773.87   6141.43
+  Category  42     206.80     58.80    328.96   4876.40    815.72   6286.68
+  Category  43     103.68     31.99    528.96   2444.88    464.86   3574.38
+  Category  44      22.66     16.80      0.00    534.40    130.07    703.93
+  Category  45     103.68     31.99    328.96   2444.88    464.86   3374.38
+  Category  46     197.83     52.15    328.96   4664.87    751.10   5994.92
+  Category  48     206.80     58.80    328.96   4876.40    821.66   6292.62
+  Category  49     103.68     31.99    528.96   2444.88    464.86   3574.38
+  Category  50      22.66     16.80      0.00    534.40    130.07    703.93
+  Category  51     103.68     31.99    328.96   2444.88    464.86   3374.38
+  Category  52     197.83     52.15    328.96   4664.87    751.10   5994.92
+  Category  54     206.80     58.80    328.96   4876.40    821.66   6292.62
+  Category  55     103.68     31.99    528.96   2444.88    464.86   3574.38
+  Category  56      22.66     16.80      0.00    534.40    130.07    703.93
+  Category  57     103.68     31.99    328.96   2444.88    464.86   3374.38
+  Category  58     197.83     52.15    328.96   4664.87    751.10   5994.92
+  Category  60     206.80     58.80    328.96   4876.40    821.66   6292.62
+  Category  61     103.68     31.99    528.96   2444.88    464.86   3574.38
+  Category  62      22.66     16.80      0.00    534.40    130.07    703.93
+  Category  63     103.68     31.99    328.96   2444.88    464.86   3374.38
+  Category  64     197.83     52.15    328.96   4664.87    751.10   5994.92
+  Category  66     206.80     58.80    328.96   4876.40    821.66   6292.62
+  Category  67     103.68     31.99    528.96   2444.88    464.86   3574.38
+  Category  68      22.66     16.80      0.00    534.40    130.07    703.93
+  Category  69     103.68     31.99    328.96   2444.88    464.86   3374.38
+  Category  70     197.83     52.15    328.96   4664.87    751.10   5994.92
+  Category  72     206.80     58.80    328.96   4876.40    821.66   6292.62
+  Category  73     103.68     31.99    528.96   2444.88    464.86   3574.38
+  Category  74      22.66     16.80      0.00    534.40    130.07    703.93
+  Category  75     103.68     31.99    328.96   2444.88    464.86   3374.38
+  Category  76     197.83     52.15    328.96   4664.87    751.10   5994.92
+  Category  78     206.80     58.80    328.96   4876.40    821.66   6292.62
+  Category  79     103.68     31.99    528.96   2444.88    464.86   3574.38
+  Category  80      22.66     16.80      0.00    534.40    130.07    703.93
+  Category  81     103.68     31.99    328.96   2444.88    464.86   3374.38
+  Category  82     197.83     52.15    328.96   4664.87    751.10   5994.92
+  Category  84     206.80     58.80    328.96   4876.40    821.66   6292.62
+  Category  85     103.68     31.99    528.96   2444.88    464.86   3574.38
+  Category  87     103.68     31.99    328.96   2444.88    464.86   3374.38
+  Category  88     197.83     52.15    328.96   4664.87    751.10   5994.92
+  -------------------------------------------------------------------------
+  Per cow and year
+                   201.97     57.36    330.65   4791.26    794.68   6182.83
+  -------------------------------------------------------------------------
+
+Costs for veterinary treatment (1st number), housing (2nd number), 
+  fixed costs (3rd number) and total costs (4rd number) per breeding bull
+  in the herd (These values are used to calculate the mating costs per cow
+  or heifer):
+          915.00     294.00   24382.00   27563.12
+Average mating costs (insemination and natural mating) per cow:  328.96
+Average mating costs (insemination and natural mating) per heifer:    0.00
+Average cost for dystocia for one calving in the herd:    6.99
+Average cost for dystocia for one cow entering a reproductive cycle:    6.91
+
+3.7. Several costs expressed in a different way
+----------------------------------------------- 
+Average cost per cow and year in the cow-calf pasture system 
+  (including cost for replacement and dead calves without additional
+  feeding costs for calves weaned) system corrected for revenues from
+  culled cows and heifers:   6400.48
+Average cost in the cow-calf pasture system per weaned calf determined 
+  for selling or fattening, without additional feeding cost for calf:   6688.07
+Average cost in the cow-calf pasture system including additional
+  feeding cost per weaned female calf:   6837.52
+Average cost in the cow-calf pasture system per kg life weight
+  of weaned female calves:     20.11
+Average cost in the cow-calf pasture system including additional
+  feeding cost per weaned male calf:   6868.31
+Average cost in the cow-calf pasture system per kg life weight
+  of weaned male calves:     18.39
+Average cost in fattening per slaughtered bull reaching the given slaughter
+  weight (including costs for losses and culling for health, without costs 
+  for purchased weaned male calf for fattening):     84.57
+Average cost in fattening per slaughtered heifer reaching the given slaughter
+  weight (including costs for losses and culling for health, without costs for
+  purchased female calf for fattening):    138.02
+Average cost in fattening per kg carcass weight of bulls      0.38
+Average cost in fattening per kg carcass weight of heifers      0.70
+
+3.8. Revenues
+------------- 
+Average prices per kg carcass of fattened animals:
+/Heifers/  /Bulls/  /Castrates/  /Cows/
+ 11.48      11.53       0.00     8.94
+Revenues per animal for individual categories
+  Category   1            0.00
+  Category   2            0.00
+  Category   3            0.00
+  Category   4            0.00
+  Category   6            0.00
+  Category  12         2268.76
+  Category  13         1425.35
+  Category  14         2568.13
+  Category  15         1621.29
+  Category  20            0.00
+  Category  25            0.00
+  Category  26         2590.14
+  Category  27         2588.13
+  Category  28         3232.88
+  Category  29            0.00
+  Category  30            0.00
+  Category  31            0.00
+  Category  32         2586.13
+  Category  33         2606.21
+  Category  34         3280.54
+  Category  35            0.00
+  Category  36            0.00
+  Category  37            0.00
+  Category  38         2626.17
+  Category  39         2626.17
+  Category  40         3282.71
+  Category  41            0.00
+  Category  42            0.00
+  Category  43            0.00
+  Category  44         2626.17
+  Category  45         2626.17
+  Category  46         3282.71
+  Category  48            0.00
+  Category  49            0.00
+  Category  50         2626.17
+  Category  51         2626.17
+  Category  52         3282.71
+  Category  54            0.00
+  Category  55            0.00
+  Category  56         2626.17
+  Category  57         2626.17
+  Category  58         3282.71
+  Category  60            0.00
+  Category  61            0.00
+  Category  62         2626.17
+  Category  63         2626.17
+  Category  64         3282.71
+  Category  66            0.00
+  Category  67            0.00
+  Category  68         2626.17
+  Category  69         2626.17
+  Category  70         3282.71
+  Category  72            0.00
+  Category  73            0.00
+  Category  74         2626.17
+  Category  75         2626.17
+  Category  76         3282.71
+  Category  78            0.00
+  Category  79            0.00
+  Category  80         2626.17
+  Category  81         2626.17
+  Category  82         3282.71
+  Category  84            0.00
+  Category  85            0.00
+  Category  87         2626.17
+  Category  88         3282.71
+
+3.9. Number of discounted expressions for revenues (first number) 
+     and costs (2nd number) of all categories of cattle per cow 
+     and year (covering only one generation of progeny, where 
+     heifers are included till calving)
+-----------------------------------------------------------------
+  Category  1         0.00000         0.00000
+  Category  2         0.00000         0.00000
+  Category  3         0.00000         0.00191
+  Category  4         0.00000         0.00476
+  Category  6         0.00000         0.00477
+  Category 12         0.44666         0.44856
+  Category 13         0.02376         0.02386
+  Category 14         0.44534         0.44722
+  Category 15         0.02369         0.02379
+  Category 20         0.00000         0.14061
+  Category 25         0.00000         0.00140
+  Category 26         0.00039         0.00039
+  Category 27         0.00140         0.00140
+  Category 28         0.00037         0.00037
+  Category 29         0.00000         0.00814
+  Category 30         0.00000         0.12799
+  Category 31         0.00000         0.00136
+  Category 32         0.00009         0.00009
+  Category 33         0.00136         0.00136
+  Category 34         0.01851         0.01860
+  Category 35         0.00000         0.00362
+  Category 36         0.00000         0.11109
+  Category 37         0.00000         0.00115
+  Category 38         0.00008         0.00008
+  Category 39         0.00115         0.00115
+  Category 40         0.01296         0.01302
+  Category 41         0.00000         0.00000
+  Category 42         0.00000         0.09934
+  Category 43         0.00000         0.00100
+  Category 44         0.00007         0.00007
+  Category 45         0.00119         0.00120
+  Category 46         0.00556         0.00558
+  Category 48         0.00000         0.09156
+  Category 49         0.00000         0.00092
+  Category 50         0.00007         0.00007
+  Category 51         0.00110         0.00110
+  Category 52         0.00512         0.00514
+  Category 54         0.00000         0.08439
+  Category 55         0.00000         0.00085
+  Category 56         0.00006         0.00006
+  Category 57         0.00101         0.00102
+  Category 58         0.00472         0.00474
+  Category 60         0.00000         0.07779
+  Category 61         0.00000         0.00078
+  Category 62         0.00006         0.00006
+  Category 63         0.00117         0.00117
+  Category 64         0.00433         0.00436
+  Category 66         0.00000         0.07146
+  Category 67         0.00000         0.00072
+  Category 68         0.00005         0.00005
+  Category 69         0.00129         0.00129
+  Category 70         0.00397         0.00399
+  Category 72         0.00000         0.06542
+  Category 73         0.00000         0.00066
+  Category 74         0.00005         0.00005
+  Category 75         0.00118         0.00118
+  Category 76         0.00363         0.00365
+  Category 78         0.00000         0.05986
+  Category 79         0.00000         0.00060
+  Category 80         0.00004         0.00004
+  Category 81         0.00120         0.00120
+  Category 82         0.00331         0.00333
+  Category 84         0.00000         0.05464
+  Category 85         0.00000         0.00055
+  Category 87         0.00109         0.00109
+  Category 88         0.05269         0.05295 
+Number of discounted expressions for costs of dystocia:   1.000
+
+Number of discounted expressions for direct traits:   0.484
+Number of discounted expressions for maternal traits:   0.000
+
+3.10. Profit
+------------ 
+Total revenues (MU per cow and year):   2644.23
+Governmental support (MU per cow and year):   2380.12
+Total costs (MU per cow and year):   7109.88
+Total profit (MU per cow and year):  -2085.53
+Profitability without subsidies (%):    -62.81
+Profitability with subsidies (%):    -29.33
+
+3.11. Marginal economic values
+------------------------------
+Mean class of calving performance (MU per changing the mean class by 0.01
+  and per cow and year):   -2.896
+Losses of calves at calving (MU per % and cow and year):    -23.969
+Losses of calves from 48 hours after calving till weaning (MU per % and
+  cow and year):  -22.705
+Birth weight of calves (MU per kg):    7.472
+Average daily gain in fattening (MU per g/d and cow and year):    0.123
+Dressing percentage (MU per % and cow and year):   40.014
+Mean class of fleshiness (MU per changing the mean class by 0.01 and per 
+  cow and year):    0.586
+Mean class of fat covering (MU per changing the mean class by 0.01 and per 
+  cow and year):    0.158
+Weight gain of calves from birth to 1st weighing 
+  (MU per kg and cow and year):    8.554
+Weight gain of calves from 1st to 2nd weighing 
+  (MU per kg and cow and year):  -16.328
+Weight gain of calves from 2nd to 3rd weighing 
+  (MU per kg and cow and year):    0.000
+
+3.12. Economic weights for direct (1st number) and maternal (2nd number)
+      components of the trait for selection group chosen (see Manual)
+      (For traits without a maternal component, only the economic weights
+      for the direct component are given and vice versa)     
+-------------------------------------------------------------------------
+Mean class of calving performance (MU per changing the mean class by 0.01
+  and per cow and year):
+     -1.4026         -
+Losses of calves at calving (MU per % and cow and year):  
+    -11.6088         -
+Losses of calves from 48 hours after calving till weaning (MU per % and 
+  cow and year):  
+    -10.9964         -
+Birth weight of calves (MU per kg):
+      3.6189         -
+Average daily gain in fattening (MU per g and cow and year):
+      0.0594         -
+Dressing percentage (MU per % and cow and year):
+     19.3795         -
+Mean class of fleshiness (MU per changing the mean class by 0.01 and per 
+  cow and year):
+      0.2837         -
+Mean class of fat covering (MU per changing the mean class by 0.01 and per 
+  cow and year):
+      0.0765         -
+Weight gain of calves from birth to 1st weighing 
+  (MU per kg and cow and year):
+      4.1428         -
+Weight gain of calves from 1st to 2nd weighing 
+  (MU per kg and cow and year):
+     -7.9078         -
+
+3.13 Relative marginal economic values (in %)
+---------------------------------------------
+
+Mean score of calving performance
+                                         13.163
+Losses of calves at calving
+                                          0.707
+Losses of calves from 48 hours after calving till weaning
+                                          6.031
+Birth weight of calves
+                                          6.981  
+Daily gain in fattening
+                                          0.007
+Dressing percentage
+                                         11.810
+Mean class of fleshiness
+                                          0.070
+Mean class of fat covering
+                                          0.019
+Weight gain of calves from birth to 1st weighing
+                                         16.525
+Weight gain of calves from 1st to 2nd weighing
+                                         44.686
+Weight gain of calves from 2nd to 3rd weighing
+                                          0.000
+--------------------------------------------------
+Sum                                     100.000
+--------------------------------------------------
+
+
+
+    #############################################
+    #                                           #
+    #   That's all.                             #
+    #	Thank you for using the program EWBC    #
+    #   of the package ECOWEIGHT.               #
+    #                                           #
+    #############################################

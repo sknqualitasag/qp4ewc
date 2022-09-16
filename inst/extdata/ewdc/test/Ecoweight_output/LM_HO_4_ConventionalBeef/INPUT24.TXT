@@ -1,0 +1,109 @@
+/* Input parameters for program EWDC (Production System 4).
+   In its first part, this input file contains matrices describing the
+     distribution of the pure-bred dairy progeny over the individual
+     commercial classes for fleshiness and fat covering. In the second part,
+     the file contains the matrices of coefficients of carcass prices
+     which are valid both for pure-bred and cross-bred animals.
+   For changing input data, change the number(s) in the matrices.
+   Be careful when changing input parameters. Please notice that
+     the description of the given matrix is posted under the matrix.
+   The rows represent the commercial classes for fleshiness, the columns the
+     classes for fat covering. The numbers of rows and columns of all matrices
+     must be in accordance with the appropriate parameters in INPUT23.TXT.
+   The matrices of coefficients of carcass prices show the ratio of the price
+     per kg carcass in the given class to the price in the class which is used
+     as the reference class (base class). See Manual for more explanations.
+   The price of the base class is an input parameter in the input files
+     INPUT11.TXT and INPUT23.TXT.
+   Inputs referring to castrates are skipped when reading data if there are
+     no castrates in the system. Similarly, inputs referring to bulls are
+     skipped if there is no fattening of bulls. Inputs for heifers and cows
+     are always needed.*/
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+"Matrix Pb_p - proportions of bull carcasses in commercial classes for fleshiness and fat covering"
+"%"
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+"Matrix Ph_p - proportions of heifer carcasses in commercial classes for fleshiness and fat covering"
+"%"
+0	0	0	0	0
+0	0	0	0	0
+0	0	0	0	0
+0	0	0	0	0
+0	0	0	0	0
+0	0.8	0.7	0	0
+0	6.4	5.0	0	0
+0.3	42.8	31.2	0.3	0
+0.7	8.5	3.3	0	0
+"Matrix Pcs_p - proportions of castrate carcasses in commercial classes for fleshiness and fat covering"
+"%"
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+"Matrix Pc_p - proportions of cow carcasses in commercial classes for fleshiness and fat covering"
+"%"
+0.7045 0.7591 0.7864 0.7591 0.7045
+0.7455 0.8 0.8273 0.8 0.7455
+0.7818 0.8364 0.8636 0.8364 0.7818
+0.8091 0.8636 0.8909 0.8636 0.8091
+0.8455 0.9 0.9273 0.9 0.8455
+0.8636 0.9182 0.9455 0.9182 0.8636
+0.8818 0.9364 0.9636 0.9364 0.8818
+0.9 0.9545 0.9818 0.9545 0.9
+0.9182 0.9727 1 0.9727 0.9182
+"Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)"
+" "
+0.6318 0.65 0.65 0.6227 0.5591
+0.6727 0.6909 0.6909 0.6636 0.6
+0.7136 0.7318 0.7318 0.7045 0.6409
+0.7727 0.7909 0.7909 0.7636 0.7
+0.8455 0.9 0.9273 0.9 0.8455
+0.8636 0.9182 0.9455 0.9182 0.8636
+0.8818 0.9364 0.9636 0.9364 0.8818
+0.9 0.9545 0.9818 0.9545 0.9
+0.9182 0.9727 1 0.9727 0.9182
+"Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class (the value 1 is inserted for the base class)"
+" "
+0	0	0	0	0
+0	0	0	0	0
+0	0	0	0	0
+1	0.985	0.97	0.94	0.875
+0.96	0.945	0.925	0.89	0.82
+0.925	0.91	0.89	0.86	0.79
+0.875	0.86	0.84	0.805	0.73
+0.775	0.785	0.795	0.76	0.685
+0.655	0.665	0.675	0.64	0.565
+"Matrix Prcs - coefficients of carcass prices in commercial classes for fleshiness and fat covering for castrates relative to the base class (the value 1 is inserted for the base class)"
+" "
+0.678 0.6976 0.6976 0.6683 0.6
+0.722 0.7415 0.7415 0.7122 0.6439
+0.7659 0.7854 0.7854 0.7561 0.6878
+0.8293 0.8488 0.8488 0.8195 0.7512
+0.8829 0.9024 0.9024 0.8732 0.8049
+0.9171 0.9366 0.9366 0.9073 0.839
+0.9366 0.9561 0.9561 0.9268 0.8585
+0.9561 0.9756 0.9756 0.9463 0.878
+0.9805 1 1 0.9707 0.9024
+"Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)"
+" "                                                      

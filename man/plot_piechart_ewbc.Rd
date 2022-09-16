@@ -6,11 +6,10 @@
 \usage{
 plot_piechart_ewbc(
   ps_path_2genSD,
-  ptbl_aggregate_results,
+  ptbl_EW_results,
   ps_traitgroup2consider,
-  ps_sirebreed,
-  ps_prodsystew,
-  ps_marketchannel,
+  ps_scenario,
+  ps_prodsystem,
   pb_log,
   plogger = NULL
 )
@@ -18,15 +17,13 @@ plot_piechart_ewbc(
 \arguments{
 \item{ps_path_2genSD}{path to file with genetic standard deviation}
 
-\item{ptbl_aggregate_results}{resulting tibble from post_process_ewbc_output()}
+\item{ptbl_EW_results}{tibble of economic weights}
 
 \item{ps_traitgroup2consider}{traitgroup may be Carcass or Functional Traits}
 
-\item{ps_sirebreed}{sire breed}
+\item{ps_scenario}{scenario name}
 
-\item{ps_prodsystew}{production system build up as option in ECOWEIGHT}
-
-\item{ps_marketchannel}{market channel}
+\item{ps_prodsystem}{production system build up as option in ECOWEIGHT}
 
 \item{pb_log}{indicator whether logs should be produced}
 
