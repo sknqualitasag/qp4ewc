@@ -590,95 +590,96 @@ calculate_calvesdiedafter24h_proportion <- function(ps_input_calving_tibble,
 }
 
 
-##' @title Write mean and standarddeviation for raw and transformed calving score
-##'
-##' @description
-##' Raw calving scores are not in the same scale for the genetic evaluation. 
-##' Therefore some further information like the mean and standarddeviation need
-##' to be calculated for raw as well as for transformed calving score scale,
-##' to insure to use the calculated economic weight out of ECOWEIGHT.
-##'
-##' @param ps_input_tbl_calving input calving tibble coming from read_file_input_calving in this package
-##' @param ps_sirebreed sire breed
-##' @param ps_dambreed dam breed
-##' @param ps_prodsystew production system build up as option in ECOWEIGHT
-##' @param ps_marketchannel market channel
-##' @param ps_path_directory2create path of the directory that will be created
-##' @param pb_log indicator whether logs should be produced
-##' @param plogger logger object
-##'
-##' @importFrom dplyr %>%
-##' @import dplyr
-##' @import tibble
-##'
-##' @export write_mean_sd_rawAndtransform_calvscore
-#write_mean_sd_rawAndtransform_calvscore(ps_input_tbl_calving = tbl_calving,
-#                                        ps_sirebreed = ps_sirebreed,
-#                                        ps_dambreed = ps_dambreed,
-#                                        ps_prodsystew = ps_prodsystew,
-#                                        ps_marketchannel = ps_marketchannel,
-#                                        ps_path_directory2create = ps_path_directory2create,
-#                                        pb_log = FALSE,
-#                                        plogger = NULL){
-#  
-#  ### # Setting the log-file
-#  if(pb_log){
-#    if(is.null(plogger)){
-#      lgr <- get_qp4ewc_logger(ps_logfile = 'write_mean_sd_rawAndtransform_calvscore.log',
-#                               ps_level = 'INFO')
-#    }else{
-#      lgr <- plogger
-#    }
-#    qp4ewc_log_info(lgr, 'write_mean_sd_rawAndtransform_calvscore',
-#                    paste0('Starting function with parameters:\n * ps_input_tbl_calving'
-#                           ' * ps_sirebreed', ps_sirebreed, '\n',
-#                           ' * ps_dambreed: ', ps_dambreed, '\n',
-#                           ' * ps_prodsystew: ', ps_prodsystew, '\n',
-#                           ' * ps_marketchannel: ', ps_marketchannel, '\n',
-#                           ' * ps_path_directory2create: ', ps_path_directory2create, '\n',))
-#  }
-#  
-#  
-#  ### # Transformation of calving score economic weight to scale like used for EBV
-#  ### # Further explanations under https://qualitasag.atlassian.net/wiki/spaces/ZWS/pages/2965569565/20220728+--+Weekly+Meeting+Projekt+Gesamtzuchtwert+mit+Produktionsmodellen#calving-score
-#  tbl_input <- ps_input_tbl_calving %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>%
-#                                        dplyr::filter(Mutter_RasseCode == ps_dambreed)
-#  
-#  tbl_input <- tbl_input %>% dplyr::filter(!is.na(Geburtsverlauf))
-#  tbl_input <- tbl_input %>% dplyr::filter(Geburtsverlauf != 0)
-#  
-#  # raw calving score transformed as in the genetic evaluation
-#  tbl_input$calving_transform <- NA
-#  l_constants_postprocess_beefOndairy <- get_constants_postprocess_beefOndairy()
-#  
-#  tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% 1] <- l_constants_postprocess_beefOndairy$calving_t_1
-#  tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% 2] <- l_constants_postprocess_beefOndairy$calving_t_2
-#  tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% c(3, 4)] <- l_constants_postprocess_beefOndairy$calving_t_3_4
-#    
-#  # mean and standarddeviation for the raw (_r) and transformed (_t) scale need to be calculated
-#  m_r <- mean(tbl_input$Geburtsverlauf)
-#  sd_r <- sd(tbl_input$Geburtsverlauf)
-#  
-#  m_t <- mean(tbl_input$calving_transform)
-#  sd_t <- sd(tbl_input$calving_transform)
-#  
-#  # create a tibble with mean and standarddeviation values
-#  tbl_mean_sd <- tibble::tibble(mean_raw_calvscore = round(m_r,4),
-#                                sd_raw_calvscore = round(sd_r,4),
-#                                mean_transform_calvscore = round(m_t,4),
-#                                sd_transform_calvscore = round(sd_t,4))
-#  
-#  # write tibble values to csv
-#  if(!dir.exists(file.path(ps_path_directory2create,
-#                          paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel, collapse = ""))){
-#    dir.create(file.path(ps_path_directory2create,
-#                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel, collapse = "")), recursive = TRUE)
-#  } 
-#  write.csv(tbl_mean_sd, file = file.path(ps_path_directory2create,
-#                                          paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel, collapse = ""),
-#                                          "mean_sd_calvingscore.csv"),row.names = FALSE)
-#
-#
-# return(invisible(NULL))
-#
-#}
+#' @title Write mean and standarddeviation for raw and transformed calving score
+#'
+#' @description
+#' Raw calving scores are not in the same scale for the genetic evaluation. 
+#' Therefore some further information like the mean and standarddeviation need
+#' to be calculated for raw as well as for transformed calving score scale,
+#' to insure to use the calculated economic weight out of ECOWEIGHT.
+#'
+#' @param ps_input_tbl_calving input calving tibble coming from read_file_input_calving in this package
+#' @param ps_sirebreed sire breed
+#' @param ps_dambreed dam breed
+#' @param ps_prodsystew production system build up as option in ECOWEIGHT
+#' @param ps_marketchannel market channel
+#' @param ps_path_directory2create path of the directory that will be created
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tibble
+#'
+#' @export write_mean_sd_rawAndtransform_calvscore
+write_mean_sd_rawAndtransform_calvscore <- function(ps_input_tbl_calving = tbl_calving,
+                                                    ps_sirebreed = ps_sirebreed,
+                                                    ps_dambreed = ps_dambreed,
+                                                    ps_prodsystew = ps_prodsystew,
+                                                    ps_marketchannel = ps_marketchannel,
+                                                    ps_path_directory2create = ps_path_directory2create,
+                                                    pb_log = FALSE,
+                                                    plogger = NULL){
+  
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'write_mean_sd_rawAndtransform_calvscore.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'write_mean_sd_rawAndtransform_calvscore',
+                    paste0('Starting function with parameters:\n * ps_input_tbl_calving \n',
+                           ' * ps_sirebreed', ps_sirebreed, '\n',
+                           ' * ps_dambreed: ', ps_dambreed, '\n',
+                           ' * ps_prodsystew: ', ps_prodsystew, '\n',
+                           ' * ps_marketchannel: ', ps_marketchannel, '\n',
+                           ' * ps_path_directory2create: ', ps_path_directory2create, '\n'))
+  }
+  
+  
+  ### # Transformation of calving score economic weight to scale like used for EBV
+  ### # Further explanations under https://qualitasag.atlassian.net/wiki/spaces/ZWS/pages/2965569565/20220728+--+Weekly+Meeting+Projekt+Gesamtzuchtwert+mit+Produktionsmodellen#calving-score
+  tbl_input <- ps_input_tbl_calving %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>%
+    dplyr::filter(Mutter_RasseCode == ps_dambreed)
+  
+  tbl_input <- tbl_input %>% dplyr::filter(!is.na(Geburtsverlauf))
+  tbl_input <- tbl_input %>% dplyr::filter(Geburtsverlauf != 0)
+  
+  # raw calving score transformed as in the genetic evaluation
+  tbl_input$calving_transform <- NA
+  l_constants_postprocess_beefOndairy <- get_constants_postprocess_beefOndairy()
+  
+  tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% 1] <- l_constants_postprocess_beefOndairy$calving_t_1
+  tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% 2] <- l_constants_postprocess_beefOndairy$calving_t_2
+  tbl_input$calving_transform[tbl_input$Geburtsverlauf %in% c(3, 4)] <- l_constants_postprocess_beefOndairy$calving_t_3_4
+  
+  # mean and standarddeviation for the raw (_r) and transformed (_t) scale need to be calculated
+  m_r <- mean(tbl_input$Geburtsverlauf)
+  sd_r <- sd(tbl_input$Geburtsverlauf)
+  
+  m_t <- mean(tbl_input$calving_transform)
+  sd_t <- sd(tbl_input$calving_transform)
+  
+  # create a tibble with mean and standarddeviation values
+  tbl_mean_sd <- tibble::tibble(mean_raw_calvscore = round(m_r,4),
+                                sd_raw_calvscore = round(sd_r,4),
+                                mean_transform_calvscore = round(m_t,4),
+                                sd_transform_calvscore = round(sd_t,4))
+  
+  # write tibble values to csv
+  if(!dir.exists(file.path(ps_path_directory2create,
+                           paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel, collapse = "")))){
+    dir.create(file.path(ps_path_directory2create,
+                         paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel, collapse = "")), recursive = TRUE)
+  } 
+  write.csv(tbl_mean_sd, file = file.path(ps_path_directory2create,
+                                          paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel, collapse = ""),
+                                          "mean_sd_calvingscore.csv"),row.names = FALSE)
+  
+  
+  return(invisible(NULL))
+  
+  
+}

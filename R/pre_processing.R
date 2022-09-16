@@ -725,15 +725,15 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
   l_constants_calving_beefOnbeef <- get_constants_calving_beefOnbeef()
   l_constants_calving_beefOndairy <- get_constants_calving_beefOndairy()
   
-#  ### # Write the mean and standarddeviation for the raw and transformed scale of calving score in a file
-#  write_mean_sd_rawAndtransform_calvscore(ps_input_tbl_calving = tbl_calving,
-#                                          ps_sirebreed = ps_sirebreed,
-#                                          ps_dambreed = ps_dambreed,
-#                                          ps_prodsystew = ps_prodsystew,
-#                                          ps_marketchannel = ps_marketchannel,
-#                                          ps_path_directory2create = ps_path_directory2create,
-#                                          pb_log = pb_log,
-#                                          plogger = lgr)
+  ### # Write the mean and standarddeviation for the raw and transformed scale of calving score in a file
+  write_mean_sd_rawAndtransform_calvscore(ps_input_tbl_calving = tbl_calving,
+                                          ps_sirebreed = ps_sirebreed,
+                                          ps_dambreed = ps_dambreed,
+                                          ps_prodsystew = ps_prodsystew,
+                                          ps_marketchannel = ps_marketchannel,
+                                          ps_path_directory2create = ps_path_directory2create,
+                                          pb_log = pb_log,
+                                          plogger = lgr)
 
   # Update statement-calving-input from the data by calculating abortion rate
   abortrate_prim <- calculate_abortion_rate(ps_input_calving_tibble = tbl_calving,
