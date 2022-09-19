@@ -1,0 +1,1194 @@
+"**************************************
+Program EWDC, version 2.2.5, December 2020 
+**************************************
+ 
+---------------------------------------------------------
+The program is part of the program package ECOWEIGHT, 
+version 6.0.4.
+
+Copyright: 
+  
+  Jochen Wolf, Marie Wolfova, Emil Krupa
+  Institute of Animal Science
+  P.O.Box 1, CZ 10401 Prague Uhrineves, Czech Republic
+  E-mail: j-m-wolf@gmx.de (Jochen Wolf and Marie Wolfova),
+    krupa.emil@vuzv.cz
+---------------------------------------------------------
+
+Remark: The abbreviation MU is used for monetary units. If you want the
+  program to print out directly a concrete monetary unit as dollars or
+  euro use a text editor to globally replace MU by the abbreviation of the
+  desired monetary unit in the file TEXTD_OUT.TXT.
+
+1 System variables (read from PARAD.TXT): 
+-----------------------------------------
+"
+"2 Input data
+------------
+"
+"The following three values are taken from program EWBC and read from T.TXT.
+Select (6) average daily gain of calves from birth to 1st weighing or (26)
+weight gain of calves from birth to 1st weighing
+   ( ):"
+"Select (7) average daily gain of calves from 1st to 2nd weighing or (27)
+weight gain of calves from 1st to 2nd weighing
+   ( ):"
+"Select (8) average daily gain of calves from 2nd to 3rd weighing or (28)
+weight gain of calves from 2nd to 3rd weighing
+   ( ):"
+"
+3 Results"
+"---------
+Important comment: In the following text, CC is used for the greatest number
+of cow categories. This number is variable because the maximal number of
+lactations is an input parameter. In the given calculation, the value of CC is:"
+" "
+"3.1 Structure of the cow herd in the stationary state"
+"-----------------------------------------------------"
+" "
+"3.1.1 Relative frequencies of individual categories of cows"
+"-----------------------------------------------------------"
+"(The individual categories are defined in the manual.)"
+"3.1.2 Probabilities that a cow is in the given reproductive cycle"
+"-----------------------------------------------------------------"
+"3.2 Reproduction characteristics of the herd"
+"---------------------------------------------"
+"Total conception rate of heifers: "
+"Conception rates of cows in reproductive cycles 1 to LL-1, 
+  (pregnant cows as proportion of all cows which entered 
+  the mating period in this cycle): "
+"Average interval between 1st mating and conception for heifers (d): "
+"Average interval between 1st mating and conception for cows (d): "
+"Average calving interval (calculated only from cows reaching
+  the end of the calving interval)(d): "
+"Average lifetime of cows in number of calvings: "
+"Average lifetime of cows in years (taken into account shorter lactation
+  of the cows not reaching the end of the calving interval): "
+"Average dystocia incidence per calving (dairy pure-bred calves): "
+"Average dystocia incidence per calving (cross-bred calves): "
+"Average dystocia incidence per calving (weighted average for dairy 
+  pure-bred and cross-bred calves): "
+"
+3.3 Growth of cows in reproductive cycles 1 to 3"
+"------------------------------------------------"  
+"(In higher reproductive cycles the same parameters as in cycle 3 are assumed.)
+  The first, second and third numbers refer to reproductive cycles 1, 2 and 3,
+  respectively."
+"Average weight of cows after calving (kg): "
+"Average weight of cows culled due to health problems other than dystocia (kg):"
+"Average weight of cows died (kg): "
+"Average weight of cows culled after lactation because of no pregnancy (kg): "
+"Average weight of cows culled after dystocia problems (kg): "  
+"3.4 Characteristics of progeny born in the herd"
+"-----------------------------------------------"
+" "
+"3.4.1 Structure of progeny"
+"--------------------------"
+"The first, second and third numbers refer to dairy, crossbred and 
+  total progeny, respectively. If there is no crossbreeding in the system, 
+  only the value for dairy progeny is given."
+"Average proportion of pure-bred or cross-bred calvings in the herd 
+  (pure-bred, cross-bred, total): "
+"Number of female calves born alive (per cow and reproductive cycle):"
+"Number of male calves born alive (per cow and reproductive cycle):"
+"Number of female calves alive 48 hours after calving 
+  (per cow and reproductive cycle):"
+"Number of male calves alive 48 hours after calving 
+  (per cow and reproductive cycle):"
+"Number of female calves died from 48 hours after calving to weaning 
+  (per cow and reproductive cycle):"
+"Number of male calves died from 48 hours after calving to weaning 
+  (per cow and reproductive cycle):"
+"Number of female calves reared (per cow and reproductive cycle):"
+"Number of male calves reared available for fattening (per cow and 
+  reproductive cycle):"
+"Number of male calves sold for export (per cow and reproduction 
+  cycle):"
+"Number of male calves fattened as castrates to given slaughter weight 
+  (per cow and reproductive cycle):"
+"Number of male calves fattened as bulls to given slaughter weight
+  (per cow and reproductive cycle):"
+"Number of female calves sold for export (per cow and reproduction 
+  cycle):"
+"Number of female calves fattened to given slaughter weight 
+  (per cow and reproductive cycle):"  
+"Number of dairy heifers (per cow and reproductive cycle) that must enter the 
+  mating period if no heifers are sold pregnant:"
+"Number of dairy heifers (per cow and reproductive cycle) that must be held 
+   as replacement heifers if no heifers are sold and no heifers are mated by 
+   beef bulls:"
+"Number of reared dairy female calves available for fattening or selling
+  (per cow and reproductive cycle):"
+"3.4.2 Growth characteristics for calves"
+"---------------------------------------"
+"If there is given only one number, it refers to dairy progeny.
+  If two numbers are given, the first one refers to dairy progeny
+  and the second one refers to cross-bred progeny."
+"Average age of female calves that died from 48 hours after calving to the 
+  end of the rearing period (d):"
+"Average weight of female calves at the end of the rearing period (kg):
+  "
+"Average weight of male calves at the end of the rearing period (kg):
+  "
+"Average weight of female calves that died from 48 hours after calving
+  to the end of rearing period (kg):"
+"
+3.4.3 Reproduction and growth characteristics of replacement heifers"
+"--------------------------------------------------------------------"
+"(The numbers refer to dairy replacement heifers)"
+"Average age of heifers at mating (d):" 
+"Average age at 1st calving (d):"
+"Average weight at 1st calving (kg):" 
+"Average age of heifers died from the end of rearing period to 
+  calving (d):"
+"Average weight of heifers died from the end of rearing period 
+  to calving (kg):"
+"Average age of heifers culled because of no pregnancy (d):"
+"Average weight of heifers culled because of no pregnancy (kg):"
+"Weight of pregnant breeding heifers at selling (kg):"
+"Weight of non-pregnant dairy breeding heifers at selling (kg):"
+"Weight of non-pregnant cross-bred breeding heifers at selling (kg):"
+"
+3.4.4 Fattening of progeny (bulls, heifers and castrates)"
+"---------------------------------------------------------"
+"If there is given only one number, it refers to dairy progeny.
+  If two numbers are given, the first one refers to dairy progeny
+  and the second one refers to cross-bred progeny."
+"Average age of heifers at the end of the fattening period (d):
+  "
+"Average age of bulls at the end of the fattening period (d):
+  "
+"Average age of castrates at the end of the fattening period (d):
+  "
+"Average age of heifers died during fattening (d):"
+"Average weight of heifers died during fattening (kg):"
+"Average age of bulls died during fattening (d):"
+"Average weight of bulls died during fattening (kg):"
+"Average age of castrates died during fattening (d):"
+"Average weight of castrates died during fattening (kg):"
+"Average age of heifers culled during fattening due to health problems (d):
+  "
+"Average weight of heifers culled during fattening due to health problems
+  (kg):"
+"Average age of bulls culled during fattening due to health problems (d):
+  "
+"Average weight of bulls culled during fattening due to health problems
+  (kg):"
+"Average age of castrates culled during fattening due to health problems
+  (d):"
+"Average weight of castrates culled during fattening due to health problems
+  (kg):"
+"
+3.4.5 Male progeny for performance test on stations"
+"---------------------------------------------------"
+"Average weight of male dairy calves at selling to the test stations 
+  (kg):"
+"
+3.4.6 Miscellaneous
+---------------------"
+"If there is given only one number, it refers to dairy animals.
+  If two numbers are given, the first one refers to dairy animals
+  and the second one refers to cross-bred animals."
+"Mean class of fat covering for bulls:"  
+"Mean class of fat covering for cows:"
+"Mean class of fat covering for castrates:"
+"Mean class of fat covering for heifers:"
+"Mean class of fleshiness for bulls:"
+"Mean class of fleshiness for cows:"
+"Mean class of fleshiness for castrates:"
+"Mean class of fleshiness for heifers:"  
+"Mean score of calving performance (dairy and crossbred female calf):
+   "
+"Mean score of calving performance (dairy and crossbred male calf):
+   "
+"
+3.5 Nutrition costs"
+"-------------------"
+"Comment:
+The following parameters are expressed per animal and time period:
+- requirements of net energy (in MJ NE)
+- requirements of digestible protein (in g PDI)
+- requirements of water (in liters)
+- amount of fresh matter of feed ration without feed losses through wasting (in kg)
+- costs for feeding (in monetary units)
+The time periods are: 
+- for calves (categories 3,8,9 and 10):
+  * from birth to the end of the rearing period, to selling or to death
+- for animals of categories 4, 5, 6, 7, 10 to 24:  
+  * from the end of rearing period of calves to slaughter 
+  * from the end of rearing period of calves to culling for health problems 
+  * from the end of rearing period of calves to death or to selling 
+- for cows (categories 25 to CC):
+  * from calving to death 
+  * from calving to culling
+  * from calving to the end of the given reproductive cycle"
+" "
+"3.5.1 Purebred male breeding calves from birth to selling (Category 10)"
+"-----------------------------------------------------------------------"
+"Length of period for which the feed costs are calculated (d):"
+"Total costs for water (MU):"
+"Total costs for nutrition (feed and water cost) (MU):"
+"Net energy requirement for the 1st feeding period (MJ NE):"
+"Protein requirement for the 1st feeding period (g PDI):"
+"Predicted total dry matter intake in the 1st feeding period (kg):"
+"Actual daily dry matter intake in the 1st feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the 1st feeding period 
+  (kg):"
+"Net energy requirement for the 2nd feeding period (MJ NE):"
+"Protein requirement for the 2nd feeding period (g PDI):"
+"Predicted total dry matter intake in the 2nd feeding period (kg):"
+"Actual daily dry matter intake in the 2nd feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the 2nd feeding period 
+  (kg):"
+"Net energy requirement for the 3rd feeding period (MJ NE):"
+"Protein requirement for the 3rd feeding period (g PDI):"
+"Predicted total dry matter intake in the 3rd feeding period (kg):"
+"Actual daily dry matter intake in the 3rd feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the 3rd feeding period 
+  (kg):"
+"
+3.5.2 Fattened bulls (categories 4, 15, 14 and CC+4, CC+15, CC+14)
+------------------------------------------------------------------"
+"  Comment:
+  - first number: bulls died during the fattening period (category 4 or CC+4),
+  - second number: fattened bulls slaughtered before reaching slaughter weight 
+    due to health problems (category 15 or CC+15)
+  - third number: fattened bulls reaching slaughter weight (category 14 or
+    CC+14)"
+"
+3.5.2.1 Fattened dairy bulls (categories 4, 15 and 14)
+------------------------------------------------------"
+"Length of fattening period for which the feed costs are calculated (d):
+  "
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:" 
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.2.2 Fattened cross-bred bulls (categories CC+4, CC+15, CC+14)
+-----------------------------------------------------------------"
+"Length of fattening period for which the feed costs are calculated (d):
+  "
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:" 
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.3 Fattened castrates (categories 5, 16, 17 and CC+5, CC+16, CC+17)
+----------------------------------------------------------------------"
+"  Comment:
+  - first number: castrates died during the fattening period (category 5 or 
+    CC+5),
+  - second number: fattened castrates slaughtered before reaching slaughter 
+    weight due to health problems (category 16 or CC+16)
+  - third number: fattened castrates reaching slaughter weight (category 17 or
+    CC+17)"
+"
+3.5.3.1 Fattened dairy castrates (categories 5, 16 and 17)
+----------------------------------------------------------"
+"Length of fattening period for which the feed costs are calculated (d):
+  "
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.3.2 Fattened cross-bred castrates (categories CC+5, CC+16, CC+17)
+---------------------------------------------------------------------"
+"Length of fattening period for which the feed costs are calculated (d):
+  "
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.4 Fattened heifers (categories 6, 13, 12 and CC+6, CC+13, CC+12)
+--------------------------------------------------------------------"
+"  Comment:
+  - first number: heifers died during the fattening period (category 6 or 88),
+  - second number: fattened heifers slaughtered before reaching slaughter 
+    weight due to health problems (category 13 or 95)
+  - third number: fattened heifers reaching slaughter weight (category 12 or 94)"
+"
+3.5.4.1 Fattened dairy heifers (categories 6, 13 and 12)
+--------------------------------------------------------"
+"Length of fattening period for which the feed costs are calculated (d):
+  "
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.4.2 Fattened cross-bred heifers (categories CC+6, CC+13 and CC+12)
+----------------------------------------------------------------------"
+"Length of fattening period for which the feed costs are calculated (d):
+  "
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.5 Heifers for replacement died between the end of rearing period
+      and calving (categories 7 and CC+7)"
+"--------------------------------------------------------------------"
+"
+3.5.5.1 Dairy heifers (category 7)"
+"----------------------------------"
+"Length of period for which the feed costs are calculated (d):"
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration (kg):"
+"Cost for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.5.2 Cross-bred heifers (Category CC+7)"
+"------------------------------------------"
+"Length of period for which the feed costs are calculated (d):"
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration (kg):"
+"Cost for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.6 Female (categories 8 and CC+8) and male (categories 9 and CC+9)
+      calves sold for export"
+"---------------------------------------------------------------------"
+"
+3.5.6.1 Dairy female (category 8) calves sold for export
+--------------------------------------------------------"
+"Length of period for which the feed costs are calculated (d):
+  "
+"Net energy requirement for the first feeding period (MJ NE):"
+"Protein requirement for the first feeding period (g PDI):"
+"Predicted total dry matter intake in the first feeding period (kg):"
+"Actual daily dry matter intake in the first feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the first feeding 
+  period (kg):"
+"Net energy requirement for the second feeding period (MJ NE):"
+"Protein requirement for the second feeding period (g PDI):"
+"Predicted total dry matter intake in the second feeding period (kg):"
+"Actual daily dry matter intake in the second feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the second feeding 
+  period (kg):"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.6.2 Dairy male (category 9) calves sold for export
+------------------------------------------------------"
+"Length of period for which the feed costs are calculated (d):
+  "
+"Net energy requirement for the first feeding period (MJ NE):"
+"Protein requirement for the first feeding period (g PDI):"
+"Predicted total dry matter intake in the first feeding period (kg):"
+"Actual daily dry matter intake in the first feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the first feeding 
+  period (kg):"
+"Net energy requirement for the second feeding period (MJ NE):"
+"Protein requirement for the second feeding period (g PDI):"
+"Predicted total dry matter intake in the second feeding period (kg):"
+"Actual daily dry matter intake in the second feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the second feeding 
+  period (kg):"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.6.3 Cross-bred female (category CC+8) calves sold for export
+----------------------------------------------------------------"
+"Length of period for which the feed costs are calculated (d):
+  "
+"Net energy requirement for the first feeding period (MJ NE):"
+"Protein requirement for the first feeding period (g PDI):"
+"Predicted total dry matter intake in the first feeding period (kg):"
+"Actual daily dry matter intake in the first feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the first feeding 
+  period (kg):"
+"Net energy requirement for the second feeding period (MJ NE):"
+"Protein requirement for the second feeding period (g PDI):"
+"Predicted total dry matter intake in the second feeding period (kg):"
+"Actual daily dry matter intake in the second feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the second feeding 
+  period (kg):"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.6.4 Cross-bred male (category CC+9) calves sold for export
+--------------------------------------------------------------"
+"Length of period for which the feed costs are calculated (d):
+  "
+"Net energy requirement for the first feeding period (MJ NE):"
+"Protein requirement for the first feeding period (g PDI):"
+"Predicted total dry matter intake in the first feeding period (kg):"
+"Actual daily dry matter intake in the first feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the first feeding 
+  period (kg):"
+"Net energy requirement for the second feeding period (MJ NE):"
+"Protein requirement for the second feeding period (g PDI):"
+"Predicted total dry matter intake in the second feeding period (kg):"
+"Actual daily dry matter intake in the second feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the second feeding 
+  period (kg):"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.7 Replacement dairy heifers negatively selected before first mating
+      and slaughtered (category 18)"
+"------------------------------------------------------------------------"
+"Length of period for which the feed costs are calculated (d):"
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.8 Replacement dairy heifers slaughtered after mating because
+      of no pregnancy (category 19)"
+"-----------------------------------------------------------------"
+"Length of period for which the feed costs are calculated (d):"
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.9 Purchased pregnant female dairy replacement (category 20)"
+"----------------------------------------------------------------"
+"Length of period for which the feed costs are calculated (d):"
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.10 Replacement dairy heifers entering the first reproductive cycle 
+       (category 22)"
+"-----------------------------------------------------------------------"
+"Length of period for which the feed costs are calculated (d):"
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.11 Breeding heifers sold before mating (categories 23 and CC+23)
+       and breeding heifers sold pregnant (categories 24 and CC+24)"
+"--------------------------------------------------------------------"
+"
+3.5.11.1 Dairy breeding heifers sold before mating"
+"--------------------------------------------------"
+"Length of period for which the feed costs are calculated (d):
+  "
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.11.2 Dairy breeding heifers sold pregnant"
+"--------------------------------------------"
+"Length of period for which the feed costs are calculated (d):
+  "
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.11.3 Cross-bred breeding heifers sold before mating"
+"-------------------------------------------------------"
+"Length of period for which the feed costs are calculated (d):
+  "
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.11.4 Cross-bred breeding heifers sold pregnant"
+"--------------------------------------------------"
+"Length of period for which the feed costs are calculated (d):
+  "
+"Net energy requirement (MJ NE):"
+"Protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration:"
+"Costs for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.12 Cows on reproductive cycle 1"
+"------------------------------------"
+"  Comment:
+  The values printed refer to
+  - cows died during the cycle(category 25 - 1st number)
+  - cows culled after dystocia (category 26 - 2nd number)
+  - cows culled within the cycle for health problems (category 27 - 3rd number)
+  - cows culled after lactation because of failure to conceive 
+    (category 28 - 4th number),
+   - pregnant cows entering the next reproductive cycle 
+    (category 30 - 5th number)"
+"Length of period for which the feed costs are calculated (d):"
+"Net energy requirement for growth (MJ NE):"
+"Net energy requirement for maintenance (MJ NE):"
+"Net energy requirement for pregnancy (MJ NE):"
+"Net energy requirement for lactation (MJ NE):"
+"Total net energy requirement (MJ NE):"
+"Protein requirement for growth (g PDI):"
+"Protein requirement for maintenance (g PDI):"
+"Protein requirement for pregnancy (g PDI):"
+"Protein requirement for lactation (g PDI):"
+"Total protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration (kg):"
+"Cost for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.13 Cows on reproductive cycle 2"
+"------------------------------------"
+"  Comment:
+  The values printed refer to
+  - cows died during the cycle(category 31 - 1st number)
+  - cows culled after dystocia (category 32 - 2nd number)
+  - cows culled within the cycle for health problems (category 33 - 3rd number)
+  - cows culled after weaning calves because of no pregnancy 
+    (category 34 - 4th number)
+  - pregnant cows entering the next reproductive cycle 
+    (category 36 - 5th number)"
+"Length of period for which the feed costs are calculated (d):"
+"Net energy requirement for growth (MJ NE):"
+"Net energy requirement for maintenance (MJ NE):"
+"Net energy requirement for pregnancy (MJ NE):"
+"Net energy requirement for lactation (MJ NE):"
+"Total net energy requirement (MJ NE):"
+"Protein requirement for growth (g PDI):"
+"Protein requirement for maintenance (g PDI):"
+"Protein requirement for pregnancy (g PDI):"
+"Protein requirement for lactation (g PDI):"
+"Total protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration (kg):"
+"Cost for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.14 Cows on reproductive cycle 3"
+"------------------------------------"
+"  Comment:
+  The values printed refer to
+  - cows died during the cycle(category 37 - 1st number)
+  - cows culled after dystocia (category 38 - 2nd number)
+  - cows culled within the cycle for health problems (category 39 - 3rd number)
+  - cows culled after weaning calves because of no pregnancy 
+    (category 40 - 4th number),
+  - pregnant cows entering the next reproductive cycle 
+    (category 42 - 5th number)"
+"Length of period for which the feed costs are calculated (d):"
+"Net energy requirement for growth (MJ NE):"
+"Net energy requirement for maintenance (MJ NE):"
+"Net energy requirement for pregnancy (MJ NE):"
+"Net energy requirement for lactation (MJ NE):"
+"Total net energy requirement (MJ NE):"
+"Protein requirement for growth (g PDI):"
+"Protein requirement for maintenance (g PDI):"
+"Protein requirement for pregnancy (g PDI):"
+"Protein requirement for lactation (g PDI):"
+"Total protein requirement (g PDI):"
+"Predicted total dry matter intake (kg):"
+"Actual daily dry matter intake (kg):"
+"Amount of fresh feed matter of feed ration (kg):"
+"Cost for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"
+3.5.15 Cows on reproductive cycles 4 to LL"
+"-------------------------------------------"
+"In reproductive cycles 4 to LL, the same results are obtained as in cycle 3.
+"
+"3.5.16 Female calves from birth to the end of rearing period"
+"-------------------------------------------------------------"
+"The first number refers to dairy calves, the second number to cross-bred calves.
+The second number is given only if there is crossbreeding in the system."
+"Length of period for which the feed costs are calculated (d):
+  "
+"Net energy requirement for the first feeding period (MJ NE):"
+"Protein requirement for the first feeding period (g PDI):"
+"Predicted total dry matter intake in the first feeding period (kg):"
+"Actual daily dry matter intake in the first feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the first feeding 
+  period (kg):"
+"Net energy requirement for the second feeding period (MJ NE):"
+"Protein requirement for the second feeding period (g PDI):"
+"Predicted total dry matter intake in the second feeding period (kg):"
+"Actual daily dry matter intake in the second feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the second feeding 
+  period (kg):"
+"Cost for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"Cost for veterinary treatment (MU):"
+"Cost for housing (MU):"
+"Fixed cost (MU):"
+"Total cost (MU):"
+"
+3.5.17 Male calves from birth to the end of rearing period"
+"-----------------------------------------------------------"
+"The first number refers to dairy calves, the second number 
+  (if given) refers to crossbred calves."
+"Length of period for which the feed costs are calculated (d):
+  "
+"Net energy requirement for the first feeding period (MJ NE):"
+"Protein requirement for the first feeding period (g PDI):"
+"Predicted total dry matter intake in the first feeding period (kg):"
+"Actual daily dry matter intake in the first feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the first feeding 
+  period (kg):"
+"Net energy requirement for the second feeding period (MJ NE):"
+"Protein requirement for the second feeding period (g PDI):"
+"Predicted total dry matter intake in the second feeding period (kg):"
+"Actual daily dry matter intake in the second feeding period (kg):"
+"Amount of fresh feed matter of feed ration for the second feeding 
+  period (kg):"
+"Cost for water (MU):"
+"Costs for nutrition (feed and water cost) (MU):"
+"Cost for veterinary treatment (MU):"
+"Cost for housing (MU):"
+"Fixed cost (MU):"
+"Total cost (MU):"
+"
+3.6 Costs per animal in each category
+--------------------------------------"
+"  Comment:
+  Cost components are expressed in MU per animal and calculated
+  for the following time periods:
+  - for calves (categories 1,2,3,8,9,10 and CC+1,CC+2,CC+3,CC+8,CC+9,CC+10):
+    * from birth to the end of rearing period or to selling
+  - for animals of categories 4, 5, 6, 7, 10 to 24 and CC+4, CC+5, CC+6,
+    CC+7, CC+10 to CC+24:  
+    * from the end of rearing period of calves to slaughter 
+    * from the end of rearing period of calves to culling for health problems 
+    * from the end of rearing period of calves to death or to selling 
+  - for replacement heifers (category 22) 
+    * from the end of rearing period of calves to entering the herd 
+  - for cows (categories 25 to CC), including Total cost:
+    * from calving to death 
+    * from calving to culling
+    * from calving to the end of the given reproductive cycle
+   Total cost for all animal categories except for cows are the sum of all
+   cost from the birth of the animal to the end of its life (to slaughter,
+   to culling or to death of the animal) or to the time when changing the 
+   category (i.e. the time when the replacement heifers enter the herd)"
+"  Costs components not printed here are zero."
+"-------------------------------------------------------------------" 
+"             Veterinary  Housing   Other    Fixed    Feeding  Total"
+"-------------------------------------------------------------------
+Pure-bred progeny (categories 1 to 24)"
+"
+Cows (categories 25 to CC)"
+"
+Cross-bred progeny (categories CC+1 to CC+24)"
+"-------------------------------------------------------------------
+Per cow and year (without inclusion of cost for other categories 
+and without replacement cost)"
+"-------------------------------------------------------------------"
+"
+3.7 Costs for dystocia"
+"-----------------------" 
+"Average cost for dystocia per calving in the herd:"
+"
+3.8 Revenues"
+"-------------" 
+"Average prices in MU per kg slaughter weight of fattened and culled animals
+  (first row: dairy animals, second row: cross-bred animals, the
+  second row is only given if there is crossbreeding in the system.):"
+"     Heifers     Bulls     Castrates    Cows
+  ---------------------------------------------"
+"
+Revenues (MU) per animal for individual categories"
+"
+Revenues (MU) per cow and year (for milk and culled cows): "
+"  Revenues (MU) per cow and year for milk: "
+"  Revenues (MU) per cow and year for culled cows: " 
+"
+3.9 Number of discounted expressions for revenues (first number) 
+    and costs (2nd number) of all categories of cattle per cow and 
+    year (covering only one generation of progeny, where heifers 
+    are included till calving)"
+"-----------------------------------------------------------------" 
+"Number of discounted expressions for costs of dystocia:"
+"
+3.10 Profit"
+"------------" 
+"Total revenues (MU per cow and year):"
+"Governmental subsidies (MU per cow and year):"
+"Total costs (MU per cow and year):"
+"Total profit (MU per cow and year):"
+"Profitability including governmental subsidies (%):"
+"Profitability without governmental subsidies (%):"
+"
+3.11 Marginal economic values
+------------------------------"     
+"(For the pure-bred dairy system without terminal crossing)"
+"(For a dairy system with terminal crossing with beef bulls;
+  First number: for pure-bred dairy progeny (per dairy cow and year),
+  second number: for cross-bred beef x dairy progeny (per dairy cow and year),
+  third number: for cross-bred progeny in an integrated pasture system
+  [System 3] per cow and year in System 3)"
+"Mean score of calving performance (MU per changing the mean score by 0.01
+  and per cow and year):"
+"Losses of calves at calving (MU per %, cow and year):  "
+"Losses of calves from 48 hours after calving till the end of the
+   rearing period or (in System 3) till weaning 
+   (MU per %, cow and year):"
+"Mature weight of cows (MU per kg, cow and year):"
+"Birth weight of calves (MU per kg, cow and year):"
+"Average daily gain of calves from birth to 1st weighing in System 3
+  (MU per g/d, cow and year):"
+"Average daily gain of calves from 1st to 2nd weighing in System 3
+  (MU per g/d, cow and year):"
+"Average daily gain of calves from 2nd to 3rd weighing in System 3
+  (MU per g/d, cow and year):"  
+"Daily gain in fattening (MU per g/d, cow and year):"
+"Dressing percentage (MU per %, cow and year):"
+"Cow losses (MU per %, cow and year):"
+"Conception rate of heifers (MU per %, cow and year):"
+"Conception rate of cows (MU per %, cow and year):"
+"Mean class of fleshiness (MU per changing the mean class by 0.01 and 
+  per cow and year):"
+"Mean class of fat covering (MU per changing the mean class by 0.01 and per 
+  cow and year):"
+"Weight gain of calves from birth to 1st weighing in System 3 
+  (MU per kg, cow and year):"
+"Weight gain of calves from 1st to 2nd weighing in System 3 
+  (MU per kg, cow and year):"
+"Weight gain of calves from 2nd to 3rd weighing in System 3 
+  (MU per kg, cow and year):"
+"Lifetime of cows (MU per year, cow and year):"
+"Daily gain of calves from birth to the end of rearing period
+  (MU per g/d, cow and year):"
+"305d milk production (MU per kg, cow and year):"
+"Fat content in milk (MU per per cent, cow and year):"
+"Fat yield in 305d-lactation (MU per kg, cow and year):"
+"Protein content in milk (MU per per cent, cow and year):"
+"Protein yield in 305d-lactation (MU per kg, cow and year):"
+"Somatic cell score (MU per 0.01 score, cow and year):"
+"Mastitis incidence in the herd (MU per case, cow and year):"
+"Rennet coagulation time (MU per min, cow and year):"
+"Curd firmness (MU per mm, cow and year):"
+"Interval between first mating and conception of heifers 
+  (MU per d, cow and year):"
+"Calving interval of cows (MU per d, cow and year):"
+"Daily residual dry matter intake of calves 
+  (MU per kg/d, cow and year):"
+"Daily residual dry matter intake of heifers 
+  (MU per kg/d, cow and year):"
+"Daily residual dry matter intake in (intensive) fattening 
+  (MU per kg/d, cow and year):"
+"Daily residual dry matter intake of cows 
+  (MU per kg/d, cow and year):"
+"Claw disease incidence in the herd (MU per case, cow and year):"  
+"Daily residual dry matter intake in extensive fattening in System 3
+  (MU per kg/d, cow and year):"
+"Age at first calving (MU per day, cow and year):" 
+"Insemination index of heifers (MU per AI dose, cow and year):"
+"Insemination index of cows (MU per AI dose, cow and year):"
+"Service period of cows (MU per day, cow and year):"
+"Milking speed (MU per kg/min, cow and year):"
+"
+3.12 Economic weights for direct (1st number) and maternal (2nd number)
+     trait or trait components of the trait for selection group chosen (see Manual)
+-----------------------------------------------------------------------------------"
+"Mean score of calving performance (MU per changing the mean score by 0.01,
+   cow and year):"
+"Losses of calves at calving (MU per %, cow and year):  "
+"Losses of calves from 48 hours after calving till the end of the
+   rearing period or (in System 3) till weaning 
+   (MU per %, cow and year):"
+"Mature weight of cows (MU per kg, cow and year):"
+"Birth weight of calves (MU per kg, cow and year):"
+"Average daily gain of calves from birth to 1st weighing in System 3
+  (MU per g/d, cow and year):"
+"Average daily gain of calves from 1st to 2nd weighing in System 3
+  (MU per g/d, cow and year):"
+"Average daily gain of calves from 2nd to 3rd weighing in System 3
+  (MU per g/d, cow and year):"  
+"Daily gain in fattening (MU per g/d, cow and year):"
+"Dressing percentage (MU per %, cow and year):"
+"Cow losses (MU per %, cow and year):"
+"Conception rate of heifers (MU per %, cow and year):"
+"Conception rate of cows (MU per %, cow and year):"
+"Mean class of fleshiness (MU per changing the mean class by 0.01 and 
+  per cow and year):"
+"Mean class of fat covering (MU per changing the mean class by 0.01 and per 
+  cow and year):"
+"Weight gain of calves from birth to 1st weighing in System 3 
+  (MU per kg, cow and year):"
+"Weight gain of calves from 1st to 2nd weighing in System 3 
+  (MU per kg, cow and year):"
+"Weight gain of calves from 2nd to 3rd weighing in System 3 
+  (MU per kg, cow and year):"  
+"Lifetime of cows (MU per year, cow and year):"
+"Daily gain of calves from birth to the end of rearing period 
+(MU per g/d, cow and year):"
+"305d milk production (MU per kg, cow and year):"
+"Fat content in milk (MU per per cent, cow and year):"
+"Fat yield in 305d-lactation (MU per kg, cow and year):"
+"Protein content in milk (MU per per cent, cow and year):"
+"Protein yield in 305d-lactation (MU per kg, cow and year):"
+"Somatic cell score (MU per 0.01 score, cow and year):"
+"Mastitis incidence in the herd (MU per case, cow and year):"
+"Rennet coagulation time (MU per min, cow and year):"
+"Curd firmness (MU per mm, cow and year):"
+"Interval between first mating and conception of heifers (MU per d):"
+"Calving interval of cows (MU per d):"
+"Daily residual dry matter intake of calves 
+  (MU per kg/d, cow and year):"
+"Daily residual dry matter intake of heifers 
+  (MU per kg/d, cow and year):"
+"Daily residual dry matter intake in (intensive) fattening 
+  (MU per kg/d, cow and year):"
+"Daily residual dry matter intake of cows 
+  (MU per kg/d, cow and year):"
+"Claw disease incidence in the herd (MU per case, cow and year):"  
+"Daily residual dry matter intake in extensive fattening in System 3
+  (MU per kg/d, cow and year):"
+"Age at first calving (MU per day, cow and year):" 
+"Insemination index of heifers (MU per AI dose, cow and year):"
+"Insemination index of cows (MU per AI dose, cow and year):"
+"Service period of cows (MU per day, cow and year):"
+"Milking speed (MU per kg/min, cow and year):"
+"
+3.13 Relative economic weights (in %)
+-------------------------------------
+
+3.13.1 Standardized economic weights for direct or maternal trait components as 
+      percentage of the sum of absolute values of standardized economic values 
+      for direct or maternal trait components, respectively
+------------------------------------------------------------------------------
+                                     Relative economic weight for
+Trait                             direct component  maternal component
+------------------------------------------------------------------------------"
+"Mean score of calving performance
+"
+"Losses of calves at calving
+"
+"Losses of calves from 48 hours after calving till the end of the
+   rearing period or (in System 3) till weaning 
+"
+"Mature weight of cows
+"
+"Birth weight of calves
+"
+"Average daily gain of calves from birth to 1st weighing in System 3
+"
+"Average daily gain of calves from 1st to 2nd weighing in System 3
+"
+"Average daily gain of calves from 2nd to 3rd weighing in System 3
+"  
+"Daily gain in fattening
+"
+"Dressing percentage
+"
+"Cow losses
+"
+"Conception rate of heifers
+"
+"Conception rate of cows
+"
+"Mean class of fleshiness
+"
+"Mean class of fat covering
+"
+"Weight gain of calves from birth to 1st weighing in System 3
+"
+"Weight gain of calves from 1st to 2nd weighing in System 3
+"
+"Weight gain of calves from 2nd to 3rd weighing in System 3
+"  
+"Lifetime of cows
+"
+"Daily gain of calves from birth to the end of rearing period 
+"
+"305d milk production
+"
+"Fat content in milk
+"
+"Fat yield in 305d-lactation
+"
+"Protein content in milk
+"
+"Protein yield in 305d-lactation
+"
+"Somatic cell score
+"
+"Mastitis incidence in the herd
+"
+"Rennet coagulation time
+"
+"Curd firmness
+"
+"Interval between first mating and conception of heifers
+"
+"Calving interval of cows
+"
+"Daily residual dry matter intake of calves 
+"
+"Daily residual dry matter intake of heifers 
+"
+"Daily residual dry matter intake in (intensive) fattening 
+"
+"Daily residual dry matter intake of cows 
+"
+"Claw disease incidence in the herd
+"
+"Daily residual dry matter intake in extensive fattening in System 3
+"  
+"Age at first calving 
+" 
+"Insemination index of heifers 
+"
+"Insemination index of cows
+"
+"Service period of cows
+"
+"Milking speed
+"
+"------------------------------------------------------------------------------
+Sum                                      100.000          100.000
+------------------------------------------------------------------------------    
+"
+"------------------------------------------------------------------------------
+Sum                                      100.000             -
+------------------------------------------------------------------------------    
+"
+"3.13.2 Standardized economic weights for direct or maternal trait components 
+      as percentage of the sum of absolute values of standardized economic
+      values for both direct or maternal trait components
+------------------------------------------------------------------------------
+                                     Relative economic weight for
+Trait (unit)                     direct component  maternal component
+------------------------------------------------------------------------------"
+"Mean score of calving performance
+"
+"Losses of calves at calving
+"
+"Losses of calves from 48 hours after calving till the end of the
+   rearing period or (in System 3) till weaning 
+"
+"Mature weight of cows
+"
+"Birth weight of calves
+"
+"Average daily gain of calves from birth to 1st weighing in System 3
+"
+"Average daily gain of calves from 1st to 2nd weighing in System 3
+"
+"Average daily gain of calves from 2nd to 3rd weighing in System 3
+"  
+"Daily gain in fattening
+"
+"Dressing percentage
+"
+"Cow losses
+"
+"Conception rate of heifers
+"
+"Conception rate of cows
+"
+"Mean class of fleshiness
+"
+"Mean class of fat covering
+"
+"Weight gain of calves from birth to 1st weighing in System 3
+"
+"Weight gain of calves from 1st to 2nd weighing in System 3
+"
+"Weight gain of calves from 2nd to 3rd weighing in System 3
+"  
+"Lifetime of cows
+"
+"Daily gain of calves from birth to the end of rearing period 
+"
+"305d milk production
+"
+"Fat content in milk
+"
+"Fat yield in 305d-lactation
+"
+"Protein content in milk
+"
+"Protein yield in 305d-lactation
+"
+"Somatic cell score
+"
+"Mastitis incidence in the herd
+"
+"Rennet coagulation time
+"
+"Curd firmness
+"
+"Interval between first mating and conception of heifers
+"
+"Calving interval of cows
+"
+"Daily residual dry matter intake of calves 
+"
+"Daily residual dry matter intake of heifers 
+"
+"Daily residual dry matter intake in (intensive) fattening 
+"
+"Daily residual dry matter intake of cows 
+"
+"Claw disease incidence in the herd
+"
+"Daily residual dry matter intake in extensive fattening in System 3
+"
+"Age at first calving
+" 
+"Insemination index of heifers
+"
+"Insemination index of cows
+"
+"Service period of cows
+"
+"Milking speed
+"
+"------------------------------------------------------------------------------
+Sum"
+"------------------------------------------------------------------------------
+"
+"
+3.14 Relative standardised marginal economic values (in %)
+----------------------------------------------------------
+Mean score of calving performance
+"
+"Losses of calves at calving
+"
+"Losses of calves from 48 hours after calving till the end of the
+   rearing period or (in System 3) till weaning 
+"
+"Mature weight of cows
+"
+"Birth weight of calves
+"
+"Average daily gain of calves from birth to 1st weighing in System 3
+"
+"Average daily gain of calves from 1st to 2nd weighing in System 3
+"
+"Average daily gain of calves from 2nd to 3rd weighing in System 3
+"  
+"Daily gain in fattening
+"
+"Dressing percentage
+"
+"Cow losses
+"
+"Conception rate of heifers
+"
+"Conception rate of cows
+"
+"Mean class of fleshiness
+"
+"Mean class of fat covering
+"
+"Weight gain of calves from birth to 1st weighing in System 3
+"
+"Weight gain of calves from 1st to 2nd weighing in System 3
+"
+"Weight gain of calves from 2nd to 3rd weighing in System 3
+"  
+"Lifetime of cows
+"
+"Daily gain of calves from birth to the end of rearing period 
+"
+"305d milk production
+"
+"Fat content in milk
+"
+"Fat yield in 305d-lactation
+"
+"Protein content in milk
+"
+"Protein yield in 305d-lactation
+"
+"Somatic cell score
+"
+"Mastitis incidence in the herd
+"
+"Rennet coagulation time
+"
+"Curd firmness
+"
+"Interval between first mating and conception of heifers
+"
+"Calving interval of cows
+"
+"Daily residual dry matter intake of calves 
+"
+"Daily residual dry matter intake of heifers 
+"
+"Daily residual dry matter intake in (intensive) fattening 
+"
+"Daily residual dry matter intake of cows 
+"
+"Claw disease incidence in the herd
+"
+"Daily residual dry matter intake in extensive fattening in System 3
+"
+"Age at first calving
+" 
+"Insemination index of heifers
+"
+"Insemination index of cows
+"
+"Service period of cows
+"
+"Milking speed
+"
+"--------------------------------------------------
+Sum                                     100.000
+--------------------------------------------------
+"
+"
+
+    #########################################
+    #                                       #
+    #   That's all.                         #
+    #	Thank you for using program EWDC    #
+    #   of the program package ECOWEIGHT.   #
+    #                                       #
+    #########################################
+    "

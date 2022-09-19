@@ -724,6 +724,16 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
   l_constants_calving_beefOnbeef <- get_constants_calving_beefOnbeef()
   l_constants_calving_beefOndairy <- get_constants_calving_beefOndairy()
 
+#  ### # Write the mean and standarddeviation for the raw and transformed scale of calving score in a file
+#  write_mean_sd_rawAndtransform_calvscore(ps_input_tbl_calving = tbl_calving,
+#                                          ps_sirebreed = ps_sirebreed,
+#                                          ps_dambreed = ps_dambreed,
+#                                          ps_prodsystew = ps_prodsystew,
+#                                          ps_marketchannel = ps_marketchannel,
+#                                          ps_path_directory2create = ps_path_directory2create,
+#                                          pb_log = pb_log,
+#                                          plogger = lgr)
+
   # Update statement-calving-input from the data by calculating abortion rate
   abortrate_prim <- calculate_abortion_rate(ps_input_calving_tibble = tbl_calving,
                                             ps_statement_firstlactation = TRUE,
@@ -1365,8 +1375,6 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
 
 
   }
-
-  #For the transformation of calving weight genetic standard deviation to the same scale as for the raw phenotype:
 
 
 }
@@ -2447,7 +2455,7 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
   }
 
   # ****************************************************************************
-  ## ---- Conventional-Veal ----
+  ## ---- Conventional-Veal or Export----
   # ****************************************************************************
   if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_calf | ps_marketchannel == l_constants_progeny_beefOndairy$export_calf){
 
@@ -3991,23 +3999,75 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
   if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_beef){
   # basis price bull
 
-  value2update <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef
+#    # After a certain live weight at slaughter, deduction are occurring from Proviande
+#    # More details in the notes of the meeting https://qualitasag.atlassian.net/wiki/spaces/ZWS/pages/3010658375/20220901+--+Meeting+Projekt+Gesamtzuchtwert+mit+Produktionsmodellen
+#if(livewt_slaughter_m_purebeef <= 530){
+#      value2update <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef
+#    } else if(livewt_slaughter_m_purebeef > 530 & livewt_slaughter_m_purebeef < 541){
+#  value2update <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_beef2]$input_value_beef2
+#    } else if (livewt_slaughter_m_purebeef > 540 & livewt_slaughter_m_purebeef < 551) {
+#      value2update <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_beef3]$input_value_beef3
+#    } else if (livewt_slaughter_m_purebeef > 550 & livewt_slaughter_m_purebeef < 571) {
+#      value2update <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_beef4]$input_value_beef4
+#    } else if (livewt_slaughter_m_purebeef > 570 & livewt_slaughter_m_purebeef < 591) {
+#      value2update <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_beef5]$input_value_beef5
+#    } else if (livewt_slaughter_m_purebeef > 590 & livewt_slaughter_m_purebeef < 611) {
+#      value2update <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_beef6]$input_value_beef6
+#    } else if (livewt_slaughter_m_purebeef > 610 & livewt_slaughter_m_purebeef < 631) {
+#      value2update <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_beef7]$input_value_beef7
+#    } else if (livewt_slaughter_m_purebeef > 630 & livewt_slaughter_m_purebeef < 651) {
+#      value2update <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_beef8]$input_value_beef8
+#    } else if (livewt_slaughter_m_purebeef > 650 & livewt_slaughter_m_purebeef < 671) {
+#      value2update <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_beef9]$input_value_beef9
+#    } else if (livewt_slaughter_m_purebeef > 670 & livewt_slaughter_m_purebeef < 691) {
+#      value2update <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_beef10]$input_value_beef10
+#    } else if (livewt_slaughter_m_purebeef > 690) {
+#      value2update <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_beef11]$input_value_beef11
+#    }
 
   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                 paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                 tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
                               ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input],
-                              ps_value2update = value2update,
+
+                              ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef,
+#                              ps_value2update = value2update,
                               pb_log = pb_log,
                               plogger = lgr)
   # basis price heifer
-  value2update_f <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef
+
+#  # After a certain live weight at slaughter, deduction are occurring from Proviande
+#  # More details in the notes of the meeting https://qualitasag.atlassian.net/wiki/spaces/ZWS/pages/3010658375/20220901+--+Meeting+Projekt+Gesamtzuchtwert+mit+Produktionsmodellen
+#  if(livewt_slaughter_f_purebeef <= 550){
+#    value2update_f <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef
+#  } else if(livewt_slaughter_f_purebeef > 550 & livewt_slaughter_f_purebeef < 571){
+#    value2update_f <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_beef2]$input_value_beef2
+#  } else if (livewt_slaughter_f_purebeef > 570 & livewt_slaughter_f_purebeef < 591) {
+#    value2update_f <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_beef3]$input_value_beef3
+#  } else if (livewt_slaughter_f_purebeef > 590 & livewt_slaughter_f_purebeef < 611) {
+#    value2update_f <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_beef4]$input_value_beef4
+#  } else if (livewt_slaughter_f_purebeef > 610 & livewt_slaughter_f_purebeef < 631) {
+#    value2update_f <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_beef5]$input_value_beef5
+#  } else if (livewt_slaughter_f_purebeef > 630 & livewt_slaughter_f_purebeef < 651) {
+#    value2update_f <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_beef6]$input_value_beef6
+#  } else if (livewt_slaughter_f_purebeef > 650 & livewt_slaughter_f_purebeef < 671) {
+#    value2update_f <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_beef7]$input_value_beef7
+#  } else if (livewt_slaughter_f_purebeef > 670 & livewt_slaughter_f_purebeef < 691) {
+#    value2update_f <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_beef8]$input_value_beef8
+#  } else if (livewt_slaughter_f_purebeef > 690 & livewt_slaughter_f_purebeef < 711) {
+#    value2update_f <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_beef9]$input_value_beef9
+#  } else if (livewt_slaughter_f_purebeef > 710 & livewt_slaughter_f_purebeef < 721) {
+#    value2update_f <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_beef10]$input_value_beef10
+#  } else if (livewt_slaughter_f_purebeef > 720) {
+#    value2update_f <- tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_beef11]$input_value_beef11
+#  }
 
   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                 paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                 tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
                               ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input],
-                              ps_value2update = value2update_f,
+                              ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef,
+                              #                              ps_value2update = value2update_f,
                               pb_log = pb_log,
                               plogger = lgr)
   }
