@@ -1,18 +1,18 @@
-input_file;input;input_unit;input_value_calf;input_value_beef;input_value_beef2;input_value_beef3;input_value_beef4;input_value_beef5;input_value_beef6;input_value_beef7;input_value_beef8;input_value_beef9;input_value_beef10;input_value_beef11
-INPUT24.TXT;"Matrix Pb_p - proportions of bull carcasses in commercial classes for fleshiness and fat covering";"%";;;;;;;;;;;;
-INPUT24.TXT;"Matrix Ph_p - proportions of heifer carcasses in commercial classes for fleshiness and fat covering";"%";;;;;;;;;;;;
-INPUT24.TXT;"Matrix Pcs_p - proportions of castrate carcasses in commercial classes for fleshiness and fat covering";"%";;;;;;;;;;;;
-INPUT24.TXT;"Matrix Pc_p - proportions of cow carcasses in commercial classes for fleshiness and fat covering";"%";;;;;;;;;;;;
-INPUT24.TXT;"Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)";" ";;;;;;;;;;;;
-INPUT24.TXT;"Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class (the value 1 is inserted for the base class)";" ";;;;;;;;;;;;
-INPUT24.TXT;"Matrix Prcs - coefficients of carcass prices in commercial classes for fleshiness and fat covering for castrates relative to the base class (the value 1 is inserted for the base class)";" ";;;;;;;;;;;;
-INPUT24.TXT;"Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)";" ";;;;;;;;;;;;
-INPUT25.TXT;"Matrix Pb_c - proportions of bull carcasses in commercial classes for fleshiness and fat covering";"%";;;;;;;;;;;;
-INPUT25.TXT;"Matrix Ph_c - proportions of heifer carcasses in commercial classes for fleshiness and fat covering";"%";;;;;;;;;;;;
-INPUT25.TXT;"Matrix Pcs_c - proportions of castrate carcasses in commercial classes for fleshiness and fat covering";"%";;;;;;;;;;;;
-INPUT11.TXT;"Price per kg carcass of cows in the base class for carcass grading";"MU/kg";;9.60;;;;;;;;;;
-INPUT23.TXT;"Price per kg carcass of heifers in the base class for carcass grading";"MU/kg";15.40;10.40;10.25;10.15;10.00;9.90;9.80;9.70;9.60;9.45;9.35;9.25
-INPUT23.TXT;"Price per kg carcass of bulls in the base class for carcass grading";MU/kg;15.40;10.40;10.30;10.20;10.10;10.00;9.90;9.80;9.65;9.55;9.45;9.35
-INPUT23.TXT;"Price per kg carcass of castrates in the base class for carcass grading";"MU/kg";;;;;;;;;;;;
-INPUT23.TXT;"Number of commercial classes for fleshiness";" ";;9;;;;;;;;;;
-INPUT23.TXT;"Number of commercial classes for fat covering";" ";;5;;;;;;;;;;
+input_file;input;input_unit;input_value_calf;input_value_beef
+INPUT24.TXT;"Matrix Pb_p - proportions of bull carcasses in commercial classes for fleshiness and fat covering";"%";;
+INPUT24.TXT;"Matrix Ph_p - proportions of heifer carcasses in commercial classes for fleshiness and fat covering";"%";;
+INPUT24.TXT;"Matrix Pcs_p - proportions of castrate carcasses in commercial classes for fleshiness and fat covering";"%";;
+INPUT24.TXT;"Matrix Pc_p - proportions of cow carcasses in commercial classes for fleshiness and fat covering";"%";;
+INPUT24.TXT;"Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)";" ";;
+INPUT24.TXT;"Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class (the value 1 is inserted for the base class)";" ";;
+INPUT24.TXT;"Matrix Prcs - coefficients of carcass prices in commercial classes for fleshiness and fat covering for castrates relative to the base class (the value 1 is inserted for the base class)";" ";;
+INPUT24.TXT;"Matrix Prc - coefficients of carcass prices in commercial classes for fleshiness and fat covering for cows relative to the base class (the value 1 is inserted for the base class)";" ";;
+INPUT25.TXT;"Matrix Pb_c - proportions of bull carcasses in commercial classes for fleshiness and fat covering";"%";;
+INPUT25.TXT;"Matrix Ph_c - proportions of heifer carcasses in commercial classes for fleshiness and fat covering";"%";;
+INPUT25.TXT;"Matrix Pcs_c - proportions of castrate carcasses in commercial classes for fleshiness and fat covering";"%";;
+INPUT11.TXT;"Price per kg carcass of cows in the base class for carcass grading";"MU/kg";;9.60
+INPUT23.TXT;"Price per kg carcass of heifers in the base class for carcass grading";"MU/kg";15.40;10.40
+INPUT23.TXT;"Price per kg carcass of bulls in the base class for carcass grading";MU/kg;15.40;10.40
+INPUT23.TXT;"Price per kg carcass of castrates in the base class for carcass grading";"MU/kg";;
+INPUT23.TXT;"Number of commercial classes for fleshiness";" ";;7
+INPUT23.TXT;"Number of commercial classes for fat covering";" ";;5

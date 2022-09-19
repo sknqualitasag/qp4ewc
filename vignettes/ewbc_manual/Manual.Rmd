@@ -36,7 +36,7 @@ s_prodsystew <- "1"
 # Marketing channel can be: Natura-Beef, SwissPrimBeef
 s_marketingchannel <- "Natura-Beef"
 # Path to define from the working directory
-s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc","results")
+s_path_directory2create <- file.path(here::here(),"inst","extdata","ewbc","Ecoweight_output")
 # Path to input from the literature research. Based on this example an other file can be created with different input-value and input-source.
 s_input_file_literature <- file.path(here::here(),"inst","extdata","ewbc","input_literature.txt")
 # Path to input from the parameter specific for the scenario. Based on this example an other file can be created with different input-value.
