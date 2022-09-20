@@ -58,6 +58,10 @@ b_log <- TRUE
 s_path_2outputfile <- system.file("extdata","ewdc","Ecoweight_output",
                                   paste0(s_sirebreed,"_",s_dambreed, "_",s_prodsystem,"_",s_marketingchannel,"_test",collapse = ""),
                                   "test",package = "qp4ewc")
+# Take a test-file with an other sirebreed just to show the functionality
+s_path_2outputfile_run1 <- system.file("extdata","ewdc","Ecoweight_output",
+                                  paste0("AN_",s_dambreed, "_",s_prodsystem,"_",s_marketingchannel,"_test",collapse = ""),
+                                  "test",package = "qp4ewc")
 # Path to output statements from the results file of ewdc
 s_output_statement <-  system.file("extdata","ewdc","output_statement.txt", package = "qp4ewc")
 # Path to search patterns needed to find correct results 
@@ -76,6 +80,7 @@ At the beginning of the function depending of the setting for `pb_log` and `plog
 
 ```{r, warning=FALSE, message=FALSE}
 post_process_output(ps_path_2outputfile = s_path_2outputfile,
+                    ps_path_2outputfile_run1 = s_path_2outputfile_run1,
                     ps_output_statement = s_output_statement,
                     ps_output_search_pattern = s_output_search_pattern,
                     ps_sirebreed = s_sirebreed,

@@ -1,0 +1,45 @@
+INFO  [2022-09-20 09:32:36] plot_piechart_ewbc -- Starting function with parameters:
+ * ps_path_2genSD/home/zws/R/x86_64-pc-linux-gnu-library/4.1/qp4ewc/extdata/ewdc/input_geneticSD.txt
+ * ptbl_EW_results 
+ * ps_traitgroup2consider: Functional Traits
+ * ps_scenario: LM_HO_4_ConventionalBeef_test
+ * ps_marketchannel: ConventionalBeef
+
+INFO  [2022-09-20 09:32:36] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/zws/R/x86_64-pc-linux-gnu-library/4.1/qp4ewc/extdata/ewdc/input_geneticSD.txt
+INFO  [2022-09-20 09:32:36] read_file_input -- File exists:
+ * ps_input_file/home/zws/R/x86_64-pc-linux-gnu-library/4.1/qp4ewc/extdata/ewdc/input_geneticSD.txt
+INFO  [2022-09-20 09:32:36] read_file_input -- Read file: 
+ * ps_input_file: /home/zws/R/x86_64-pc-linux-gnu-library/4.1/qp4ewc/extdata/ewdc/input_geneticSD.txt
+ * in a tibble
+
+INFO  [2022-09-20 09:32:36] plot_piechart_ewbc -- Starting function with parameters:
+ * ps_path_2genSD/home/zws/R/x86_64-pc-linux-gnu-library/4.1/qp4ewc/extdata/ewdc/input_geneticSD.txt
+ * ptbl_EW_results 
+ * ps_traitgroup2consider: Carcass Traits
+ * ps_scenario: LM_HO_4_ConventionalBeef_test
+ * ps_marketchannel: ConventionalBeef
+
+INFO  [2022-09-20 09:32:36] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/zws/R/x86_64-pc-linux-gnu-library/4.1/qp4ewc/extdata/ewdc/input_geneticSD.txt
+INFO  [2022-09-20 09:32:36] read_file_input -- File exists:
+ * ps_input_file/home/zws/R/x86_64-pc-linux-gnu-library/4.1/qp4ewc/extdata/ewdc/input_geneticSD.txt
+INFO  [2022-09-20 09:32:36] read_file_input -- Read file: 
+ * ps_input_file: /home/zws/R/x86_64-pc-linux-gnu-library/4.1/qp4ewc/extdata/ewdc/input_geneticSD.txt
+ * in a tibble
+
+INFO  [2022-09-20 09:32:36] plot_piechart_ewbc -- Starting function with parameters:
+ * ps_path_2genSD/home/zws/R/x86_64-pc-linux-gnu-library/4.1/qp4ewc/extdata/ewdc/input_geneticSD.txt
+ * ptbl_EW_results 
+ * ps_traitgroup2consider: Combined
+ * ps_scenario: LM_HO_4_ConventionalBeef_test
+ * ps_marketchannel: ConventionalBeef
+
+INFO  [2022-09-20 09:32:36] read_file_input -- Starting function with parameters:
+ * ps_input_file: /home/zws/R/x86_64-pc-linux-gnu-library/4.1/qp4ewc/extdata/ewdc/input_geneticSD.txt
+INFO  [2022-09-20 09:32:36] read_file_input -- File exists:
+ * ps_input_file/home/zws/R/x86_64-pc-linux-gnu-library/4.1/qp4ewc/extdata/ewdc/input_geneticSD.txt
+INFO  [2022-09-20 09:32:36] read_file_input -- Read file: 
+ * ps_input_file: /home/zws/R/x86_64-pc-linux-gnu-library/4.1/qp4ewc/extdata/ewdc/input_geneticSD.txt
+ * in a tibble
+
