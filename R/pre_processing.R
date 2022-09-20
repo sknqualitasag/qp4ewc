@@ -130,36 +130,36 @@ pre_process_ew_input <- function(ps_sirebreed,
                                          plogger = lgr)
  ### # Update input-parameter-file coming from literature of ECOWEIGHT
  if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
- if(ps_sirebreed == "AN"){
-   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
-                                                                                 paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                 l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
-                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
-                               ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AN,
-                               pb_log = pb_log,
-                               plogger = lgr)
-}else if(ps_sirebreed == "AU" || ps_sirebreed == "OB" || ps_sirebreed == "CH"){
-  update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
-                              ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
-                              ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AUCHOB,
-                              pb_log = pb_log,
-                              plogger = lgr)
-}else if(ps_sirebreed == "LM"){
-  update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
-                              ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
-                              ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_LM,
-                              pb_log = pb_log,
-                              plogger = lgr)
-}else if(ps_sirebreed == "SI"){
-  update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
-                              ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
-                              ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_SI,
-                              pb_log = pb_log,
-                              plogger = lgr)
- }else{
-   qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
-                   paste0('Price for sire breed other than AN, AU, CH, LM, SI, OB are not available for EWBC, please check!'))
- }
+    if(ps_sirebreed == "AN"){
+      update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                    paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                    l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                  ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                  ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AN,
+                                  pb_log = pb_log,
+                                  plogger = lgr)
+    }else if(ps_sirebreed == "AU" || ps_sirebreed == "OB" || ps_sirebreed == "CH"){
+     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                 ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                 ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AUCHOB,
+                                 pb_log = pb_log,
+                                 plogger = lgr)
+    }else if(ps_sirebreed == "LM"){
+     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                 ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                 ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_LM,
+                                 pb_log = pb_log,
+                                 plogger = lgr)
+    }else if(ps_sirebreed == "SI"){
+     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                 ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                 ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_SI,
+                                 pb_log = pb_log,
+                                 plogger = lgr)
+    }else{
+      qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
+                      paste0('Price for sire breed other than AN, AU, CH, LM, SI, OB are not available for EWBC, please check!'))
+    }
  }
 
 

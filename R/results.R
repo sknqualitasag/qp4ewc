@@ -81,7 +81,7 @@ extract_result <- function(ps_path_2outputfile,
 #' produce output file with the results. This function will extract the value needed.
 #'
 #' @param pvec_ecow_result_2extract vector result of output file of ECOWEIGHT
-#' @param ptibble_search tibble with the parttern to search
+#' @param ps_statement2search tibble with the parttern to search
 #' @param ps_line2get line to get
 #' @param ps_splitby string to say how it is splitted
 #' @param pb_log indicator whether logs should be produced
