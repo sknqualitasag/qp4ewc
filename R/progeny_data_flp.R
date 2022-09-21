@@ -1186,3 +1186,97 @@ calculate_age_calf_sale <- function(ps_input_flp_tibble,
 
 }
 
+#' @title calculate_carcass_price
+#'
+#' @description
+#' The program package ECOWEIGHT (C Programs for Calculating Economic Weights in Livestock)
+#' need input parameter files. This function will calculate rearing weight of calves.
+#'
+#' @param ps_tbl_input_statemement_carcass tibble of input statements including base carcass prices
+#' @param ps_sex category e.g MT (bull), RG(heifer) or KV(veal calf)
+#' @param ps_liveweight value for liveweight
+#' @param ps_marketchannel marketing chanell to determine conventional beef or veal
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#' @import dplyr
+#' @import tidyr
+#'
+#' @return rearing_age
+#'
+#' @export calculate_carcass_price
+calculate_carcass_price <- function(ps_tbl_input_statement_carcass,
+                                    ps_sex,
+                                    ps_liveweight,
+                                    ps_marketchannel,
+                                    pb_log = FALSE,
+                                    plogger = NULL){
+
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'calculate_carcass_price.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'calculate_carcass_price',
+                    paste0('Starting function with parameters:\n * ps_tbl_input_statement_carcass'))
+  }
+
+  l_constants <- get_constants()
+  l_constants_liveweight_deductions_male_beefOndairy <- get_constants_liveweight_deductions_male_beefOndairy()
+  l_constants_liveweight_deductions_female_beefOndairy <- get_constants_liveweight_deductions_female_beefOndairy()
+  l_constants_liveweight_deductions_veal_beefOndairy <- get_constants_liveweight_deductions_veal_beefOndairy()
+  l_constants_liveweight_deductions_beefOnbeef <- get_constants_liveweight_deductions_beefOnbeef()
+
+  l_constants_carcass_beefOndairy <- get_constants_carcass_beefOndairy()
+  l_constants_carcass_beefOnbeef <- get_constants_carcass_beefOnbeef()
+
+   #calculation carcass price and inserting in the crossbred table:
+  #determine if conventionalbeef male or female or veal
+  if(ps_sex == l_constants$sex_male & ps_marketchannel == "ConventionalBeef"){
+    price <- ps_tbl_input_statement_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef
+    constants <- get_constants_liveweight_deductions_male_beefOndairy()
+  }else if (ps_sex == l_constants$sex_female & ps_marketchannel == "ConventionalBeef") {
+    price <- ps_tbl_input_statement_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef
+    constants <- get_constants_liveweight_deductions_female_beefOndairy()
+  }else if (ps_marketchannel == "ConventionalVeal"){
+    price <- ps_tbl_input_statement_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_value_calf]$input_value_calf
+    constants <- get_constants_liveweight_deductions_veal_beefOndairy()
+  }else if (ps_marketchannel == "Natura-Beef") {
+    price <- ps_tbl_input_statement_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_price,l_constants_carcass_beefOnbeef$idx_col_input_value]$input_value
+    constants <- get_constants_liveweight_deductions_beefOnbeef()
+  }
+
+  #select the correct deduction value
+  if(ps_liveweight <= constants$step0){
+    price_deduction <- constants$deduction_step0
+  }else if(ps_liveweight > constants$step0 & ps_liveweight <= constants$step1){
+    price_deduction <- constants$deduction_step1
+  }else if(ps_liveweight > constants$step1 & ps_liveweight <= constants$step2){
+    price_deduction <- constants$deduction_step2
+  }else if(ps_liveweight > constants$step2 & ps_liveweight <= constants$step3){
+    price_deduction <- constants$deduction_step3
+  }else if(ps_liveweight > constants$step3 & ps_liveweight <= constants$step4){
+    price_deduction <- constants$deduction_step4
+  }else if(ps_liveweight > constants$step4 & ps_liveweight <= constants$step5){
+    price_deduction <- constants$deduction_step5
+  }else if(ps_liveweight > constants$step5 & ps_liveweight <= constants$step6){
+    price_deduction <- constants$deduction_step6
+  }else if(ps_liveweight > constants$step6 & ps_liveweight <= constants$step7){
+    price_deduction <- constants$deduction_step7
+  }else if(ps_liveweight > constants$step7 & ps_liveweight <= constants$step8){
+    price_deduction <- constants$deduction_step8
+  }else if(ps_liveweight > constants$step8 & ps_liveweight <= constants$step9){
+    price_deduction <- constants$deduction_step9
+  }else if(ps_liveweight > constants$step9 & ps_liveweight <= constants$step10){
+    price_deduction <- constants$deduction_step10
+  }
+    carcass_price <- price + price_deduction
+
+  return(carcass_price)
+
+}
+

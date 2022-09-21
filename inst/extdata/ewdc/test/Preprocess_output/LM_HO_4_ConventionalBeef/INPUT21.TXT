@@ -1,0 +1,241 @@
+/* This file is necessary for program EWDC (Production System 4).
+   It includes input parameters for nutrition and other costs for reared 
+   and fattened progeny and for cows. Two groups of progeny are differentiated
+   - pure-bred dairy progeny and cross-bred progeny. Up to two numbers are given
+   for each input. The first number refers to pure-bred (dairy) progeny and
+   must be always given. The second number is for cross-bred progeny and can be
+   omitted if there is no crossbreeding in the system. If the second number is
+   given in a system without crossbreeding, this number is ignored and its value
+   is of no importance (that means you can insert any value for it).
+   Inputs for castrates are ignored (skipped) if there are no castrates in the
+   system. Similarly, inputs for heifers and bulls in fattening are ignored if 
+   there is no fattening of these categories.
+   All input data are arranged in the following way:
+     each parameter takes three rows,
+     in the first row stands its value (two values for progeny, the first
+     being for dairy progeny, the second for cross-bred progeny), 
+     the string expression in the second row describes the parameter and
+     the last string in the third row contains the units of the parameter.
+     If there is no unit given, enter [SPACE] enclosed into quotation
+     marks.
+   MU: monetary unit */
+0.13 0.13
+"Dry matter per kg feed ration for reared calves in the first feeding period"
+"kg/kg"
+6.7 6.7
+"Net energy content per kg dry matter of feed ration for reared calves in the first feeding period"
+"MJ NE/kg dry matter"
+110 110
+"Protein content per kg dry matter of feed ration for reared calves in the first feeding period"
+"g PDI/kg"
+0.04 0.04
+"Price per kg fresh matter of feed ration for reared calves in the first feeding period"
+"MU/kg"
+0   0
+"Average residual daily dry matter intake of female calves in the first feeding period (difference between the daily actual and predicted dry matter intake)"
+"kg/day"
+0   0
+"Average residual daily dry matter intake of male calves in the first feeding period (difference between the daily actual and predicted dry matter intake)"
+"kg/day"
+0.3 0.3
+"Dry matter per kg feed ration for reared calves in the second feeding period"
+"kg/kg"
+6.7 6.7
+"Net energy content per kg dry matter of feed ration for reared calves in the second feeding period"
+"MJ NE/kg dry matter"
+110 110
+"Protein content per kg dry matter of feed ration for reared calves in the second feeding period"
+"g PDI/kg"
+0.21 0.21
+"Price per kg fresh matter of feed ration for reared calves in the second feeding period"
+"MU/kg"
+0   0
+"Average residual daily dry matter intake of female calves in the second feeding period (difference between the daily actual and predicted dry matter intake)"
+"kg/day"
+0   0
+"Average residual daily dry matter intake of male calves in the second feeding period (difference between the daily actual and predicted dry matter intake)"
+"kg/day"
+5  5
+"Amount of water per reared calf and day"
+"l/day"
+3.6  3.6
+"Amount of dung per reared calf and day"
+"kg/day"
+3.5 3.5
+"Amount of straw per reared calf and day"
+"kg/day"
+48.8 48.8
+"Cost for veterinary treatment per reared calf for the whole rearing period"
+"MU/animal"
+1.15 1.15
+"Fixed cost per reared calf and day"
+"MU/day"
+0.27 0.27
+"Dry matter per kg feed ration for reared heifers"
+"kg/kg"
+6.1 6.1
+"Net energy content per kg dry matter of feed ration for reared heifers"
+"MJ NE/kg dry matter"
+105 105
+"Protein content per kg dry matter of feed ration for reared heifers"
+"g PDI/kg"
+0.04 0.04
+"Price per kg fresh matter of feed ration for reared heifers"
+"MU/kg"
+0   0
+"Average residual daily dry matter intake of reared heifers (difference between the daily actual and predicted dry matter intake)"
+"kg/day"
+50  50
+"Amount of water per reared heifer and day"
+"l/day"
+12.3  12.3
+"Amount of dung per reared heifer and day"
+"kg/day"
+3.5 3.5
+"Amount of straw per reared heifer and day"
+"kg/day"
+138.9 138.9
+"Cost for veterinary treatment per reared heifer from the end of rearing period of calves to calving"
+"MU/animal"
+3.82 3.82
+"Fixed cost per reared heifer from the end of rearing period of calves to calving and per day"
+"MU/day"
+0.7 0.7
+"Dry matter per kg feed ration for fattened bulls"
+"kg/kg"
+7.0 7.0
+"Net energy content per kg dry matter of feed ration for fattened bulls"
+"MJ NE/kg dry matter"
+94.8 94.8
+"Protein content per kg dry matter of feed ration for fattened bulls"
+"g PDI/kg"
+0.3 0.3
+"Price per kg fresh matter of feed ration in fattening of bulls"
+"MU/kg"
+0   0
+"Average residual daily dry matter intake of fattened bulls (difference between the daily actual and predicted dry matter intake)"
+"kg/day"
+50  50
+"Amount of water per bull and day in fattening"
+"l/day"
+12.3  12.3
+"Amount of dung per bull and day in fattening"
+"kg/day"
+3.5 3.5
+"Amount of straw per bull and day in fattening"
+"kg/day"
+138.9 138.9
+"Cost for veterinary treatment per bull in the whole fattening period"
+"MU/animal"
+3.82 3.82
+"Fixed cost per bull and day in fattening"
+"MU/day"
+0.48  0.52
+"Dry matter per kg feed ration for fattened castrates"
+"kg/kg"
+6.74  6.91
+"Net energy content per kg dry matter of feed ration for fattened castrates"
+"MJ NE/kg dry matter"
+96.42  107.24
+"Protein content per kg dry matter of feed ration for fattened castrates"
+"g PDI/kg"
+0.058  0.0736
+"Price per kg fresh matter of feed ration in fattening of castrates"
+"MU/kg"
+0   0
+"Average residual daily dry matter intake of fattened castrates (difference between the daily actual and predicted dry matter intake)"
+"kg/day"
+50  50
+"Amount of water per castrate and day in fattening"
+"l/day"
+12.3  12.3
+"Amount of dung per castrate and day in fattening"
+"kg/day"
+8.2  8.2
+"Amount of straw per castrate and day in fattening"
+"kg/day"
+6.8  6.8
+"Cost for veterinary treatment per castrate in the whole fattening period"
+"MU/animal"
+0.4  0.4
+"Fixed cost per castrate and day in fattening"
+"MU/day"
+0.7 0.7
+"Dry matter per kg feed ration for fattened heifers"
+"kg/kg"
+7.0 7.0
+"Net energy content per kg dry matter of feed ration for fattened heifers"
+"MJ NE/kg dry matter"
+94.8 94.8
+"Protein content per kg dry matter of feed ration for fattened heifers"
+"g PDI/kg"
+0.3 0.3
+"Price per kg fresh matter of feed ration in fattening of heifers"
+"MU/kg"
+0   0
+"Average residual daily dry matter intake of fattened heifers (difference between the daily actual and predicted dry matter intake)"
+"kg/day"
+50  50 
+"Amount of water per fattened heifer and day"
+"l/day"
+12.3  12.3
+"Amount of dung per heifer and day in fattening"
+"kg/day"
+3.5 3.5
+"Amount of straw per heifer and day in fattening"
+"kg/day"
+138.9 138.9
+"Cost for veterinary treatment per heifer in the whole fattening period"
+"MU/animal"
+3.82 3.82
+"Fixed cost per heifer and day in fattening"
+"MU/day"
+48  48
+"Average costs for removing and rendering of a dead young animal (replacement 
+heifer or animal in fattening)"
+"MU/animal"
+0
+"Average costs for removing and rendering of a dead calf"
+"MU/animal"
+6.9333 9.4419
+"Price of a female reared calf for sale (fill in if the animals 
+are paid per kg live weight, otherwise insert two zeros)"
+"MU/kg live weight"
+0 0
+"Price of a female reared calf for sale (fill in if the price is
+per animal, otherwise insert two zeros)"
+"MU/animal"
+6.5313 10.7012
+"Price of a male reared calf for sale (fill in if the animals 
+are paid per kg live weight, otherwise insert two zeros)"
+"MU/kg live weight"
+0 0
+"Price of a male reared calf for sale (fill in if the price is
+per animal, otherwise insert two zeros)"
+"MU/animal"
+0 0
+"Price of a male breeding calf or breeding bull sold to the test station or A.I. 
+station (fill in if the animals are paid per kg live weight, 
+otherwise insert two zeros)"
+"MU/kg live weight"
+1600   0
+"Price of a male sold to the test station or A.I. 
+station (fill in if the price is per animal, otherwise insert two 
+zeros)"
+"MU/male"
+2.16  2.0
+"Price of a not mated breeding heifer for sale (fill in if 
+the animals are paid per kg live weight, otherwise insert two zeros)"
+"MU/kg live weight"
+0 0
+"Price of a not mated breeding heifer for sale (fill in if
+the price is per animal, otherwise insert two zeros)"
+"MU/animal"
+2.4  0
+"Price of a pregnant heifer for sale (fill in if the animals are 
+paid per kg live weight, otherwise insert two zeros)"
+"MU/kg"
+0 0
+"Price of a pregnant heifer for sale (fill in if the 
+price is per animal, otherwise insert two zeros)"
+"MU/animal"                                    

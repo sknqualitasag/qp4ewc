@@ -1,0 +1,70 @@
+/* This file is necessary for program EWDC (Production System 4).
+   It includes economic, management and biological input parameters. 
+   Equal values of some of the parameters are expected for both progeny groups 
+   (dairy and cross-bred progeny). If a difference occurs, insert the weighted
+   average of the two values (weighted by the number of progeny in both groups). 
+   Some data for slaughter weight refer to the beef breed which is used for 
+   crossing. 
+   Inputs referring to castrates are skipped when reading data if there are no 
+   castrates in the system. Similarly, inputs for fattened bulls or heifers 
+   are skipped, if there is no fattening of bulls or heifers, respectively, 
+   in the system.
+   All input data are arranged in the following way:
+     each parameter takes three rows,
+     in the first row stands its value, 
+     the string expression in the second row describes the parameter and
+     the last string in the third row contains the units of the parameter.
+     If there is no unit given, enter [SPACE] enclosed into quotation
+     marks.
+   MU: monetary unit */
+0.8
+"Coefficient for price decrease for heifers involuntarily culled (ratio between the price per kg carcass of involuntarily culled heifers and the price per kg carcass of heifers that reached target slaughter weight)"
+" "
+0.8
+"Coefficient for price decrease for bulls involuntarily culled (ratio between the price per kg carcass of involuntarily culled bulls and the price per kg carcass of bulls that reached target slaughter weight)"
+" "
+0.8
+"Coefficient for price decrease for castrates involuntarily culled (ratio between the price per kg carcass of involuntarily culled castrates and the price per kg carcass of castrates that reached target slaughter weight)"
+" "
+0.8
+"Dressing proportion of heifers not reaching target slaughter weight as proportion of dressing proportion of heifers reaching target slaughter weight"
+" "
+0.8
+"Dressing proportion of bulls not reaching target slaughter weight as proportion of dressing proportion of bulls reaching target slaughter weight"
+" "
+0.8
+"Dressing proportion of castrates not reaching target slaughter weight as proportion of dressing proportion of castrates reaching target slaughter weight"
+" "
+10.4
+"Price per kg carcass of heifers in the base class for carcass grading"
+"MU/kg"
+10.4
+"Price per kg carcass of bulls in the base class for carcass grading"
+"MU/kg"
+4.0
+"Price per kg carcass of castrates in the base class for carcass grading"
+"MU/kg"
+7
+"Number of commercial classes for fleshiness"
+" "
+5
+"Number of commercial classes for fat covering"
+" "
+580
+"Slaughter weight of pure-bred beef bulls at the end of fattening"
+"kg"
+530
+"Slaughter weight of pure-bred beef heifers at the end of fattening"
+"kg"
+650
+"Slaughter weight of pure-bred beef castrates at the end of fattening"
+"kg"
+500
+"Slaughter weight of pure-bred dairy heifers at the end of fattening"
+"kg"
+506
+"Slaughter weight of pure-bred dairy bulls at the end of fattening"
+"kg"
+530
+"Slaughter weight of pure-bred dairy castrates at the end of fattening"
+"kg"          

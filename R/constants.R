@@ -375,6 +375,139 @@ get_constants_carcass_beefOndairy <- function(){
               line9 = 9))
 }
 
+#' @title Get constants for carcass weight deductions based on liveweight for NaturaBeef
+#'
+#' @description
+#' Return a list with specific constants that are used.
+#'
+#' @export get_constants_liveweight_deductions_beefOnbeef
+get_constants_liveweight_deductions_beefOnbeef <- function(){
+  # return list of default constants
+  return(list(deduction_step0 = -0.50, #"Preis nach Vereinbarung"
+              deduction_step1 = -0.50,
+              deduction_step2 = -0.30,
+              deduction_step3 = -0.20,
+              deduction_step4 = 0, #optimal weight
+              deduction_step5 = -0.20,
+              deduction_step6 = -0.40,
+              deduction_step7 = -0.60,
+              deduction_step8 = -0.80,
+              deduction_step9 = -0.80, #“Preis nach Vereinbarung"
+              deduction_step10 = -0.80,#“Preis nach Vereinbarung"
+              step0 = 145,
+              step1 = 149.9,
+              step2 = 159.1,
+              step3 = 169.9,
+              step4 = 260,
+              step5 = 270,
+              step6 = 280,
+              step7 = 290,
+              step8 = 300,
+              step9 = 301, #filler for function (not in the deduction table for naturabeef)
+              step10 = 301, #filler for function (not in the deduction table for naturabeef)
+              idx_row_natura = 1))
+}
+
+#' @title Get constants for carcass weight deductions based on liveweight for male ConventionalBeef
+#'
+#' @description
+#' Return a list with specific constants that are used.
+#'
+#' @export get_constants_liveweight_deductions_male_beefOndairy
+get_constants_liveweight_deductions_male_beefOndairy <- function(){
+  # return list of default constants
+  return(list(deduction_step0 = 0,
+              deduction_step1 = -0.10,
+              deduction_step2 = -0.20,
+              deduction_step3 = -0.30,
+              deduction_step4 = -0.40,
+              deduction_step5 = -0.50,
+              deduction_step6 = -0.60,
+              deduction_step7 = -0.75,
+              deduction_step8 = -0.85,
+              deduction_step9 = -0.95,
+              deduction_step10 = -1.05,
+              step0 = 530,
+              step1 = 540,
+              step2 = 550,
+              step3 = 570,
+              step4 = 590,
+              step5 = 610,
+              step6 = 630,
+              step7 = 650,
+              step8 = 670,
+              step9 = 690,
+              step10 = 710,
+              idx_row_bull = 1))
+}
+
+#' @title Get constants for carcass weight deductions based on liveweight for female ConventionalBeef
+#'
+#' @description
+#' Return a list with specific constants that are used.
+#'
+#' @export get_constants_liveweight_deductions_female_beefOndairy
+get_constants_liveweight_deductions_female_beefOndairy <- function(){
+  # return list of default constants
+  return(list(deduction_step0 = 0,
+              deduction_step1 = -0.15,
+              deduction_step2 = -0.25,
+              deduction_step3 = -0.40,
+              deduction_step4 = -0.50,
+              deduction_step5 = -0.60,
+              deduction_step6 = -0.70,
+              deduction_step7 = -0.80,
+              deduction_step8 = -0.95,
+              deduction_step9 = -1.05,
+              deduction_step10 = -1.15,
+              step0 = 550,
+              step1 = 570,
+              step2 = 590,
+              step3 = 610,
+              step4 = 630,
+              step5 = 650,
+              step6 = 670,
+              step7 = 690,
+              step8 = 710,
+              step9 = 720,
+              step10 = 750,
+              idx_row_heifer = 2))
+}
+
+#' @title Get constants for carcass weight deductions based on liveweight for veal
+#'
+#' @description
+#' Return a list with specific constants that are used.
+#'
+#' @export get_constants_liveweight_deductions_veal_beefOndairy
+get_constants_liveweight_deductions_veal_beefOndairy <- function(){
+  # return list of default constants
+  return(list(deduction_step0 = 0,
+              deduction_step1 = -0.10,
+              deduction_step2 = -0.20,
+              deduction_step3 = -0.30,
+              deduction_step4 = -0.40,
+              deduction_step5 = -0.50,
+              deduction_step6 = -0.60,
+              deduction_step7 = -0.70,
+              deduction_step8 = -0.80,
+              deduction_step9 = -0.90,
+              deduction_step10 = -1.00,
+              step0 = 236,
+              step1 = 238,
+              step2 = 240,
+              step3 = 242,
+              step4 = 243,
+              step5 = 245,
+              step6 = 247,
+              step7 = 248,
+              step8 = 250,
+              step9 = 252,
+              step10 = 500, #anything over 252kg is a 1.00chf deduction but for the function, an upper limit is required
+              idx_row_veal = 1))
+}
+
+
 #' @title Get constants for post processing for beef-on_beef
 #'
 #' @description

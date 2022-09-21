@@ -1,0 +1,97 @@
+/* This file is necessary for program EWBC for Production Systems 1 to 3. 
+   It includes input parameters valid for both variants of fattening. 
+   Furthermore, this file covers parameters for fattening bulls that are 
+   expected to be always intensively fattened independently of the variant of
+   fattening for heifers or castrates.
+   Losses of animals are given as the number of animals died during the fattening 
+   period expressed as proportion of the number of animals that entered fattening. 
+   Dressing proportion is expressed as ratio of the carcass weight and live weight 
+   of animals at slaughter.
+   If all surplus weaned calves are sold, the parameters connected exclusively 
+   with fattening are ignored in the calculations. But some of the parameters 
+   (as dressing proportion, price for slaughter animals, number of classes for 
+   fleshiness and fat covering) will be needed in each calculation, as there will 
+   be always culled heifers and bulls in the herd. 
+   All input data are arranged in the following way:
+	each parameter takes three rows,
+	in the first row stands its value, 
+	the string expression in the second row describes the parameter and
+	the last string in the third row contains the units of the parameter.
+	If there is no unit given, enter [SPACE] enclosed into quotation
+	marks.
+   MU: monetary unit */
+1.213
+"Daily gain of bulls in intensive fattening"
+"kg/day"
+412
+"Live weight of bulls at slaughter in intensive fattening"
+"kg"
+0.58
+"Dressing proportion of bulls"
+" "
+0.65
+"Dressing proportion of castrates"
+" "
+0.56
+"Dressing proportion of heifers"
+" "
+0.8
+"Dressing proportion of bulls not reaching target slaughter weight as proportion of dressing proportion of bulls reaching target slaughter weight"
+" "
+0.05
+"Number of fattened bulls slaughtered before reaching target slaughter weight expressed as proportion of the total number of fattened bulls"
+" "
+0.01
+"Losses of bulls in intensive fattening"
+" "
+40
+"Amount of water per day and animal in intensive fattening"
+"l/day"
+0
+"Amount of dung per animal and day in intensive fattening"
+"kg/day"
+3.5
+"Amount of straw per animal and day in intensive fattening"
+"kg/day"
+0.44
+"Dry matter per kg feed ration for fattened bulls"
+"kg/kg"
+0.0   
+"Average residual daily dry matter intake of fattened bulls. This parameter is read only if the economic weight for residual dry matter intake in fattening is calculated."
+"kg/day"
+6.76
+"Net energy content per kg dry matter of feed ration for fattened bulls"
+"MJ NE/kg dry matter"
+86
+"Protein content per kg dry matter of feed ration for fattened bulls"
+"g PDI/kg"
+0.18
+"Price per kg fresh matter of feed ration for fattened bulls"
+"MU/kg"
+10
+"Losses of feed through wasting in intensive fattening and in the test of bulls"
+"%"
+13.3
+"Price per kg carcass of bulls in the base class"
+"MU/kg"
+13.3
+"Price per kg carcass of heifers for the base class"
+"MU/kg"
+0.8
+"Coefficient for price decrease for bulls involuntarily culled (ratio between the price per kg carcass of involuntarily culled bulls and the price per kg carcass of bulls that reached target slaughter weight)"
+" "
+60.4
+"Cost for veterinary treatment per animal in intensive fattening"
+"MU/animal"
+4.11
+"Fixed cost per animal and day in intensive fattening"
+"MU/day"
+7
+"Number of classes for fleshiness (maximum 20)"
+" "
+5
+"Number of classes for fat covering (maximum 20)"
+" "
+280
+"Governmental support per intensively fattened bull"
+"MU/animal"                   
