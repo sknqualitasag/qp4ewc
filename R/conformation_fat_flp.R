@@ -31,7 +31,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
                                 ps_sex,
                                 ps_marketing_channel,
                                 ps_flag_cow,
-                                pb_log = FALSE,
+                                pb_log,
                                 plogger = NULL){
 
   ### # Setting the log-file
@@ -59,7 +59,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
       ### # Slaughtercategory for female to consider is VK == 7
       tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
                    dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_VK) %>%
-                   dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
+                   dplyr::select(Fleshiness_transform,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
                    na.omit()
       if(pb_log){
         qp4ewc_log_info(lgr, 'build_freq_conf_fat',
@@ -70,7 +70,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
       tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
                    dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
                    dplyr::filter(Markenprogramm == l_constants$value_NaturaBeef) %>%
-                   dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
+                   dplyr::select(Fleshiness_transform,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
                    na.omit()
       if(pb_log){
         qp4ewc_log_info(lgr, 'build_freq_conf_fat',
@@ -81,7 +81,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
         tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
           dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
           dplyr::filter(Markenprogramm == l_constants$value_SwissPrimBeef) %>%
-          dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
+          dplyr::select(Fleshiness_transform,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
           na.omit()
         if(pb_log){
           qp4ewc_log_info(lgr, 'build_freq_conf_fat',
@@ -92,7 +92,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
         tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
           dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_KV) %>%
           dplyr::filter(is.na(Markenprogramm)) %>%
-          dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
+          dplyr::select(Fleshiness_transform,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
           na.omit()
         if(pb_log){
           qp4ewc_log_info(lgr, 'build_freq_conf_fat',
@@ -103,7 +103,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
       tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_female) %>%
         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_RG) %>%
         dplyr::filter(is.na(Markenprogramm)) %>%
-        dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
+        dplyr::select(Fleshiness_transform,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
         na.omit()
       if(pb_log){
         qp4ewc_log_info(lgr, 'build_freq_conf_fat',
@@ -116,7 +116,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
       tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
         dplyr::filter(Markenprogramm == l_constants$value_NaturaBeef) %>%
-        dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
+        dplyr::select(Fleshiness_transform,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
         na.omit()
       if(pb_log){
         qp4ewc_log_info(lgr, 'build_freq_conf_fat',
@@ -127,7 +127,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
         tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
           dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_OB | `Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
           dplyr::filter(Markenprogramm == l_constants$value_SwissPrimBeef) %>%
-          dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
+          dplyr::select(Fleshiness_transform,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
           na.omit()
         if(pb_log){
           qp4ewc_log_info(lgr, 'build_freq_conf_fat',
@@ -138,7 +138,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
         tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
           dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_KV) %>%
           dplyr::filter(is.na(Markenprogramm)) %>%
-          dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
+          dplyr::select(Fleshiness_transform,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
           na.omit()
         if(pb_log){
           qp4ewc_log_info(lgr, 'build_freq_conf_fat',
@@ -148,7 +148,7 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
       tbl_input <- ps_input_flp_tibble %>% dplyr::filter(`Geschlecht Nako` == l_constants$sex_male) %>%
         dplyr::filter(`Schlacht-/Masttierkategorie` == l_constants$slaughtercategory_MT) %>%
         dplyr::filter(is.na(Markenprogramm)) %>%
-        dplyr::select(`Fleischigkeit (1. Teil Handelsklasse CHTAX)`,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
+        dplyr::select(Fleshiness_transform,`Fettgewebe (2. Teil Handelsklasse CHTAX)`) %>%
         na.omit()
       if(pb_log){
         qp4ewc_log_info(lgr, 'build_freq_conf_fat',
@@ -169,10 +169,6 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
 
   ### # Frequency matrix
   total_input <- sum(mat_input)
-  ### # According to the file description https://qualitasag.atlassian.net/wiki/spaces/PROZESS/pages/390398118/ZWS+Export+Fleischleistungspr+fung+FLP
-  ### # Column Fleischigkeit (1. Teil Handesklasse CHTAX) in ps_input_flp_tibble
-  ### # The content of column Fleischigkeit can be
-  ### # empty, 1 = unknown, 2 = C, 3 = H, 4 = T+, 5 = T, 6 = T-, 7 = A, 8 = 1X, 9 = 2X, 10 = 3X
   freq_input <- (mat_input/total_input)*100
   if(pb_log){
     qp4ewc_log_info(lgr, 'build_freq_conf_fat',
@@ -180,36 +176,19 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
   }
 
   ### # vec_rownames content the carcass conformation occuring in the ps_input_flp_tibble
-  vec_rownames <- row.names(freq_input)
-  vec_colnames <- colnames(freq_input)
+  vec_rownames <- as.numeric(row.names(freq_input))
+  vec_colnames <- as.numeric(colnames(freq_input))
 
 
-  ### # These frequencies are set in a 0-matrix. This step reorder the content starting with 1.
-  ### # With this step the rownames are not any more corresponding to the content of the column Fleischigkeit in ps_input_flp_tibble.
-  ### # Build a 0-matrix with 9 rows (for carcass conformation) and 5 columns (for carcass fat)
-  result_matrix <- matrix(0,nrow = 9, ncol = 5)
-  ### # If vec_rownames is not null, the result_matrix will be updated
-  if(!is.null(vec_rownames)){
-    ### # Update the result_matrix with freq_input. If a class is missing, the default value is 0.
-    for(i in 1:nrow(freq_input)){
-      if(as.character(i+1) == vec_rownames[i]){
-        for(j in 1:ncol(freq_input)){
-          if(as.character(j) == vec_colnames[j]){
-            result_matrix[i,j] <- freq_input[i,j]
-          }
-        }
-      }else{
-        if(as.character(i+2) == vec_rownames[i]){
-          for(j in 1:ncol(freq_input)){
-            if(as.character(j+1) == vec_colnames[j]){
-              result_matrix[i+1,j+1] <- freq_input[i,j]
-            }
-          }
-        }
-      }
+  ### # These frequencies are set in a 0-matrix. 
+  result_matrix <- matrix(0,nrow = l_constants$fleshiness_scores, ncol = l_constants$fat_scores)
+  for(i in 1:nrow(freq_input)){
+    x <- vec_rownames[i]
+    for(j in 1:ncol(freq_input)){
+      y <- vec_colnames[j]
+      result_matrix[x,y] <- freq_input[i,j]
     }
   }
-
 
   return(result_matrix)
   if(pb_log){
@@ -217,4 +196,60 @@ build_freq_conf_fat <- function(ps_input_flp_tibble,
                     paste0('A matrix with all classes for conformationXfat has been set up'))
   }
 
+}
+
+
+#' @title Transformation of the fleshiness score
+#'
+#' @description
+#' The raw fleshiness score need to be transformed like in the genetic evaluation.
+#'
+#' @param ps_input_merged_tibble input merged tibble with flp and pedigree data
+#' @param pb_log indicator whether logs should be produced
+#' @param plogger logger object
+#'
+#' @importFrom dplyr %>%
+#' @import dplyr
+#'
+#' @return tbl_merged_data tibble with a further column containing transformed fleshiness score
+#'
+#' @export transform_fleshinesss
+transform_fleshinesss <- function(ps_input_merged_tibble,
+                                  pb_log,
+                                  plogger = NULL){
+  
+  ### # Setting the log-file
+  if(pb_log){
+    if(is.null(plogger)){
+      lgr <- get_qp4ewc_logger(ps_logfile = 'transform_fleshinesss.log',
+                               ps_level = 'INFO')
+    }else{
+      lgr <- plogger
+    }
+    qp4ewc_log_info(lgr, 'transform_fleshinesss',
+                    paste0('Starting function with parameters:\n * ps_input_merged_tibble \n'))
   }
+  
+  
+  ### # Get the constants
+  l_constants_transform_fleshiness <- get_constants_transform_fleshiness()
+  
+  
+  ### # Add a column for the transformed fleshiness score in line with the breeding value estimation
+  ps_input_merged_tibble$Fleshiness_transform <- NA
+  ps_input_merged_tibble$Fleshiness_transform[ps_input_merged_tibble$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% l_constants_transform_fleshiness$raw_flesh_C] <- l_constants_transform_fleshiness$transform_flesh_C
+  ps_input_merged_tibble$Fleshiness_transform[ps_input_merged_tibble$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% l_constants_transform_fleshiness$raw_flesh_H] <- l_constants_transform_fleshiness$transform_flesh_H
+  ps_input_merged_tibble$Fleshiness_transform[ps_input_merged_tibble$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% l_constants_transform_fleshiness$raw_flesh_Tplus] <- l_constants_transform_fleshiness$transform_flesh_Tplus
+  ps_input_merged_tibble$Fleshiness_transform[ps_input_merged_tibble$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% l_constants_transform_fleshiness$raw_flesh_T] <- l_constants_transform_fleshiness$transform_flesh_T
+  ps_input_merged_tibble$Fleshiness_transform[ps_input_merged_tibble$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% l_constants_transform_fleshiness$raw_flesh_Tminus] <- l_constants_transform_fleshiness$transform_flesh_Tminus
+  ps_input_merged_tibble$Fleshiness_transform[ps_input_merged_tibble$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% l_constants_transform_fleshiness$raw_flesh_A] <- l_constants_transform_fleshiness$transform_flesh_A
+  ps_input_merged_tibble$Fleshiness_transform[ps_input_merged_tibble$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% l_constants_transform_fleshiness$raw_flesh_X] <- l_constants_transform_fleshiness$transform_flesh_X
+  ps_input_merged_tibble$Fleshiness_transform[ps_input_merged_tibble$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% l_constants_transform_fleshiness$raw_flesh_XX] <- l_constants_transform_fleshiness$transform_flesh_XX
+  ps_input_merged_tibble$Fleshiness_transform[ps_input_merged_tibble$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% l_constants_transform_fleshiness$raw_flesh_XXX] <- l_constants_transform_fleshiness$transform_flesh_XXX
+  
+  
+  return(ps_input_merged_tibble)
+  
+  
+}
+

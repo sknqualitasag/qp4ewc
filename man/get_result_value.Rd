@@ -16,6 +16,8 @@ get_result_value(
 \arguments{
 \item{pvec_ecow_result_2extract}{vector result of output file of ECOWEIGHT}
 
+\item{ps_statement2search}{tibble with the parttern to search}
+
 \item{ps_line2get}{line to get}
 
 \item{ps_splitby}{string to say how it is splitted}
@@ -23,8 +25,6 @@ get_result_value(
 \item{pb_log}{indicator whether logs should be produced}
 
 \item{plogger}{logger object}
-
-\item{ptibble_search}{tibble with the parttern to search}
 }
 \value{
 vec_cur_result

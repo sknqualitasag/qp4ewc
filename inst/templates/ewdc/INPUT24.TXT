@@ -22,8 +22,6 @@
 0	0	0	0	0
 0	0	0	0	0
 0	0	0	0	0
-0	0	0	0	0
-0	0	0	0	0
 0	0.8	0.7	0	0
 0	6.4	5.0	0	0
 0.3	42.8	31.2	0.3	0
@@ -33,16 +31,12 @@
 0	0	0	0	0
 0	0	0	0	0
 0	0	0	0	0
-0	0	0	0	0
-0	0	0	0	0
 0	0	0	0.3	0.2
 0	1.2	2.6	2.2	0.2
 0.2	16.0	35.0	20.2	4.6
 0.5	6.4	7.0	2.7	0.7
 "Matrix Ph_p - proportions of heifer carcasses in commercial classes for fleshiness and fat covering"
 "%"
-0	0	0	0	0
-0	0	0	0	0
 0	0	0	0	0
 0	0	0	0	0
 0	0	0	0	0
@@ -56,15 +50,11 @@
 0	0	0	0	0
 0	0	0	0	0
 0	0	0	0	0
-0	0	0	0	0
-0	0	0	0	0
 0	3.6	3.4	0.4	0
 0.3	20.5	19.7	8.9	2.2
 1.0	14.1	18.4	7.5     0
 "Matrix Pc_p - proportions of cow carcasses in commercial classes for fleshiness and fat covering"
 "%"
-0	0	0	0	0
-0	0	0	0	0
 0	0	0	0	0
 1	0.985	0.97	0.94	0.875
 0.96	0.945	0.925	0.89	0.82
@@ -75,8 +65,6 @@
 "Matrix Prb - coefficients of carcass prices in commercial classes for fleshiness and fat covering for bulls relative to the base class (the value 1 is inserted for the base class)"
 " "
 0	0	0	0	0
-0	0	0	0	0
-0	0	0	0	0
 1	0.985	0.97	0.925	0.845
 0.97	0.96	0.935	0.885	0.805
 0.93	0.915	0.885	0.83	0.74
@@ -86,8 +74,6 @@
 "Matrix Prh - coefficients of carcass prices in commercial classes for fleshiness and fat covering for heifers relative to the base class (the value 1 is inserted for the base class)"
 " "
 0	0	0	0	0
-0	0	0	0	0
-0	0	0	0	0
 1	0.985	0.97	0.94	0.875
 0.96	0.945	0.925	0.89	0.82
 0.925	0.91	0.89	0.86	0.79
@@ -96,8 +82,6 @@
 0.655	0.665	0.675	0.64	0.565
 "Matrix Prcs - coefficients of carcass prices in commercial classes for fleshiness and fat covering for castrates relative to the base class (the value 1 is inserted for the base class)"
 " "
-0	0	0	0	0
-0	0	0	0	0
 0	0	0	0	0
 1	0.985	0.97	0.92	0.83
 0.97	0.96	0.935	0.88	0.795
