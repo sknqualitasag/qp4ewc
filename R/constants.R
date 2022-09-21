@@ -45,7 +45,10 @@ get_constants <- function(){
               value_SwissPrimBeef = 3,
               prodsyst4 = 4,
               wording_conv_fat_beef = "ConventionalBeef",
-              wording_conv_fat_calf = "ConventionalVeal"))
+              wording_conv_fat_calf = "ConventionalVeal",
+              # fleshiness score in raw data are 9 but after transformation 7 (all X together)
+              fleshiness_scores = 7,
+              fat_scores = 5))
 }
 
 
@@ -670,6 +673,8 @@ get_constants_postprocess_beefOndairy <- function(){
               idx_row_reproduction = 16,
               idx_row_rearingwt_f = 17,
               idx_row_rearingwt_m = 16,
+              idx_row_gestlen = 9,
+              idx_row_gestlen_export = 5,
               string_EW_value = 2,
               avg_dressing = 0.56,
               ew_results = 1:9,
@@ -679,6 +684,7 @@ get_constants_postprocess_beefOndairy <- function(){
               search_misc_export = 16:17,
               search_bw = 18:19,
               search_gestation = 24,
+              search_profit = 29,
               search_slaughter = 20:23,
               search_carcass = 25:26,
               search_rearing = 27:28,
@@ -696,6 +702,8 @@ get_constants_postprocess_beefOndairy <- function(){
               ew_calving = 1,
               ew_calving_transform = 11,
               ew_calving_transform_export = 6,
+              ew_gestation_length = 12,
+              ew_gestation_length_export = 7,
               #for transformation of EW for calving to scale used for EBV, delta = unit of EW
               calving_t_1 = 300,
               calving_t_2 = 200,
@@ -715,9 +723,10 @@ get_constants_postprocess_beefOndairy <- function(){
               ew_pie_calving = 1,
               ew_pie_calving_transform = 2,
               ew_pie_birthwt = 3,
-              ew_pie_ACCW = 4,
-              ew_pie_fleshiness = 5,
-              ew_pie_fat = 6,
+              ew_pie_gestlen = 4,
+              ew_pie_ACCW = 5,
+              ew_pie_fleshiness = 6,
+              ew_pie_fat = 7,
               # colour per traits for piechart
               colour_calvease_dir = "darkorchid1",
               colour_birthwt_dir = "chocolate4",
@@ -734,3 +743,31 @@ get_constants_postprocess_beefOndairy <- function(){
               name_gestlength = "Gestation length"))
 }
 
+
+#' @title Get constants for the transformation of fleshiness
+#'
+#' @description
+#' Return a list with constants that are used.
+#'
+#' @export get_constants_transform_fleshiness
+get_constants_transform_fleshiness <- function(){
+  # return list of default constants
+  return(list(raw_flesh_C = 2,
+              raw_flesh_H = 3,
+              raw_flesh_Tplus = 4,
+              raw_flesh_T = 5,
+              raw_flesh_Tminus = 6,
+              raw_flesh_A = 7,
+              raw_flesh_X = 8,
+              raw_flesh_XX = 9,
+              raw_flesh_XXX = 10,
+              transform_flesh_C = 7,
+              transform_flesh_H = 6,
+              transform_flesh_Tplus = 5,
+              transform_flesh_T = 4,
+              transform_flesh_Tminus = 3,
+              transform_flesh_A = 2,
+              transform_flesh_X = 1,
+              transform_flesh_XX = 1,
+              transform_flesh_XXX = 1))
+}

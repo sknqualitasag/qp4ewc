@@ -70,7 +70,7 @@ s_input_file_calving_statement <- system.file("extdata","ewbc","input_calving_st
 # Path to calving data file
 s_input_file_calving <- system.file("extdata","ewbc","test","test_zws_muku_gal.csv", package = "qp4ewc")
 # Date YYYYMMDD used as start date to filter data for calving or carcass
-s_start_date <- 20160101
+s_start_date <- 20000101
 # Date YYYYMMDD used as end date to filter data for calving or carcass
 s_end_date <- 20211231
 # Path to input from the progeny flp data. Based on this example an other file can be created with different input-values.

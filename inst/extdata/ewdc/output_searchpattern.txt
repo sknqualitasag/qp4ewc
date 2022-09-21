@@ -27,3 +27,4 @@ Trait;SearchPattern;IndexOffset
 "ADG_fattening_bull";"Daily gain of bulls in fattening";1
 "Rearing_wt_m";"Average weight of male calves at the end of the rearing period (kg):";1
 "Rearing_wt_f";"Average weight of female calves at the end of the rearing period (kg):";1
+"Profit";"Total profit (MU per cow and year):";0

@@ -354,7 +354,7 @@ read_price_conf_fat <- function(ps_input_file_price,
   dimnames(mat_price) <- NULL
 
 
-  ### # Calculate the coefficient matrices
+  ### # Calculate the coefficient matrices where C3 (therefore [7,3]) is the reference price for the coefficient matrices
   mat_price <- round(mat_price/mat_price[7,3],4)
   if(pb_log){
     qp4ewc_log_info(lgr, 'read_price_conf_fat','calculate coefficient matrice of the price')

@@ -6,6 +6,7 @@
 \usage{
 extract_ewdc(
   ps_path_2outputfile,
+  ps_path_2outputfile_run1,
   ps_output_statement,
   ps_output_search_pattern,
   ps_sirebreed,
@@ -19,6 +20,8 @@ extract_ewdc(
 }
 \arguments{
 \item{ps_path_2outputfile}{path to output file of ECOWEIGHT}
+
+\item{ps_path_2outputfile_run1}{path to output file from run 1 of ECOWEIGHT}
 
 \item{ps_output_statement}{output statement in a file}
 

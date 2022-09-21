@@ -9,7 +9,7 @@ build_freq_conf_fat(
   ps_sex,
   ps_marketing_channel,
   ps_flag_cow,
-  pb_log = FALSE,
+  pb_log,
   plogger = NULL
 )
 }

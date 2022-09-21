@@ -41,23 +41,28 @@ s_path_extracted_results <- file.path(here::here(),"inst", "extdata", "ewbc", "r
 s_input_genetic_SD <- system.file("extdata","ewbc","input_geneticSD.txt", package = "qp4ewc")
 # Flag to set to TRUE, if a log-file is whished
 b_log <- TRUE
+# Filenames
+filenames <- c("AN_KR_3_Natura-Beef_test",
+               "AU_AU_1_Natura-Beef_test",
+               "CH_KR_3_Natura-Beef_test",
+               "LM_LM_1_Natura-Beef_test",
+               "OB_KR_3_Natura-Beef_test",
+               "SI_SI_1_Natura-Beef_test")
 ```
 
 
 ## Produce result files (csv and pdf) for each scenario
 
 ```{r, warning=FALSE, message=FALSE}
-results_files <- data.frame(filename = list.files(paste0(path_results_files,"/")))
-
-for(idx in 1:nrow(results_files)){
-  s_path_2outputfile <- paste0(path_results_files,"/",results_files[idx,],"/",s_results_name)
-  s_scenario <- results_files[idx,]
+for(idx in 1:length(filenames)){
+  s_scenario <- filenames[idx]
   scenario_split <- unlist(strsplit(s_scenario, split = "_", fixed = TRUE))
   s_sirebreed <- scenario_split[1]
   s_dambreed <- scenario_split[2]
   s_prodsystew <- scenario_split[3]
   s_marketingchannel <- scenario_split[4]
-  post_process_output(ps_path_2outputfile = s_path_2outputfile,
+  post_process_output(ps_path_2outputfile = path_results_files,
+                      ps_outputfilenameECOWEIGHT = s_results_name,
                       ps_output_statement = s_output_statement,
                       ps_output_search_pattern = s_output_search_pattern,
                       ps_sirebreed = s_sirebreed,

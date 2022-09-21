@@ -130,57 +130,57 @@ pre_process_ew_input <- function(ps_sirebreed,
                                          plogger = lgr)
  ### # Update input-parameter-file coming from literature of ECOWEIGHT
  if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
- if(ps_sirebreed == "AN"){
-   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
-                                                                                 paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
-                                                                                 l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
-                               ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
-                               ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AN,
-                               pb_log = pb_log,
-                               plogger = lgr)
-}else if(ps_sirebreed == "AU" || ps_sirebreed == "OB" || ps_sirebreed == "CH"){
-  update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
-                              ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
-                              ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AUCHOB,
-                              pb_log = pb_log,
-                              plogger = lgr)
-}else if(ps_sirebreed == "LM"){
-  update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
-                              ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
-                              ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_LM,
-                              pb_log = pb_log,
-                              plogger = lgr)
-}else if(ps_sirebreed == "SI"){
-  update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
-                              ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
-                              ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_SI,
-                              pb_log = pb_log,
-                              plogger = lgr)
- }else{
-   qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
-                   paste0('Price for sire breed other than AN, AU, CH, LM, SI, OB are not available for EWBC, please check!'))
+    if(ps_sirebreed == "AN"){
+      update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                    paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                    l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                  ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                  ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AN,
+                                  pb_log = pb_log,
+                                  plogger = lgr)
+    }else if(ps_sirebreed == "AU" || ps_sirebreed == "OB" || ps_sirebreed == "CH"){
+     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                 ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                 ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_AUCHOB,
+                                 pb_log = pb_log,
+                                 plogger = lgr)
+    }else if(ps_sirebreed == "LM"){
+     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                 ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                 ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_LM,
+                                 pb_log = pb_log,
+                                 plogger = lgr)
+    }else if(ps_sirebreed == "SI"){
+     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ewbc_input_beefOnbeef$file_av_price_breeding_bull),
+                                 ps_statement2search = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull,
+                                 ps_value2update = l_constants_ewbc_input_beefOnbeef$av_price_breeding_bull_SI,
+                                 pb_log = pb_log,
+                                 plogger = lgr)
+    }else{
+      qp4ewc_log_info(lgr, 'pre_process_ewbc_input',
+                      paste0('Price for sire breed other than AN, AU, CH, LM, SI, OB are not available for EWBC, please check!'))
+    }
  }
- }
 
 
 
 
 
-   for(l in 1:nrow(tbl_input_literature)){
-   if(pb_log){
-     qp4ewc_log_info(lgr, 'pre_process_ew_input',
-                     paste0('Updating parameter with input coming from the literature file:\n * line number l: ', l, '\n'))
-   }
-   if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
-     idx_col_input_file <- l_constants_ewbc_input_beefOnbeef$idx_col_input_file
-     idx_col_input <- l_constants_ewbc_input_beefOnbeef$idx_col_input
-     idx_col_input_value <- l_constants_ewbc_input_beefOnbeef$idx_col_input_value
-   }else{
-     idx_col_input_file <- l_constants_ew_input_beefOndairy$idx_col_input_file
-     idx_col_input <- l_constants_ew_input_beefOndairy$idx_col_input
-     idx_col_input_value <- l_constants_ew_input_beefOndairy$idx_col_input_value
-   }
-   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+  for(l in 1:nrow(tbl_input_literature)){
+  if(pb_log){
+    qp4ewc_log_info(lgr, 'pre_process_ew_input',
+                    paste0('Updating parameter with input coming from the literature file:\n * line number l: ', l, '\n'))
+  }
+  if(ps_prodsystew != l_constants_ew_input_beefOndairy$prodsyst4){
+    idx_col_input_file <- l_constants_ewbc_input_beefOnbeef$idx_col_input_file
+    idx_col_input <- l_constants_ewbc_input_beefOnbeef$idx_col_input
+    idx_col_input_value <- l_constants_ewbc_input_beefOnbeef$idx_col_input_value
+  }else{
+    idx_col_input_file <- l_constants_ew_input_beefOndairy$idx_col_input_file
+    idx_col_input <- l_constants_ew_input_beefOndairy$idx_col_input
+    idx_col_input_value <- l_constants_ew_input_beefOndairy$idx_col_input_value
+  }
+  update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                  paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                  tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input_file]),
                                ps_statement2search = tbl_input_literature[l,l_constants_ewbc_input_beefOnbeef$idx_col_input],
@@ -243,41 +243,41 @@ pre_process_ew_input <- function(ps_sirebreed,
  }
 
  ### # Maturity type for production system 4 requires inputs for the purebred dairy breed and crossbred beef-on-dairy
-   if(ps_prodsystew == l_constants_ew_input_beefOndairy$prodsyst4){
-     if(ps_dambreed == "HO"){
-       maturitytype_status_purebred <- l_constants_ew_input_beefOndairy$maturitytype_early
-       if(ps_sirebreed == "AN") {
-         maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_early
-       } else if (ps_sirebreed == "LM" || ps_sirebreed == "SI" || ps_sirebreed == "OB") {
-         maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_medium
-       }
-     }
-     if(ps_dambreed == "BS"){
-       maturitytype_status_purebred <- l_constants_ew_input_beefOndairy$maturitytype_medium
-       if(ps_sirebreed == "AN") {
-         maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_early
-       } else if (ps_sirebreed == "LM" || ps_sirebreed == "SI" || ps_sirebreed == "OB") {
-         maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_medium
-       }
-     }
-
-     if(ps_dambreed == "OB" || ps_dambreed == "SI"){
-       maturitytype_status_purebred <- l_constants_ew_input_beefOndairy$maturitytype_medium
+ if(ps_prodsystew == l_constants_ew_input_beefOndairy$prodsyst4){
+   if(ps_dambreed == "HO"){
+     maturitytype_status_purebred <- l_constants_ew_input_beefOndairy$maturitytype_early
+     if(ps_sirebreed == "AN") {
+       maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_early
+     } else if (ps_sirebreed == "LM" || ps_sirebreed == "SI" || ps_sirebreed == "OB") {
        maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_medium
      }
-
-     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
-                                 ps_statement2search = l_constants_ew_input_beefOndairy$maturitytype_purebred,
-                                 ps_value2update = maturitytype_status_purebred,
-                                 pb_log = pb_log,
-                                 plogger = lgr)
-
-     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
-                                 ps_statement2search = l_constants_ew_input_beefOndairy$maturitytype_crossbred,
-                                 ps_value2update = maturitytype_status_crossbred,
-                                 pb_log = pb_log,
-                                 plogger = lgr)
    }
+   if(ps_dambreed == "BS"){
+     maturitytype_status_purebred <- l_constants_ew_input_beefOndairy$maturitytype_medium
+     if(ps_sirebreed == "AN") {
+       maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_early
+     } else if (ps_sirebreed == "LM" || ps_sirebreed == "SI" || ps_sirebreed == "OB") {
+       maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_medium
+     }
+   }
+
+   if(ps_dambreed == "OB" || ps_dambreed == "SI"){
+     maturitytype_status_purebred <- l_constants_ew_input_beefOndairy$maturitytype_medium
+     maturitytype_status_crossbred <- l_constants_ew_input_beefOndairy$maturitytype_medium
+   }
+
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
+                               ps_statement2search = l_constants_ew_input_beefOndairy$maturitytype_purebred,
+                               ps_value2update = maturitytype_status_purebred,
+                               pb_log = pb_log,
+                               plogger = lgr)
+
+   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
+                               ps_statement2search = l_constants_ew_input_beefOndairy$maturitytype_crossbred,
+                               ps_value2update = maturitytype_status_crossbred,
+                               pb_log = pb_log,
+                               plogger = lgr)
+ }
 
 
 
@@ -513,26 +513,26 @@ pre_process_ew_input <- function(ps_sirebreed,
  }
 
  ### # If production system is system 4 for beef-on-dairy, the utilisation of calves needs to be selection in PARAD.TXT:
-  if(ps_prodsystew == l_constants_ew_input_beefOndairy$prodsyst4){
-   if(ps_marketchannel == "Export"){
-     utilisation_calves_pure <- l_constants_ew_input_beefOndairy$utilisation_export
-     utilisation_calves_cross <- l_constants_ew_input_beefOndairy$utilisation_export
-   }else{
-     utilisation_calves_pure <- l_constants_ew_input_beefOndairy$utilisation_fattening
-     utilisation_calves_cross <- l_constants_ew_input_beefOndairy$utilisation_fattening
-   }
-   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
-                               ps_statement2search = l_constants_ew_input_beefOndairy$utilisation_purebred,
-                               ps_value2update = utilisation_calves_pure,
-                               pb_log = pb_log,
-                               plogger = lgr)
-   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
-                               ps_statement2search = l_constants_ew_input_beefOndairy$utilisation_crossbred,
-                               ps_value2update = utilisation_calves_cross,
-                               pb_log = pb_log,
-                               plogger = lgr)
-
+ if(ps_prodsystew == l_constants_ew_input_beefOndairy$prodsyst4){
+  if(ps_marketchannel == "Export"){
+    utilisation_calves_pure <- l_constants_ew_input_beefOndairy$utilisation_export
+    utilisation_calves_cross <- l_constants_ew_input_beefOndairy$utilisation_export
+  }else{
+    utilisation_calves_pure <- l_constants_ew_input_beefOndairy$utilisation_fattening
+    utilisation_calves_cross <- l_constants_ew_input_beefOndairy$utilisation_fattening
   }
+  update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
+                              ps_statement2search = l_constants_ew_input_beefOndairy$utilisation_purebred,
+                              ps_value2update = utilisation_calves_pure,
+                              pb_log = pb_log,
+                              plogger = lgr)
+  update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),l_constants_ew_input_beefOndairy$file_par),
+                              ps_statement2search = l_constants_ew_input_beefOndairy$utilisation_crossbred,
+                              ps_value2update = utilisation_calves_cross,
+                              pb_log = pb_log,
+                              plogger = lgr)
+
+ }
 
 
   # ****************************************************************************
@@ -3063,17 +3063,10 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
 
   ### # Merge progeny-flp data and pedigree files
   tbl_merged_data <- tbl_flp %>% dplyr::inner_join(tbl_ped, by = c("NakoTVD" = "TVDid"))
-  ### # Add a column for the transformed fleshiness score in line with the breeding value estimation
-  tbl_merged_data$Fleshiness_transform <- NA
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 2] <- 7
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 3] <- 6
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 4] <- 5
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 5] <- 4
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 6] <- 3
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 7] <- 2
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 8] <- 1
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 9] <- 1
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 10] <- 1
+  ### # Transformation of the fleshiness score
+  tbl_merged_data <- transform_fleshinesss(ps_input_merged_tibble = tbl_merged_data,
+                                           pb_log = pb_log,
+                                           plogger = lgr)
   ### # Create different tibble if purebred or crossbred
   tbl_breed_data <- tbl_merged_data %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>% dplyr::filter(Mutter_RasseCode == ps_dambreed)
 
@@ -3085,11 +3078,11 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
   l_constants_liveweight_deductions_beefOnbeef <- get_constants_liveweight_deductions_beefOnbeef()
 
   ### # Number of classes for fleshiness
-    idx_row_class_fleshiness <- l_constants_carcass_beefOnbeef$idx_row_class_fleshiness
-    idx_col_input_file <- l_constants_carcass_beefOnbeef$idx_col_input_file
-    idx_col_input <- l_constants_carcass_beefOnbeef$idx_col_input
-    idx_col_input_value <- l_constants_carcass_beefOnbeef$idx_col_input_value
-    idx_row_class_fat <- l_constants_carcass_beefOnbeef$idx_row_class_fat
+  idx_row_class_fleshiness <- l_constants_carcass_beefOnbeef$idx_row_class_fleshiness
+  idx_col_input_file <- l_constants_carcass_beefOnbeef$idx_col_input_file
+  idx_col_input <- l_constants_carcass_beefOnbeef$idx_col_input
+  idx_col_input_value <- l_constants_carcass_beefOnbeef$idx_col_input_value
+  idx_row_class_fat <- l_constants_carcass_beefOnbeef$idx_row_class_fat
 
   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                 paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
@@ -3667,17 +3660,10 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
 
   ### # Merge progeny-flp data and pedigree files
   tbl_merged_data <- tbl_flp %>% dplyr::inner_join(tbl_ped, by = c("NakoTVD" = "TVDid"))
-  ### # Add a column for the transformed fleshiness score in line with the breeding value estimation
-  tbl_merged_data$Fleshiness_transform <- NA
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 2] <- 7
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 3] <- 6
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 4] <- 5
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 5] <- 4
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 6] <- 3
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 7] <- 2
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 8] <- 1
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 9] <- 1
-  tbl_merged_data$Fleshiness_transform[tbl_merged_data$`Fleischigkeit (1. Teil Handelsklasse CHTAX)` %in% 10] <- 1
+  ### # Transformation of the fleshiness score
+  tbl_merged_data <- transform_fleshinesss(ps_input_merged_tibble = tbl_merged_data,
+                                           pb_log = pb_log,
+                                           plogger = lgr)
   ### # Create different tibble if purebred or crossbred
   tbl_purebred_dairy_data <- tbl_merged_data %>% dplyr::filter(Vater_RasseCode == ps_dambreed) %>% dplyr::filter(Mutter_RasseCode == ps_dambreed)
   tbl_crossbred_data <- tbl_merged_data %>% dplyr::filter(Vater_RasseCode == ps_sirebreed) %>% dplyr::filter(Mutter_RasseCode == ps_dambreed)
@@ -3693,11 +3679,11 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
   l_constants_liveweight_deductions_veal_beefOndairy <- get_constants_liveweight_deductions_veal_beefOndairy()
 
   ### # Number of classes for fleshiness
-    idx_row_class_fleshiness <- l_constants_carcass_beefOndairy$idx_row_class_fleshiness
-    idx_col_input_file <- l_constants_carcass_beefOndairy$idx_col_input_file
-    idx_col_input <- l_constants_carcass_beefOndairy$idx_col_input
-    idx_col_input_value <- l_constants_carcass_beefOndairy$idx_col_input_value
-    idx_row_class_fat <- l_constants_carcass_beefOndairy$idx_row_class_fat
+  idx_row_class_fleshiness <- l_constants_carcass_beefOndairy$idx_row_class_fleshiness
+  idx_col_input_file <- l_constants_carcass_beefOndairy$idx_col_input_file
+  idx_col_input <- l_constants_carcass_beefOndairy$idx_col_input
+  idx_col_input_value <- l_constants_carcass_beefOndairy$idx_col_input_value
+  idx_row_class_fat <- l_constants_carcass_beefOndairy$idx_row_class_fat
 
 
 
@@ -4099,8 +4085,8 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
   }
 
   # basis price heifer
-  heifer_carcass_price <- tbl_carcass_price[[l_constants_liveweight_deductions_female_beefOndairy$idx_row_heifer]]
 
+  heifer_carcass_price <- tbl_carcass_price[[l_constants_liveweight_deductions_female_beefOndairy$idx_row_heifer]]
 
   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                 paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
