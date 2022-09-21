@@ -6,7 +6,7 @@
 \usage{
 post_process_output(
   ps_path_2outputfile,
-  ps_path_2outputfile_run1,
+  ps_outputfilenameECOWEIGHT,
   ps_output_statement,
   ps_output_search_pattern,
   ps_sirebreed,
@@ -24,7 +24,7 @@ post_process_output(
 \arguments{
 \item{ps_path_2outputfile}{path to output file of ECOWEIGHT}
 
-\item{ps_path_2outputfile_run1}{path to output file run 1 of ECOWEIGHT}
+\item{ps_outputfilenameECOWEIGHT}{name output file of ECOWEIGHT}
 
 \item{ps_output_statement}{output statement in a file}
 

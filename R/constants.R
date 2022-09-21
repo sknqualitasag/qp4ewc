@@ -541,6 +541,7 @@ get_constants_postprocess_beefOndairy <- function(){
               idx_row_rearingwt_f = 17,
               idx_row_rearingwt_m = 16,
               idx_row_gestlen = 9,
+              idx_row_gestlen_export = 5,
               string_EW_value = 2,
               avg_dressing = 0.56,
               ew_results = 1:9,
@@ -569,6 +570,7 @@ get_constants_postprocess_beefOndairy <- function(){
               ew_calving_transform = 11,
               ew_calving_transform_export = 6,
               ew_gestation_length = 12,
+              ew_gestation_length_export = 7,
               #for transformation of EW for calving to scale used for EBV, delta = unit of EW
               calving_t_1 = 300,
               calving_t_2 = 200,

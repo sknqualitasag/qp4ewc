@@ -28,8 +28,6 @@ extract_gestlength_ecovalue_ewdc(
 \item{pb_log}{indicator whether logs should be produced}
 
 \item{plogger}{logger object}
-
-\item{ps_marketchannel}{market channel}
 }
 \value{
 tbl_profit_gestlength tibble results with gestation length economic value
