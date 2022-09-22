@@ -561,7 +561,7 @@ pre_process_ew_input <- function(ps_sirebreed,
 
 
  # ****************************************************************************
- ## ---- Progreny data about weighing and slaughter ----
+ ## ---- Progeny data about weighing and slaughter ----
  # ****************************************************************************
  ### # Major step 4 ### #
  ### # production system beef-on-beef
@@ -572,6 +572,7 @@ pre_process_ew_input <- function(ps_sirebreed,
                                            ps_marketchannel = ps_marketchannel,
                                            ps_path_directory2create = ps_path_directory2create,
                                            ps_input_file_progeny_flp_statement = ps_input_file_progeny_flp_statement,
+                                           ps_input_file_flp_carcass_matrix_statement = ps_input_file_flp_carcass_matrix_statement,
                                            ps_input_file_flp = ps_input_file_flp,
                                            ps_start_flp_date = ps_start_date,
                                            ps_end_flp_date = ps_end_date,
@@ -586,6 +587,7 @@ pre_process_ew_input <- function(ps_sirebreed,
                                            ps_marketchannel = ps_marketchannel,
                                            ps_path_directory2create = ps_path_directory2create,
                                            ps_input_file_progeny_flp_statement = ps_input_file_progeny_flp_statement,
+                                           ps_input_file_flp_carcass_matrix_statement = ps_input_file_flp_carcass_matrix_statement,
                                            ps_input_file_flp = ps_input_file_flp,
                                            ps_input_file_calf = ps_input_file_calf,
                                            ps_start_flp_date = ps_start_date,
@@ -1390,6 +1392,7 @@ pre_process_ew_input_calving <- function(ps_sirebreed,
 #' @param ps_marketchannel market channel
 #' @param ps_path_directory2create path of the directory that will be created
 #' @param ps_input_file_progeny_flp_statement path to file with statement based on calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file_flp_carcass_matrix_statement path to file with statement regarding carcass prices
 #' @param ps_input_file_flp path to file with input coming from calving for the input-parameter-file for ECOWEIGHT
 #' @param ps_start_flp_date setting the start of the slaughter date to filter in the slaughter data
 #' @param ps_end_flp_date setting the end of the slaughter date to filter in the slaughter data
@@ -1407,6 +1410,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                                     ps_marketchannel,
                                                     ps_path_directory2create,
                                                     ps_input_file_progeny_flp_statement,
+                                                    ps_input_file_flp_carcass_matrix_statement,
                                                     ps_input_file_flp,
                                                     ps_start_flp_date,
                                                     ps_end_flp_date,
@@ -1441,7 +1445,10 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                              pb_log = pb_log,
                                              plogger = lgr)
 
-
+  ### # Read file with statement based on carcass prices for input-parameter-file of ECOWEIGHT
+  tbl_input_statement_flp_carcass <- read_file_input(ps_input_file = ps_input_file_flp_carcass_matrix_statement,
+                                                     pb_log = pb_log,
+                                                     plogger = lgr)
   ### # Read file with progeny-flp data
   tbl_flp <- read_file_input_flp(ps_input_file_flp,
                                  ps_start_flp_date,
@@ -1451,12 +1458,9 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 
 
   ### # Get the constants
+  l_constants <- get_constants()
   l_constants_progeny_beefOnbeef <- get_constants_progeny_beefOnbeef()
-
-  ### # Write marketchannel to logfile
-  if (pb_log)
-    qp4ewc_log_info(lgr, 'pre_process_ew_input_progeny_data_flp',
-                    paste0(" * Entering branch for marketchannel: ", ps_marketchannel, collapse = ""))
+  l_constants_liveweight_deductions_beefOnbeef <- get_constants_liveweight_deductions_beefOnbeef()
 
   ### # Read pedigree file
   tbl_ped <- read_file_input_ped(ps_input_file_ped,
@@ -1538,7 +1542,8 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                 ps_value2update = livewt_slaughter_m,
                                 pb_log = pb_log,
                                 plogger = lgr)
-
+  slaughter_m <- livewt_slaughter_m*(l_constants$dressingpercentage_male)
+  slaughter_f <- livewt_slaughter_f*(l_constants$dressingpercentage_female)
 
     # Calculate weaning weight, weaning age, slaughter age
     weaningwt_f <- calculate_mean_weaningweight(ps_input_flp_tibble = tbl_progeny_data_flp,
@@ -1715,6 +1720,26 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
                                 ps_value2update = weight_304d_m,
                                 pb_log = pb_log,
                                 plogger = lgr)
+
+    ### # deductions for carcass weight:
+    carcass_price_bull <- calculate_carcass_price(ps_tbl_input_statement_carcass = tbl_input_statement_flp_carcass,
+                                                  ps_sex = l_constants$sex_male,
+                                                  ps_liveweight = slaughter_m,
+                                                  ps_marketchannel = ps_marketchannel,
+                                                  pb_log = pb_log,
+                                                  plogger = lgr)
+
+    carcass_price_heifer <- calculate_carcass_price(ps_tbl_input_statement_carcass = tbl_input_statement_flp_carcass,
+                                                    ps_sex = l_constants$sex_female,
+                                                    ps_liveweight = slaughter_f,
+                                                    ps_marketchannel = ps_marketchannel,
+                                                    pb_log = pb_log,
+                                                    plogger = lgr)
+
+    carcass_price <- tibble(carcass_price_bull, carcass_price_heifer)
+    write.csv(carcass_price, file = file.path(ps_path_directory2create,
+                                              paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel, collapse =""),"carcass_prices.csv"), row.names = FALSE)
+
   }
 
 
@@ -2044,6 +2069,7 @@ pre_process_ewbc_input_progeny_data_flp <- function(ps_sirebreed,
 #' @param ps_marketchannel market channel
 #' @param ps_path_directory2create path of the directory that will be created
 #' @param ps_input_file_progeny_flp_statement path to file with statement based on calving for the input-parameter-file for ECOWEIGHT
+#' @param ps_input_file_flp_carcass_matrix_statement path to file with statement regarding carcass prices
 #' @param ps_input_file_flp path to file with input coming from calving for the input-parameter-file for ECOWEIGHT
 #' @param ps_start_flp_date setting the start of the slaughter date to filter in the slaughter data
 #' @param ps_end_flp_date setting the end of the slaughter date to filter in the slaughter data
@@ -2061,6 +2087,7 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                     ps_marketchannel,
                                                     ps_path_directory2create,
                                                     ps_input_file_progeny_flp_statement,
+                                                    ps_input_file_flp_carcass_matrix_statement,
                                                     ps_input_file_flp,
                                                     ps_input_file_calf,
                                                     ps_start_flp_date,
@@ -2084,6 +2111,7 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                            ' * ps_marketchannel: ', ps_marketchannel, '\n',
                            ' * ps_path_directory2create: ', ps_path_directory2create, '\n',
                            ' * ps_input_file_progeny_flp_statement: ',ps_input_file_progeny_flp_statement, '\n',
+                           ' * ps_input_file_flp_carcass_matrix_statement: ', ps_input_file_flp_carcass_matrix_statement, '\n',
                            ' * ps_input_file_flp: ', ps_input_file_flp, '\n',
                            ' * ps_input_file_calf: ', ps_input_file_calf, '\n',
                            ' * ps_start_flp_date: ',ps_start_flp_date,'\n',
@@ -2093,14 +2121,22 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
 
 
   ### # Get the constants
+  l_constants <- get_constants()
   l_constants_progeny_beefOndairy <- get_constants_progeny_beefOndairy()
   l_constants_ew_input_beefOndairy <- get_constants_ew_input_beefOndairy()
+  l_constants_carcass_beefOndairy <- get_constants_carcass_beefOndairy()
+  l_constants_liveweight_deductions_male_beefOndairy <- get_constants_liveweight_deductions_male_beefOndairy()
+  l_constants_liveweight_deductions_female_beefOndairy <- get_constants_liveweight_deductions_female_beefOndairy()
+  l_constants_liveweight_deductions_veal_beefOndairy <- get_constants_liveweight_deductions_veal_beefOndairy()
 
   ### # Read file with statement based on progeny data flp for input-parameter-file of ECOWEIGHT
   tbl_input_statement_flp <- read_file_input(ps_input_file = ps_input_file_progeny_flp_statement,
                                              pb_log = pb_log,
                                              plogger = lgr)
-
+  ### # Read file with statement based on carcass prices for input-parameter-file of ECOWEIGHT
+  tbl_input_statement_flp_carcass <- read_file_input(ps_input_file = ps_input_file_flp_carcass_matrix_statement,
+                                                     pb_log = pb_log,
+                                                     plogger = lgr)
 
   ### # Read file with progeny-flp data
   tbl_flp <- read_file_input_flp(ps_input_file_flp = ps_input_file_flp,
@@ -2248,7 +2284,7 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                pb_log = pb_log,
                                plogger = lgr)
 
-    #crossbred slaughter weights required for claculation of daily gain
+    #crossbred slaughter weights required for calculation of daily gain
     livewt_slaughter_f_cross <- calculate_mean_liveweight_slaughter(ps_input_flp_tibble = tbl_crossbred,
                                                                         ps_sex = l_constants_progeny_beefOndairy$sex_female,
                                                                         ps_marketing_channel = l_constants_progeny_beefOndairy$conv_fattening_beef,
@@ -2261,7 +2297,6 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                                                     ps_prodsystew = ps_prodsystew,
                                                                     pb_log = pb_log,
                                                                     plogger = lgr)
-
 
     #Daily gain birth to end of rearing (at approx. 90 days and 130kg according to Agroscope green book)
     age_1stfeeding <- l_constants_progeny_beefOndairy$age_1stfeeding
@@ -2455,6 +2490,24 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                 plogger = lgr)
 
 
+    ### # deductions for carcass weight:
+  carcass_price_bull <- calculate_carcass_price(ps_tbl_input_statement_carcass = tbl_input_statement_flp_carcass,
+                                                ps_sex = l_constants$sex_male,
+                                                ps_liveweight = livewt_slaughter_m_cross,
+                                                ps_marketchannel = ps_marketchannel,
+                                                pb_log = pb_log,
+                                                plogger = lgr)
+
+  carcass_price_heifer <- calculate_carcass_price(ps_tbl_input_statement_carcass = tbl_input_statement_flp_carcass,
+                                                  ps_sex = l_constants$sex_female,
+                                                  ps_liveweight = livewt_slaughter_f_cross,
+                                                  ps_marketchannel = ps_marketchannel,
+                                                  pb_log = pb_log,
+                                                  plogger = lgr)
+
+  carcass_price <- tibble(carcass_price_bull, carcass_price_heifer)
+  write.csv(carcass_price, file = file.path(ps_path_directory2create,
+                                      paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel, collapse =""),"carcass_prices.csv"), row.names = FALSE)
 
   }
 
@@ -2778,6 +2831,24 @@ pre_process_ewdc_input_progeny_data_flp <- function(ps_sirebreed,
                                 pb_log = pb_log,
                                 plogger = lgr)
 
+    carcass_price_veal_M <- calculate_carcass_price(ps_tbl_input_statement_carcass = tbl_input_statement_flp_carcass,
+                                                    ps_sex = l_constants$sex_male,
+                                                    ps_liveweight = livewt_slaughter_f_cross,
+                                                    ps_marketchannel = ps_marketchannel,
+                                                    pb_log = pb_log,
+                                                    plogger = lgr)
+
+    carcass_price_veal_F <- calculate_carcass_price(ps_tbl_input_statement_carcass = tbl_input_statement_flp_carcass,
+                                                    ps_sex = l_constants$sex_female,
+                                                    ps_liveweight = livewt_slaughter_f_cross,
+                                                    ps_marketchannel = ps_marketchannel,
+                                                    pb_log = pb_log,
+                                                    plogger = lgr)
+
+    carcass_price <- tibble(carcass_price_veal_M, carcass_price_veal_F)
+    write.csv(carcass_price, file = file.path(ps_path_directory2create,
+                                              paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel, collapse =""),"carcass_prices.csv"), row.names = FALSE)
+
   }
 
 
@@ -2899,8 +2970,7 @@ update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps
                             pb_log = pb_log,
                             plogger = lgr)
 
-
-}
+  }
 
 
 #' @title Pre-processing the carcass conformation, fat, prices based on flp-data for beef-on-beef input-parameter-file of ECOWEIGHT
@@ -2986,6 +3056,10 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                                  pb_log = pb_log,
                                  plogger = lgr)
 
+  #read carcass price table (with deductions)
+  tbl_carcass_price <- readr::read_delim(file = file.path(ps_path_directory2create,
+                                                          paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel, collapse = ""),"carcass_prices.csv"), delim = ",")
+
 
   ### # Merge progeny-flp data and pedigree files
   tbl_merged_data <- tbl_flp %>% dplyr::inner_join(tbl_ped, by = c("NakoTVD" = "TVDid"))
@@ -3001,6 +3075,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
   l_constants_carcass_beefOndairy <- get_constants_carcass_beefOndairy()
   l_constants_ewbc_input_beefOnbeef <- get_constants_ewbc_input_beefOnbeef()
   l_constants_ew_input_beefOndairy <- get_constants_ew_input_beefOndairy()
+  l_constants_liveweight_deductions_beefOnbeef <- get_constants_liveweight_deductions_beefOnbeef()
 
   ### # Number of classes for fleshiness
   idx_row_class_fleshiness <- l_constants_carcass_beefOnbeef$idx_row_class_fleshiness
@@ -3261,19 +3336,21 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                               pb_log = pb_log,
                               plogger = lgr)
   # basis price bull
+  bull_carcass_price <- tbl_carcass_price[[l_constants_liveweight_deductions_beefOnbeef$idx_row_natura_bull]]
   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                 paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                 tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_price,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                               ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_price,l_constants_carcass_beefOnbeef$idx_col_input],
-                              ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_price,l_constants_carcass_beefOnbeef$idx_col_input_value]$input_value,
+                              ps_value2update = bull_carcass_price,
                               pb_log = pb_log,
                               plogger = lgr)
   # basis price heifer
+  heifer_carcass_price <- tbl_carcass_price[[l_constants_liveweight_deductions_beefOnbeef$idx_row_natura_heifer]]
   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                 paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                 tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_price,l_constants_carcass_beefOnbeef$idx_col_input_file]),
                               ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_price,l_constants_carcass_beefOnbeef$idx_col_input],
-                              ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_price,l_constants_carcass_beefOnbeef$idx_col_input_value]$input_value,
+                              ps_value2update = heifer_carcass_price,
                               pb_log = pb_log,
                               plogger = lgr)
 
@@ -3503,7 +3580,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
 #' @param ps_path_directory2create path of the directory that will be created
 #' @param ps_input_file_flp_carcass_matrix_statement path to file with statement based on calving for the input-parameter-file for ECOWEIGHT
 #' @param ps_input_file_flp path to file with input coming from calving for the input-parameter-file for ECOWEIGHT
-#' @param ps_start_flp_date setting the start of the slaughter date to filter in the slaughter data
+#' @param ps_start_flp_date setting the start of the slaughter date to filter in the slaughter data pre_process_input_progeny_data_flp
 #' @param ps_end_flp_date setting the end of the slaughter date to filter in the slaughter data
 #' @param ps_input_file_price_cow path to file with price for cows
 #' @param ps_input_file_price_bull path to file with price for bulls
@@ -3515,6 +3592,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
 #'
 #' @importFrom dplyr %>%
 #' @import dplyr
+#' @import readr
 #'
 #' @export pre_process_ewdc_input_carcass_data_flp
 pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
@@ -3577,6 +3655,8 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                                  pb_log = pb_log,
                                  plogger = lgr)
 
+  tbl_carcass_price <- readr::read_delim(file = file.path(ps_path_directory2create,
+                                                          paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel, collapse = ""),"carcass_prices.csv"), delim = ",")
 
   ### # Merge progeny-flp data and pedigree files
   tbl_merged_data <- tbl_flp %>% dplyr::inner_join(tbl_ped, by = c("NakoTVD" = "TVDid"))
@@ -3594,6 +3674,9 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
   l_constants_ewbc_input_beefOnbeef <- get_constants_ewbc_input_beefOnbeef()
   l_constants_ew_input_beefOndairy <- get_constants_ew_input_beefOndairy()
   l_constants_progeny_beefOndairy <- get_constants_progeny_beefOndairy()
+  l_constants_liveweight_deductions_male_beefOndairy <- get_constants_liveweight_deductions_male_beefOndairy()
+  l_constants_liveweight_deductions_female_beefOndairy <- get_constants_liveweight_deductions_female_beefOndairy()
+  l_constants_liveweight_deductions_veal_beefOndairy <- get_constants_liveweight_deductions_veal_beefOndairy()
 
   ### # Number of classes for fleshiness
   idx_row_class_fleshiness <- l_constants_carcass_beefOndairy$idx_row_class_fleshiness
@@ -3987,25 +4070,52 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                               plogger = lgr)
 
   if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_beef){
+
   # basis price bull
+  bull_carcass_price <- tbl_carcass_price[[l_constants_liveweight_deductions_male_beefOndairy$idx_row_bull]]
+
   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                 paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                 tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
                               ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input],
-
-                              ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef,
+                              ps_value2update = bull_carcass_price,
                               pb_log = pb_log,
                               plogger = lgr)
+
+  }
+
   # basis price heifer
+
+  heifer_carcass_price <- tbl_carcass_price[[l_constants_liveweight_deductions_female_beefOndairy$idx_row_heifer]]
+
   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                 paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                 tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
                               ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input],
-                              ps_value2update = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef,
+                              ps_value2update = heifer_carcass_price,
                               pb_log = pb_log,
                               plogger = lgr)
+
+  if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_calf){
+    veal_carcass_price <- tbl_carcass_price[[l_constants_liveweight_deductions_veal_beefOndairy$idx_row_veal]]
+    update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                  paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                  tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input],
+                                ps_value2update = veal_carcass_price,
+                                pb_log = pb_log,
+                                plogger = lgr)
+    # basis price heifer
+    update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
+                                                                                  paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
+                                                                                  tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_file]),
+                                ps_statement2search = tbl_input_statement_flp_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input],
+                                ps_value2update = veal_carcass_price,
+                                pb_log = pb_log,
+                                plogger = lgr)
   }
-  if(ps_marketchannel == l_constants_progeny_beefOndairy$conv_fattening_calf | ps_marketchannel == l_constants_progeny_beefOndairy$export_calf){
+
+  if(ps_marketchannel == l_constants_progeny_beefOndairy$export_calf){
     # basis price bull
     update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                   paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
@@ -4253,4 +4363,5 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                               plogger = lgr)
 
 }
+
 

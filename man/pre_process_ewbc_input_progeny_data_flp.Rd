@@ -11,6 +11,7 @@ pre_process_ewbc_input_progeny_data_flp(
   ps_marketchannel,
   ps_path_directory2create,
   ps_input_file_progeny_flp_statement,
+  ps_input_file_flp_carcass_matrix_statement,
   ps_input_file_flp,
   ps_start_flp_date,
   ps_end_flp_date,
@@ -31,6 +32,8 @@ pre_process_ewbc_input_progeny_data_flp(
 \item{ps_path_directory2create}{path of the directory that will be created}
 
 \item{ps_input_file_progeny_flp_statement}{path to file with statement based on calving for the input-parameter-file for ECOWEIGHT}
+
+\item{ps_input_file_flp_carcass_matrix_statement}{path to file with statement regarding carcass prices}
 
 \item{ps_input_file_flp}{path to file with input coming from calving for the input-parameter-file for ECOWEIGHT}
 

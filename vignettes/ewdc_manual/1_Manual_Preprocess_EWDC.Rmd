@@ -88,7 +88,7 @@ s_input_file_price_heifer <- system.file("extdata","ewdc","heifer_price.txt", pa
 s_input_file_price_calf <- system.file("extdata","ewdc","veal_price.txt", package = "qp4ewc")
 # Path to pedigree input file
 s_input_file_ped <- system.file("extdata","ewdc","test","test_pedigree.txt", package = "qp4ewc")
-# Flag to set to TRUE, if a log-file is whished
+# Flag to set to TRUE, if a log-file is wished
 b_log <- TRUE
 ```
 

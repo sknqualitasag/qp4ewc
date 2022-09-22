@@ -40,7 +40,7 @@ pre_process_ewdc_input_carcass_data_flp(
 
 \item{ps_input_file_ped}{input file for pedigree}
 
-\item{ps_start_flp_date}{setting the start of the slaughter date to filter in the slaughter data}
+\item{ps_start_flp_date}{setting the start of the slaughter date to filter in the slaughter data pre_process_input_progeny_data_flp}
 
 \item{ps_end_flp_date}{setting the end of the slaughter date to filter in the slaughter data}
 
