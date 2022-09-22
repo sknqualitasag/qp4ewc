@@ -3336,7 +3336,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                               pb_log = pb_log,
                               plogger = lgr)
   # basis price bull
-  bull_carcass_price <- tbl_carcass_price[[l_constants_liveweight_deductions_beefOnbeef$idx_row_natura]]
+  bull_carcass_price <- tbl_carcass_price[[l_constants_liveweight_deductions_beefOnbeef$idx_row_natura_bull]]
   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                 paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                 tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_price,l_constants_carcass_beefOnbeef$idx_col_input_file]),
@@ -3345,7 +3345,7 @@ pre_process_ewbc_input_carcass_data_flp <- function(ps_sirebreed,
                               pb_log = pb_log,
                               plogger = lgr)
   # basis price heifer
-  heifer_carcass_price <- tbl_carcass_price[[l_constants_liveweight_deductions_beefOnbeef$idx_row_natura]]
+  heifer_carcass_price <- tbl_carcass_price[[l_constants_liveweight_deductions_beefOnbeef$idx_row_natura_heifer]]
   update_input_parameter_file(ps_path2template_input_parameter_file = file.path(ps_path_directory2create,
                                                                                 paste0(ps_sirebreed,"_",ps_dambreed,"_",ps_prodsystew,"_",ps_marketchannel),
                                                                                 tbl_input_statement_flp_carcass[l_constants_carcass_beefOnbeef$idx_row_heifer_price,l_constants_carcass_beefOnbeef$idx_col_input_file]),
@@ -4363,4 +4363,5 @@ pre_process_ewdc_input_carcass_data_flp <- function(ps_sirebreed,
                               plogger = lgr)
 
 }
+
 

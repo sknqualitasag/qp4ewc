@@ -408,7 +408,8 @@ get_constants_liveweight_deductions_beefOnbeef <- function(){
               step8 = 300,
               step9 = 301, #filler for function (not in the deduction table for naturabeef)
               step10 = 301, #filler for function (not in the deduction table for naturabeef)
-              idx_row_natura = 1))
+              idx_row_natura_bull = 1,
+              idx_row_natura_heifer = 2))
 }
 
 #' @title Get constants for carcass weight deductions based on liveweight for male ConventionalBeef

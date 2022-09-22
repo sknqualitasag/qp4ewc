@@ -132,3 +132,31 @@ Because we are did test-data-set, it is possible that some values of the INPUTXX
 
 The input-files are now ready to execute ECOWEIGHT for beef cattle (EWBC). This need to be done separately and is not part of the package qp4ewc.
 As soon as we have the result file of ECOWEIGHT for beef cattle (in the vignette *2_Manual_Postprocess_EWBC* some test-file are already available to allow to proceed to the post-processing part), we can run the post-processing part to extract economic weights and population means.
+
+```{r, warning=FALSE, message=FALSE}
+ps_sirebreed = s_sirebreed
+ps_dambreed = s_dambreed
+ps_prodsystew = s_prodsystem
+ps_marketchannel = s_marketingchannel
+ps_path_directory2create = s_path_directory2create
+ps_input_file_literature = s_input_file_literature
+ps_input_file_par = s_input_file_par
+ps_input_file_35 = s_input_file_35
+ps_input_file_36 = s_input_file_36
+ps_input_file_testedbulls = s_input_file_testedbulls
+ps_input_file_purchasedreplacementheifers = s_input_file_purchasedreplacementheifers
+ps_input_file_calving_statement = s_input_file_calving_statement
+ps_input_file_calving = s_input_file_calving
+ps_start_date = s_start_date
+ps_end_date = s_end_date
+ps_input_file_progeny_flp_statement = s_input_file_progeny_flp_statement
+ps_input_file_flp = s_input_file_flp
+ps_input_file_calf = s_input_file_calf
+ps_input_file_flp_carcass_matrix_statement = s_input_file_flp_carcass_matrix_statement
+ps_input_file_price_cow = s_input_file_price_cow
+ps_input_file_price_bull = s_input_file_price_bull
+ps_input_file_price_heifer = s_input_file_price_heifer
+ps_input_file_price_calf = s_input_file_price_calf
+ps_input_file_ped = s_input_file_ped
+pb_log = b_log
+```

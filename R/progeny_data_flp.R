@@ -1222,7 +1222,10 @@ calculate_carcass_price <- function(ps_tbl_input_statement_carcass,
       lgr <- plogger
     }
     qp4ewc_log_info(lgr, 'calculate_carcass_price',
-                    paste0('Starting function with parameters:\n * ps_tbl_input_statement_carcass'))
+                    paste0('Starting function with parameters:\n * ps_tbl_input_statement_carcass \n',
+                           ' * ps_sex: ', ps_sex, '\n',
+                           ' * ps_liveweight: ', ps_liveweight, '\n',
+                           ' * ps_marketchannel: ', ps_marketchannel, '\n'))
   }
 
   l_constants <- get_constants()
@@ -1236,16 +1239,16 @@ calculate_carcass_price <- function(ps_tbl_input_statement_carcass,
 
    #calculation carcass price and inserting in the crossbred table:
   #determine if conventionalbeef male or female or veal
-  if(ps_sex == l_constants$sex_male & ps_marketchannel == "ConventionalBeef"){
+  if(ps_sex == l_constants$sex_male & ps_marketchannel == l_constants$wording_conv_fat_beef){
     price <- ps_tbl_input_statement_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef
     constants <- get_constants_liveweight_deductions_male_beefOndairy()
-  }else if (ps_sex == l_constants$sex_female & ps_marketchannel == "ConventionalBeef") {
+  }else if (ps_sex == l_constants$sex_female & ps_marketchannel == l_constants$wording_conv_fat_beef) {
     price <- ps_tbl_input_statement_carcass[l_constants_carcass_beefOndairy$idx_row_heifer_price,l_constants_carcass_beefOndairy$idx_col_input_value]$input_value_beef
     constants <- get_constants_liveweight_deductions_female_beefOndairy()
-  }else if (ps_marketchannel == "ConventionalVeal"){
+  }else if (ps_marketchannel == l_constants$wording_conv_fat_calf){
     price <- ps_tbl_input_statement_carcass[l_constants_carcass_beefOndairy$idx_row_bull_price,l_constants_carcass_beefOndairy$idx_col_input_value_calf]$input_value_calf
     constants <- get_constants_liveweight_deductions_veal_beefOndairy()
-  }else if (ps_marketchannel == "Natura-Beef") {
+  }else if (ps_marketchannel == l_constants$wording_NaturaBeef) {
     price <- ps_tbl_input_statement_carcass[l_constants_carcass_beefOnbeef$idx_row_bull_price,l_constants_carcass_beefOnbeef$idx_col_input_value]$input_value
     constants <- get_constants_liveweight_deductions_beefOnbeef()
   }
